@@ -7,8 +7,7 @@ namespace Support.AudioManagement
     [RequireComponent(typeof(AudioSource))]
     public class AudioPlayer : MonoBehaviour
     {
-        [SerializeField]
-        private string name;
+
         [SerializeField]
         private List<AudioWrapper> audios;
 
@@ -17,7 +16,6 @@ namespace Support.AudioManagement
         private Dictionary<Audio, AudioSource> _sourcesDict = new Dictionary<Audio, AudioSource>();
 
         public List<AudioWrapper> Audios => audios;
-        public string Name => name;
 
         private void Awake()
         {

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Reflection;
 using Support.Extensions;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Support.Console
 {
@@ -15,12 +17,13 @@ namespace Support.Console
     {
         [Tooltip("UI button that will activate console (Can be not assigned)")]
         [SerializeField] private Button uiButtonThatActivatesConsole;
-        [Space]
-        [SerializeField] private KeyCode keyToActivateConsole;
 
         private readonly (Vector2 position, Vector2 size) INPUT_AREA_SCREEN_PROPERTIES = (new Vector2(0, 0), new Vector2(Screen.width, 50));
         private readonly (Vector2 position, Vector2 size) OUTPUT_AREA_SCREEN_PROPERTIES = (new Vector2(0, 50), new Vector2(Screen.width, 300));
 
+        [Inject]
+        private StationaryInputSystem _inputSystem;
+        
         private LinkedList<IConsoleCommand> _consoleCommands = new LinkedList<IConsoleCommand>();
         private string _history = "";
         private string _input = "";
@@ -40,17 +43,23 @@ namespace Support.Console
             if (uiButtonThatActivatesConsole != null)
                 uiButtonThatActivatesConsole.onClick.AddListener(ChangeConsoleActiveness);
         }
+
+        private void Start()
+        {
+            _inputSystem.FPS.Utility.performed += OnUtilityPerformed;
+        }
         
         private void OnDestroy()
         {
             if (uiButtonThatActivatesConsole != null)
                 uiButtonThatActivatesConsole.onClick.RemoveListener(ChangeConsoleActiveness);
+
+            _inputSystem.FPS.Utility.performed -= OnUtilityPerformed;
         }
 
-        private void Update()
+        private void OnUtilityPerformed(InputAction.CallbackContext _)
         {
-            if (Input.GetKeyUp(keyToActivateConsole))
-                ChangeConsoleActiveness();
+            ChangeConsoleActiveness();
         }
 
         private void OnGUI()

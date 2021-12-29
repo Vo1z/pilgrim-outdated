@@ -15,7 +15,7 @@ namespace Support.AudioManagement
         private const int REPETITION_MIN = 1;
         private AudioSource _source;
         private Dictionary<TypeOfSound, AudioWrapper> _audiosDict = new Dictionary<TypeOfSound, AudioWrapper>();
-        private Dictionary<Audio, LinkedList<AudioSource>> _sourcesDict = new Dictionary<Audio, LinkedList<AudioSource>>();
+        private Dictionary<Audio, Queue<AudioSource>> _sourcesDict = new Dictionary<Audio, Queue<AudioSource>>();
         private int _slots = 0;
  
         private void Awake()
@@ -25,7 +25,7 @@ namespace Support.AudioManagement
                 _audiosDict.Add(wrap.Type, wrap);
                 foreach (var sound in wrap.Audios)
                 {
-                    _sourcesDict.Add(sound, new LinkedList<AudioSource>());
+                    _sourcesDict.Add(sound, new Queue<AudioSource>());
                 }
             }
         }
@@ -60,8 +60,8 @@ namespace Support.AudioManagement
                 _source = gameObject.GetComponent<AudioSource>();
             }
             //checks if such audio can be repeated and if it's already being played
-            var list = _sourcesDict[audio];
-            if (!repeat && list.Count > REPETITION_MIN)
+            var queue = _sourcesDict[audio];
+            if (!repeat && queue.Count > REPETITION_MIN)
             {
                 return;
             }
@@ -90,7 +90,7 @@ namespace Support.AudioManagement
 
             //adds item to the list of occupied Audio Sources 
             //increases a int of slots that represent a current amount of occupied audio sources
-            list.AddLast(src);
+            queue.Enqueue(src);
             _slots++;
             
             src.Play();
@@ -111,11 +111,10 @@ namespace Support.AudioManagement
             {
                 return;
             }
-            var list = _sourcesDict[audio];
+            var queue = _sourcesDict[audio];
             //Stops and removes the oldest audio then removes its source
-            AudioSource res = list.First.Value;
+            AudioSource res = queue.Dequeue();
             res.Stop();
-            list.RemoveFirst();
             _slots--;
 
             //leaves only one audio manager and assigns it to the _source
@@ -136,9 +135,9 @@ namespace Support.AudioManagement
             {
                 return;
             }
-            var list = _sourcesDict[audio];
+            var queue = _sourcesDict[audio];
             //Stops and removes all Audio Sources except the last audio Source of the object
-            foreach(var item in list)
+            foreach(var item in queue)
             {
                 item.Stop();
                 _slots--;
@@ -151,7 +150,7 @@ namespace Support.AudioManagement
                     Destroy(item);
                 }
             }
-            list = new LinkedList<AudioSource>();
+            queue= new Queue<AudioSource>();
         }
     }
 }

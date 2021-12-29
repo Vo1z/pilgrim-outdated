@@ -11,20 +11,24 @@ namespace Support.AudioManagement
         [SerializeField]
         private List<AudioWrapper> audios;
 
+        private const int SLOT_MIN = 0;
+        private const int REPETITION_MIN = 1;
         private AudioSource _source;
         private Dictionary<TypeOfSound, AudioWrapper> _audiosDict = new Dictionary<TypeOfSound, AudioWrapper>();
-        private Dictionary<Audio, AudioSource> _sourcesDict = new Dictionary<Audio, AudioSource>();
-
-        public List<AudioWrapper> Audios => audios;
-
+        private Dictionary<Audio, LinkedList<AudioSource>> _sourcesDict = new Dictionary<Audio, LinkedList<AudioSource>>();
+        private int _slots = 0;
+ 
         private void Awake()
         {
-            foreach(var wrap in audios)
+            foreach (var wrap in audios)
             {
                 _audiosDict.Add(wrap.Type, wrap);
+                foreach (var sound in wrap.Audios)
+                {
+                    _sourcesDict.Add(sound, new LinkedList<AudioSource>());
+                }
             }
         }
-
         private Audio GetAudio(TypeOfSound type, string name)
         {
             AudioWrapper wrap;
@@ -36,33 +40,34 @@ namespace Support.AudioManagement
             var audio = wrap.GetAudio(name);
             return audio;
         }
-        /// <summary>
-        /// Function finds Audio based on a type and name.
-        /// If the audio is already being played, stops.
-        /// If not playes it on the main or additional audio source.
-        /// </summary>
+
         public void Play(TypeOfSound type, string name)
         {
-            //checks if audio with such name and type exist in THIS audioplayer
+            Play(type, name, false);
+        }
+ 
+        public void Play(TypeOfSound type, string name, bool repeat)
+        {
+            //checks if such audio exists
             var audio = GetAudio(type, name);
-            if(audio == null)
+            if (audio == null)
             {
                 return;
             }
-
-            //links _source with audio source
-           if (_source == null)
+            //assign _source a AudioSource
+            if (_source == null)
             {
                 _source = gameObject.GetComponent<AudioSource>();
             }
-
-            //if the audio is already being played, stops
-            AudioSource src;
-            if (_sourcesDict.TryGetValue(audio, out src))
+            //checks if such audio can be repeated and if it's already being played
+            var list = _sourcesDict[audio];
+            if (!repeat && list.Count > REPETITION_MIN)
             {
                 return;
             }
-            //checks if main Audio source is unoccupied, if not creates a new one 
+            //checks if main Audio is unoccupied
+            //if not, creates a new one
+            AudioSource src;
             if (!_source.isPlaying)
             {
                 src = _source;
@@ -71,7 +76,7 @@ namespace Support.AudioManagement
             {
                 src = gameObject.AddComponent<AudioSource>();
             }
-            //configures audio
+            //Audio Source config
             src.volume = audio.Volume;
             src.clip = audio.Clip;
             src.loop = audio.Loop;
@@ -82,35 +87,39 @@ namespace Support.AudioManagement
             src.maxDistance = audio.MaxDistance;
             src.dopplerLevel = audio.DopplerLevel;
             src.spread = audio.Spread;
-            //adds audio source to the dictionary of occupied audio sources and starts playing
-            _sourcesDict.Add(audio, src);
+
+            //adds item to the list of occupied Audio Sources 
+            //increases a int of slots that represent a current amount of occupied audio sources
+            list.AddLast(src);
+            _slots++;
+            
             src.Play();
-            //after audio is ended, remove itself from dictionary and a addition audio surce
-            // if(!audio.Loop) 
-            this.WaitAndDoCoroutine(src.clip.length, () => Stop(type, name))  ;
+            if (!audio.Loop)
+                this.WaitAndDoCoroutine(src.clip.length / 2, () => Stop(type, name));
         }
+
+
+
         /// <summary>
         /// If the found audio is still being played, forces it to stop and removes additional audio source
         /// </summary>
         public void Stop(TypeOfSound type, string name)
         {
-            //checks if audio with such name and type exist in THIS audioplayer
+            //checks if a such audio exists
             var audio = GetAudio(type, name);
             if (audio == null)
             {
                 return;
             }
-            //fetchs an audio source
-            AudioSource res;
-            if (!_sourcesDict.TryGetValue(audio, out res))
-            {
-                return;
-            }
+            var list = _sourcesDict[audio];
+            //Stops and removes the oldest audio then removes its source
+            AudioSource res = list.First.Value;
             res.Stop();
-            //remove audio source from the dictionary and checks if the main audio source is not removed 
-            Debug.Log(1);
-            _sourcesDict.Remove(audio);
-            if (_sourcesDict.Count == 0)
+            list.RemoveFirst();
+            _slots--;
+
+            //leaves only one audio manager and assigns it to the _source
+            if (_slots == SLOT_MIN)
             {
                 _source = res;
             }
@@ -120,5 +129,29 @@ namespace Support.AudioManagement
             }
         }
 
+        public void StopAll(TypeOfSound type, string name)
+        {
+            var audio = GetAudio(type, name);
+            if (audio == null)
+            {
+                return;
+            }
+            var list = _sourcesDict[audio];
+            //Stops and removes all Audio Sources except the last audio Source of the object
+            foreach(var item in list)
+            {
+                item.Stop();
+                _slots--;
+                if (_slots == SLOT_MIN)
+                {
+                    _source = item;
+                }
+                else
+                {
+                    Destroy(item);
+                }
+            }
+            list = new LinkedList<AudioSource>();
+        }
     }
 }

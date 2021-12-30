@@ -34,8 +34,8 @@ namespace Ingame.Player
             var horizontalZeroVector = Vector3.zero;
             var friction = _playerData.MovementFriction * Time.deltaTime;
             
-            horizontalZeroVector.y = playerVelocity.y;
             _rigidbody.velocity = Vector3.Lerp(playerVelocity, horizontalZeroVector, friction);
+            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, playerVelocity.y, _rigidbody.velocity.z);
         }
 
         private void Move(Vector2 direction)

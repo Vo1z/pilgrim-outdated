@@ -1,3 +1,4 @@
+using Support.Extensions;
 using UnityEngine;
 using Zenject;
 
@@ -7,8 +8,10 @@ namespace Ingame.Player
     {
         [Inject] private PlayerInputReceiver _playerInputReceiver;
         [Inject] private PlayerData _playerData;
-        [Inject] private PlayerHUD _playerHUD; 
-    
+        [Inject] private PlayerHUD _playerHUD;
+
+        private float hudRotationX = 0f;
+        
         private void Awake()
         {
             _playerInputReceiver.OnRotationDeltaInputReceived += Rotate;
@@ -21,11 +24,14 @@ namespace Ingame.Player
 
         private void Rotate(Vector2 direction)
         {
-            var yRotation = direction.y * _playerData.Sensitivity;
-            var xRotation = direction.x * _playerData.Sensitivity;
+            var yRotation = direction.y * _playerData.Sensitivity * Time.deltaTime;
+            var xRotation = direction.x * _playerData.Sensitivity * Time.deltaTime;
 
-            transform.Rotate(Vector3.up * xRotation * Time.deltaTime);
-            _playerHUD.transform.Rotate(Vector3.right * yRotation * Time.deltaTime);
+            hudRotationX -= yRotation;
+            hudRotationX = Mathf.Clamp(hudRotationX, -90, 90);
+
+            transform.Rotate(Vector3.up * xRotation);
+            _playerHUD.transform.localRotation = Quaternion.Euler(hudRotationX, 0, 0);
         }
     }
 }

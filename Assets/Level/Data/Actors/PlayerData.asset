@@ -16,4 +16,4 @@ MonoBehaviour:
   movementAcceleration: 100
   movementFriction: 10
   jumpForce: 5
-  sensitivity: 100
+  sensitivity: 10

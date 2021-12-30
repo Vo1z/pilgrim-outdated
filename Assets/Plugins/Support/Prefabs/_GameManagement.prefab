@@ -596,3 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7efe8d6e92fe3425788ede3c07d00392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 3380718857738523392}
+  saveLoadSystem: {fileID: 3380718857738523390}
+  levelManager: {fileID: 3380718857738523391}
+  vfxController: {fileID: 2358537085295648152}
+  uiController: {fileID: 3380718857738523389}

@@ -1,12 +1,16 @@
 using System;
+using UnityEngine;
+using Zenject;
 
 namespace Support
 {
     /// <summary>
     /// Class that manages general game logic
     /// </summary>
-    public class GameController : MonoSingleton<GameController>
+    public class GameController : MonoBehaviour
     {
+        [Inject] private LevelManager _levelManager;
+        
         /// <summary>Event that invokes each time when level is ended</summary>
         public event Action<bool> OnLevelEnded;
         /// <summary>Event that invokes each time when level is restarted</summary>
@@ -20,7 +24,7 @@ namespace Support
         public void RestartLevel()
         {
             OnLevelRestart?.Invoke();
-            LevelManager.Instance.RestartLevel();
+            _levelManager.RestartLevel();
         }
 
         /// <summary>

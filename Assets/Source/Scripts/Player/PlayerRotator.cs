@@ -16,6 +16,12 @@ namespace Ingame.Player
             _playerInputReceiver.OnRotationDeltaInputReceived += Rotate;
         }
 
+        private void Start()
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
         private void OnDestroy()
         {
             _playerInputReceiver.OnRotationDeltaInputReceived -= Rotate;

@@ -9,7 +9,7 @@ namespace Ingame.Player
     public class PlayerMovementController : MonoBehaviour
     {
         [Inject]private PlayerData _playerData;
-        [Inject]private GroundDetection _groundDetection;
+        [Inject]private GroundDetector _groundDetector;
         [Inject] private PlayerInputReceiver _playerInputReceiver;
         
         private Rigidbody _rigidbody;
@@ -43,15 +43,17 @@ namespace Ingame.Player
             var movingOffset = transform.forward * direction.y + transform.right * direction.x;
             movingOffset *= _playerData.MovementAcceleration;
             movingOffset *= Time.deltaTime;
-            var nextVelocity = _rigidbody.velocity + movingOffset;
+            var initialVelocity = _rigidbody.velocity;
+            var nextVelocity = initialVelocity + movingOffset;
             nextVelocity = Vector3.ClampMagnitude(nextVelocity, _playerData.Speed);
+            nextVelocity.y = initialVelocity.y;
             
             _rigidbody.velocity = nextVelocity;
         }
 
         private void Jump()
         {
-            if(!_groundDetection.IsGrounded)
+            if(!_groundDetector.IsGrounded)
                 return;
             
             var impulseVector = Vector3.up * _playerData.JumpForce;

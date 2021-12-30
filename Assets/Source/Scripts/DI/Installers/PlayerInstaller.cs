@@ -13,7 +13,7 @@ namespace Ingame.DI.Installers
         [BoxGroup("Components"), Required]
         [SerializeField] private PlayerInputReceiver playerInputReceiver;
         [BoxGroup("Components"), Required]
-        [SerializeField] private GroundDetection groundDetection;
+        [SerializeField] private GroundDetector groundDetector;
         [BoxGroup("Components"), Required]
         [SerializeField] private PlayerHUD playerHUD;
         
@@ -28,8 +28,8 @@ namespace Ingame.DI.Installers
                 .AsSingle()
                 .NonLazy();
 
-            Container.Bind<GroundDetection>()
-                .FromInstance(groundDetection)
+            Container.Bind<GroundDetector>()
+                .FromInstance(groundDetector)
                 .AsSingle();
 
             Container.Bind<PlayerHUD>()

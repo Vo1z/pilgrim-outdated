@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   movementAcceleration: 100
-  movementFriction: 6
-  jumpForce: 100
+  movementFriction: 10
+  jumpForce: 15
+  pauseBetweenJumps: 0.5
+  gravityAcceleration: 0.8
+  maximumGravitationForce: 10
   sensitivity: 10
+  slidingForceModifier: 1

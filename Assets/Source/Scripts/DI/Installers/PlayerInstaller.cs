@@ -1,5 +1,4 @@
 using Ingame.Player;
-using Ingame.Utilities;
 using NaughtyAttributes;
 using UnityEngine;
 using Zenject;
@@ -13,8 +12,6 @@ namespace Ingame.DI.Installers
         [BoxGroup("Components"), Required]
         [SerializeField] private PlayerInputReceiver playerInputReceiver;
         [BoxGroup("Components"), Required]
-        [SerializeField] private GroundDetector groundDetector;
-        [BoxGroup("Components"), Required]
         [SerializeField] private PlayerHUD playerHUD;
         
         public override void InstallBindings()
@@ -27,10 +24,6 @@ namespace Ingame.DI.Installers
                 .FromInstance(playerInputReceiver)
                 .AsSingle()
                 .NonLazy();
-
-            Container.Bind<GroundDetector>()
-                .FromInstance(groundDetector)
-                .AsSingle();
 
             Container.Bind<PlayerHUD>()
                 .FromInstance(playerHUD)

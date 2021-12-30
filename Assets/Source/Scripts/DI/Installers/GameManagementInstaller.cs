@@ -1,7 +1,7 @@
 using Support;
 using Zenject;
 
-namespace Ingame.Installers
+namespace Ingame.DI.Installers
 {
     public class GameManagementInstaller : MonoInstaller
     {

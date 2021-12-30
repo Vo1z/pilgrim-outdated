@@ -53,7 +53,7 @@ namespace Support
                     ""id"": ""43cf1caf-3671-4806-88af-795e77aa560f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
                 {

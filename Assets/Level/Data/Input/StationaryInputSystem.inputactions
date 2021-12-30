@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Utility",
-                    "type": "PassThrough",
-                    "id": "eddeaa98-a199-4516-929b-13d7ed6942d8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "RotationX",
                     "type": "Value",
                     "id": "5a3ee4a8-273c-4ec6-9365-bf182e3ab87b",
@@ -58,6 +49,24 @@
                     "processors": "",
                     "interactions": "Press(behavior=2)",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Utility",
+                    "type": "PassThrough",
+                    "id": "eddeaa98-a199-4516-929b-13d7ed6942d8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "bd9b3406-2793-428b-b050-29c60df61eb6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=1.401298E-45,pressPoint=1)",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -69,17 +78,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "71283398-1fc5-439d-b032-4e01e758ef57",
-                    "path": "<Keyboard>/f1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Utility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -168,6 +166,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RotationY",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71283398-1fc5-439d-b032-4e01e758ef57",
+                    "path": "<Keyboard>/f1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Utility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed7e5b89-517c-4be0-9fd3-6eca66041d3a",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

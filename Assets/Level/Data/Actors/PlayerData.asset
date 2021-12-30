@@ -17,6 +17,7 @@ MonoBehaviour:
   movementFriction: 10
   jumpForce: 15
   pauseBetweenJumps: 0.5
+  enterCrouchStateSpeed: 3
   gravityAcceleration: 0.8
   maximumGravitationForce: 10
   sensitivity: 10

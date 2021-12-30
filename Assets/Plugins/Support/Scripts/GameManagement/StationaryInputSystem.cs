@@ -57,15 +57,6 @@ namespace Support
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Utility"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""eddeaa98-a199-4516-929b-13d7ed6942d8"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""RotationX"",
                     ""type"": ""Value"",
                     ""id"": ""5a3ee4a8-273c-4ec6-9365-bf182e3ab87b"",
@@ -82,6 +73,24 @@ namespace Support
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Utility"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""eddeaa98-a199-4516-929b-13d7ed6942d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd9b3406-2793-428b-b050-29c60df61eb6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1.401298E-45,pressPoint=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -93,17 +102,6 @@ namespace Support
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""71283398-1fc5-439d-b032-4e01e758ef57"",
-                    ""path"": ""<Keyboard>/f1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Utility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -194,6 +192,28 @@ namespace Support
                     ""action"": ""RotationY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71283398-1fc5-439d-b032-4e01e758ef57"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Utility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed7e5b89-517c-4be0-9fd3-6eca66041d3a"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -205,9 +225,10 @@ namespace Support
             m_FPS_MovementX = m_FPS.FindAction("MovementX", throwIfNotFound: true);
             m_FPS_MovementY = m_FPS.FindAction("MovementY", throwIfNotFound: true);
             m_FPS_Jump = m_FPS.FindAction("Jump", throwIfNotFound: true);
-            m_FPS_Utility = m_FPS.FindAction("Utility", throwIfNotFound: true);
             m_FPS_RotationX = m_FPS.FindAction("RotationX", throwIfNotFound: true);
             m_FPS_RotationY = m_FPS.FindAction("RotationY", throwIfNotFound: true);
+            m_FPS_Utility = m_FPS.FindAction("Utility", throwIfNotFound: true);
+            m_FPS_Crouch = m_FPS.FindAction("Crouch", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -270,9 +291,10 @@ namespace Support
         private readonly InputAction m_FPS_MovementX;
         private readonly InputAction m_FPS_MovementY;
         private readonly InputAction m_FPS_Jump;
-        private readonly InputAction m_FPS_Utility;
         private readonly InputAction m_FPS_RotationX;
         private readonly InputAction m_FPS_RotationY;
+        private readonly InputAction m_FPS_Utility;
+        private readonly InputAction m_FPS_Crouch;
         public struct FPSActions
         {
             private @StationaryInputSystem m_Wrapper;
@@ -280,9 +302,10 @@ namespace Support
             public InputAction @MovementX => m_Wrapper.m_FPS_MovementX;
             public InputAction @MovementY => m_Wrapper.m_FPS_MovementY;
             public InputAction @Jump => m_Wrapper.m_FPS_Jump;
-            public InputAction @Utility => m_Wrapper.m_FPS_Utility;
             public InputAction @RotationX => m_Wrapper.m_FPS_RotationX;
             public InputAction @RotationY => m_Wrapper.m_FPS_RotationY;
+            public InputAction @Utility => m_Wrapper.m_FPS_Utility;
+            public InputAction @Crouch => m_Wrapper.m_FPS_Crouch;
             public InputActionMap Get() { return m_Wrapper.m_FPS; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -301,15 +324,18 @@ namespace Support
                     @Jump.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnJump;
                     @Jump.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnJump;
                     @Jump.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnJump;
-                    @Utility.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnUtility;
-                    @Utility.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnUtility;
-                    @Utility.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnUtility;
                     @RotationX.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnRotationX;
                     @RotationX.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnRotationX;
                     @RotationX.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnRotationX;
                     @RotationY.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnRotationY;
                     @RotationY.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnRotationY;
                     @RotationY.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnRotationY;
+                    @Utility.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnUtility;
+                    @Utility.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnUtility;
+                    @Utility.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnUtility;
+                    @Crouch.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnCrouch;
+                    @Crouch.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnCrouch;
+                    @Crouch.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnCrouch;
                 }
                 m_Wrapper.m_FPSActionsCallbackInterface = instance;
                 if (instance != null)
@@ -323,15 +349,18 @@ namespace Support
                     @Jump.started += instance.OnJump;
                     @Jump.performed += instance.OnJump;
                     @Jump.canceled += instance.OnJump;
-                    @Utility.started += instance.OnUtility;
-                    @Utility.performed += instance.OnUtility;
-                    @Utility.canceled += instance.OnUtility;
                     @RotationX.started += instance.OnRotationX;
                     @RotationX.performed += instance.OnRotationX;
                     @RotationX.canceled += instance.OnRotationX;
                     @RotationY.started += instance.OnRotationY;
                     @RotationY.performed += instance.OnRotationY;
                     @RotationY.canceled += instance.OnRotationY;
+                    @Utility.started += instance.OnUtility;
+                    @Utility.performed += instance.OnUtility;
+                    @Utility.canceled += instance.OnUtility;
+                    @Crouch.started += instance.OnCrouch;
+                    @Crouch.performed += instance.OnCrouch;
+                    @Crouch.canceled += instance.OnCrouch;
                 }
             }
         }
@@ -341,9 +370,10 @@ namespace Support
             void OnMovementX(InputAction.CallbackContext context);
             void OnMovementY(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
-            void OnUtility(InputAction.CallbackContext context);
             void OnRotationX(InputAction.CallbackContext context);
             void OnRotationY(InputAction.CallbackContext context);
+            void OnUtility(InputAction.CallbackContext context);
+            void OnCrouch(InputAction.CallbackContext context);
         }
     }
 }

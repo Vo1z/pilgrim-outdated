@@ -43,7 +43,7 @@ namespace Support.Extensions
             if(action == null)
                 yield break;
             
-            speed = Mathf.Min(Mathf.Abs(b - a), Mathf.Abs(speed));
+            speed = Mathf.Abs(speed);
             speed = b < a ? -speed : speed;
             
             float currentValue = a;

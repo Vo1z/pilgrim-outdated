@@ -17,6 +17,8 @@ namespace Ingame.Player
         [SerializeField][Min(0)] private float jumpForce = 5;
         [BoxGroup("Movement")]
         [SerializeField][Min(0)] private float pauseBetweenJumps = .5f;
+        [BoxGroup("Movement")]
+        [SerializeField][Min(0)] private float enterCrouchStateSpeed = .5f;
         [BoxGroup("Gravitation")]
         [SerializeField][Min(0)] private float gravityAcceleration = 1;
         [BoxGroup("Gravitation")]
@@ -31,6 +33,7 @@ namespace Ingame.Player
         public float MovementFriction => movementFriction;
         public float JumpForce => jumpForce;
         public float PauseBetweenJumps => pauseBetweenJumps;
+        public float EnterCrouchStateSpeed => enterCrouchStateSpeed;
         
         public float GravityAcceleration => gravityAcceleration;
         public float MaximumGravitationForce => maximumGravitationForce;

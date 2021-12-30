@@ -15,11 +15,12 @@ namespace Ingame.Player
         private InputAction _deltaRotationX;
         private InputAction _deltaRotationY;
         private InputAction _jump;
-        
+        private InputAction _crouch;
         
         public event Action<Vector2> OnMovementInputReceived;
         public event Action<Vector2> OnRotationDeltaInputReceived;
         public event Action OnJumpInputReceived;
+        public event Action<bool> OnCrouchInputReceived;
 
         private void Awake()
         {
@@ -30,7 +31,9 @@ namespace Ingame.Player
             _deltaRotationY = _inputSystem.FPS.RotationY;
             
             _jump = _inputSystem.FPS.Jump;
+            _crouch = _inputSystem.FPS.Crouch;
         }
+        
 
         private void Update()
         {
@@ -48,6 +51,8 @@ namespace Ingame.Player
             
             if(_jump.WasPerformedThisFrame())
                 ReceiveJumpInput();
+            
+            ReceiveCrouchInput(_crouch.ReadValue<float>() > 0);
         }
 
         private void ReceiveMovementInput(Vector2 movementInput)
@@ -63,6 +68,11 @@ namespace Ingame.Player
         private void ReceiveJumpInput()
         {
             OnJumpInputReceived?.Invoke();
+        }
+
+        private void ReceiveCrouchInput(bool isCrouching)
+        {
+            OnCrouchInputReceived?.Invoke(isCrouching);
         }
     }
 }

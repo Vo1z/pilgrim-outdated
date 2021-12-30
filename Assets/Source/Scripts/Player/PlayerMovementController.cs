@@ -10,24 +10,29 @@ namespace Ingame.Player
         [Inject]private PlayerInputReceiver _playerInputReceiver;
         
         private CharacterController _characterController;
-        private Vector3 _velocity;
+        private float _initialCharacterHeight;
 
+        private Vector3 _velocity;
         private float _lastTimeJumpWasPerformed;
         private bool _isSliding = false;
+
         private bool IsAbleToJump => Time.time - _lastTimeJumpWasPerformed > _playerData.PauseBetweenJumps;
 
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
+            _initialCharacterHeight = _characterController.height;
 
             _playerInputReceiver.OnMovementInputReceived += Move;
             _playerInputReceiver.OnJumpInputReceived += Jump;
+            _playerInputReceiver.OnCrouchInputReceived += Crouch;
         }
 
         private void OnDestroy()
         {
             _playerInputReceiver.OnMovementInputReceived -= Move;
             _playerInputReceiver.OnJumpInputReceived -= Jump;
+            _playerInputReceiver.OnCrouchInputReceived -= Crouch;
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -85,6 +90,15 @@ namespace Ingame.Player
             nextVelocity.y = initialVelocity.y;
             
             _velocity = nextVelocity;
+        }
+
+        private void Crouch(bool isCrouching)
+        {
+            var characterHeight = isCrouching ? 
+                _characterController.height - _playerData.EnterCrouchStateSpeed * Time.deltaTime:
+                _characterController.height + _playerData.EnterCrouchStateSpeed * Time.deltaTime;
+
+            _characterController.height = Mathf.Clamp(characterHeight, _initialCharacterHeight / 2, _initialCharacterHeight);
         }
 
         private void Jump()

@@ -14,7 +14,7 @@ namespace Ingame.Player
 
         private Vector3 _velocity;
         private float _lastTimeJumpWasPerformed;
-        private bool _isSliding = false;
+        private bool _isGrounded = false;
 
         private bool IsAbleToJump => Time.time - _lastTimeJumpWasPerformed > _playerData.PauseBetweenJumps;
 
@@ -38,9 +38,9 @@ namespace Ingame.Player
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
             var hitNormal = hit.normal;
-            _isSliding = Vector3.Angle(Vector3.up, hitNormal) > _characterController.slopeLimit;
+            _isGrounded = Vector3.Angle(Vector3.up, hitNormal) <= _characterController.slopeLimit;
 
-            if (_isSliding)
+            if (!_isGrounded)
             {
                 _velocity.x += (1f - hitNormal.y) * hitNormal.x * _playerData.SlidingForceModifier;
                 _velocity.z += (1f - hitNormal.y) * hitNormal.z * _playerData.SlidingForceModifier;
@@ -66,6 +66,7 @@ namespace Ingame.Player
             _velocity.y = gravityY;
         }
         
+        
         private void ApplyFriction()
         {
             var velocityCopy = _velocity;
@@ -78,9 +79,6 @@ namespace Ingame.Player
 
         private void Move(Vector2 direction)
         {
-            if(_isSliding)
-                return;
-            
             var movingOffset = transform.forward * direction.y + transform.right * direction.x;
             movingOffset *= _playerData.MovementAcceleration;
             movingOffset *= Time.deltaTime;
@@ -94,21 +92,23 @@ namespace Ingame.Player
 
         private void Crouch(bool isCrouching)
         {
-            var characterHeight = isCrouching ? 
-                _characterController.height - _playerData.EnterCrouchStateSpeed * Time.deltaTime:
-                _characterController.height + _playerData.EnterCrouchStateSpeed * Time.deltaTime;
+            var characterHeightOffset = isCrouching ? 
+                -_playerData.EnterCrouchStateSpeed * Time.fixedDeltaTime:
+                _playerData.EnterCrouchStateSpeed * Time.fixedDeltaTime;
 
-            _characterController.height = Mathf.Clamp(characterHeight, _initialCharacterHeight / 2, _initialCharacterHeight);
+            _characterController.height += characterHeightOffset;
+            _characterController.height = Mathf.Clamp(_characterController.height, _initialCharacterHeight / 2, _initialCharacterHeight);
         }
 
-        private void Jump()
+        private void Jump() 
         {
-            if(!_characterController.isGrounded || !IsAbleToJump)
+            if(!_isGrounded || !IsAbleToJump)
                 return;
             
             var impulseVector = Vector3.up * _playerData.JumpForce;
 
             _lastTimeJumpWasPerformed = Time.time;
+            _isGrounded = false;
             _velocity += impulseVector;
         }
     }

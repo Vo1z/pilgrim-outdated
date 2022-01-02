@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000e32bd31ff10398b994fe9d99368fd, type: 3}
   m_Name: Ar15Data
   m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  maxRotationAngleX: 10
+  rotationAngleMultiplierX: 10
+  inverseRotationX: 0
+  maxRotationAngleY: 2
+  rotationAngleMultiplierY: 2
+  inverseRotationY: 0
+  maxRotationAngleZ: 40
+  rotationAngleMultiplierZ: 20
+  inverseRotationZ: 0
   fireModes: 000000000100000002000000

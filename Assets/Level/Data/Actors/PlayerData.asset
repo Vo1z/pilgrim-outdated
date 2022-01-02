@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7081f12dcda35d4b9b3f18ab75559f1a, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   movementAcceleration: 100
   movementFriction: 10
   jumpForce: 15
@@ -20,5 +20,5 @@ MonoBehaviour:
   enterCrouchStateSpeed: 3
   gravityAcceleration: 0.8
   maximumGravitationForce: 10
-  sensitivity: 10
+  sensitivity: 2.4
   slidingForceModifier: 1

@@ -1,3 +1,4 @@
+using Ingame.Player.HUD;
 using UnityEngine;
 using Zenject;
 
@@ -16,15 +17,15 @@ namespace Ingame.Player
             _playerInputReceiver.OnRotationDeltaInputReceived += Rotate;
         }
 
+        private void OnDestroy()
+        {
+            _playerInputReceiver.OnRotationDeltaInputReceived -= Rotate;
+        }
+
         private void Start()
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-        }
-
-        private void OnDestroy()
-        {
-            _playerInputReceiver.OnRotationDeltaInputReceived -= Rotate;
         }
 
         private void Rotate(Vector2 direction)

@@ -18,7 +18,8 @@ namespace Ingame.Player
         private InputAction _crouch;
 
         public const float ANGLE_FOR_ONE_SCREEN_PIXEL = .1f;
-        
+        public const float INPUT_ANGLE_VARIETY = 10f;
+
         public event Action<Vector2> OnMovementInputReceived;
         public event Action<Vector2> OnRotationDeltaInputReceived;
         public event Action OnJumpInputReceived;

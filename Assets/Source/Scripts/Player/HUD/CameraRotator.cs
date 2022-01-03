@@ -6,45 +6,49 @@ namespace Ingame.Player.HUD
     public class CameraRotator : MonoBehaviour
     {
         [Inject] private PlayerData _playerData;
-        [Inject] private PlayerInputReceiver _playerInputReceiver;
-
+        [Inject] private PlayerRotator _playerRotator;
+        
         private Vector3 _initialPosition;
+        private Vector3 _initialLocalPosition;
         private Quaternion _initialLocalRotation;
-        
+
         private Vector3 _positionOnThePreviousFrame;
-        
+
         private void Awake()
         {
             _initialPosition = transform.position;
             _initialLocalRotation = transform.localRotation;
+            _initialLocalPosition = transform.localPosition;
             _positionOnThePreviousFrame = transform.position;
-
-            _playerInputReceiver.OnRotationDeltaInputReceived += RotateCamera;
+            
+            _playerRotator.OnRotationPerformed += RotateCamera;
         }
 
         private void OnDestroy()
         {
-            _playerInputReceiver.OnRotationDeltaInputReceived -= RotateCamera;
+            _playerRotator.OnRotationPerformed -= RotateCamera;
         }
 
         private void Update()
         {
-            // var deltaMovement = Vector3.Distance(_initialPosition, transform.position);
-            // //todo remove hardcode
-            // var deltaAngle = Quaternion.AngleAxis(Mathf.Sin(deltaMovement) * 2f, Vector3.forward);
-            // transform.localRotation = Quaternion.Slerp(transform.localRotation, _initialLocalRotation * deltaAngle, 10f * Time.deltaTime);
-            
+            // var deltaMovement = Vector3.Distance(_positionOnThePreviousFrame, transform.position);
+            // //todo remove hardcod
+            // var cameraOffset = Mathf.Cos(Vector3.Distance(_positionOnThePreviousFrame, transform.position));
+            // transform.localPosition += Vector3.up * cameraOffset;
+            //
             // _positionOnThePreviousFrame = transform.position;
         }
 
         private void RotateCamera(Vector2 deltaRotationInput)
         {
             var deltaInputInAngle = deltaRotationInput * PlayerInputReceiver.ANGLE_FOR_ONE_SCREEN_PIXEL;
+            deltaInputInAngle.x = Mathf.Clamp(deltaInputInAngle.x, -PlayerInputReceiver.INPUT_ANGLE_VARIETY, PlayerInputReceiver.INPUT_ANGLE_VARIETY);
+            deltaInputInAngle.y = Mathf.Clamp(deltaInputInAngle.y, -PlayerInputReceiver.INPUT_ANGLE_VARIETY, PlayerInputReceiver.INPUT_ANGLE_VARIETY);
             
-            var xRotationAngle = _playerData.RotationAngleMultiplierX * Mathf.Clamp(deltaInputInAngle.y, -1, 1);
-            xRotationAngle = Mathf.Clamp(xRotationAngle, _playerData.MinMaxRotationAngleX.x, _playerData.MinMaxRotationAngleX.y);
+            var xRotationAngle = _playerData.RotationAngleMultiplierX * deltaInputInAngle.y;
+            xRotationAngle = -Mathf.Clamp(xRotationAngle, _playerData.MinMaxRotationAngleX.x, _playerData.MinMaxRotationAngleX.y);
            
-            var yRotationAngle = _playerData.RotationAngleMultiplierY * Mathf.Clamp(deltaInputInAngle.x, -1, 1);
+            var yRotationAngle = _playerData.RotationAngleMultiplierY * deltaInputInAngle.x;
             yRotationAngle = Mathf.Clamp(yRotationAngle, _playerData.MinMaxRotationAngleY.x, _playerData.MinMaxRotationAngleY.y);
             
             var targetRotation = _initialLocalRotation *

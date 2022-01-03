@@ -25,6 +25,6 @@ MonoBehaviour:
   sensitivity: 5
   cameraRotationSpeed: 2
   minMaxRotationAngleX: {x: -5, y: 5}
-  rotationAngleMultiplierX: 5
-  minMaxRotationAngleY: {x: -20, y: 20}
-  rotationAngleMultiplierY: 11.05
+  rotationAngleMultiplierX: 2
+  minMaxRotationAngleY: {x: -5, y: 5}
+  rotationAngleMultiplierY: 2

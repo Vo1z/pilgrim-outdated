@@ -10,6 +10,7 @@ namespace Ingame.Player
         [SerializeField] private GunObserver gunObserver;
         
         public event Action<GunObserver> OnGunInHandsTaken;
+        
 
         private void Start()
         {

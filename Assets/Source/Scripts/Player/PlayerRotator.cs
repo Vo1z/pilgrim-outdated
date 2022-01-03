@@ -1,3 +1,4 @@
+using System;
 using Ingame.Player.HUD;
 using UnityEngine;
 using Zenject;
@@ -11,7 +12,9 @@ namespace Ingame.Player
         [Inject] private PlayerHUD _playerHUD;
 
         private float hudLocalRotationX = 0f;
-        
+
+        public event Action<Vector2> OnRotationPerformed; 
+
         private void Awake()
         {
             _playerInputReceiver.OnRotationDeltaInputReceived += Rotate;
@@ -38,6 +41,8 @@ namespace Ingame.Player
 
             transform.Rotate(Vector3.up * xRotation);
             _playerHUD.transform.localRotation = Quaternion.Euler(hudLocalRotationX, 0, 0);
+            
+            OnRotationPerformed?.Invoke(direction);
         }
     }
 }

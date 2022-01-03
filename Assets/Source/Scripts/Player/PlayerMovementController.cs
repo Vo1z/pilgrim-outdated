@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,8 @@ namespace Ingame.Player
 
         private bool IsAbleToJump => Time.time - _lastTimeJumpWasPerformed > _playerData.PauseBetweenJumps;
 
+        public event Action<Vector3> OnMovementPerformed;
+        
         private void Awake()
         {
             _currentSpeed = _playerData.WalkSpeed;
@@ -90,6 +93,8 @@ namespace Ingame.Player
             nextVelocity.y = initialVelocity.y;
             
             _velocity = nextVelocity;
+            
+            OnMovementPerformed?.Invoke(_velocity);
         }
 
         private void Crouch(bool isCrouching)

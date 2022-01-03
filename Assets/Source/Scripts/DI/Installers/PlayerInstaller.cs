@@ -16,6 +16,12 @@ namespace Ingame.DI.Installers
         [SerializeField] private PlayerHUD playerHUD;
         [BoxGroup("Components"), Required] 
         [SerializeField] private PlayerObserver playerObserver;
+        [BoxGroup("Components"), Required]
+        [SerializeField] private PlayerRotator playerRotator;
+        [BoxGroup("Components"), Required] 
+        [SerializeField] private PlayerMovementController playerMovementController;
+        [BoxGroup("Transforms"), Required]
+        [SerializeField] private Transform hands;
         
         public override void InstallBindings()
         {
@@ -34,6 +40,19 @@ namespace Ingame.DI.Installers
 
             Container.Bind<PlayerObserver>()
                 .FromInstance(playerObserver)
+                .AsSingle();
+            
+            Container.Bind<PlayerRotator>()
+                .FromInstance(playerRotator)
+                .AsSingle();
+            
+            Container.Bind<PlayerMovementController>()
+                .FromInstance(playerMovementController)
+                .AsSingle();
+            
+            Container.Bind<Transform>()
+                .WithId("Hands")
+                .FromInstance(hands)
                 .AsSingle();
         }
     }

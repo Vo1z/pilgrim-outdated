@@ -12,6 +12,7 @@ namespace Ingame.Player
         private CharacterController _characterController;
         private float _initialCharacterHeight;
 
+        private float _currentSpeed;
         private Vector3 _velocity;
         private float _lastTimeJumpWasPerformed;
         private bool _isGrounded = false;
@@ -20,6 +21,7 @@ namespace Ingame.Player
 
         private void Awake()
         {
+            _currentSpeed = _playerData.WalkSpeed;
             _characterController = GetComponent<CharacterController>();
             _initialCharacterHeight = _characterController.height;
 
@@ -84,7 +86,7 @@ namespace Ingame.Player
             movingOffset *= Time.deltaTime;
             var initialVelocity = _velocity;
             var nextVelocity = initialVelocity + movingOffset;
-            nextVelocity = Vector3.ClampMagnitude(nextVelocity, _playerData.Speed);
+            nextVelocity = Vector3.ClampMagnitude(nextVelocity, _currentSpeed);
             nextVelocity.y = initialVelocity.y;
             
             _velocity = nextVelocity;
@@ -96,6 +98,8 @@ namespace Ingame.Player
                 -_playerData.EnterCrouchStateSpeed * Time.fixedDeltaTime:
                 _playerData.EnterCrouchStateSpeed * Time.fixedDeltaTime;
 
+            _currentSpeed = isCrouching ? _playerData.CrouchWalkSpeed : _playerData.WalkSpeed;
+            
             _characterController.height += characterHeightOffset;
             _characterController.height = Mathf.Clamp(_characterController.height, _initialCharacterHeight / 2, _initialCharacterHeight);
         }

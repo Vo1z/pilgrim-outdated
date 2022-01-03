@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Ingame.Guns
 {
-    public sealed class Gun : MonoBehaviour
+    public sealed class GunObserver : MonoBehaviour
     {
         [Inject] private GunStatsData _gunStatsData;
         

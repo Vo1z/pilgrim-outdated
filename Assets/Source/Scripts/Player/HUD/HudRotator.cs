@@ -9,16 +9,15 @@ namespace Ingame.Player.HUD
         [Inject] private PlayerObserver _playerObserver;
         [Inject] private PlayerInputReceiver _playerInputReceiver;
         [Inject] private PlayerHUD _playerHUD;
-
-        private const float ANGLE_FOR_ONE_SCREEN_PIXEL = .1f;
         
         private Quaternion _initialGunLocalRotation;
         private Transform _gunTransform;
-        private Gun _gun;
+        private GunObserver _gunObserver;
         private GunStatsData _gunStats;
 
         private void Awake()
         {
+
             _playerObserver.OnGunInHandsTaken += PlaceGunInHands;
         }
 
@@ -29,21 +28,21 @@ namespace Ingame.Player.HUD
 
         private void RotateGun(Vector2 deltaRotationInput)
         {
-            if (_gun == null || _gunTransform == null || _gunStats == null)
+            if (_gunObserver == null || _gunTransform == null || _gunStats == null)
                 return;
 
-            var deltaInputInAngle = deltaRotationInput * ANGLE_FOR_ONE_SCREEN_PIXEL;
+            var deltaInputInAngle = deltaRotationInput * PlayerInputReceiver.ANGLE_FOR_ONE_SCREEN_PIXEL;
             
             var xRotationAngle = _gunStats.RotationAngleMultiplierX * Mathf.Clamp(deltaInputInAngle.y, -1, 1);
-            xRotationAngle = Mathf.Clamp(xRotationAngle, -_gunStats.MaxRotationAngleX, _gunStats.MaxRotationAngleX);
+            xRotationAngle = Mathf.Clamp(xRotationAngle, _gunStats.MinMaxRotationAngleX.x, _gunStats.MinMaxRotationAngleX.y);
             xRotationAngle *= _gunStats.InverseRotationX;
 
             var yRotationAngle = _gunStats.RotationAngleMultiplierY * Mathf.Clamp(deltaInputInAngle.x, -1, 1);
-            yRotationAngle = Mathf.Clamp(yRotationAngle, -_gunStats.MaxRotationAngleY, _gunStats.MaxRotationAngleY);
+            yRotationAngle = Mathf.Clamp(yRotationAngle, _gunStats.MinMaxRotationAngleY.x, _gunStats.MinMaxRotationAngleY.y);
             yRotationAngle *= _gunStats.InverseRotationY;
             
             var zRotationAngle = _gunStats.RotationAngleMultiplierZ * Mathf.Clamp(deltaInputInAngle.x, -1, 1);
-            zRotationAngle = Mathf.Clamp(zRotationAngle, -_gunStats.MaxRotationAngleZ, _gunStats.MaxRotationAngleZ);
+            zRotationAngle = Mathf.Clamp(zRotationAngle, _gunStats.MinMaxRotationAngleZ.x, _gunStats.MinMaxRotationAngleZ.y);
             zRotationAngle *= _gunStats.InverseRotationZ;
             
             var rotationOffset = _gunStats.RotationSpeed * Time.deltaTime;
@@ -55,11 +54,11 @@ namespace Ingame.Player.HUD
             _gunTransform.localRotation = Quaternion.Slerp(_gunTransform.localRotation, targetRotation, rotationOffset);
         }
 
-        private void PlaceGunInHands(Gun gun)
+        private void PlaceGunInHands(GunObserver gunObserver)
         {
-            _gun = gun;
-            _gunStats = _gun.GunStatsData;
-            _gunTransform = _gun.transform;
+            _gunObserver = gunObserver;
+            _gunStats = _gunObserver.GunStatsData;
+            _gunTransform = _gunObserver.transform;
             _gunTransform.parent = _playerHUD.transform;
             _initialGunLocalRotation = _gunTransform.localRotation;
             
@@ -69,7 +68,7 @@ namespace Ingame.Player.HUD
         private void ReleaseGunFromHands()
         {
             _gunTransform.parent = null;
-            _gun = null;
+            _gunObserver = null;
             _gunStats = null;
             _gunTransform = null;
             

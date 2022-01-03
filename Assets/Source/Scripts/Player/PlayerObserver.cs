@@ -7,18 +7,18 @@ namespace Ingame.Player
     public sealed class PlayerObserver : MonoBehaviour
     {
         //todo remove hardcode;
-        [SerializeField] private Gun gun;
+        [SerializeField] private GunObserver gunObserver;
         
-        public event Action<Gun> OnGunInHandsTaken;
+        public event Action<GunObserver> OnGunInHandsTaken;
 
         private void Start()
         {
-            TakeGunInHands(gun);
+            TakeGunInHands(gunObserver);
         }
 
-        public void TakeGunInHands(Gun gun)
+        public void TakeGunInHands(GunObserver gunObserver)
         {
-            OnGunInHandsTaken?.Invoke(gun);
+            OnGunInHandsTaken?.Invoke(gunObserver);
         }
     }
 }

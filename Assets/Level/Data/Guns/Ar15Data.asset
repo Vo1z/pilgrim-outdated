@@ -15,11 +15,18 @@ MonoBehaviour:
   rotationSpeed: 5
   minMaxRotationAngleX: {x: -5, y: 5}
   rotationAngleMultiplierX: 4
-  inverseRotationX: 0
+  inverseRotationX: 1
   minMaxRotationAngleY: {x: -4, y: 2}
   rotationAngleMultiplierY: 4
   inverseRotationY: 1
-  minMaxRotationAngleZ: {x: -20, y: 20}
+  minMaxRotationAngleZ: {x: -20, y: 10}
   rotationAngleMultiplierZ: 8
   inverseRotationZ: 0
+  rotationMovementSpeed: 1
+  minMaxRotationMovementAngleX: {x: -8, y: 8}
+  rotationMovementAngleMultiplierX: 1
+  inverseRotationMovementX: 1
+  minMaxRotationMovementAngleZ: {x: -10, y: 5}
+  rotationMovementAngleMultiplierZ: 10
+  inverseRotationMovementZ: 0
   fireModes: 000000000100000002000000

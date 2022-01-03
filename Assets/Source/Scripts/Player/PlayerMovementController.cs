@@ -93,8 +93,8 @@ namespace Ingame.Player
             nextVelocity.y = initialVelocity.y;
             
             _velocity = nextVelocity;
-            
-            OnMovementPerformed?.Invoke(_velocity);
+
+            OnMovementPerformed?.Invoke(new Vector3(direction.x * _currentSpeed, _velocity.y, direction.y * _currentSpeed));
         }
 
         private void Crouch(bool isCrouching)

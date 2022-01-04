@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Ingame.Player.HUD
 {
-    public sealed class HudRotator : MonoBehaviour
+    public sealed class HudMover : MonoBehaviour
     {
         [Inject] private PlayerObserver _playerObserver;
         [Inject] private PlayerMovementController _playerMovementController;
@@ -14,8 +14,10 @@ namespace Ingame.Player.HUD
         [Inject(Id = "Hands")] private Transform _hands;
         
         private Quaternion _initialGunLocalRotation;
+        private Vector3 _initialGunLocalPosition;
         private Transform _gunTransform;
         private GunObserver _gunObserver;
+        private GunSurfaceDetector _gunSurfaceDetector;
         private GunStatsData _gunStats;
 
         private Vector2 _deltaRotation; 
@@ -38,6 +40,8 @@ namespace Ingame.Player.HUD
 
             var hudRotationDutToDeltaMovementTask = Task.Run(GetHudRotationDueToDeltaMovement);
             var hudRotationDutToDeltaRotationTask = Task.Run(GetHudRotationDueToDeltaRotation);
+            
+            MoveGunDueToSurfaceInteraction();
 
             var rotationOffset = _gunStats.RotationSpeed * Time.deltaTime;
             var targetRotation = _initialGunLocalRotation * 
@@ -101,6 +105,19 @@ namespace Ingame.Player.HUD
             return resultRotation;
         }
 
+        private void MoveGunDueToSurfaceInteraction()
+        {
+            var gunSurfaceDetectionResult = _gunSurfaceDetector.SurfaceDetection;
+            
+            if(gunSurfaceDetectionResult == SurfaceDetection.SameSpot)
+                return;
+                
+            var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetection.Detection ? -1.5f : 0;
+            var nextGunLocalPos = _initialGunLocalPosition + Vector3.forward * movementDirectionZ;
+            
+            _gunTransform.localPosition = Vector3.Lerp(_gunTransform.localPosition, nextGunLocalPos, 2f * Time.deltaTime);
+        }
+
         private void SetDeltaMovement(Vector3 deltaMovement)
         {
             _deltaMovement = deltaMovement;
@@ -114,10 +131,12 @@ namespace Ingame.Player.HUD
         private void PlaceGunInHands(GunObserver gunObserver)
         {
             _gunObserver = gunObserver;
+            _gunSurfaceDetector = _gunObserver.GunSurfaceDetector;
             _gunStats = _gunObserver.GunStatsData;
             _gunTransform = _gunObserver.transform;
             _gunTransform.parent = _playerHUD.transform;
             _initialGunLocalRotation = _gunTransform.localRotation;
+            _initialGunLocalPosition = _gunTransform.localPosition;
             _hands.parent = _gunTransform;
             
             _playerMovementController.OnMovementPerformed += SetDeltaMovement;
@@ -128,6 +147,7 @@ namespace Ingame.Player.HUD
         {
             _gunTransform.parent = null;
             _gunObserver = null;
+            _gunSurfaceDetector = null;
             _gunStats = null;
             _gunTransform = null;
             _hands.parent = _playerHUD.transform;

@@ -22,10 +22,11 @@ MonoBehaviour:
   minMaxRotationAngleZ: {x: -20, y: 10}
   rotationAngleMultiplierZ: 8
   inverseRotationZ: 0
-  minMaxRotationMovementAngleX: {x: -8, y: 8}
-  rotationMovementAngleMultiplierX: 5
+  minMaxRotationMovementAngleX: {x: -12, y: 12}
+  rotationMovementAngleMultiplierX: 8
   inverseRotationMovementX: 1
-  minMaxRotationMovementAngleZ: {x: -10, y: 5}
-  rotationMovementAngleMultiplierZ: 15
+  minMaxRotationMovementAngleZ: {x: -15, y: 10}
+  rotationMovementAngleMultiplierZ: 20
   inverseRotationMovementZ: 0
+  maximumClippingOffset: 1
   fireModes: 000000000100000002000000

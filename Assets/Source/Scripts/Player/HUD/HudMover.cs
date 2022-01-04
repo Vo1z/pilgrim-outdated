@@ -13,7 +13,7 @@ namespace Ingame.Player.HUD
         [Inject] private PlayerHUD _playerHUD;
         [Inject(Id = "Hands")] private Transform _hands;
 
-        private const float GUN_CLIPPING_MOVEMENT_SPEED = 3f;
+        private const float GUN_CLIPPING_MOVEMENT_SPEED = 4f;
         
         private Quaternion _initialGunLocalRotation;
         private Vector3 _initialGunLocalPosition;

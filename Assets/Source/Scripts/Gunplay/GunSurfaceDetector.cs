@@ -27,13 +27,13 @@ namespace Ingame.Guns
                 {
                     if (!_wasFacingSurfaceOnPreviousInvoke)
                     {
-                        if (Vector3.Distance(_lastHitPos, hit.point) < MAXIMAL_DISTANCE_TO_THE_SAME_SPOT)
+                        if (Vector3.Distance(_lastHitPos, transform.position) < MAXIMAL_DISTANCE_TO_THE_SAME_SPOT)
                         {
                             return SurfaceDetection.SameSpot;
                         }
 
                         _wasFacingSurfaceOnPreviousInvoke = true;
-                        _lastHitPos = hit.point;
+                        _lastHitPos = transform.position;
                         return SurfaceDetection.Detection;
                     }
                     

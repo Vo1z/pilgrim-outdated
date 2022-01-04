@@ -12,6 +12,8 @@ namespace Ingame.Player.HUD
         [Inject] private PlayerRotator _playerRotator;
         [Inject] private PlayerHUD _playerHUD;
         [Inject(Id = "Hands")] private Transform _hands;
+
+        private const float GUN_CLIPPING_MOVEMENT_SPEED = 3f;
         
         private Quaternion _initialGunLocalRotation;
         private Vector3 _initialGunLocalPosition;
@@ -19,7 +21,7 @@ namespace Ingame.Player.HUD
         private GunObserver _gunObserver;
         private GunSurfaceDetector _gunSurfaceDetector;
         private GunStatsData _gunStats;
-
+        
         private Vector2 _deltaRotation; 
         private Vector3 _deltaMovement; 
 
@@ -112,10 +114,10 @@ namespace Ingame.Player.HUD
             if(gunSurfaceDetectionResult == SurfaceDetection.SameSpot)
                 return;
                 
-            var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetection.Detection ? -1.5f : 0;
+            var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetection.Detection ? -_gunStats.MaximumClippingOffset : 0;
             var nextGunLocalPos = _initialGunLocalPosition + Vector3.forward * movementDirectionZ;
             
-            _gunTransform.localPosition = Vector3.Lerp(_gunTransform.localPosition, nextGunLocalPos, 2f * Time.deltaTime);
+            _gunTransform.localPosition = Vector3.Lerp(_gunTransform.localPosition, nextGunLocalPos, GUN_CLIPPING_MOVEMENT_SPEED * Time.deltaTime);
         }
 
         private void SetDeltaMovement(Vector3 deltaMovement)

@@ -46,6 +46,10 @@ namespace Ingame.Guns
         [BoxGroup("Hud stats (Movement)")]
         [SerializeField] private bool inverseRotationMovementZ = false;
 
+
+
+        [BoxGroup("Hud stats (Clipping)"), Space] 
+        [SerializeField] [Range(0, 2f)] private float maximumClippingOffset = 1.5f;
         
         
         [BoxGroup("Gun stats")]
@@ -72,6 +76,10 @@ namespace Ingame.Guns
         public Vector2 MinMaxRotationMovementAngleZ => minMaxRotationMovementAngleZ;
         public float RotationMovementAngleMultiplierZ => rotationMovementAngleMultiplierZ;
         public float InverseRotationMovementZ => inverseRotationMovementZ ? -1: 1;
+
+
+
+        public float MaximumClippingOffset => maximumClippingOffset;
         
         
         public FireMode[] FireModes => fireModes;

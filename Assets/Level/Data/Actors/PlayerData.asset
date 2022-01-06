@@ -19,6 +19,8 @@ MonoBehaviour:
   movementFriction: 10
   jumpForce: 13
   pauseBetweenJumps: 0.2
+  leanDistanceOffset: 0.2
+  leanAngleOffset: 170.2
   gravityAcceleration: 0.8
   maximumGravitationForce: 10
   slidingForceModifier: 1

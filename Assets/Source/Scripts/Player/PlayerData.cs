@@ -17,19 +17,28 @@ namespace Ingame.Player
         [SerializeField][Min(0)] private float movementAcceleration = 100;
         [BoxGroup("Movement")]
         [SerializeField][Min(0)] private float movementFriction = 10;
-        [BoxGroup("Jumping"), Space]
+        
+        [BoxGroup("Movement (Jumping)"), Space]
         [SerializeField][Min(0)] private float jumpForce = 5;
-        [BoxGroup("Jumping")]
+        [BoxGroup("Movement (Jumping)")]
         [SerializeField][Min(0)] private float pauseBetweenJumps = .5f;
+        
+        [BoxGroup("Movement (Lean)"), Space]
+        [SerializeField] [Range(0, 1)] private float leanDistanceOffset = .3f;
+        [BoxGroup("Movement (Lean)")]
+        [SerializeField] [Range(0, 120)] private float leanAngleOffset = 100f;
+        
         [BoxGroup("Gravitation"), Space]
         [SerializeField][Min(0)] private float gravityAcceleration = 1;
         [BoxGroup("Gravitation")]
         [SerializeField][Min(0)] private float maximumGravitationForce = 10;
         [BoxGroup("Gravitation")]
         [SerializeField] [Range(0, 1)] private float slidingForceModifier = .5f;
+        
         //todo move to the controls settings
-        [BoxGroup("Controls")] 
+        [BoxGroup("Controls"), Space] 
         [SerializeField] [Min(0)] private float sensitivity = 1;
+        
         [BoxGroup("HUD"), Space] 
         [SerializeField] [Range(0, 10)] private float cameraRotationSpeed = 2f;
         [BoxGroup("HUD")] 
@@ -49,6 +58,9 @@ namespace Ingame.Player
         
         public float JumpForce => jumpForce;
         public float PauseBetweenJumps => pauseBetweenJumps;
+
+        public float LeanDistanceOffset => leanDistanceOffset;
+        public float LeanAngleOffset => leanAngleOffset;
 
         public float GravityAcceleration => gravityAcceleration;
         public float MaximumGravitationForce => maximumGravitationForce;

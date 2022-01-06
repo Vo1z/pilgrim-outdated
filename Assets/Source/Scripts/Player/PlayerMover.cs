@@ -5,14 +5,16 @@ using Zenject;
 namespace Ingame.Player
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerMovementController : MonoBehaviour
+    public class PlayerMover : MonoBehaviour
     {
         [Inject]private PlayerData _playerData;
         [Inject]private PlayerInputReceiver _playerInputReceiver;
-        
+        [Inject(Id="HudParent")] private Transform _hudParent;
+
         private CharacterController _characterController;
         private float _initialCharacterHeight;
 
+        private float _hudLocalRotationX = 0f;
         private float _currentSpeed;
         private Vector3 _velocity;
         private float _lastTimeJumpWasPerformed;
@@ -21,16 +23,22 @@ namespace Ingame.Player
         private bool IsAbleToJump => Time.time - _lastTimeJumpWasPerformed > _playerData.PauseBetweenJumps;
 
         public event Action<Vector3> OnMovementPerformed;
+        public event Action<Vector2> OnRotationPerformed;
         
         private void Awake()
         {
-            _currentSpeed = _playerData.WalkSpeed;
             _characterController = GetComponent<CharacterController>();
             _initialCharacterHeight = _characterController.height;
+            _currentSpeed = _playerData.WalkSpeed;
 
             _playerInputReceiver.OnMovementInputReceived += Move;
             _playerInputReceiver.OnJumpInputReceived += Jump;
             _playerInputReceiver.OnCrouchInputReceived += Crouch;
+            _playerInputReceiver.OnRotationDeltaInputReceived += Rotate;
+            
+            //todo move to the control settings
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void OnDestroy()
@@ -38,6 +46,7 @@ namespace Ingame.Player
             _playerInputReceiver.OnMovementInputReceived -= Move;
             _playerInputReceiver.OnJumpInputReceived -= Jump;
             _playerInputReceiver.OnCrouchInputReceived -= Crouch;
+            _playerInputReceiver.OnRotationDeltaInputReceived -= Rotate;
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -97,6 +106,20 @@ namespace Ingame.Player
             OnMovementPerformed?.Invoke(new Vector3(direction.x * _currentSpeed, _velocity.y, direction.y * _currentSpeed));
         }
 
+        private void Rotate(Vector2 direction)
+        {
+            var yRotation = direction.y * _playerData.Sensitivity * Time.deltaTime;
+            var xRotation = direction.x * _playerData.Sensitivity * Time.deltaTime;
+
+            _hudLocalRotationX -= yRotation;
+            _hudLocalRotationX = Mathf.Clamp(_hudLocalRotationX, -90, 90);
+
+            transform.Rotate(Vector3.up * xRotation);
+            _hudParent.transform.localRotation = Quaternion.Euler(_hudLocalRotationX, 0, 0);
+            
+            OnRotationPerformed?.Invoke(direction);
+        }
+        
         private void Crouch(bool isCrouching)
         {
             var characterHeightOffset = isCrouching ? 

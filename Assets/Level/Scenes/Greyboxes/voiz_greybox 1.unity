@@ -809,7 +809,6 @@ GameObject:
   m_Component:
   - component: {fileID: 314398535}
   - component: {fileID: 314398539}
-  - component: {fileID: 314398542}
   - component: {fileID: 314398545}
   - component: {fileID: 314398544}
   m_Layer: 6
@@ -849,18 +848,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2f1621098c5fd30ad68fb6b30f76a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &314398542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314398533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0197df796cdd1e1d4a580f42a68acf8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!143 &314398544
 CharacterController:
   m_ObjectHideFlags: 0
@@ -874,8 +861,8 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 50
-  m_StepOffset: 0.3
+  m_SlopeLimit: 45
+  m_StepOffset: 0.4
   m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -2295,11 +2282,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 69d18ab4a87bc4a30ae2246a9e15c2c1, type: 2}
   playerInputReceiver: {fileID: 1399363258}
-  playerHUD: {fileID: 2119507413}
   playerObserver: {fileID: 314398545}
-  playerRotator: {fileID: 314398542}
-  playerMovementController: {fileID: 314398539}
+  playerMover: {fileID: 314398539}
   hands: {fileID: 2090113007}
+  hudParent: {fileID: 2119507412}
 --- !u!1 &783698310
 GameObject:
   m_ObjectHideFlags: 0
@@ -3582,7 +3568,7 @@ GameObject:
   - component: {fileID: 1131623581}
   - component: {fileID: 1131623583}
   - component: {fileID: 1131623582}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: BodyDrawer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7214,8 +7200,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2119507412}
-  - component: {fileID: 2119507413}
   - component: {fileID: 2119507414}
+  - component: {fileID: 2119507415}
   m_Layer: 7
   m_Name: HUD
   m_TagString: Untagged
@@ -7243,18 +7229,6 @@ Transform:
   m_Father: {fileID: 314398535}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2119507413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119507411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91ee23e27a13133e2a44d4943765a7ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2119507414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7265,6 +7239,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4a9031dfccc4b6c6a9d97305e4eed74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2119507415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119507411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a563aa2dc71ac214baf76a8e252640f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2136471721

@@ -91,6 +91,15 @@ namespace Support
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=1.401298E-45,pressPoint=1)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lean"",
+                    ""type"": ""Value"",
+                    ""id"": ""36b1d91a-ed42-45b9-962d-73f59779f8c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -214,6 +223,39 @@ namespace Support
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""QE"",
+                    ""id"": ""634e9c71-e5cf-45e8-998a-ff21fc8112cc"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lean"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""b9b1e0f7-7194-41c3-8133-8c265268af9f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lean"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""37885d99-4697-47d3-a6d0-ad854c5f58df"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lean"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -229,6 +271,7 @@ namespace Support
             m_FPS_RotationY = m_FPS.FindAction("RotationY", throwIfNotFound: true);
             m_FPS_Utility = m_FPS.FindAction("Utility", throwIfNotFound: true);
             m_FPS_Crouch = m_FPS.FindAction("Crouch", throwIfNotFound: true);
+            m_FPS_Lean = m_FPS.FindAction("Lean", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -295,6 +338,7 @@ namespace Support
         private readonly InputAction m_FPS_RotationY;
         private readonly InputAction m_FPS_Utility;
         private readonly InputAction m_FPS_Crouch;
+        private readonly InputAction m_FPS_Lean;
         public struct FPSActions
         {
             private @StationaryInputSystem m_Wrapper;
@@ -306,6 +350,7 @@ namespace Support
             public InputAction @RotationY => m_Wrapper.m_FPS_RotationY;
             public InputAction @Utility => m_Wrapper.m_FPS_Utility;
             public InputAction @Crouch => m_Wrapper.m_FPS_Crouch;
+            public InputAction @Lean => m_Wrapper.m_FPS_Lean;
             public InputActionMap Get() { return m_Wrapper.m_FPS; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -336,6 +381,9 @@ namespace Support
                     @Crouch.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnCrouch;
                     @Crouch.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnCrouch;
                     @Crouch.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnCrouch;
+                    @Lean.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnLean;
+                    @Lean.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnLean;
+                    @Lean.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnLean;
                 }
                 m_Wrapper.m_FPSActionsCallbackInterface = instance;
                 if (instance != null)
@@ -361,6 +409,9 @@ namespace Support
                     @Crouch.started += instance.OnCrouch;
                     @Crouch.performed += instance.OnCrouch;
                     @Crouch.canceled += instance.OnCrouch;
+                    @Lean.started += instance.OnLean;
+                    @Lean.performed += instance.OnLean;
+                    @Lean.canceled += instance.OnLean;
                 }
             }
         }
@@ -374,6 +425,7 @@ namespace Support
             void OnRotationY(InputAction.CallbackContext context);
             void OnUtility(InputAction.CallbackContext context);
             void OnCrouch(InputAction.CallbackContext context);
+            void OnLean(InputAction.CallbackContext context);
         }
     }
 }

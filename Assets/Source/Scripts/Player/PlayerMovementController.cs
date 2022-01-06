@@ -104,7 +104,7 @@ namespace Ingame.Player
                 _playerData.EnterCrouchStateSpeed * Time.fixedDeltaTime;
 
             _currentSpeed = isCrouching ? _playerData.CrouchWalkSpeed : _playerData.WalkSpeed;
-            
+
             _characterController.height += characterHeightOffset;
             _characterController.height = Mathf.Clamp(_characterController.height, _initialCharacterHeight / 2, _initialCharacterHeight);
         }

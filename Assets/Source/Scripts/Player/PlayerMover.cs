@@ -11,6 +11,8 @@ namespace Ingame.Player
         [Inject]private PlayerInputReceiver _playerInputReceiver;
         [Inject(Id="HudParent")] private Transform _hudParent;
 
+        private const float GRAVITATIONAL_FORCE_WHEN_GROUNDED = 2f;
+        
         private CharacterController _characterController;
         private float _initialCharacterHeight;
 
@@ -61,12 +63,12 @@ namespace Ingame.Player
             }
         }
         
-        private void Update()
+        private void FixedUpdate()
         {
             ApplyGravity();
             ApplyFriction();
             
-            _characterController.Move(_velocity * Time.deltaTime);
+            _characterController.Move(_velocity * Time.fixedDeltaTime);
         }
 
         private void ApplyGravity()
@@ -74,7 +76,7 @@ namespace Ingame.Player
             float gravityY = 0;
             
             gravityY = _characterController.isGrounded ? 
-                Mathf.Clamp(_velocity.y - _playerData.GravityAcceleration, 0, Mathf.Infinity) : 
+                Mathf.Clamp(_velocity.y - _playerData.GravityAcceleration, -GRAVITATIONAL_FORCE_WHEN_GROUNDED, Mathf.Infinity) : 
                 Mathf.Clamp(_velocity.y - _playerData.GravityAcceleration, -_playerData.MaximumGravitationForce, Mathf.Infinity);
             
             _velocity.y = gravityY;
@@ -85,7 +87,7 @@ namespace Ingame.Player
         {
             var velocityCopy = _velocity;
             var horizontalZeroVector = Vector3.zero;
-            var friction = _playerData.MovementFriction * Time.deltaTime;
+            var friction = _playerData.MovementFriction * Time.fixedDeltaTime;
             
             _velocity = Vector3.Lerp(velocityCopy, horizontalZeroVector, friction);
             _velocity = new Vector3(_velocity.x, velocityCopy.y, _velocity.z);
@@ -95,7 +97,7 @@ namespace Ingame.Player
         {
             var movingOffset = transform.forward * direction.y + transform.right * direction.x;
             movingOffset *= _playerData.MovementAcceleration;
-            movingOffset *= Time.deltaTime;
+            movingOffset *= Time.fixedDeltaTime;
             var initialVelocity = _velocity;
             var nextVelocity = initialVelocity + movingOffset;
             nextVelocity = Vector3.ClampMagnitude(nextVelocity, _currentSpeed);
@@ -108,8 +110,8 @@ namespace Ingame.Player
 
         private void Rotate(Vector2 direction)
         {
-            var yRotation = direction.y * _playerData.Sensitivity * Time.deltaTime;
-            var xRotation = direction.x * _playerData.Sensitivity * Time.deltaTime;
+            var yRotation = direction.y * _playerData.Sensitivity * Time.fixedDeltaTime;
+            var xRotation = direction.x * _playerData.Sensitivity * Time.fixedDeltaTime;
 
             _hudLocalRotationX -= yRotation;
             _hudLocalRotationX = Mathf.Clamp(_hudLocalRotationX, -90, 90);

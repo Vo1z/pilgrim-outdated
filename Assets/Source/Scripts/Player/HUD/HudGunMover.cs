@@ -43,7 +43,7 @@ namespace Ingame.Player.HUD
             
             MoveGunDueToSurfaceInteraction();
 
-            var rotationOffset = _gunStats.RotationSpeed * Time.deltaTime;
+            var rotationOffset = _gunStats.RotationSpeed * Time.fixedDeltaTime;
             var targetRotation = _initialGunLocalRotation * 
                                  await hudRotationDutToDeltaMovementTask *
                                  await hudRotationDutToDeltaRotationTask;
@@ -115,7 +115,7 @@ namespace Ingame.Player.HUD
             var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetection.Detection ? -_gunStats.MaximumClippingOffset : 0;
             var nextGunLocalPos = _initialGunLocalPosition + Vector3.forward * movementDirectionZ;
             
-            _gunTransform.localPosition = Vector3.Lerp(_gunTransform.localPosition, nextGunLocalPos, GUN_CLIPPING_MOVEMENT_SPEED * Time.deltaTime);
+            _gunTransform.localPosition = Vector3.Lerp(_gunTransform.localPosition, nextGunLocalPos, GUN_CLIPPING_MOVEMENT_SPEED * Time.fixedDeltaTime);
         }
 
         private void SetDeltaMovement(Vector3 deltaMovement)

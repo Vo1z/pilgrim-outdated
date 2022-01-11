@@ -19,6 +19,8 @@ namespace Ingame.Player.HUD
             _initialHudLocalRotation = transform.localRotation;
             
             _playerInputReceiver.OnLeanInputReceived += Lean;
+            
+            Application.targetFrameRate = 240;
         }
 
         private void OnDestroy()
@@ -33,7 +35,7 @@ namespace Ingame.Player.HUD
             {
                 //todo remove hardcode
                 transform.localPosition = Vector3.Lerp(transform.localPosition, targetLocalPos, .1f);
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, targetLocalRotation, 3f);
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, targetLocalRotation, .1f);
                 
                 yield return null;
             }

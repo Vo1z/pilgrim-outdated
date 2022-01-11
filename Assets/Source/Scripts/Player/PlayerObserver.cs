@@ -2,7 +2,7 @@ using System;
 using Ingame.Guns;
 using UnityEngine;
 
-namespace Ingame.Player
+namespace Ingame.PlayerLegacy
 {
     public sealed class PlayerObserver : MonoBehaviour
     {

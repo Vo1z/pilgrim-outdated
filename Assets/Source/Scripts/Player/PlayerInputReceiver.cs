@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-namespace Ingame.Player
+namespace Ingame.PlayerLegacy
 { 
     public class PlayerInputReceiver : MonoBehaviour
     {
-        [Inject]private StationaryInputSystem _inputSystem;
+        [Inject]private Support.StationaryInputSystem _inputSystem;
         
         private InputAction _movementX;
         private InputAction _movementY;

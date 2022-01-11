@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Zenject;
 
-namespace Ingame.Player.HUD
+namespace Ingame.PlayerLegacy.HUD
 {
     public class HudMover : MonoBehaviour
     {

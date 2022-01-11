@@ -3,7 +3,7 @@ using Ingame.Guns;
 using UnityEngine;
 using Zenject;
 
-namespace Ingame.Player.HUD
+namespace Ingame.PlayerLegacy.HUD
 {
     public sealed class HudGunMover : MonoBehaviour
     {

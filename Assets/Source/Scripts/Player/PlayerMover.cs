@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-namespace Ingame.Player
+namespace Ingame.PlayerLegacy
 {
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMover : MonoBehaviour

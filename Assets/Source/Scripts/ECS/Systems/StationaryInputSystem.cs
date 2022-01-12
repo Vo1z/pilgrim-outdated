@@ -8,8 +8,8 @@ namespace Ingame
 {
     public sealed class StationaryInputSystem : IEcsRunSystem, IEcsInitSystem
     {
+        private EcsWorld _world;
         private StationaryInput _stationaryInputSystem;
-        private readonly EcsFilter<StationaryInputComponent> _playerInputFilter;
 
         private InputAction _movementInputX;
         private InputAction _movementInputY;
@@ -23,8 +23,10 @@ namespace Ingame
         {
             _movementInputX = _stationaryInputSystem.FPS.MovementX;
             _movementInputY = _stationaryInputSystem.FPS.MovementY;
+            
             _rotationInputX = _stationaryInputSystem.FPS.RotationX;
             _rotationInputY = _stationaryInputSystem.FPS.RotationY;
+            
             _jumpInput = _stationaryInputSystem.FPS.Jump;
             _crouchInput = _stationaryInputSystem.FPS.Crouch;
             _leanInput = _stationaryInputSystem.FPS.Lean;
@@ -32,11 +34,8 @@ namespace Ingame
 
         public void Run()
         {
-            if(_playerInputFilter.IsEmpty())
-                return;
-
-            var movementInput = new Vector2(_movementInputX.ReadValue<float>(), _movementInputY.ReadValue<float>());
-            var rotationInput = new Vector2(_rotationInputX.ReadValue<float>(), _rotationInputY.ReadValue<float>());
+            var movementInputVector = new Vector2(_movementInputX.ReadValue<float>(), _movementInputY.ReadValue<float>());
+            var rotationInputVector = new Vector2(_rotationInputX.ReadValue<float>(), _rotationInputY.ReadValue<float>());
             bool jumpInput = _jumpInput.ReadValue<float>() > 0;
             bool crouchInput = _crouchInput.ReadValue<float>() > 0;
             var leanDirection = _leanInput.ReadValue<float>() switch
@@ -44,24 +43,46 @@ namespace Ingame
                 < 0 => LeanDirection.Left,
                 > 0 => LeanDirection.Right,
                 _ => LeanDirection.None
-            }; 
+            };
             
-            foreach (var i in _playerInputFilter)
+            EcsEntity inputEntity = EcsEntity.Null;
+            if (movementInputVector.sqrMagnitude > 0)
             {
-                ref var playerEntity = ref _playerInputFilter.GetEntity(i);
-                ref var playerInputComp = ref _playerInputFilter.Get1(i);
-
-                playerInputComp.movementInput = movementInput;
-                playerInputComp.rotationInput = rotationInput;
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
                 
-                if (jumpInput)
-                    playerEntity.Get<JumpEvent>();
+                inputEntity.Get<MoveRequest>().movementInput = movementInputVector;
+            }
+            
+            if (rotationInputVector.sqrMagnitude > 0)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+                
+                inputEntity.Get<RotateRequest>().rotateInput = rotationInputVector;
+            }
 
-                if (crouchInput)
-                    playerEntity.Get<CrouchEvent>();
+            if (jumpInput)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+                
+                inputEntity.Get<JumpEvent>();
+            }
 
-                if (leanDirection != LeanDirection.None)
-                    playerEntity.Get<LeanDirection>();
+            if (crouchInput)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+                
+                inputEntity.Get<CrouchEvent>();
+            }
+
+            if (leanDirection != LeanDirection.None)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+                inputEntity.Get<LeanDirection>();
             }
         }
     }

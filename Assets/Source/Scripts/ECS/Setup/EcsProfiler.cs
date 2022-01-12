@@ -18,6 +18,7 @@ namespace Ingame
                 return;
             
             _escWorldObserver = EcsWorldObserver.Create(world);
+            world.AddDebugListener(new EcsWorldDebugListener());
 
             foreach (var systems in systemsCollection)
             {

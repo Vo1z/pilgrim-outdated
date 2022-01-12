@@ -57,15 +57,19 @@ namespace Ingame
         private void AddOneFrames()
         {
             _systems
+                .OneFrame<DebugRequest>()
                 .OneFrame<JumpEvent>()
                 .OneFrame<CrouchEvent>()
-                .OneFrame<LeanRequest>();
+                .OneFrame<LeanRequest>()
+                .OneFrame<MoveRequest>()
+                .OneFrame<RotateRequest>();
         }
 
         private void AddSystems()
         {
             _systems
-                .Add(new StationaryInputSystem());
+                .Add(new StationaryInputSystem())
+                .Add(new DebugSystem());
         }
     }
 }

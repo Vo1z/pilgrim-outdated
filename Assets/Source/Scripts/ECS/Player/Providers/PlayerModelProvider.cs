@@ -1,4 +1,5 @@
 ﻿using Ingame.PlayerLegacy;
+using UnityEngine;
 using Voody.UniLeo;
 using Zenject;
 
@@ -11,7 +12,7 @@ namespace Ingame
         {
             value = new PlayerModel
             {
-                playerData = injectedPlayerData
+                playerData = injectedPlayerData,
             };
         }
     }

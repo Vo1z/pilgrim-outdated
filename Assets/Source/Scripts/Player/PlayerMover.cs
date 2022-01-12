@@ -86,10 +86,9 @@ namespace Ingame.PlayerLegacy
         private void ApplyFriction()
         {
             var velocityCopy = _velocity;
-            var horizontalZeroVector = Vector3.zero;
             var friction = _playerData.MovementFriction * Time.fixedDeltaTime;
             
-            _velocity = Vector3.Lerp(velocityCopy, horizontalZeroVector, friction);
+            _velocity = Vector3.Lerp(velocityCopy, Vector3.zero, friction);
             _velocity = new Vector3(_velocity.x, velocityCopy.y, _velocity.z);
         }
 

@@ -4451,6 +4451,7 @@ GameObject:
   - component: {fileID: 1855058779}
   - component: {fileID: 1855058782}
   - component: {fileID: 1855058781}
+  - component: {fileID: 1855058783}
   m_Layer: 0
   m_Name: ECS_Player
   m_TagString: Untagged
@@ -4532,7 +4533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    velocity: {x: 0, y: 1, z: 0}
+    velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1855058782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4543,6 +4544,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91acfb7ad2604511ac8db61100dd580b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1855058783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855058773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815e4eacd2f14178bafd44fb7c58e4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1935300632

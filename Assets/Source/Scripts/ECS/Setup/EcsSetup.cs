@@ -69,6 +69,8 @@ namespace Ingame
         {
             _systems
                 .Add(new StationaryInputSystem())
+                .Add(new PlayerInputToMovementCommunicationSystem())
+                .Add(new PlayerFrictionSystem())
                 .Add(new MovementSystem())
                 .Add(new DebugSystem());
         }

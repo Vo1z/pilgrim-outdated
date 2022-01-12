@@ -9,7 +9,7 @@ namespace Ingame.DI.Installers
     {
         [Required]
         [SerializeField] private PlayerData playerData;
-        
+
         public override void InstallBindings()
         {
             Container

@@ -8,7 +8,7 @@ namespace Ingame
 {
     public sealed class StationaryInputSystem : IEcsRunSystem, IEcsInitSystem
     {
-        private Support.StationaryInputSystem _stationaryInputSystem;
+        private StationaryInput _stationaryInputSystem;
         private readonly EcsFilter<StationaryInputComponent> _playerInputFilter;
 
         private InputAction _movementInputX;
@@ -39,7 +39,7 @@ namespace Ingame
             var rotationInput = new Vector2(_rotationInputX.ReadValue<float>(), _rotationInputY.ReadValue<float>());
             bool jumpInput = _jumpInput.ReadValue<float>() > 0;
             bool crouchInput = _crouchInput.ReadValue<float>() > 0;
-            var leanPosition = _leanInput.ReadValue<float>() switch
+            var leanDirection = _leanInput.ReadValue<float>() switch
             {
                 < 0 => LeanDirection.Left,
                 > 0 => LeanDirection.Right,
@@ -59,6 +59,9 @@ namespace Ingame
 
                 if (crouchInput)
                     playerEntity.Get<CrouchEvent>();
+
+                if (leanDirection != LeanDirection.None)
+                    playerEntity.Get<LeanDirection>();
             }
         }
     }

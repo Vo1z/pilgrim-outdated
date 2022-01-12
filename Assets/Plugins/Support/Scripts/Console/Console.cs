@@ -22,7 +22,7 @@ namespace Support.Console
         private readonly (Vector2 position, Vector2 size) OUTPUT_AREA_SCREEN_PROPERTIES = (new Vector2(0, 50), new Vector2(Screen.width, 300));
 
         [Inject]
-        private StationaryInputSystem _inputSystem;
+        private StationaryInput _inputSystem;
         
         private LinkedList<IConsoleCommand> _consoleCommands = new LinkedList<IConsoleCommand>();
         private string _history = "";

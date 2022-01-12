@@ -8,7 +8,7 @@ namespace Ingame.PlayerLegacy
 { 
     public class PlayerInputReceiver : MonoBehaviour
     {
-        [Inject]private Support.StationaryInputSystem _inputSystem;
+        [Inject]private StationaryInput _inputSystem;
         
         private InputAction _movementX;
         private InputAction _movementY;

@@ -21,10 +21,10 @@ namespace Support.DI.Installers
         
         public override void InstallBindings()
         {
-            var stationaryInputSystem = new StationaryInputSystem();
+            var stationaryInputSystem = new StationaryInput();
             stationaryInputSystem.Enable();
             
-            Container.Bind<StationaryInputSystem>()
+            Container.Bind<StationaryInput>()
                 .FromInstance(stationaryInputSystem)
                 .AsSingle()
                 .NonLazy();

@@ -1,5 +1,5 @@
 ﻿using Leopotam.Ecs;
-using UnityEngine;
+using Support;
 
 namespace Ingame
 {
@@ -7,27 +7,27 @@ namespace Ingame
     {
         public void OnEntityCreated(EcsEntity entity)
         {
-            Debug.Log("Entity was created");
+            // TemplateUtils.SafeDebug("Entity was created");
         }
 
         public void OnEntityDestroyed(EcsEntity entity)
         {
-            Debug.Log("Entity was destroyed");
+            // TemplateUtils.SafeDebug("Entity was destroyed");
         }
 
         public void OnFilterCreated(EcsFilter filter)
         {
-            // Debug.Log("Filter was created");
+            // TemplateUtils.SafeDebug("Filter was created");
         }
 
         public void OnComponentListChanged(EcsEntity entity)
         {
-            // Debug.Log("Component list was changed");
+            // TemplateUtils.SafeDebug("Component list was changed");
         }
 
         public void OnWorldDestroyed(EcsWorld world)
         {
-            // Debug.Log("World was destroyed");
+            // TemplateUtils.SafeDebug("World was destroyed");
         }
     }
 }

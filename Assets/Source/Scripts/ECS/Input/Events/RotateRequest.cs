@@ -2,7 +2,7 @@
 
 namespace Ingame
 {
-    public struct RotateRequest
+    internal struct RotateRequest
     {
         public Vector2 rotateInput;
     }

@@ -12,13 +12,15 @@ namespace Ingame
         private GameObject _escWorldObserver;
         private List<GameObject> _escSystemObservers = new();
 
-        public EcsProfiler(EcsWorld world, params EcsSystems[] systemsCollection)
+        public EcsProfiler(EcsWorld world, IEcsWorldDebugListener worldDebugListener, params EcsSystems[] systemsCollection)
         {
             if(world == null)
                 return;
             
             _escWorldObserver = EcsWorldObserver.Create(world);
-            world.AddDebugListener(new EcsWorldDebugListener());
+            
+            if(worldDebugListener != null)
+                world.AddDebugListener(worldDebugListener);
 
             foreach (var systems in systemsCollection)
             {

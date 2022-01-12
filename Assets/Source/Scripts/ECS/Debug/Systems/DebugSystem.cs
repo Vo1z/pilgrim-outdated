@@ -6,7 +6,7 @@ namespace Ingame
     public class DebugSystem : IEcsRunSystem
     {
         private readonly EcsFilter<DebugRequest> _debugRequestFilter;
-
+        
         public void Run()
         {
             foreach (var i in _debugRequestFilter)

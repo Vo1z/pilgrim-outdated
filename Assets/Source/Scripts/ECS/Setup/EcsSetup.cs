@@ -25,7 +25,7 @@ namespace Ingame
             _systems.Init();
 
 #if UNITY_EDITOR
-            _ecsProfiler = new EcsProfiler(_world, _systems);
+            _ecsProfiler = new EcsProfiler(_world, new EcsWorldDebugListener(), _systems);
 #endif
         }
 
@@ -69,6 +69,7 @@ namespace Ingame
         {
             _systems
                 .Add(new StationaryInputSystem())
+                .Add(new MovementSystem())
                 .Add(new DebugSystem());
         }
     }

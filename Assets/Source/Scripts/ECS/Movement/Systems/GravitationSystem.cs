@@ -5,6 +5,8 @@ namespace Ingame
 {
     public sealed class GravitationSystem : IEcsRunSystem
     {
+        private const float GRAVITATIONAL_FORCE_WHEN_GROUNDED = 1f;
+
         private readonly EcsFilter<VelocityComponent, GravityComponent, CharacterControllerModel> _gravityFilter;
 
         public void Run()
@@ -12,22 +14,27 @@ namespace Ingame
             foreach (var i in _gravityFilter)
             {
                 ref var velocityComp = ref _gravityFilter.Get1(i);
-                ref var gravityComponent = ref _gravityFilter.Get2(i); 
+                ref var gravityComponent = ref _gravityFilter.Get2(i);
                 ref var characterControllerComp = ref _gravityFilter.Get3(i);
+                float maximalGravitationalForce = gravityComponent.maximalGravitationalForce;
 
-                if (characterControllerComp.CharacterController.isGrounded)
-                    velocityComp.velocity.y = 0;
-                else
-                {
-                    var maximalGravitationalForce = gravityComponent.maximalGravitationalForce;
-                    var gravityOffsetY = -gravityComponent.gravityAcceleration * Time.deltaTime;
-                    velocityComp.velocity.y = Mathf.Clamp
+                float gravityOffsetY = -gravityComponent.gravityAcceleration * Time.deltaTime;
+                float gravityY = characterControllerComp.characterController.isGrounded ? 
+                    Mathf.Clamp
+                    (
+                        velocityComp.velocity.y + gravityOffsetY,
+                        -GRAVITATIONAL_FORCE_WHEN_GROUNDED,
+                        maximalGravitationalForce
+                    )
+                    :
+                    Mathf.Clamp
                     (
                         velocityComp.velocity.y + gravityOffsetY,
                         -maximalGravitationalForce,
                         maximalGravitationalForce
                     );
-                }
+
+                velocityComp.velocity.y = gravityY;
             }
         }
     }

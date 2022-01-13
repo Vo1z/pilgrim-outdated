@@ -33,7 +33,7 @@ namespace Ingame.PlayerLegacy
         [BoxGroup("Gravitation")]
         [SerializeField][Min(0)] private float maximumGravitationForce = 10;
         [BoxGroup("Gravitation")]
-        [SerializeField] [Range(0, 1)] private float slidingForceModifier = .5f;
+        [SerializeField] [Range(0, 10)] private float slidingForceModifier = 5f;
         
         //todo move to the controls settings
         [BoxGroup("Controls"), Space] 

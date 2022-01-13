@@ -1,3 +1,4 @@
+using LeoEcsPhysics;
 using Leopotam.Ecs;
 using Support;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace Ingame
 #endif
         private void Awake()
         {
+            EcsPhysicsEvents.ecsWorld = _world;
+            
             _systems.ConvertScene();
             
             AddInjections();
@@ -40,7 +43,8 @@ namespace Ingame
             _ecsProfiler.Dispose();
             _ecsProfiler = null;
 #endif
-
+            EcsPhysicsEvents.ecsWorld = null;
+            
             _systems.Destroy();
             _systems = null;
             
@@ -71,11 +75,12 @@ namespace Ingame
                 .Add(new PlayerInitSystem())
                 .Add(new StationaryInputSystem())
                 .Add(new PlayerMovementSystem())
+                .Add(new PlayerRotationSystem())
                 .Add(new PlayerFrictionSystem())
+                .Add(new SlidingSystem())
                 .Add(new GravitationSystem())
                 .Add(new PlayerJumpSystem())
                 .Add(new MovementSystem())
-                .Add(new PlayerRotationSystem())
                 .Add(new TimeSystem())
                 .Add(new DebugSystem());
         }

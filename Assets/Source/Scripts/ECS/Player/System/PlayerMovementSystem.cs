@@ -24,7 +24,7 @@ namespace Ingame
 
                 var playerData = playerModel.playerData;
                 var playerVelocity = playerVelocityComponent.velocity;
-                var playerTransform = playerCharacterControllerModel.CharacterController.transform;
+                var playerTransform = playerCharacterControllerModel.characterController.transform;
                 var movementPower = playerData.MovementAcceleration * Time.fixedDeltaTime;
                 var movementDirection = playerTransform.forward * inputVector.y + 
                                         playerTransform.right * inputVector.x;

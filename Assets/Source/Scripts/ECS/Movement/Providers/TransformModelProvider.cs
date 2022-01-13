@@ -6,7 +6,7 @@ namespace Ingame
     public sealed class TransformModelProvider : MonoProvider<TransformModel>
     {
         [Inject]
-        public void Construct()
+        private void Construct()
         {
             value = new TransformModel
             {

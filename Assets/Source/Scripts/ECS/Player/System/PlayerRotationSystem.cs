@@ -25,7 +25,7 @@ namespace Ingame
                 ref var playerModel = ref _playerFilter.Get1(i);
                 ref var playerCharacterController = ref _playerFilter.Get2(i);
                 playerData = playerModel.playerData;
-                var playerTransform = playerCharacterController.CharacterController.transform;
+                var playerTransform = playerCharacterController.characterController.transform;
                 
                 var xRotation = rotationInput.x * playerData.Sensitivity * Time.fixedDeltaTime;
 

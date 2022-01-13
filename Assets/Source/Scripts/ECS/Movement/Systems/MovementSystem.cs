@@ -15,7 +15,7 @@ namespace Ingame
                 ref var characterControllerModel = ref _velocityFilter.Get2(i);
                 var deltaMovement = velocityComponent.velocity * Time.fixedDeltaTime;
                 
-                characterControllerModel.CharacterController.Move(deltaMovement);
+                characterControllerModel.characterController.Move(deltaMovement);
             }
         }
     }

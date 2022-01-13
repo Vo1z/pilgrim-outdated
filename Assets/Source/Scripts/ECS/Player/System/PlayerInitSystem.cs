@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using UnityEngine;
 
 namespace Ingame
 {
@@ -8,11 +9,17 @@ namespace Ingame
 
         public void Init()
         {
+            //todo move to settings
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Application.targetFrameRate = 240;
+            
             foreach (var i in _playerFilter)
             {
                 ref var playerEntity = ref _playerFilter.GetEntity(i);
                 ref var playerModel = ref _playerFilter.Get1(i);
                 ref var playerGravityComponent = ref playerEntity.Get<GravityComponent>();
+                ref var playerCharacterControllerModel = ref playerEntity.Get<CharacterControllerModel>();
                 playerEntity.Get<VelocityComponent>();
                 playerEntity.Get<TimerComponent>();
 
@@ -20,6 +27,7 @@ namespace Ingame
 
                 playerGravityComponent.gravityAcceleration = playerData.GravityAcceleration;
                 playerGravityComponent.maximalGravitationalForce = playerData.MaximumGravitationForce;
+                playerCharacterControllerModel.slidingForceModifier = playerData.SlidingForceModifier;
             }
         }
     }

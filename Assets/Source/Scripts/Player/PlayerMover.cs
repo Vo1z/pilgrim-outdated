@@ -73,9 +73,7 @@ namespace Ingame.PlayerLegacy
 
         private void ApplyGravity()
         {
-            float gravityY = 0;
-            
-            gravityY = _characterController.isGrounded ? 
+            float gravityY = _characterController.isGrounded ? 
                 Mathf.Clamp(_velocity.y - _playerData.GravityAcceleration, -GRAVITATIONAL_FORCE_WHEN_GROUNDED, Mathf.Infinity) : 
                 Mathf.Clamp(_velocity.y - _playerData.GravityAcceleration, -_playerData.MaximumGravitationForce, Mathf.Infinity);
             

@@ -8,7 +8,8 @@ namespace Ingame.DI.Installers
         public override void InstallBindings()
         {
             var world = new EcsWorld();
-            var systems = new EcsSystems(world);
+            var updateSystems = new EcsSystems(world);
+            var fixedUpdateSystems = new EcsSystems(world);
             
             Container.Bind<EcsWorld>()
                 .FromInstance(world)
@@ -16,8 +17,15 @@ namespace Ingame.DI.Installers
                 .NonLazy();
 
             Container.Bind<EcsSystems>()
-                .FromInstance(systems)
-                .AsSingle()
+                .WithId("UpdateSystems")
+                .FromInstance(updateSystems)
+                .AsCached()
+                .NonLazy();
+            
+            Container.Bind<EcsSystems>()
+                .WithId("FixedUpdateSystems")
+                .FromInstance(fixedUpdateSystems)
+                .AsCached()
                 .NonLazy();
         }
     }

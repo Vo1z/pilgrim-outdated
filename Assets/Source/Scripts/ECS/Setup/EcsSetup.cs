@@ -1,3 +1,4 @@
+using System;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
 using Support;
@@ -11,7 +12,8 @@ namespace Ingame
     {
         [Inject] private StationaryInput _stationaryInput;
         [Inject] private EcsWorld _world;
-        [Inject] private EcsSystems _systems;
+        [Inject(Id = "UpdateSystems")] private EcsSystems _updateSystems;
+        [Inject(Id = "FixedUpdateSystems")] private EcsSystems _fixedUpdateSystem;
 #if UNITY_EDITOR
         private EcsProfiler _ecsProfiler;
 #endif
@@ -19,22 +21,29 @@ namespace Ingame
         {
             EcsPhysicsEvents.ecsWorld = _world;
             
-            _systems.ConvertScene();
+            _updateSystems.ConvertScene();
+            _fixedUpdateSystem.ConvertScene();
             
             AddInjections();
             AddOneFrames();
             AddSystems();
             
-            _systems.Init();
+            _updateSystems.Init();
+            _fixedUpdateSystem.Init();
 
 #if UNITY_EDITOR
-            _ecsProfiler = new EcsProfiler(_world, new EcsWorldDebugListener(), _systems);
+            _ecsProfiler = new EcsProfiler(_world, new EcsWorldDebugListener(), _updateSystems);
 #endif
         }
 
         private void Update()
         {
-            _systems.Run();
+            _updateSystems.Run();
+        }
+
+        private void FixedUpdate()
+        {
+            _fixedUpdateSystem.Run();
         }
 
         private void OnDestroy()
@@ -45,8 +54,11 @@ namespace Ingame
 #endif
             EcsPhysicsEvents.ecsWorld = null;
             
-            _systems.Destroy();
-            _systems = null;
+            _updateSystems.Destroy();
+            _updateSystems = null;
+            
+            _fixedUpdateSystem.Destroy();
+            _fixedUpdateSystem = null;
             
             _world.Destroy();
             _world = null;
@@ -54,13 +66,13 @@ namespace Ingame
 
         private void AddInjections()
         {
-            _systems
+            _updateSystems
                 .Inject(_stationaryInput);
         }
 
         private void AddOneFrames()
         {
-            _systems
+            _updateSystems
                 .OneFrame<DebugRequest>()
                 .OneFrame<JumpEvent>()
                 .OneFrame<CrouchEvent>()
@@ -71,18 +83,20 @@ namespace Ingame
 
         private void AddSystems()
         {
-            _systems
+            _updateSystems
                 .Add(new PlayerInitSystem())
                 .Add(new StationaryInputSystem())
-                .Add(new PlayerMovementSystem())
                 .Add(new PlayerRotationSystem())
-                .Add(new PlayerFrictionSystem())
+                .Add(new TimeSystem())
+                .Add(new DebugSystem());
+
+            _fixedUpdateSystem
+                .Add(new PlayerMovementSystem())
+                .Add(new FrictionSystem())
                 .Add(new SlidingSystem())
                 .Add(new GravitationSystem())
                 .Add(new PlayerJumpSystem())
-                .Add(new MovementSystem())
-                .Add(new TimeSystem())
-                .Add(new DebugSystem());
+                .Add(new MovementSystem());
         }
     }
 }

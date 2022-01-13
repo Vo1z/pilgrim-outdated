@@ -59,7 +59,7 @@ namespace Ingame
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
                 
-                inputEntity.Get<RotateRequest>().rotateInput = rotationInputVector;
+                inputEntity.Get<RotateRequest>().rotationInput = rotationInputVector;
             }
 
             if (jumpInput)

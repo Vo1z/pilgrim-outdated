@@ -68,10 +68,15 @@ namespace Ingame
         private void AddSystems()
         {
             _systems
+                .Add(new PlayerInitSystem())
                 .Add(new StationaryInputSystem())
-                .Add(new PlayerInputToMovementCommunicationSystem())
+                .Add(new PlayerMovementSystem())
                 .Add(new PlayerFrictionSystem())
+                .Add(new GravitationSystem())
+                .Add(new PlayerJumpSystem())
                 .Add(new MovementSystem())
+                .Add(new PlayerRotationSystem())
+                .Add(new TimeSystem())
                 .Add(new DebugSystem());
         }
     }

@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7081f12dcda35d4b9b3f18ab75559f1a, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  walkSpeed: 1
+  walkSpeed: 1.2
   crouchWalkSpeed: 3
   enterCrouchStateSpeed: 3
-  movementAcceleration: 15
-  movementFriction: 10
-  jumpForce: 13
+  movementAcceleration: 10
+  movementFriction: 2.5
+  jumpForce: 5
   pauseBetweenJumps: 0.2
   leanDistanceOffset: 0.4
   leanAngleOffset: 120
-  gravityAcceleration: 0.8
+  gravityAcceleration: 6
   maximumGravitationForce: 10
   slidingForceModifier: 1
   sensitivity: 10

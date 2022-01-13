@@ -4,6 +4,6 @@ namespace Ingame
 {
     internal struct RotateRequest
     {
-        public Vector2 rotateInput;
+        public Vector2 rotationInput;
     }
 }

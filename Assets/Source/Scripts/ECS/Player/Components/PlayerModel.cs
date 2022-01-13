@@ -1,5 +1,4 @@
 ﻿using Ingame.PlayerLegacy;
-using UnityEngine;
 
 namespace Ingame
 {

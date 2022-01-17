@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Ingame
 {
-    public sealed class PlayerMovementSystem : IEcsRunSystem
+    public sealed class PlayerInputToMovementConvertSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerModel, VelocityComponent, CharacterControllerModel> _playerInputFilter;
-        private readonly EcsFilter<MoveRequest> _moveRequestFilter;
+        private readonly EcsFilter<MoveInputRequest> _moveRequestFilter;
         
         public void Run()
         {

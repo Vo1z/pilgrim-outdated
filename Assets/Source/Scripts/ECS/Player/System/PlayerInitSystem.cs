@@ -21,8 +21,10 @@ namespace Ingame
                 ref var playerGravityComponent = ref playerEntity.Get<GravityComponent>();
                 ref var playerCharacterControllerModel = ref playerEntity.Get<CharacterControllerModel>();
                 ref var playerFrictionComp = ref playerEntity.Get<FrictionComponent>();
-                playerEntity.Get<VelocityComponent>();
+                ref var playerTransformModel = ref playerEntity.Get<TransformModel>();
                 playerEntity.Get<TimerComponent>();
+                playerEntity.Get<VelocityComponent>();
+                playerEntity.Get<RotatorComponent>();
 
                 var playerData = playerModel.playerData;
 
@@ -30,6 +32,7 @@ namespace Ingame
                 playerGravityComponent.maximalGravitationalForce = playerData.MaximumGravitationForce;
                 playerCharacterControllerModel.slidingForceModifier = playerData.SlidingForceModifier;
                 playerFrictionComp.frictionPower = playerData.MovementFriction;
+                playerTransformModel.transform = playerCharacterControllerModel.characterController.transform;
             }
         }
     }

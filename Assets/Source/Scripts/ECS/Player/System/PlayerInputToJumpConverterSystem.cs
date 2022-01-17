@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Ingame
 {
-    public sealed class PlayerJumpSystem : IEcsRunSystem
+    public sealed class PlayerInputToJumpConverterSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerModel, VelocityComponent, CharacterControllerModel, TimerComponent> _playerFilter;
-        private readonly EcsFilter<JumpEvent> _jumpFilter;
+        private readonly EcsFilter<JumpInputEvent> _jumpFilter;
 
         public void Run()
         {

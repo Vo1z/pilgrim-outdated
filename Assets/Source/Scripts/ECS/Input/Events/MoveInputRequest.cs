@@ -2,7 +2,7 @@
 
 namespace Ingame
 {
-    internal struct MoveRequest
+    internal struct MoveInputRequest
     {
         public Vector2 movementInput;
     }

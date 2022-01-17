@@ -4,7 +4,7 @@ namespace Ingame
 {
     public static class LeoEcsExtensions
     {
-        public static void SendMessage(this EcsWorld ecsWorld, string message)
+        public static void SendDebugMessage(this EcsWorld ecsWorld, string message)
         {
             ecsWorld.NewEntity().Get<DebugRequest>().message = message;
         }

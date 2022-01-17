@@ -51,7 +51,7 @@ namespace Ingame
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
                 
-                inputEntity.Get<MoveRequest>().movementInput = movementInputVector;
+                inputEntity.Get<MoveInputRequest>().movementInput = movementInputVector;
             }
             
             if (rotationInputVector.sqrMagnitude > 0)
@@ -59,7 +59,7 @@ namespace Ingame
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
                 
-                inputEntity.Get<RotateRequest>().rotationInput = rotationInputVector;
+                inputEntity.Get<RotateInputRequest>().rotationInput = rotationInputVector;
             }
 
             if (jumpInput)
@@ -67,7 +67,7 @@ namespace Ingame
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
                 
-                inputEntity.Get<JumpEvent>();
+                inputEntity.Get<JumpInputEvent>();
             }
 
             if (crouchInput)
@@ -75,7 +75,7 @@ namespace Ingame
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
                 
-                inputEntity.Get<CrouchEvent>();
+                inputEntity.Get<CrouchInputEvent>();
             }
 
             if (leanDirection != LeanDirection.None)

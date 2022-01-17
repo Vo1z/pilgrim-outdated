@@ -1,4 +1,3 @@
-using System;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
 using Support;
@@ -74,28 +73,31 @@ namespace Ingame
         {
             _updateSystems
                 .OneFrame<DebugRequest>()
-                .OneFrame<JumpEvent>()
-                .OneFrame<CrouchEvent>()
-                .OneFrame<LeanRequest>()
-                .OneFrame<MoveRequest>()
-                .OneFrame<RotateRequest>();
+                .OneFrame<JumpInputEvent>()
+                .OneFrame<CrouchInputEvent>()
+                .OneFrame<LeanInputRequest>()
+                .OneFrame<MoveInputRequest>()
+                .OneFrame<RotateInputRequest>();
         }
 
         private void AddSystems()
         {
             _updateSystems
                 .Add(new PlayerInitSystem())
+                .Add(new PlayerHudInitSystem())
                 .Add(new StationaryInputSystem())
-                .Add(new PlayerRotationSystem())
+                .Add(new PlayerInputToRotationConverterSystem())
+                .Add(new PlayerHudInputToRotationConverterSystem())
                 .Add(new TimeSystem())
+                .Add(new RotationSystem())
                 .Add(new DebugSystem());
 
             _fixedUpdateSystem
-                .Add(new PlayerMovementSystem())
+                .Add(new PlayerInputToMovementConvertSystem())
                 .Add(new FrictionSystem())
                 .Add(new SlidingSystem())
                 .Add(new GravitationSystem())
-                .Add(new PlayerJumpSystem())
+                .Add(new PlayerInputToJumpConverterSystem())
                 .Add(new MovementSystem());
         }
     }

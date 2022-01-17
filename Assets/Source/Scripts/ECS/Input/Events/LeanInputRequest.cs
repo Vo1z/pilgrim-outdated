@@ -2,7 +2,7 @@
 
 namespace Ingame
 {
-    internal struct LeanRequest
+    internal struct LeanInputRequest
     {
         public LeanDirection leanDirection;
     }

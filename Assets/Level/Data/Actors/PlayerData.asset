@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   walkSpeed: 12
-  crouchWalkSpeed: 3
-  enterCrouchStateSpeed: 3
+  crouchWalkSpeed: 6
+  enterCrouchStateSpeed: 6
   movementAcceleration: 8
   movementFriction: 12
   jumpForce: 6

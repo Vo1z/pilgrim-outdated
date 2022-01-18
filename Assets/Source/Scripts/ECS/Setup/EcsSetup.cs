@@ -31,7 +31,7 @@ namespace Ingame
             _fixedUpdateSystem.Init();
 
 #if UNITY_EDITOR
-            _ecsProfiler = new EcsProfiler(_world, new EcsWorldDebugListener(), _updateSystems);
+            _ecsProfiler = new EcsProfiler(_world, new EcsWorldDebugListener(), _updateSystems, _fixedUpdateSystem);
 #endif
         }
 
@@ -82,22 +82,30 @@ namespace Ingame
 
         private void AddSystems()
         {
+            //Init
             _updateSystems
+                .Add(new CharacterControllerInitSystem())
                 .Add(new PlayerInitSystem())
-                .Add(new PlayerHudInitSystem())
+                .Add(new PlayerHudInitSystem());
+            
+            //Update
+            _updateSystems
                 .Add(new StationaryInputSystem())
                 .Add(new PlayerInputToRotationConverterSystem())
                 .Add(new PlayerHudInputToRotationConverterSystem())
+                .Add(new PlayerInputToCrouchConverterSystem())
                 .Add(new TimeSystem())
                 .Add(new RotationSystem())
                 .Add(new DebugSystem());
 
+            //FixedUpdate
             _fixedUpdateSystem
                 .Add(new PlayerInputToMovementConvertSystem())
                 .Add(new FrictionSystem())
                 .Add(new SlidingSystem())
                 .Add(new GravitationSystem())
                 .Add(new PlayerInputToJumpConverterSystem())
+                .Add(new CrouchSystem())
                 .Add(new MovementSystem());
         }
     }

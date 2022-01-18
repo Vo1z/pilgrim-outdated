@@ -33,6 +33,7 @@ namespace Ingame
                 playerCharacterControllerModel.slidingForceModifier = playerData.SlidingForceModifier;
                 playerFrictionComp.frictionPower = playerData.MovementFriction;
                 playerTransformModel.transform = playerCharacterControllerModel.characterController.transform;
+                playerModel.currentSpeed = playerModel.isCrouching ? playerData.CrouchWalkSpeed : playerData.WalkSpeed;
             }
         }
     }

@@ -89,7 +89,7 @@ namespace Support
                     ""id"": ""bd9b3406-2793-428b-b050-29c60df61eb6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=1.401298E-45,pressPoint=1)"",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {

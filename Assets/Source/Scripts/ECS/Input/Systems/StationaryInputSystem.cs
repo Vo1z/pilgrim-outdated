@@ -37,7 +37,7 @@ namespace Ingame
             var movementInputVector = new Vector2(_movementInputX.ReadValue<float>(), _movementInputY.ReadValue<float>());
             var rotationInputVector = new Vector2(_rotationInputX.ReadValue<float>(), _rotationInputY.ReadValue<float>());
             bool jumpInput = _jumpInput.ReadValue<float>() > 0;
-            bool crouchInput = _crouchInput.ReadValue<float>() > 0;
+            bool crouchInput = _crouchInput.WasPressedThisFrame();
             var leanDirection = _leanInput.ReadValue<float>() switch
             {
                 < 0 => LeanDirection.Left,

@@ -29,7 +29,8 @@ namespace Ingame
                 var movementDirection = playerTransform.forward * inputVector.y + 
                                         playerTransform.right * inputVector.x;
 
-                var targetVelocity = movementDirection.normalized * playerData.WalkSpeed;//todo replace with state speed
+                var targetVelocity = movementDirection.normalized * playerModel.currentSpeed;
+                
                 targetVelocity.y = playerVelocity.y;
 
 

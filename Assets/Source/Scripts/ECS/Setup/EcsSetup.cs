@@ -18,6 +18,10 @@ namespace Ingame
 #endif
         private void Awake()
         {
+#if UNITY_EDITOR
+            _ecsProfiler = new EcsProfiler(_world, new EcsWorldDebugListener(), _updateSystems, _fixedUpdateSystem);
+#endif
+            
             EcsPhysicsEvents.ecsWorld = _world;
             
             _updateSystems.ConvertScene();
@@ -29,10 +33,6 @@ namespace Ingame
             
             _updateSystems.Init();
             _fixedUpdateSystem.Init();
-
-#if UNITY_EDITOR
-            _ecsProfiler = new EcsProfiler(_world, new EcsWorldDebugListener(), _updateSystems, _fixedUpdateSystem);
-#endif
         }
 
         private void Update()

@@ -10,6 +10,8 @@ namespace Ingame
     {
         private EcsWorld _world;
         private StationaryInput _stationaryInputSystem;
+        
+        private float timePassedFromLastLeanInputRequest;
 
         private InputAction _movementInputX;
         private InputAction _movementInputY;
@@ -44,8 +46,8 @@ namespace Ingame
                 > 0 => LeanDirection.Right,
                 _ => LeanDirection.None
             };
-            
-            EcsEntity inputEntity = EcsEntity.Null;
+
+                EcsEntity inputEntity = EcsEntity.Null;
             if (movementInputVector.sqrMagnitude > 0)
             {
                 if (inputEntity == EcsEntity.Null)
@@ -78,11 +80,12 @@ namespace Ingame
                 inputEntity.Get<CrouchInputEvent>();
             }
 
-            if (leanDirection != LeanDirection.None)
+            if (leanDirection != LeanDirection.None && _leanInput.WasPressedThisFrame())
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
-                inputEntity.Get<LeanDirection>();
+                
+                inputEntity.Get<LeanInputRequest>().leanDirection = leanDirection;
             }
         }
     }

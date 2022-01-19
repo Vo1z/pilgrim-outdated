@@ -6,7 +6,7 @@ namespace Ingame
     public sealed class PlayerHudInputToRotationConverterSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerModel> _playerFilter;
-        private readonly EcsFilter<PlayerHudModel, RotationComponent> _hudFilter;
+        private readonly EcsFilter<PlayerHudModel, TransformModel> _hudFilter;
         private readonly EcsFilter<RotateInputRequest> _rotateRequestFilter;
 
         public void Run()
@@ -20,13 +20,13 @@ namespace Ingame
             foreach (var i in _hudFilter)
             {
                 ref var hudModel = ref _hudFilter.Get1(i);
-                ref var hudRotatorComp = ref _hudFilter.Get2(i);
+                ref var hudTransformModel = ref _hudFilter.Get2(i);
 
                 var yRotation = rotationInput.y * playerData.Sensitivity * Time.fixedDeltaTime;
                 hudModel.hudLocalRotationX -= yRotation;
                 hudModel.hudLocalRotationX = Mathf.Clamp(hudModel.hudLocalRotationX, -90, 90);
 
-                hudRotatorComp.rotation = Quaternion.Euler(hudModel.hudLocalRotationX, 0, 0);
+                hudTransformModel.transform.localRotation = Quaternion.Euler(hudModel.hudLocalRotationX, 0, 0);
             }
         }
     }

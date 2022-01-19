@@ -20,7 +20,7 @@ MonoBehaviour:
   jumpForce: 6
   pauseBetweenJumps: 0.2
   leanDistanceOffset: 0.4
-  leanAngleOffset: 120
+  leanAngleOffset: 15
   gravityAcceleration: 20
   maximumGravitationForce: 40
   slidingForceModifier: 6

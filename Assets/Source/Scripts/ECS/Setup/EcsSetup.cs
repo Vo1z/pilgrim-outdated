@@ -84,6 +84,7 @@ namespace Ingame
             //Init
             _updateSystems
                 .Add(new CharacterControllerInitSystem())
+                .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem());
             
@@ -93,8 +94,8 @@ namespace Ingame
                 .Add(new PlayerInputToRotationConverterSystem())
                 .Add(new PlayerHudInputToRotationConverterSystem())
                 .Add(new PlayerInputToCrouchConverterSystem())
+                .Add(new PlayerInputToLeanConverterSystem())
                 .Add(new TimeSystem())
-                .Add(new RotationSystem())
                 .Add(new DebugSystem());
 
             //FixedUpdate
@@ -105,6 +106,7 @@ namespace Ingame
                 .Add(new GravitationSystem())
                 .Add(new PlayerInputToJumpConverterSystem())
                 .Add(new CrouchSystem())
+                .Add(new LeanSystem())
                 .Add(new MovementSystem());
         }
     }

@@ -5,7 +5,7 @@ namespace Ingame
 {
     public sealed class PlayerInputToRotationConverterSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerModel, CharacterControllerModel, RotationComponent> _playerFilter;
+        private readonly EcsFilter<PlayerModel, CharacterControllerModel> _playerFilter;
         private readonly EcsFilter<RotateInputRequest> _rotationFilter;
 
         public void Run()
@@ -20,14 +20,13 @@ namespace Ingame
             {
                 ref var playerModel = ref _playerFilter.Get1(i);
                 ref var playerCharacterController = ref _playerFilter.Get2(i);
-                ref var playerRotatorComp = ref _playerFilter.Get3(i);
                 var playerData = playerModel.playerData;
                 var playerTransform = playerCharacterController.characterController.transform;
                 
                 var xRotationAngle = rotationInput.x * playerData.Sensitivity * Time.fixedDeltaTime;
                 var rotationOffset = Quaternion.AngleAxis(xRotationAngle, Vector3.up);
 
-                playerRotatorComp.rotation = playerTransform.rotation * rotationOffset;
+                playerTransform.localRotation *= rotationOffset;
             }
         }
     }

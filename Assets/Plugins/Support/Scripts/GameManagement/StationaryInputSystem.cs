@@ -98,7 +98,7 @@ namespace Support
                     ""id"": ""36b1d91a-ed42-45b9-962d-73f59779f8c8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": ""Tap"",
                     ""initialStateCheck"": true
                 }
             ],

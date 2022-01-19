@@ -1,12 +1,12 @@
 using UnityEngine;
 using Zenject;
 
-namespace Ingame.Player.HUD
+namespace Ingame.PlayerLegacy.HUD
 {
     public class CameraRotator : MonoBehaviour
     {
         [Inject] private PlayerData _playerData;
-        [Inject] private PlayerRotator _playerRotator;
+        [Inject] private PlayerMover _playerRotator;
         
         private Vector3 _initialPosition;
         private Vector3 _initialLocalPosition;
@@ -27,16 +27,6 @@ namespace Ingame.Player.HUD
         private void OnDestroy()
         {
             _playerRotator.OnRotationPerformed -= RotateCamera;
-        }
-
-        private void Update()
-        {
-            // var deltaMovement = Vector3.Distance(_positionOnThePreviousFrame, transform.position);
-            // //todo remove hardcod
-            // var cameraOffset = Mathf.Cos(Vector3.Distance(_positionOnThePreviousFrame, transform.position));
-            // transform.localPosition += Vector3.up * cameraOffset;
-            //
-            // _positionOnThePreviousFrame = transform.position;
         }
 
         private void RotateCamera(Vector2 deltaRotationInput)

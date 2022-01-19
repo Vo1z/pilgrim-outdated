@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000e32bd31ff10398b994fe9d99368fd, type: 3}
   m_Name: Ar15Data
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
-  minMaxRotationAngleX: {x: -8, y: 8}
-  rotationAngleMultiplierX: 4
+  rotationSpeed: 1
+  minMaxRotationAngleX: {x: -15, y: 15}
+  rotationAngleMultiplierX: 20
   inverseRotationX: 1
   minMaxRotationAngleY: {x: -10, y: 10}
-  rotationAngleMultiplierY: 4
+  rotationAngleMultiplierY: 10
   inverseRotationY: 1
   minMaxRotationAngleZ: {x: -20, y: 10}
-  rotationAngleMultiplierZ: 8
+  rotationAngleMultiplierZ: 30
   inverseRotationZ: 0
   minMaxRotationMovementAngleX: {x: -12, y: 12}
   rotationMovementAngleMultiplierX: 5

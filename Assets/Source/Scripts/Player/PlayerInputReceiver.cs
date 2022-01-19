@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-namespace Ingame.Player
+namespace Ingame.PlayerLegacy
 { 
     public class PlayerInputReceiver : MonoBehaviour
     {
-        [Inject]private StationaryInputSystem _inputSystem;
+        [Inject]private StationaryInput _inputSystem;
         
         private InputAction _movementX;
         private InputAction _movementY;
@@ -24,6 +24,7 @@ namespace Ingame.Player
         public event Action<Vector2> OnRotationDeltaInputReceived;
         public event Action OnJumpInputReceived;
         public event Action<bool> OnCrouchInputReceived;
+        public event Action<LeanDirection> OnLeanInputReceived;
 
         private void Awake()
         {
@@ -35,8 +36,14 @@ namespace Ingame.Player
             
             _jump = _inputSystem.FPS.Jump;
             _crouch = _inputSystem.FPS.Crouch;
+
+            _inputSystem.FPS.Lean.performed += ReceiveLeanInput;
         }
-        
+
+        private void OnDestroy()
+        {
+            _inputSystem.FPS.Lean.performed -= ReceiveLeanInput;
+        }
 
         private void Update()
         {
@@ -77,5 +84,21 @@ namespace Ingame.Player
         {
             OnCrouchInputReceived?.Invoke(isCrouching);
         }
+
+        private void ReceiveLeanInput(InputAction.CallbackContext ctx)
+        {
+            var inputValue = ctx.ReadValue<float>();
+
+            var leanDirection = inputValue switch
+            {
+                < 0 => LeanDirection.Left,
+                > 0 => LeanDirection.Right,
+                _ => LeanDirection.None
+            };
+
+            OnLeanInputReceived?.Invoke(leanDirection);
+        }
     }
+    
+    public enum LeanDirection { Left, Right, None }
 }

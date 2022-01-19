@@ -18,7 +18,7 @@ namespace Ingame.PlayerLegacy.HUD
         private Transform _gunTransform;
         private GunObserver _gunObserver;
         private GunSurfaceDetector _gunSurfaceDetector;
-        private GunStatsData _gunStats;
+        private GunData _gun;
         
         private Vector2 _deltaRotation; 
         private Vector3 _deltaMovement;
@@ -35,7 +35,7 @@ namespace Ingame.PlayerLegacy.HUD
 
         private async void Update()
         {
-            if (_gunObserver == null || _gunTransform == null || _gunStats == null)
+            if (_gunObserver == null || _gunTransform == null || _gun == null)
                 return;
 
             var hudRotationDutToDeltaMovementTask = Task.Run(GetHudRotationDueToDeltaMovement);
@@ -43,7 +43,7 @@ namespace Ingame.PlayerLegacy.HUD
             
             MoveGunDueToSurfaceInteraction();
 
-            var rotationOffset = _gunStats.RotationSpeed * Time.fixedDeltaTime;
+            var rotationOffset = _gun.RotationSpeed * Time.fixedDeltaTime;
             var targetRotation = _initialGunLocalRotation * 
                                  await hudRotationDutToDeltaMovementTask *
                                  await hudRotationDutToDeltaRotationTask;
@@ -61,13 +61,13 @@ namespace Ingame.PlayerLegacy.HUD
             if (Mathf.Abs(deltaMovementInAngle.y) < 2f * PlayerInputReceiver.ANGLE_FOR_ONE_SCREEN_PIXEL)
                 deltaMovementInAngle.y = 0;
             
-            var xMovementAngle = _gunStats.RotationMovementAngleMultiplierX * deltaMovementInAngle.y;
-            xMovementAngle = Mathf.Clamp(xMovementAngle, _gunStats.MinMaxRotationMovementAngleX.x, _gunStats.MinMaxRotationMovementAngleX.y);
-            xMovementAngle *= _gunStats.InverseRotationMovementX;
+            var xMovementAngle = _gun.RotationMovementAngleMultiplierX * deltaMovementInAngle.y;
+            xMovementAngle = Mathf.Clamp(xMovementAngle, _gun.MinMaxRotationMovementAngleX.x, _gun.MinMaxRotationMovementAngleX.y);
+            xMovementAngle *= _gun.InverseRotationMovementX;
             
-            var zMovementAngle = _gunStats.RotationMovementAngleMultiplierZ * deltaMovementInAngle.x;
-            zMovementAngle = Mathf.Clamp(zMovementAngle, _gunStats.MinMaxRotationMovementAngleZ.x, _gunStats.MinMaxRotationMovementAngleZ.y);
-            zMovementAngle *= _gunStats.InverseRotationMovementZ;
+            var zMovementAngle = _gun.RotationMovementAngleMultiplierZ * deltaMovementInAngle.x;
+            zMovementAngle = Mathf.Clamp(zMovementAngle, _gun.MinMaxRotationMovementAngleZ.x, _gun.MinMaxRotationMovementAngleZ.y);
+            zMovementAngle *= _gun.InverseRotationMovementZ;
             
             // var yMovementAngle = 10 * deltaMovementInAngle.z;
             // yMovementAngle = Mathf.Clamp(yMovementAngle, -10, 10);
@@ -86,17 +86,17 @@ namespace Ingame.PlayerLegacy.HUD
             deltaRotationInputInAngle.x = Mathf.Clamp(deltaRotationInputInAngle.x, -PlayerInputReceiver.INPUT_ANGLE_VARIETY, PlayerInputReceiver.INPUT_ANGLE_VARIETY);
             deltaRotationInputInAngle.y = Mathf.Clamp(deltaRotationInputInAngle.y, -PlayerInputReceiver.INPUT_ANGLE_VARIETY, PlayerInputReceiver.INPUT_ANGLE_VARIETY);
             
-            var xRotationAngle = _gunStats.RotationAngleMultiplierX * deltaRotationInputInAngle.y;
-            xRotationAngle = Mathf.Clamp(xRotationAngle, _gunStats.MinMaxRotationAngleX.x, _gunStats.MinMaxRotationAngleX.y);
-            xRotationAngle *= _gunStats.InverseRotationX;
+            var xRotationAngle = _gun.RotationAngleMultiplierX * deltaRotationInputInAngle.y;
+            xRotationAngle = Mathf.Clamp(xRotationAngle, _gun.MinMaxRotationAngleX.x, _gun.MinMaxRotationAngleX.y);
+            xRotationAngle *= _gun.InverseRotationX;
 
-            var yRotationAngle = _gunStats.RotationAngleMultiplierY * deltaRotationInputInAngle.x;
-            yRotationAngle = Mathf.Clamp(yRotationAngle, _gunStats.MinMaxRotationAngleY.x, _gunStats.MinMaxRotationAngleY.y);
-            yRotationAngle *= _gunStats.InverseRotationY;
+            var yRotationAngle = _gun.RotationAngleMultiplierY * deltaRotationInputInAngle.x;
+            yRotationAngle = Mathf.Clamp(yRotationAngle, _gun.MinMaxRotationAngleY.x, _gun.MinMaxRotationAngleY.y);
+            yRotationAngle *= _gun.InverseRotationY;
 
-            var zRotationAngle = _gunStats.RotationAngleMultiplierZ * deltaRotationInputInAngle.x;
-            zRotationAngle = Mathf.Clamp(zRotationAngle, _gunStats.MinMaxRotationAngleZ.x, _gunStats.MinMaxRotationAngleZ.y);
-            zRotationAngle *= _gunStats.InverseRotationZ;
+            var zRotationAngle = _gun.RotationAngleMultiplierZ * deltaRotationInputInAngle.x;
+            zRotationAngle = Mathf.Clamp(zRotationAngle, _gun.MinMaxRotationAngleZ.x, _gun.MinMaxRotationAngleZ.y);
+            zRotationAngle *= _gun.InverseRotationZ;
 
             var resultRotation = Quaternion.AngleAxis(xRotationAngle, Vector3.right) *
                                  Quaternion.AngleAxis(yRotationAngle, Vector3.up) *
@@ -112,7 +112,7 @@ namespace Ingame.PlayerLegacy.HUD
             if(gunSurfaceDetectionResult == SurfaceDetection.SameSpot)
                 return;
                 
-            var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetection.Detection ? -_gunStats.MaximumClippingOffset : 0;
+            var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetection.Detection ? -_gun.MaximumClippingOffset : 0;
             var nextGunLocalPos = _initialGunLocalPosition + Vector3.forward * movementDirectionZ;
             
             _gunTransform.localPosition = Vector3.Lerp(_gunTransform.localPosition, nextGunLocalPos, GUN_CLIPPING_MOVEMENT_SPEED * Time.fixedDeltaTime);
@@ -132,7 +132,7 @@ namespace Ingame.PlayerLegacy.HUD
         {
             _gunObserver = gunObserver;
             _gunSurfaceDetector = _gunObserver.GunSurfaceDetector;
-            _gunStats = _gunObserver.GunStatsData;
+            _gun = _gunObserver.GunData;
             _gunTransform = _gunObserver.transform;
             _gunTransform.parent = transform;
             _initialGunLocalRotation = _gunTransform.localRotation;
@@ -148,7 +148,7 @@ namespace Ingame.PlayerLegacy.HUD
             _gunTransform.parent = null;
             _gunObserver = null;
             _gunSurfaceDetector = null;
-            _gunStats = null;
+            _gun = null;
             _gunTransform = null;
             _hands.parent = transform;
             

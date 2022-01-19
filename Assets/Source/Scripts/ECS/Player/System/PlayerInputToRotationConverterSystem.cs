@@ -5,12 +5,12 @@ namespace Ingame
 {
     public sealed class PlayerInputToRotationConverterSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerModel, CharacterControllerModel, RotatorComponent> _playerFilter;
+        private readonly EcsFilter<PlayerModel, CharacterControllerModel, RotationComponent> _playerFilter;
         private readonly EcsFilter<RotateInputRequest> _rotationFilter;
 
         public void Run()
         {
-            if(_playerFilter.IsEmpty())
+            if(_rotationFilter.IsEmpty())
                 return;
 
             ref var rotationRequest = ref _rotationFilter.Get1(0);

@@ -11,7 +11,7 @@ namespace Ingame
             foreach (var i in _hudFilter)
             {
                 ref var hudEntity = ref _hudFilter.GetEntity(i);
-                hudEntity.Get<RotatorComponent>();
+                hudEntity.Get<RotationComponent>();
             }
         }
     }

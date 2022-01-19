@@ -2,7 +2,7 @@
 
 namespace Ingame
 {
-    internal struct RotatorComponent
+    internal struct RotationComponent
     {
         public Quaternion rotation;
     }

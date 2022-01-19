@@ -25,8 +25,7 @@ namespace Ingame
             EcsPhysicsEvents.ecsWorld = _world;
             
             _updateSystems.ConvertScene();
-            _fixedUpdateSystem.ConvertScene();
-            
+
             AddInjections();
             AddOneFrames();
             AddSystems();

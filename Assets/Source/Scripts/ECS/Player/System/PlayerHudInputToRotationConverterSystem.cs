@@ -6,7 +6,7 @@ namespace Ingame
     public sealed class PlayerHudInputToRotationConverterSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerModel> _playerFilter;
-        private readonly EcsFilter<PlayerHudModel, RotatorComponent> _hudFilter;
+        private readonly EcsFilter<PlayerHudModel, RotationComponent> _hudFilter;
         private readonly EcsFilter<RotateInputRequest> _rotateRequestFilter;
 
         public void Run()

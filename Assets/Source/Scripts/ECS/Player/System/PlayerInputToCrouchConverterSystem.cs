@@ -4,7 +4,6 @@ namespace Ingame
 {
     public sealed class PlayerInputToCrouchConverterSystem : IEcsRunSystem
     {
-        //Todo bug: there is two entities by this filter, when should be one
         private readonly EcsFilter<PlayerModel, CharacterControllerModel> _playerFilter;
         private readonly EcsFilter<CrouchInputEvent> _crouchInputFilter;
 
@@ -25,11 +24,7 @@ namespace Ingame
                 var targetCharacterControllerHeight = playerModel.isCrouching
                     ? playerCharacterControllerModel.initialHeight / 2
                     : playerCharacterControllerModel.initialHeight;
-                
-                //todo remove "if" when bug that is relative to two entities int the filter will be fixed
-                if(targetCharacterControllerHeight == 0)
-                    return;
-                
+
                 playerCrouchRequest.height = targetCharacterControllerHeight;
                 playerCrouchRequest.changeHeightSpeed = playerData.EnterCrouchStateSpeed;
 

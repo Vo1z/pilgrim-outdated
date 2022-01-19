@@ -6,7 +6,7 @@ namespace Ingame.Guns
 {
     public sealed class GunObserver : MonoBehaviour
     {
-        [Inject] private GunStatsData _gunStatsData;
+        [Inject] private GunData _gunData;
         [Inject] private GunSurfaceDetector _gunSurfaceDetector;
         
         public event Action OnTriggerPressed;
@@ -14,7 +14,7 @@ namespace Ingame.Guns
         public event Action OnShutterDistorted;
         public event Action<FireMode> OnFireModeSwitched;
 
-        public GunStatsData GunStatsData => _gunStatsData;
+        public GunData GunData => _gunData;
         public GunSurfaceDetector GunSurfaceDetector => _gunSurfaceDetector;
         
         public void ChangeMagazine()

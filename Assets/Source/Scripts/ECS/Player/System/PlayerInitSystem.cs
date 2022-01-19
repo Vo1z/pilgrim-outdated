@@ -24,7 +24,7 @@ namespace Ingame
                 ref var playerTransformModel = ref playerEntity.Get<TransformModel>();
                 playerEntity.Get<TimerComponent>();
                 playerEntity.Get<VelocityComponent>();
-                playerEntity.Get<RotatorComponent>();
+                playerEntity.Get<RotationComponent>();
 
                 var playerData = playerModel.playerData;
 

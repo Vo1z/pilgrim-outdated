@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Ingame.Guns
 {
     [CreateAssetMenu(menuName = "Ingame/Gun data", fileName = "NewGunData")]
-    public sealed class GunStatsData : ScriptableObject
+    public sealed class GunData : ScriptableObject
     {
         [BoxGroup("Hud stats (Rotation)"),]
         [SerializeField] [Range(0, 10)] private float rotationSpeed = 5;

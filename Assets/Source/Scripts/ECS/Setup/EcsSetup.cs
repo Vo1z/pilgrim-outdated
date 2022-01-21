@@ -1,3 +1,4 @@
+using Ingame.Enemy.ECS;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
 using Support;
@@ -84,6 +85,7 @@ namespace Ingame
             //Init
             _updateSystems
                 .Add(new CharacterControllerInitSystem())
+                .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem());
             
@@ -93,9 +95,14 @@ namespace Ingame
                 .Add(new PlayerInputToRotationConverterSystem())
                 .Add(new PlayerHudInputToRotationConverterSystem())
                 .Add(new PlayerInputToCrouchConverterSystem())
+                .Add(new PlayerInputToLeanConverterSystem())
+                .Add(new HudItemRotatorDueDeltaRotationSystem())
+                .Add(new HudItemRotatorDueVelocitySystem())
+                .Add(new HudItemMoverDueSurfaceDetectionSystem())
                 .Add(new TimeSystem())
-                .Add(new RotationSystem())
-                .Add(new DebugSystem());
+                .Add(new DebugSystem())
+                .Add(new EnemyMovementSystem())
+                .Add(new WaypointSystem());
 
             //FixedUpdate
             _fixedUpdateSystem
@@ -105,6 +112,7 @@ namespace Ingame
                 .Add(new GravitationSystem())
                 .Add(new PlayerInputToJumpConverterSystem())
                 .Add(new CrouchSystem())
+                .Add(new LeanSystem())
                 .Add(new MovementSystem());
         }
     }

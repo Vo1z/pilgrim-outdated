@@ -76,7 +76,9 @@ namespace Ingame
                 .OneFrame<CrouchInputEvent>()
                 .OneFrame<LeanInputRequest>()
                 .OneFrame<MoveInputRequest>()
-                .OneFrame<RotateInputRequest>();
+                .OneFrame<RotateInputRequest>()
+                .OneFrame<ShootInputEvent>()
+                .OneFrame<AimInputEvent>();
         }
 
         private void AddSystems()
@@ -86,7 +88,8 @@ namespace Ingame
                 .Add(new CharacterControllerInitSystem())
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
-                .Add(new PlayerHudInitSystem());
+                .Add(new PlayerHudInitSystem())
+                .Add(new GunInitSystem());
             
             //Update
             _updateSystems
@@ -95,9 +98,13 @@ namespace Ingame
                 .Add(new PlayerHudInputToRotationConverterSystem())
                 .Add(new PlayerInputToCrouchConverterSystem())
                 .Add(new PlayerInputToLeanConverterSystem())
+                .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
+                .Add(new HudAnimatorSystem())
+                .Add(new GunStatesCheckerSystem())
+                .Add(new GunShootSystem())
                 .Add(new TimeSystem())
                 .Add(new DebugSystem());
 

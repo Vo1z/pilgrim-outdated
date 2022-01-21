@@ -5,7 +5,7 @@ namespace Ingame
 {
     public sealed class HudItemRotatorDueVelocitySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemDataModel, TransformModel, HudItemInHandsTag> _inHandItemFilter;
+        private readonly EcsFilter<HudItemModel, TransformModel, InHandsTag> _inHandItemFilter;
         private readonly EcsFilter<PlayerModel, VelocityComponent, CharacterControllerModel> _playerFilter;
         
         private const float ANGLE_FOR_ONE_SCREEN_PIXEL = .1f;
@@ -17,10 +17,13 @@ namespace Ingame
 
             foreach (var i in _inHandItemFilter)
             {
-                ref var hudItemDataModel = ref _inHandItemFilter.Get1(i);
+                ref var hudItemModel = ref _inHandItemFilter.Get1(i);
                 ref var hudItemTransformModel = ref _inHandItemFilter.Get2(i);
                 
-                var itemData = hudItemDataModel.hudItemData;
+                // if(hudItemModel.isAiming)
+                //     return;
+                
+                var itemData = hudItemModel.itemData;
                 var itemTransform = hudItemTransformModel.transform;
                 var itemLocalRotation = itemTransform.localRotation;
                 

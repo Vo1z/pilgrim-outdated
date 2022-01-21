@@ -29,6 +29,32 @@ namespace Ingame
         [SerializeField] [Range(0, 40)] private float rotationAngleMultiplierZ = 20; 
         [BoxGroup("Hud stats (Rotation)")] 
         [SerializeField] private bool inverseRotationZ = false;
+        
+        
+        
+        [BoxGroup("Hud stats (Aim Rotation)"),]
+        [SerializeField] [Range(0, 10)] private float aimRotationSpeed = 5;
+        
+        [BoxGroup("Hud stats (Aim Rotation)"), Space]
+        [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationAngleX;
+        [BoxGroup("Hud stats (Aim Rotation)")]                                           
+        [SerializeField] [Range(0, 20)] private float aimRotationAngleMultiplierX = 20;
+        [BoxGroup("Hud stats (Aim Rotation)")] 
+        [SerializeField] private bool inverseAimRotationX = false;
+        
+        [BoxGroup("Hud stats (Aim Rotation)"), Space]
+        [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationAngleY;
+        [BoxGroup("Hud stats (Aim Rotation)")]                                                      
+        [SerializeField] [Range(0, 40)] private float aimRotationAngleMultiplierY = 20;
+        [BoxGroup("Hud stats (Aim Rotation)")] 
+        [SerializeField] private bool inverseAimRotationY = false;
+
+        [BoxGroup("Hud stats (Aim Rotation)"), Space]
+        [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationAngleZ;
+        [BoxGroup("Hud stats (Aim Rotation)")]                                                      
+        [SerializeField] [Range(0, 40)] private float aimRotationAngleMultiplierZ = 20; 
+        [BoxGroup("Hud stats (Aim Rotation)")] 
+        [SerializeField] private bool inverseAimRotationZ = false;
 
         [BoxGroup("Hud stats (Movement)"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxRotationMovementAngleX;
@@ -63,6 +89,24 @@ namespace Ingame
         public float RotationAngleMultiplierZ => rotationAngleMultiplierZ;
         public float InverseRotationZ => inverseRotationZ ? -1: 1;
 
+        
+        
+        public float AimRotationSpeed => aimRotationSpeed;
+        
+        public Vector2 MinMaxAimRotationAngleX => minMaxAimRotationAngleX;
+        public float AimRotationAngleMultiplierX => aimRotationAngleMultiplierX;
+        public float InverseAimRotationX => inverseAimRotationX ? -1: 1;
+        
+        public Vector2 MinMaxAimRotationAngleY => minMaxAimRotationAngleY;
+        public float AimRotationAngleMultiplierY => aimRotationAngleMultiplierY;
+        public float InverseAimRotationY => inverseAimRotationY ? -1: 1;
+        
+        public Vector2 MinMaxAimRotationAngleZ => minMaxAimRotationAngleZ;
+        public float AimRotationAngleMultiplierZ => aimRotationAngleMultiplierZ;
+        public float InverseAimRotationZ => inverseAimRotationZ ? -1: 1;
+        
+        
+        
         public Vector2 MinMaxRotationMovementAngleX => minMaxRotationMovementAngleX;
         public float RotationMovementAngleMultiplierX => rotationMovementAngleMultiplierX;
         public float InverseRotationMovementX => inverseRotationMovementX ? -1: 1;

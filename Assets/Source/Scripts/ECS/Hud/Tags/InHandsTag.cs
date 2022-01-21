@@ -1,6 +1,6 @@
 ﻿namespace Ingame
 {
-    public struct HudItemInHandsTag
+    public struct InHandsTag
     {
         
     }

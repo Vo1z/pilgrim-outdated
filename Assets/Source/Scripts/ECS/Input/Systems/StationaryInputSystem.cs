@@ -2,6 +2,7 @@ using Ingame.PlayerLegacy;
 using Leopotam.Ecs;
 using Support;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 namespace Ingame
@@ -20,6 +21,8 @@ namespace Ingame
         private InputAction _jumpInput;
         private InputAction _crouchInput;
         private InputAction _leanInput;
+        private InputAction _shootInput;
+        private InputAction _aimInput;
 
         public void Init()
         {
@@ -32,6 +35,9 @@ namespace Ingame
             _jumpInput = _stationaryInputSystem.FPS.Jump;
             _crouchInput = _stationaryInputSystem.FPS.Crouch;
             _leanInput = _stationaryInputSystem.FPS.Lean;
+
+            _shootInput = _stationaryInputSystem.FPS.Shoot;
+            _aimInput = _stationaryInputSystem.FPS.Aim;
         }
 
         public void Run()
@@ -40,6 +46,8 @@ namespace Ingame
             var rotationInputVector = new Vector2(_rotationInputX.ReadValue<float>(), _rotationInputY.ReadValue<float>());
             bool jumpInput = _jumpInput.ReadValue<float>() > 0;
             bool crouchInput = _crouchInput.WasPressedThisFrame();
+            bool shootInput = _shootInput.IsPressed();
+            bool aimInput = _aimInput.WasPressedThisFrame();
             var leanDirection = _leanInput.ReadValue<float>() switch
             {
                 < 0 => LeanDirection.Left,
@@ -86,6 +94,22 @@ namespace Ingame
                     inputEntity = _world.NewEntity();
                 
                 inputEntity.Get<LeanInputRequest>().leanDirection = leanDirection;
+            }
+
+            if (shootInput)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+
+                inputEntity.Get<ShootInputEvent>();
+            }
+
+            if (aimInput)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+                
+                inputEntity.Get<AimInputEvent>();
             }
         }
     }

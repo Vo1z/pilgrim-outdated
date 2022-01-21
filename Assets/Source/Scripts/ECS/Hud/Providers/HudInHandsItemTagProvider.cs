@@ -2,5 +2,6 @@
 
 namespace Ingame
 {
-    public sealed class HudInHandsItemTagProvider : MonoProvider<HudItemInHandsTag> { }
+    //TODO remove asap (was made for debugging purposes)
+    public sealed class HudInHandsItemTagProvider : MonoProvider<InHandsTag> { }
 }

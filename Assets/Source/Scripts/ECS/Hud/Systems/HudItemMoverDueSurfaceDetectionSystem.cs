@@ -6,15 +6,16 @@ namespace Ingame
 {
     public sealed class HudItemMoverDueSurfaceDetectionSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<SurfaceDetectorModel, HudItemDataModel, TransformModel, HudItemInHandsTag> _itemFilter;
+        private readonly EcsFilter<SurfaceDetectorModel, HudItemModel, TransformModel, InHandsTag> _itemFilter;
 
         public void Run()
         {
             foreach (var i in _itemFilter)
             {
-                var surfaceDetector = _itemFilter.Get1(i).surfaceDetector;
-                var hudItemData = _itemFilter.Get2(i).hudItemData;
+                ref var hudItemModel = ref _itemFilter.Get2(i);
                 ref var transformModel = ref _itemFilter.Get3(i);
+                var surfaceDetector = _itemFilter.Get1(i).surfaceDetector;
+                var hudItemData = hudItemModel.itemData;
                 var hudItemTransform = transformModel.transform;
                 var initialItemLocalPos = transformModel.initialLocalPos;
                 

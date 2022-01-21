@@ -46,6 +46,8 @@ namespace Ingame
 
         [BoxGroup("Hud stats (Clipping)"), Space] 
         [SerializeField] [Range(0, 2f)] private float maximumClippingOffset = 1.5f;
+        [BoxGroup("Hud stats (Clipping)")]
+        [SerializeField] [Range(0, 10f)] private float clippingMovementSpeed = 3f;
         
         public float RotationSpeed => rotationSpeed;
         
@@ -71,5 +73,6 @@ namespace Ingame
 
         
         public float MaximumClippingOffset => maximumClippingOffset;
+        public float ClippingMovementSpeed => clippingMovementSpeed;
     }
 }

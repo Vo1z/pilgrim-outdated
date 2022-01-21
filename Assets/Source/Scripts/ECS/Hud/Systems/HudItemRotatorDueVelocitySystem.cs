@@ -5,7 +5,7 @@ namespace Ingame
 {
     public sealed class HudItemRotatorDueVelocitySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemDataModel, TransformModel, HudInHandsItemTag> _inHandItemFilter;
+        private readonly EcsFilter<HudItemDataModel, TransformModel, HudItemInHandsTag> _inHandItemFilter;
         private readonly EcsFilter<PlayerModel, VelocityComponent, CharacterControllerModel> _playerFilter;
         
         private const float ANGLE_FOR_ONE_SCREEN_PIXEL = .1f;

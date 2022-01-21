@@ -5,7 +5,7 @@ namespace Ingame
 {
     public sealed class HudItemRotatorDueDeltaRotationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemDataModel, TransformModel, HudInHandsItemTag> _inHandItemFilter;
+        private readonly EcsFilter<HudItemDataModel, TransformModel, HudItemInHandsTag> _inHandItemFilter;
         private readonly EcsFilter<RotateInputRequest> _rotateInputFilter;
 
         private const float ANGLE_FOR_ONE_SCREEN_PIXEL = .1f;

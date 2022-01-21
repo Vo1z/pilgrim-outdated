@@ -97,6 +97,7 @@ namespace Ingame
                 .Add(new PlayerInputToLeanConverterSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
+                .Add(new HudItemMoverDueSurfaceDetectionSystem())
                 .Add(new TimeSystem())
                 .Add(new DebugSystem());
 

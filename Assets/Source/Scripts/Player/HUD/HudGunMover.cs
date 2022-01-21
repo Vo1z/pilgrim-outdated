@@ -17,7 +17,7 @@ namespace Ingame.PlayerLegacy.HUD
         private Vector3 _initialGunLocalPosition;
         private Transform _gunTransform;
         private GunObserver _gunObserver;
-        private GunSurfaceDetector _gunSurfaceDetector;
+        private SurfaceDetector _surfaceDetector;
         private GunData _gun;
         
         private Vector2 _deltaRotation; 
@@ -107,12 +107,12 @@ namespace Ingame.PlayerLegacy.HUD
 
         private void MoveGunDueToSurfaceInteraction()
         {
-            var gunSurfaceDetectionResult = _gunSurfaceDetector.SurfaceDetection;
+            var gunSurfaceDetectionResult = _surfaceDetector.SurfaceDetectionType;
             
-            if(gunSurfaceDetectionResult == SurfaceDetection.SameSpot)
+            if(gunSurfaceDetectionResult == SurfaceDetectionType.SameSpot)
                 return;
                 
-            var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetection.Detection ? -_gun.MaximumClippingOffset : 0;
+            var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetectionType.Detection ? -_gun.MaximumClippingOffset : 0;
             var nextGunLocalPos = _initialGunLocalPosition + Vector3.forward * movementDirectionZ;
             
             _gunTransform.localPosition = Vector3.Lerp(_gunTransform.localPosition, nextGunLocalPos, GUN_CLIPPING_MOVEMENT_SPEED * Time.fixedDeltaTime);
@@ -131,7 +131,7 @@ namespace Ingame.PlayerLegacy.HUD
         private void PlaceGunInHands(GunObserver gunObserver)
         {
             _gunObserver = gunObserver;
-            _gunSurfaceDetector = _gunObserver.GunSurfaceDetector;
+            _surfaceDetector = _gunObserver.SurfaceDetector;
             _gun = _gunObserver.GunData;
             _gunTransform = _gunObserver.transform;
             _gunTransform.parent = transform;
@@ -147,7 +147,7 @@ namespace Ingame.PlayerLegacy.HUD
         {
             _gunTransform.parent = null;
             _gunObserver = null;
-            _gunSurfaceDetector = null;
+            _surfaceDetector = null;
             _gun = null;
             _gunTransform = null;
             _hands.parent = transform;

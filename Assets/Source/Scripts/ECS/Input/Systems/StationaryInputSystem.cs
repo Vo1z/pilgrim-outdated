@@ -47,7 +47,7 @@ namespace Ingame
                 _ => LeanDirection.None
             };
 
-                EcsEntity inputEntity = EcsEntity.Null;
+            EcsEntity inputEntity = EcsEntity.Null;
             if (movementInputVector.sqrMagnitude > 0)
             {
                 if (inputEntity == EcsEntity.Null)

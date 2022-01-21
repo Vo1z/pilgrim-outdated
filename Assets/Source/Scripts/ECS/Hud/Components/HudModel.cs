@@ -1,6 +1,6 @@
 ﻿namespace Ingame
 {
-    public struct PlayerHudModel
+    public struct HudModel
     {
         public float hudLocalRotationX;
     }

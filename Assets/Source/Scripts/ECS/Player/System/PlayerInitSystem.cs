@@ -1,4 +1,5 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.PlayerLegacy;
+using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Ingame
@@ -24,8 +25,7 @@ namespace Ingame
                 ref var playerTransformModel = ref playerEntity.Get<TransformModel>();
                 playerEntity.Get<TimerComponent>();
                 playerEntity.Get<VelocityComponent>();
-                playerEntity.Get<RotationComponent>();
-
+                
                 var playerData = playerModel.playerData;
 
                 playerGravityComponent.gravityAcceleration = playerData.GravityAcceleration;
@@ -34,6 +34,7 @@ namespace Ingame
                 playerFrictionComp.frictionPower = playerData.MovementFriction;
                 playerTransformModel.transform = playerCharacterControllerModel.characterController.transform;
                 playerModel.currentSpeed = playerModel.isCrouching ? playerData.CrouchWalkSpeed : playerData.WalkSpeed;
+                playerModel.currentLeanDirection = LeanDirection.None;
             }
         }
     }

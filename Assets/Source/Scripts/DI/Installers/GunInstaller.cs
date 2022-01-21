@@ -10,7 +10,7 @@ namespace Ingame.DI.Installers
         [BoxGroup("Data"), Required]
         [SerializeField] private GunData gunData;
         [BoxGroup("Components"), Required]
-        [SerializeField] private GunSurfaceDetector gunSurfaceDetector;
+        [SerializeField] private SurfaceDetector surfaceDetector;
         
         public override void InstallBindings()
         {
@@ -18,8 +18,8 @@ namespace Ingame.DI.Installers
                 .FromInstance(gunData)
                 .AsSingle();
             
-            Container.Bind<GunSurfaceDetector>()
-                .FromInstance(gunSurfaceDetector)
+            Container.Bind<SurfaceDetector>()
+                .FromInstance(surfaceDetector)
                 .AsSingle();
         }
     }

@@ -13,6 +13,10 @@ namespace Ingame
             foreach (var i in _itemFilter)
             {
                 ref var hudItemModel = ref _itemFilter.Get2(i);
+                
+                if(hudItemModel.isAiming)
+                    continue;
+
                 ref var transformModel = ref _itemFilter.Get3(i);
                 var surfaceDetector = _itemFilter.Get1(i).surfaceDetector;
                 var hudItemData = hudItemModel.itemData;

@@ -5,14 +5,14 @@ namespace Ingame
 {
     public sealed class GunShootSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<GunModel, ShootComponent> _gunInHandsFilter;
+        private readonly EcsFilter<GunModel, ShootComponent> _shootingGunFilter;
 
         public void Run()
         {
-            foreach (var i in _gunInHandsFilter)
+            foreach (var i in _shootingGunFilter)
             {
-                ref var gunEntity = ref _gunInHandsFilter.GetEntity(i);
-                ref var gunModel = ref _gunInHandsFilter.Get1(i);
+                ref var gunEntity = ref _shootingGunFilter.GetEntity(i);
+                ref var gunModel = ref _shootingGunFilter.Get1(i);
 
                 var hitObject = GetHitObjectWithRayCast(gunModel.barrelTransform);
                 

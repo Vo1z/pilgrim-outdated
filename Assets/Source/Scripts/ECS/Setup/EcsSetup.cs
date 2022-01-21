@@ -104,6 +104,7 @@ namespace Ingame
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
                 .Add(new HudAnimatorSystem())
                 .Add(new GunStatesCheckerSystem())
+                .Add(new GunRecoilSystem())
                 .Add(new GunShootSystem())
                 .Add(new TimeSystem())
                 .Add(new DebugSystem());

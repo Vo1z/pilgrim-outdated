@@ -19,16 +19,14 @@ namespace Ingame
             {
                 ref var hudItemModel = ref _inHandItemFilter.Get1(i);
                 ref var hudItemTransformModel = ref _inHandItemFilter.Get2(i);
-                
-                // if(hudItemModel.isAiming)
-                //     return;
-                
+
                 var itemData = hudItemModel.itemData;
                 var itemTransform = hudItemTransformModel.transform;
                 var itemLocalRotation = itemTransform.localRotation;
                 
-                var rotationDueToMovement = 
-                    GetHudRotationDueToDeltaMovement(itemTransform.InverseTransformDirection(playerVelocity), itemData);
+                var rotationDueToMovement = hudItemModel.isAiming 
+                    ? GetHudRotationDueToDeltaMovementWhileAiming(itemTransform.InverseTransformDirection(playerVelocity), itemData) 
+                    : GetHudRotationDueToDeltaMovement(itemTransform.InverseTransformDirection(playerVelocity), itemData);
                 var targetRotation = hudItemTransformModel.initialLocalRotation * rotationDueToMovement;
                 var rotationSpeed = itemData.RotationSpeed * Time.deltaTime;
                 
@@ -42,7 +40,6 @@ namespace Ingame
             var deltaMovementInAngle = velocity * ANGLE_FOR_ONE_SCREEN_PIXEL;
             deltaMovementInAngle.x = Mathf.Clamp(deltaMovementInAngle.x, -INPUT_ANGLE_VARIETY, INPUT_ANGLE_VARIETY);
             deltaMovementInAngle.y = Mathf.Clamp(deltaMovementInAngle.y, -INPUT_ANGLE_VARIETY, INPUT_ANGLE_VARIETY);
-            // deltaMovementInAngle.z = Mathf.Clamp(deltaMovementInAngle.z, -PlayerInputReceiver.INPUT_ANGLE_VARIETY, PlayerInputReceiver.INPUT_ANGLE_VARIETY);
 
             if (Mathf.Abs(deltaMovementInAngle.y) < 2f * ANGLE_FOR_ONE_SCREEN_PIXEL)
                 deltaMovementInAngle.y = 0;
@@ -54,14 +51,32 @@ namespace Ingame
             var zMovementAngle = hudItemData.RotationMovementAngleMultiplierZ * deltaMovementInAngle.x;
             zMovementAngle = Mathf.Clamp(zMovementAngle, hudItemData.MinMaxRotationMovementAngleZ.x, hudItemData.MinMaxRotationMovementAngleZ.y);
             zMovementAngle *= hudItemData.InverseRotationMovementZ;
-            
-            // var yMovementAngle = 10 * deltaMovementInAngle.z;
-            // yMovementAngle = Mathf.Clamp(yMovementAngle, -10, 10);
-            // yMovementAngle *= -1;
 
             var resultRotation = Quaternion.AngleAxis(xMovementAngle, Vector3.right) 
                                  * Quaternion.AngleAxis(zMovementAngle, Vector3.forward);
-            // * Quaternion.AngleAxis(zMovementAngle, Vector3.forward);
+
+            return resultRotation;
+        }
+        
+        private Quaternion GetHudRotationDueToDeltaMovementWhileAiming(Vector3 velocity, HudItemData hudItemData)
+        {
+            var deltaMovementInAngle = velocity * ANGLE_FOR_ONE_SCREEN_PIXEL;
+            deltaMovementInAngle.x = Mathf.Clamp(deltaMovementInAngle.x, -INPUT_ANGLE_VARIETY, INPUT_ANGLE_VARIETY);
+            deltaMovementInAngle.y = Mathf.Clamp(deltaMovementInAngle.y, -INPUT_ANGLE_VARIETY, INPUT_ANGLE_VARIETY);
+
+            if (Mathf.Abs(deltaMovementInAngle.y) < 2f * ANGLE_FOR_ONE_SCREEN_PIXEL)
+                deltaMovementInAngle.y = 0;
+            
+            var xMovementAngle = hudItemData.AimRotationMovementAngleMultiplierX * deltaMovementInAngle.y;
+            xMovementAngle = Mathf.Clamp(xMovementAngle, hudItemData.MinMaxAimRotationMovementAngleX.x, hudItemData.MinMaxAimRotationMovementAngleX.y);
+            xMovementAngle *= hudItemData.InverseRotationMovementX;
+            
+            var zMovementAngle = hudItemData.AimRotationMovementAngleMultiplierZ * deltaMovementInAngle.x;
+            zMovementAngle = Mathf.Clamp(zMovementAngle, hudItemData.MinMaxAimRotationMovementAngleZ.x, hudItemData.MinMaxAimRotationMovementAngleZ.y);
+            zMovementAngle *= hudItemData.InverseAimRotationMovementZ;
+
+            var resultRotation = Quaternion.AngleAxis(xMovementAngle, Vector3.right) 
+                                 * Quaternion.AngleAxis(zMovementAngle, Vector3.forward);
 
             return resultRotation;
         }

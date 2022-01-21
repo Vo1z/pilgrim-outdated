@@ -1,10 +1,10 @@
-using NaughtyAttributes;
+﻿using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ingame.Guns
+namespace Ingame
 {
-    [CreateAssetMenu(menuName = "Ingame/Gun data", fileName = "NewGunData")]
-    public sealed class GunData : ScriptableObject
+    [CreateAssetMenu(menuName = "Ingame/HudItemData", fileName = "newHudItemData")]
+    public class HudItemData : ScriptableObject
     {
         [BoxGroup("Hud stats (Rotation)"),]
         [SerializeField] [Range(0, 10)] private float rotationSpeed = 5;
@@ -47,10 +47,6 @@ namespace Ingame.Guns
         [BoxGroup("Hud stats (Clipping)"), Space] 
         [SerializeField] [Range(0, 2f)] private float maximumClippingOffset = 1.5f;
         
-        
-        [BoxGroup("Gun stats")]
-        [SerializeField] private FireMode[] fireModes;
-        
         public float RotationSpeed => rotationSpeed;
         
         public Vector2 MinMaxRotationAngleX => minMaxRotationAngleX;
@@ -73,19 +69,7 @@ namespace Ingame.Guns
         public float RotationMovementAngleMultiplierZ => rotationMovementAngleMultiplierZ;
         public float InverseRotationMovementZ => inverseRotationMovementZ ? -1: 1;
 
-
-
+        
         public float MaximumClippingOffset => maximumClippingOffset;
-        
-        
-        public FireMode[] FireModes => fireModes;
-    }
-
-    public enum FireMode
-    {
-        Safe,
-        Single,
-        Automatic,
-        Burst
     }
 }

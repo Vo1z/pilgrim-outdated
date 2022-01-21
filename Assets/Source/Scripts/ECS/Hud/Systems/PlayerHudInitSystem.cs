@@ -4,7 +4,7 @@ namespace Ingame
 {
     public sealed class PlayerHudInitSystem : IEcsInitSystem
     {
-        private readonly EcsFilter<PlayerHudModel> _hudFilter;
+        private readonly EcsFilter<HudModel> _hudFilter;
 
         public void Init()
         {

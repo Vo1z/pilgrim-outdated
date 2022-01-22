@@ -69,14 +69,14 @@ namespace Ingame
             
             var xMovementAngle = hudItemData.AimRotationMovementAngleMultiplierX * deltaMovementInAngle.y;
             xMovementAngle = Mathf.Clamp(xMovementAngle, hudItemData.MinMaxAimRotationMovementAngleX.x, hudItemData.MinMaxAimRotationMovementAngleX.y);
-            xMovementAngle *= hudItemData.InverseRotationMovementX;
+            xMovementAngle *= hudItemData.InverseAimRotationMovementX;
             
-            var zMovementAngle = hudItemData.AimRotationMovementAngleMultiplierZ * deltaMovementInAngle.x;
-            zMovementAngle = Mathf.Clamp(zMovementAngle, hudItemData.MinMaxAimRotationMovementAngleZ.x, hudItemData.MinMaxAimRotationMovementAngleZ.y);
-            zMovementAngle *= hudItemData.InverseAimRotationMovementZ;
+            var zMovementAngle = hudItemData.AimRotationMovementAngleMultiplierY * deltaMovementInAngle.x;
+            zMovementAngle = Mathf.Clamp(zMovementAngle, hudItemData.MINMaxAimRotationMovementAngleY.x, hudItemData.MINMaxAimRotationMovementAngleY.y);
+            zMovementAngle *= hudItemData.InverseAimRotationMovementY;
 
             var resultRotation = Quaternion.AngleAxis(xMovementAngle, Vector3.right) 
-                                 * Quaternion.AngleAxis(zMovementAngle, Vector3.forward);
+                                 * Quaternion.AngleAxis(zMovementAngle, Vector3.up);
 
             return resultRotation;
         }

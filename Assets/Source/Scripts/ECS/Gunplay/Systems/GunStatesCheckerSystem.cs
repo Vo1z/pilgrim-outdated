@@ -24,7 +24,7 @@ namespace Ingame
 
                 shootTimerComponent.timePassedFromLastShot = 0;
                 
-                gunEntity.Get<ShootComponent>();
+                gunEntity.Get<ShootEvent>();
             }
         }
     }

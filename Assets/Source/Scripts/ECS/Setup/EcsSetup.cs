@@ -78,6 +78,7 @@ namespace Ingame
                 .OneFrame<MoveInputRequest>()
                 .OneFrame<RotateInputRequest>()
                 .OneFrame<ShootInputEvent>()
+                .OneFrame<ShootEvent>()
                 .OneFrame<AimInputEvent>();
         }
 

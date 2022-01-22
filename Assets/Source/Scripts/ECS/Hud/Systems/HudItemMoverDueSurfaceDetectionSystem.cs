@@ -14,8 +14,8 @@ namespace Ingame
             {
                 ref var hudItemModel = ref _itemFilter.Get2(i);
                 
-                if(hudItemModel.isAiming)
-                    continue;
+                // if(hudItemModel.isAiming)
+                //     continue;
 
                 ref var transformModel = ref _itemFilter.Get3(i);
                 var surfaceDetector = _itemFilter.Get1(i).surfaceDetector;
@@ -29,7 +29,10 @@ namespace Ingame
                     return;
 
                 var clippingSpeed = hudItemData.ClippingMovementSpeed * Time.deltaTime;
-                var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetectionType.Detection ? -hudItemData.MaximumClippingOffset : 0;
+                var maxClippingOffset = hudItemModel.isAiming
+                    ? hudItemData.MaximumAimClippingOffset
+                    : hudItemData.MaximumClippingOffset; 
+                var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetectionType.Detection ? -maxClippingOffset : 0;
                 var nextGunLocalPos = initialItemLocalPos + Vector3.forward * movementDirectionZ;
 
                 hudItemTransform.localPosition = Vector3.Lerp(hudItemTransform.localPosition, nextGunLocalPos, clippingSpeed);

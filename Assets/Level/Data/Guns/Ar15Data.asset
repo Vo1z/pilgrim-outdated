@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ar15Data
   m_EditorClassIdentifier: 
   pauseBetweenShots: 0.13
-  instability: 10
-  verticalRecoilForce: 10
-  frontRecoilForce: 50
-  minMaxRecoilPositionOffset: 1
+  instability: 15
+  verticalRecoilForce: 5
+  frontRecoilForce: 10
+  minMaxRecoilPositionOffset: 0.5

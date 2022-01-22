@@ -82,19 +82,21 @@ namespace Ingame
         [SerializeField] private bool inverseAimRotationMovementX = false;
         
         [BoxGroup("Hud stats (Aim Movement)"), Space]
-        [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationMovementAngleZ;
+        [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationMovementAngleY;
         [BoxGroup("Hud stats (Aim Movement)")]
-        [SerializeField] [Range(0, 40)] private float aimRotationMovementAngleMultiplierZ = 20;
+        [SerializeField] [Range(0, 40)] private float aimRotationMovementAngleMultiplierY = 20;
         [BoxGroup("Hud stats (Aim Movement)")]
-        [SerializeField] private bool inverseAimRotationMovementZ = false;
+        [SerializeField] private bool inverseAimRotationMovementY = false;
         
         
         
         [BoxGroup("Hud stats (Clipping)"), Space] 
         [SerializeField] [Range(0, 2f)] private float maximumClippingOffset = 1.5f;
+        [BoxGroup("Hud stats (Clipping)")] 
+        [SerializeField] [Range(0, 2f)] private float maximumAimClippingOffset = .3f;
         [BoxGroup("Hud stats (Clipping)")]
         [SerializeField] [Range(0, 10f)] private float clippingMovementSpeed = 3f;
-        
+
         public float RotationSpeed => rotationSpeed;
         
         public Vector2 MinMaxRotationAngleX => minMaxRotationAngleX;
@@ -140,12 +142,13 @@ namespace Ingame
         public float AimRotationMovementAngleMultiplierX => aimRotationMovementAngleMultiplierX;
         public float InverseAimRotationMovementX => inverseAimRotationMovementX ? -1: 1;
         
-        public Vector2 MinMaxAimRotationMovementAngleZ => minMaxAimRotationMovementAngleZ;
-        public float AimRotationMovementAngleMultiplierZ => aimRotationMovementAngleMultiplierZ;
-        public float InverseAimRotationMovementZ => inverseAimRotationMovementZ ? -1: 1;
+        public Vector2 MINMaxAimRotationMovementAngleY => minMaxAimRotationMovementAngleY;
+        public float AimRotationMovementAngleMultiplierY => aimRotationMovementAngleMultiplierY;
+        public float InverseAimRotationMovementY => inverseAimRotationMovementY ? -1: 1;
 
         
         public float MaximumClippingOffset => maximumClippingOffset;
+        public float MaximumAimClippingOffset => maximumAimClippingOffset;
         public float ClippingMovementSpeed => clippingMovementSpeed;
     }
 }

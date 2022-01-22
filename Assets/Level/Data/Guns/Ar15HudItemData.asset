@@ -40,9 +40,10 @@ MonoBehaviour:
   inverseRotationMovementZ: 1
   minMaxAimRotationMovementAngleX: {x: -5, y: 5}
   aimRotationMovementAngleMultiplierX: 5
-  inverseAimRotationMovementX: 0
-  minMaxAimRotationMovementAngleZ: {x: -3, y: 3}
+  inverseAimRotationMovementX: 1
+  minMaxAimRotationMovementAngleZ: {x: -5, y: 5}
   aimRotationMovementAngleMultiplierZ: 5
   inverseAimRotationMovementZ: 0
-  maximumClippingOffset: 1
+  maximumClippingOffset: 1.5
+  maximumAimClippingOffset: 0.2
   clippingMovementSpeed: 3

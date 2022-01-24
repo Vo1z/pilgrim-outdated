@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Ingame.Enemy.Logic;
+using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Ingame.Enemy.Logic
@@ -10,10 +11,10 @@ namespace Ingame.Enemy.Logic
     {
 
         
-        public override bool Decide()
+        public override bool Decide(ref EcsEntity entity)
         {
 
-            return true;
+            return false;
         }
     }
 }

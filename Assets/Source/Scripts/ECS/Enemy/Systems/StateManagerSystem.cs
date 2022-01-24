@@ -5,7 +5,7 @@ using Leopotam.Ecs;
 namespace Client {
     sealed class StateManagerSystem : IEcsRunSystem
     {
-        private EcsFilter<StateComponent> _statEcsFilter;
+        private EcsFilter<StateModel> _statEcsFilter;
         void IEcsRunSystem.Run () {
             foreach (var i in _statEcsFilter)
             {

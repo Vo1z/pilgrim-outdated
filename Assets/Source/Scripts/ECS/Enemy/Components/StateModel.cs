@@ -3,7 +3,7 @@ using Ingame.Enemy.Logic;
 
 namespace Ingame.Enemy.ECS {
     [Serializable]
-     public struct StateComponent
+     public struct StateModel
      {
          public StateBase StateBase;
      }

@@ -13,7 +13,7 @@ namespace Ingame.Enemy.Logic
         {
             foreach (var i in Transitions)
             {
-                if (i.Decision.Decide())
+                if (i.Decision.Decide(ref entity))
                 {
                     i.State.OnEnter(ref entity);
                     OnExit(ref entity);

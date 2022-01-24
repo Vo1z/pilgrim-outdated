@@ -2,7 +2,7 @@ using Leopotam.Ecs;
 
 namespace Ingame.Enemy.ECS{
     sealed class StateManagerInitSystem : IEcsInitSystem {
-        private EcsFilter<StateComponent> _statEcsFilter;
+        private EcsFilter<StateModel> _statEcsFilter;
         
         public void Init()
         {

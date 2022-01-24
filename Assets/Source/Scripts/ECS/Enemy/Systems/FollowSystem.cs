@@ -3,16 +3,20 @@ using UnityEngine;
 
 namespace Ingame.Enemy.ECS{
     sealed class FollowSystem : IEcsRunSystem {
-        // auto-injected fields.
-        private readonly EcsFilter<EnemyMovementComponent,FollowStateTag> _enemyFilter;
+        private readonly EcsFilter<EnemyMovementComponent,LocateTargetComponent,FollowStateTag> _enemyFilter;
         
         void IEcsRunSystem.Run () {
             foreach (var i in _enemyFilter)
             {
-                Debug.Log("1");
-                ref var enity = ref _enemyFilter.GetEntity(i);
-                ref var movementComponent = ref _enemyFilter.Get1(i);
-                movementComponent.NavMeshAgent.isStopped = true;
+                ref var entity = ref _enemyFilter.GetEntity(i);
+                ref var movement = ref _enemyFilter.Get1(i);
+                ref var target = ref _enemyFilter.Get2(i);
+
+                movement.Waypoint = target.Target;
+                movement.NavMeshAgent.speed = movement.EnemyMovementData.SpeedForward;
+                movement.NavMeshAgent.destination = movement.Waypoint.position;
+                movement.NavMeshAgent.isStopped = false;
+                
             }
         }
     }

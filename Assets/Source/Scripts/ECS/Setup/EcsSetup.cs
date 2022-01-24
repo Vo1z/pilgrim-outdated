@@ -1,3 +1,4 @@
+using Client;
 using Ingame.Enemy.ECS;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
@@ -87,7 +88,10 @@ namespace Ingame
                 .Add(new CharacterControllerInitSystem())
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
-                .Add(new PlayerHudInitSystem());
+                .Add(new PlayerHudInitSystem())
+                .Add(new StateManagerInitSystem())
+                ;
+                
             
             //Update
             _updateSystems
@@ -101,8 +105,9 @@ namespace Ingame
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())
-                .Add(new EnemyMovementSystem())
-                .Add(new WaypointSystem());
+                .Add(new PatrolSystem())
+                .Add(new StateManagerSystem())
+                .Add(new FollowSystem());
 
             //FixedUpdate
             _fixedUpdateSystem

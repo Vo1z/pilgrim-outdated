@@ -1,5 +1,5 @@
 namespace Ingame.Enemy.ECS {
-    struct WaypointNextTag {
+    public struct FollowStateTag {
         // add your data here.
     }
 }

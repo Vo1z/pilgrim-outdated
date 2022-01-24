@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5824b35af99f44e4a8b10aef20bef6b5, type: 3}
+  m_Name: EnemyFollow
+  m_EditorClassIdentifier: 
+  Transitions:
+  - Decision: {fileID: 11400000, guid: ceecbf1f3e03d284293441c7a66d5505, type: 2}
+    State: {fileID: 11400000, guid: 7ac9e000227759749a5911a61dd0b7a4, type: 2}

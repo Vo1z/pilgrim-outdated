@@ -6,7 +6,7 @@ namespace Ingame
 {
     public sealed class GunRecoilSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<GunModel, TransformModel, ShootEvent> _gunFilter;
+        private readonly EcsFilter<GunModel, TransformModel, AwaitingShotTag> _gunFilter;
         
         public void Run()
         {

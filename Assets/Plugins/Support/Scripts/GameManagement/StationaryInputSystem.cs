@@ -118,6 +118,24 @@ namespace Support
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6714786-76c1-429f-8ecc-3140071b4a87"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DistortTheShutter"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5b50951-d069-47f8-aae9-dc84c6a9caec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -461,6 +479,28 @@ namespace Support
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14d51426-5ab9-430b-8bd9-f28be1414c9c"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56a5a5b8-8128-4a4e-9068-cd164fa2492b"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DistortTheShutter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -479,6 +519,8 @@ namespace Support
             m_FPS_Lean = m_FPS.FindAction("Lean", throwIfNotFound: true);
             m_FPS_Shoot = m_FPS.FindAction("Shoot", throwIfNotFound: true);
             m_FPS_Aim = m_FPS.FindAction("Aim", throwIfNotFound: true);
+            m_FPS_Reload = m_FPS.FindAction("Reload", throwIfNotFound: true);
+            m_FPS_DistortTheShutter = m_FPS.FindAction("DistortTheShutter", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -548,6 +590,8 @@ namespace Support
         private readonly InputAction m_FPS_Lean;
         private readonly InputAction m_FPS_Shoot;
         private readonly InputAction m_FPS_Aim;
+        private readonly InputAction m_FPS_Reload;
+        private readonly InputAction m_FPS_DistortTheShutter;
         public struct FPSActions
         {
             private @StationaryInput m_Wrapper;
@@ -562,6 +606,8 @@ namespace Support
             public InputAction @Lean => m_Wrapper.m_FPS_Lean;
             public InputAction @Shoot => m_Wrapper.m_FPS_Shoot;
             public InputAction @Aim => m_Wrapper.m_FPS_Aim;
+            public InputAction @Reload => m_Wrapper.m_FPS_Reload;
+            public InputAction @DistortTheShutter => m_Wrapper.m_FPS_DistortTheShutter;
             public InputActionMap Get() { return m_Wrapper.m_FPS; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -601,6 +647,12 @@ namespace Support
                     @Aim.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnAim;
                     @Aim.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnAim;
                     @Aim.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnAim;
+                    @Reload.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnReload;
+                    @Reload.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnReload;
+                    @Reload.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnReload;
+                    @DistortTheShutter.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
+                    @DistortTheShutter.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
+                    @DistortTheShutter.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
                 }
                 m_Wrapper.m_FPSActionsCallbackInterface = instance;
                 if (instance != null)
@@ -635,6 +687,12 @@ namespace Support
                     @Aim.started += instance.OnAim;
                     @Aim.performed += instance.OnAim;
                     @Aim.canceled += instance.OnAim;
+                    @Reload.started += instance.OnReload;
+                    @Reload.performed += instance.OnReload;
+                    @Reload.canceled += instance.OnReload;
+                    @DistortTheShutter.started += instance.OnDistortTheShutter;
+                    @DistortTheShutter.performed += instance.OnDistortTheShutter;
+                    @DistortTheShutter.canceled += instance.OnDistortTheShutter;
                 }
             }
         }
@@ -651,6 +709,8 @@ namespace Support
             void OnLean(InputAction.CallbackContext context);
             void OnShoot(InputAction.CallbackContext context);
             void OnAim(InputAction.CallbackContext context);
+            void OnReload(InputAction.CallbackContext context);
+            void OnDistortTheShutter(InputAction.CallbackContext context);
         }
     }
 }

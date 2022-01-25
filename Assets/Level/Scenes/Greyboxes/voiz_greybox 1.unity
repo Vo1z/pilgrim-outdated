@@ -2303,6 +2303,10 @@ PrefabInstance:
       value: -0.1365617
       objectReference: {fileID: 0}
     - target: {fileID: -2887287920597994336, guid: 89a389b34305f74ba9be6d12bd8226a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2887287920597994336, guid: 89a389b34305f74ba9be6d12bd8226a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
@@ -2919,6 +2923,10 @@ PrefabInstance:
       value: -0.1365617
       objectReference: {fileID: 0}
     - target: {fileID: 5638566059541138501, guid: 89a389b34305f74ba9be6d12bd8226a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638566059541138501, guid: 89a389b34305f74ba9be6d12bd8226a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
@@ -3187,6 +3195,10 @@ PrefabInstance:
       value: -0.1365617
       objectReference: {fileID: 0}
     - target: {fileID: 8270074767903730767, guid: 89a389b34305f74ba9be6d12bd8226a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270074767903730767, guid: 89a389b34305f74ba9be6d12bd8226a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
@@ -3209,6 +3221,18 @@ PrefabInstance:
     - target: {fileID: 8949327292639267454, guid: 89a389b34305f74ba9be6d12bd8226a1, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045815657488440383, guid: 89a389b34305f74ba9be6d12bd8226a1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.1909514e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045815657488440383, guid: 89a389b34305f74ba9be6d12bd8226a1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0035678232
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045815657488440383, guid: 89a389b34305f74ba9be6d12bd8226a1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.080395e-11
       objectReference: {fileID: 0}
     - target: {fileID: 9072158428653898864, guid: 89a389b34305f74ba9be6d12bd8226a1, type: 3}
       propertyPath: m_Layer
@@ -3550,6 +3574,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 713251e662b1457178708f4f22e6ae3a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2738426246052395951, guid: 713251e662b1457178708f4f22e6ae3a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2738426246052395951, guid: 713251e662b1457178708f4f22e6ae3a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14863245
+      objectReference: {fileID: 0}
+    - target: {fileID: -2738426246052395951, guid: 713251e662b1457178708f4f22e6ae3a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.06894051
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 713251e662b1457178708f4f22e6ae3a, type: 3}
       propertyPath: m_Name
@@ -7064,6 +7100,7 @@ GameObject:
   - component: {fileID: 2041868149}
   - component: {fileID: 2041868146}
   - component: {fileID: 2041868148}
+  - component: {fileID: 2041868154}
   m_Layer: 8
   m_Name: AR15
   m_TagString: Untagged
@@ -7119,7 +7156,6 @@ MonoBehaviour:
   value:
     itemData: {fileID: 11400000, guid: 5194f9f9ad3bb154b9d6354542f03fc7, type: 2}
     itemAnimator: {fileID: 2041868153}
-    isAiming: 0
 --- !u!114 &2041868148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7185,13 +7221,25 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 40b707148494b1b4db7613b4dc1875ff, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2041868154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041868144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63fd641753704989ae88475f122f0c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2119787502
 GameObject:
   m_ObjectHideFlags: 0

@@ -78,8 +78,11 @@ namespace Ingame
                 .OneFrame<MoveInputRequest>()
                 .OneFrame<RotateInputRequest>()
                 .OneFrame<ShootInputEvent>()
-                .OneFrame<ShootEvent>()
-                .OneFrame<AimInputEvent>();
+                .OneFrame<AimInputEvent>()
+                .OneFrame<ReloadInputEvent>()
+                .OneFrame<DistortTheShutterInputEvent>()
+                .OneFrame<HudReloadAnimationTriggerEvent>()
+                .OneFrame<HudDistortTheShutterAnimationTriggerEvent>();
         }
 
         private void AddSystems()
@@ -103,12 +106,14 @@ namespace Ingame
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
-                .Add(new HudAnimatorSystem())
-                .Add(new GunStatesCheckerSystem())
+                .Add(new GunInHandsInputConverterSystem())
                 .Add(new GunRecoilSystem())
                 .Add(new GunShootSystem())
+                .Add(new GunCallBackReceiverSystem())
+                .Add(new HudGunAnimationSystem())
                 .Add(new TimeSystem())
-                .Add(new DebugSystem());
+                .Add(new DebugSystem())
+                .Add(new ExternalEventsRemoverSystem());
 
             //FixedUpdate
             _fixedUpdateSystem

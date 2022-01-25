@@ -17,17 +17,19 @@ namespace Ingame
             
             foreach (var i in _inHandItemFilter)
             {
+                ref var hudItemEntity = ref _inHandItemFilter.GetEntity(i);
                 ref var hudItemModel = ref _inHandItemFilter.Get1(i);
                 ref var hudItemTransformModel = ref _inHandItemFilter.Get2(i);
                 var itemData = hudItemModel.itemData;
                 var itemTransform = hudItemTransformModel.transform;
                 var itemLocalRotation = itemTransform.localRotation;
+                bool isAiming = hudItemEntity.Has<HudIsAimingTag>();
                 
-                var targetRotation = hudItemModel.isAiming ?
+                var targetRotation = isAiming ?
                     hudItemTransformModel.initialLocalRotation * GetHudRotationDueToDeltaRotationDuringAim(deltaRotation, itemData):
                     hudItemTransformModel.initialLocalRotation * GetHudRotationDueToDeltaRotation(deltaRotation, itemData);
                
-                var rotationSpeed = hudItemModel.isAiming ? itemData.AimRotationSpeed : itemData.RotationSpeed;
+                var rotationSpeed = isAiming ? itemData.AimRotationSpeed : itemData.RotationSpeed;
                 rotationSpeed *= Time.deltaTime;
                 
                 itemLocalRotation = Quaternion.Slerp(itemLocalRotation, targetRotation, rotationSpeed);

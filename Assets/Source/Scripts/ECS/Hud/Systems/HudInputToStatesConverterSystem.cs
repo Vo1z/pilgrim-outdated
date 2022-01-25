@@ -7,14 +7,20 @@ namespace Ingame
         private readonly EcsFilter<HudItemModel, InHandsTag> _itemModelFilter;
         private readonly EcsFilter<AimInputEvent> _aimEventFilter;
 
+
         public void Run()
         {
             foreach (var i in _itemModelFilter)
             {
-                ref var hudItemModel = ref _itemModelFilter.Get1(i);
+                ref var inHandsItemEntity = ref _itemModelFilter.GetEntity(i);
 
                 if (!_aimEventFilter.IsEmpty())
-                    hudItemModel.isAiming = !hudItemModel.isAiming;
+                {
+                    if(inHandsItemEntity.Has<HudIsAimingTag>())
+                        inHandsItemEntity.Del<HudIsAimingTag>();
+                    else
+                        inHandsItemEntity.Get<HudIsAimingTag>();
+                }
             }
         }
     }

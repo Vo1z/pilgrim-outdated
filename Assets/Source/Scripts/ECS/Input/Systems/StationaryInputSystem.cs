@@ -23,6 +23,8 @@ namespace Ingame
         private InputAction _leanInput;
         private InputAction _shootInput;
         private InputAction _aimInput;
+        private InputAction _reloadInput;
+        private InputAction _distortTheShutterInput;
 
         public void Init()
         {
@@ -38,6 +40,9 @@ namespace Ingame
 
             _shootInput = _stationaryInputSystem.FPS.Shoot;
             _aimInput = _stationaryInputSystem.FPS.Aim;
+
+            _reloadInput = _stationaryInputSystem.FPS.Reload;
+            _distortTheShutterInput = _stationaryInputSystem.FPS.DistortTheShutter;
         }
 
         public void Run()
@@ -48,6 +53,8 @@ namespace Ingame
             bool crouchInput = _crouchInput.WasPressedThisFrame();
             bool shootInput = _shootInput.IsPressed();
             bool aimInput = _aimInput.WasPressedThisFrame();
+            bool reloadInput = _reloadInput.WasPressedThisFrame();
+            bool distortTheShutterInput = _distortTheShutterInput.WasPressedThisFrame();
             var leanDirection = _leanInput.ReadValue<float>() switch
             {
                 < 0 => LeanDirection.Left,
@@ -110,6 +117,22 @@ namespace Ingame
                     inputEntity = _world.NewEntity();
                 
                 inputEntity.Get<AimInputEvent>();
+            }
+
+            if (reloadInput)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+                
+                inputEntity.Get<ReloadInputEvent>();
+            }
+
+            if (distortTheShutterInput)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+                
+                inputEntity.Get<DistortTheShutterInputEvent>();
             }
         }
     }

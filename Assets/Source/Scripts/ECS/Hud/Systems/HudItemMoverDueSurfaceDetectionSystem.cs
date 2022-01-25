@@ -12,6 +12,7 @@ namespace Ingame
         {
             foreach (var i in _itemFilter)
             {
+                ref var hudItemEntity = ref _itemFilter.GetEntity(i);
                 ref var hudItemModel = ref _itemFilter.Get2(i);
                 
                 // if(hudItemModel.isAiming)
@@ -29,7 +30,7 @@ namespace Ingame
                     return;
 
                 var clippingSpeed = hudItemData.ClippingMovementSpeed * Time.deltaTime;
-                var maxClippingOffset = hudItemModel.isAiming
+                var maxClippingOffset = hudItemEntity.Has<HudIsAimingTag>()
                     ? hudItemData.MaximumAimClippingOffset
                     : hudItemData.MaximumClippingOffset; 
                 var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetectionType.Detection ? -maxClippingOffset : 0;

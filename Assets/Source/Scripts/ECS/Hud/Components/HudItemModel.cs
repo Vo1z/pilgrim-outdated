@@ -8,7 +8,5 @@ namespace Ingame
     {
         public HudItemData itemData;
         public Animator itemAnimator;
-
-        public bool isAiming;
     }
 }

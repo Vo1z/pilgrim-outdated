@@ -5,19 +5,22 @@ namespace Ingame
 {
     public sealed class GunShootSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<GunModel, ShootEvent> _shootingGunFilter;
+        private readonly EcsFilter<GunModel, AwaitingShotTag> _shootingGunFilter;
 
         public void Run()
         {
             foreach (var i in _shootingGunFilter)
             {
+                ref var gunEntity = ref _shootingGunFilter.GetEntity(i);
                 ref var gunModel = ref _shootingGunFilter.Get1(i);
 
                 var hitObject = GetHitObjectWithRayCast(gunModel.barrelTransform);
-
+                gunEntity.Del<AwaitingShotTag>();
+                
                 if(hitObject == null)
                     return;
                 
+                //TODO add logic of the shot
                 if(hitObject.name.Equals("Target"))
                     Object.Destroy(hitObject);
             }

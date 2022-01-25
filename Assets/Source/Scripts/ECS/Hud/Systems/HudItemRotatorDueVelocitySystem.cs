@@ -17,6 +17,7 @@ namespace Ingame
 
             foreach (var i in _inHandItemFilter)
             {
+                ref var hudItemEntity = ref _inHandItemFilter.GetEntity(i);
                 ref var hudItemModel = ref _inHandItemFilter.Get1(i);
                 ref var hudItemTransformModel = ref _inHandItemFilter.Get2(i);
 
@@ -24,7 +25,7 @@ namespace Ingame
                 var itemTransform = hudItemTransformModel.transform;
                 var itemLocalRotation = itemTransform.localRotation;
                 
-                var rotationDueToMovement = hudItemModel.isAiming 
+                var rotationDueToMovement = hudItemEntity.Has<HudIsAimingTag>() 
                     ? GetHudRotationDueToDeltaMovementWhileAiming(itemTransform.InverseTransformDirection(playerVelocity), itemData) 
                     : GetHudRotationDueToDeltaMovement(itemTransform.InverseTransformDirection(playerVelocity), itemData);
                 var targetRotation = hudItemTransformModel.initialLocalRotation * rotationDueToMovement;

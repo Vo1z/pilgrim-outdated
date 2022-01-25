@@ -7,6 +7,8 @@ namespace Ingame
     {
         private readonly EcsFilter<GunModel, AwaitingShotTag> _shootingGunFilter;
 
+        private const float MAX_SHOOTING_DISTANCE = 200f;
+        
         public void Run()
         {
             foreach (var i in _shootingGunFilter)
@@ -31,7 +33,7 @@ namespace Ingame
             var ray = new Ray(barrelTransform.position, barrelTransform.forward);
             var layerMask = ~LayerMask.GetMask("Ignore Raycast", "HUD", "PlayerStatic", "Weapon");
             
-            if (Physics.Raycast(ray, out RaycastHit hit, 200f, layerMask, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(ray, out RaycastHit hit, MAX_SHOOTING_DISTANCE, layerMask, QueryTriggerInteraction.Ignore))
                 return hit.transform.gameObject;
             
             return null;

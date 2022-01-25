@@ -39,11 +39,11 @@ MonoBehaviour:
   rotationMovementAngleMultiplierZ: 20
   inverseRotationMovementZ: 1
   minMaxAimRotationMovementAngleX: {x: -5, y: 5}
-  aimRotationMovementAngleMultiplierX: 5
+  aimRotationMovementAngleMultiplierX: 10
   inverseAimRotationMovementX: 1
-  minMaxAimRotationMovementAngleZ: {x: -5, y: 5}
-  aimRotationMovementAngleMultiplierZ: 5
-  inverseAimRotationMovementZ: 0
+  minMaxAimRotationMovementAngleY: {x: -5, y: 5}
+  aimRotationMovementAngleMultiplierY: 5
+  inverseAimRotationMovementY: 0
   maximumClippingOffset: 1.5
   maximumAimClippingOffset: 0.2
   clippingMovementSpeed: 3

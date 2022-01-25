@@ -102,6 +102,7 @@ namespace Ingame
                 .Add(new PlayerHudInputToRotationConverterSystem())
                 .Add(new PlayerInputToCrouchConverterSystem())
                 .Add(new PlayerInputToLeanConverterSystem())
+                .Add(new PlayerSpeedChangerSystem())
                 .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())

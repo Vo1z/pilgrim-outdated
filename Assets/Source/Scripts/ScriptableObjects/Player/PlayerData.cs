@@ -12,6 +12,8 @@ namespace Ingame.PlayerLegacy
         [BoxGroup("Movement")]
         [SerializeField][Min(0)] private float crouchWalkSpeed = 3;
         [BoxGroup("Movement")]
+        [SerializeField][Min(0)] private float leanWalkSpeed = 4;
+        [BoxGroup("Movement")]
         [SerializeField][Min(0)] private float enterCrouchStateSpeed = .5f;
         [BoxGroup("Movement")]
         [SerializeField][Min(0)] private float movementAcceleration = 100;
@@ -52,6 +54,7 @@ namespace Ingame.PlayerLegacy
 
         public float WalkSpeed => walkSpeed;
         public float CrouchWalkSpeed => crouchWalkSpeed;
+        public float LeanWalkSpeed => leanWalkSpeed;
         public float EnterCrouchStateSpeed => enterCrouchStateSpeed;
         public float MovementAcceleration => movementAcceleration;
         public float MovementFriction => movementFriction;

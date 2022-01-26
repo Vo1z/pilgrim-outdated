@@ -5,7 +5,7 @@ namespace Ingame
 {
     public sealed class LeanSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<TransformModel, LeanRequest> _leanFilter;
+        private readonly EcsFilter<TransformModel, LeanCallback> _leanFilter;
 
         public void Run()
         {
@@ -21,7 +21,7 @@ namespace Ingame
 
                 if (Quaternion.Angle(localRotation, targetRotation) < .01f)
                 {
-                    leanEntity.Del<LeanRequest>();
+                    leanEntity.Del<LeanCallback>();
                     return;   
                 }
 

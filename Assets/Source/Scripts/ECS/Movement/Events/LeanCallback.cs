@@ -2,7 +2,7 @@
 
 namespace Ingame
 {
-    internal struct LeanRequest
+    internal struct LeanCallback
     {
         public Vector3 rotationAxis;
         public float angle;

@@ -1,5 +1,4 @@
-﻿using System;
-using Ingame.PlayerLegacy;
+﻿using Ingame.PlayerLegacy;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -9,6 +8,7 @@ namespace Ingame
     {
         private EcsFilter<PlayerModel> _playerFilter;
         private EcsFilter<HudLeanOriginTag> _leanOriginFilter;
+        private EcsFilter<MainCameraTag> _mainCameraFilter;
         private EcsFilter<LeanInputRequest> _leanInputRequestFilter;
 
         public void Run()
@@ -27,17 +27,32 @@ namespace Ingame
             foreach (var i in _leanOriginFilter)
             {
                 ref var leanOriginEntity = ref _leanOriginFilter.GetEntity(i);
-                ref var leanReq = ref leanOriginEntity.Get<LeanRequest>();
+                ref var leanCallback = ref leanOriginEntity.Get<LeanCallback>();
 
-                leanReq.rotationAxis = Vector3.forward;
-                leanReq.angle = playerModel.currentLeanDirection switch
+                leanCallback.rotationAxis = Vector3.forward;
+                leanCallback.angle = playerModel.currentLeanDirection switch
                 {
                     LeanDirection.Left => playerData.LeanAngleOffset,
                     LeanDirection.Right => -playerData.LeanAngleOffset,
                     _ => 0
                 };
-                //todo remove hardcode
-                leanReq.speed = 5f;
+
+                leanCallback.speed = playerData.EnterLeanSpeed;
+            }
+
+            foreach (var i in _mainCameraFilter)
+            {
+                ref var mainCameraEntity = ref _mainCameraFilter.GetEntity(i);
+                ref var cameraLeanCallback = ref mainCameraEntity.Get<CameraLeanCallback>();
+                
+                cameraLeanCallback.positionOffset = playerModel.currentLeanDirection switch
+                {
+                    LeanDirection.Left => Vector3.left * playerData.CameraPositionOffsetDuringTheLean,
+                    LeanDirection.Right => Vector3.right * playerData.CameraPositionOffsetDuringTheLean,
+                    _ => Vector3.zero
+                };
+
+                cameraLeanCallback.enterLeanSpeed = playerData.EnterLeanSpeed;
             }
         }
     }

@@ -103,6 +103,7 @@ namespace Ingame
                 .Add(new PlayerInputToCrouchConverterSystem())
                 .Add(new PlayerInputToLeanConverterSystem())
                 .Add(new PlayerSpeedChangerSystem())
+                .Add(new CameraInputToStatesConverterSystem())
                 .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
@@ -128,6 +129,7 @@ namespace Ingame
                 .Add(new PlayerInputToJumpConverterSystem())
                 .Add(new CrouchSystem())
                 .Add(new LeanSystem())
+                .Add(new CameraLeanSystem())
                 .Add(new MovementSystem());
         }
     }

@@ -10,17 +10,17 @@ namespace Ingame
 
         public void Run()
         {
+            if(_aimEventFilter.IsEmpty())
+                return;
+
             foreach (var i in _itemModelFilter)
             {
                 ref var inHandsItemEntity = ref _itemModelFilter.GetEntity(i);
-
-                if (!_aimEventFilter.IsEmpty())
-                {
-                    if(inHandsItemEntity.Has<HudIsAimingTag>())
-                        inHandsItemEntity.Del<HudIsAimingTag>();
-                    else
-                        inHandsItemEntity.Get<HudIsAimingTag>();
-                }
+                
+                if (inHandsItemEntity.Has<HudIsAimingTag>())
+                    inHandsItemEntity.Del<HudIsAimingTag>();
+                else
+                    inHandsItemEntity.Get<HudIsAimingTag>();
             }
         }
     }

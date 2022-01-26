@@ -47,7 +47,6 @@ namespace Ingame
                     return;
                 
                 magazineComp.amountOfBullets -= 1;
-                Debug.Log(magazineComp.amountOfBullets);
                 gunEntity.Get<BulletIsInShutterTag>();
             }
         }

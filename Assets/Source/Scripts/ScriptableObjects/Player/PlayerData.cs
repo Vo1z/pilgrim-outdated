@@ -26,9 +26,13 @@ namespace Ingame.PlayerLegacy
         [SerializeField][Min(0)] private float pauseBetweenJumps = .5f;
         
         [BoxGroup("Movement (Lean)"), Space]
+        [SerializeField] [Range(0, 20)] private float enterLeanSpeed = 5f;
+        [BoxGroup("Movement (Lean)")]
         [SerializeField] [Range(0, 1)] private float leanDistanceOffset = .3f;
         [BoxGroup("Movement (Lean)")]
         [SerializeField] [Range(0, 120)] private float leanAngleOffset = 100f;
+        [BoxGroup("Movement (Lean)")]
+        [SerializeField] [Range(0, 2)] private float cameraPositionOffsetDuringTheLean = .3f;
         
         [BoxGroup("Gravitation"), Space]
         [SerializeField][Min(0)] private float gravityAcceleration = 1;
@@ -62,8 +66,10 @@ namespace Ingame.PlayerLegacy
         public float JumpForce => jumpForce;
         public float PauseBetweenJumps => pauseBetweenJumps;
 
+        public float EnterLeanSpeed => enterLeanSpeed;
         public float LeanDistanceOffset => leanDistanceOffset;
         public float LeanAngleOffset => leanAngleOffset;
+        public float CameraPositionOffsetDuringTheLean => cameraPositionOffsetDuringTheLean;
 
         public float GravityAcceleration => gravityAcceleration;
         public float MaximumGravitationForce => maximumGravitationForce;

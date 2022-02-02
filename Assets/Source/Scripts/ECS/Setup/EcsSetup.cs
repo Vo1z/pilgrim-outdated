@@ -1,4 +1,5 @@
-using Client;
+
+using Ingame.Enemy.Ecs;
 using Ingame.Enemy.ECS;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
@@ -32,7 +33,11 @@ namespace Ingame
             AddOneFrames();
             AddSystems();
             
-            _updateSystems.Init();
+            
+
+            _updateSystems
+                .OneFramePhysics()
+                .Init();
             _fixedUpdateSystem.Init();
         }
 
@@ -79,6 +84,8 @@ namespace Ingame
                 .OneFrame<LeanInputRequest>()
                 .OneFrame<MoveInputRequest>()
                 .OneFrame<RotateInputRequest>();
+              
+
         }
 
         private void AddSystems()
@@ -89,7 +96,6 @@ namespace Ingame
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem())
-                .Add(new StateManagerInitSystem())
                 ;
                 
             
@@ -106,8 +112,11 @@ namespace Ingame
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())
                 .Add(new PatrolSystem())
-                .Add(new StateManagerSystem())
-                .Add(new FollowSystem());
+                .Add(new FollowSystem())
+                .Add(new EntityReferenceSystem())
+                .Add(new AttackSystem())
+                .Add(new FleeSystem());
+                
 
             //FixedUpdate
             _fixedUpdateSystem

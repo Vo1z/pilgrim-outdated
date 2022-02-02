@@ -16,7 +16,11 @@ namespace Ingame.Enemy.ECS{
                 movement.NavMeshAgent.speed = movement.EnemyMovementData.SpeedForward;
                 movement.NavMeshAgent.destination = movement.Waypoint.position;
                 movement.NavMeshAgent.isStopped = false;
-                
+                if ((movement.NavMeshAgent.remainingDistance <= movement.NavMeshAgent.stoppingDistance &&
+                     !movement.NavMeshAgent.pathPending))
+                {
+                    movement.NavMeshAgent.isStopped = true;
+                }
             }
         }
     }

@@ -17,10 +17,8 @@ namespace Ingame.Enemy.ECS
                 ref var entity = ref _enemyFilter.GetEntity(i);
                 ref var enemyMovement = ref _enemyFilter.Get1(i);
                 ref var waypoint = ref _enemyFilter.Get2(i);
-                if (enemyMovement.Waypoint == null)
-                {
-                    enemyMovement.Waypoint = waypoint.Waypoints[waypoint.Index];
-                }
+                enemyMovement.Waypoint = waypoint.Waypoints[waypoint.Index];
+                
 
                 enemyMovement.NavMeshAgent.destination = enemyMovement.Waypoint.position;
                 enemyMovement.NavMeshAgent.speed = enemyMovement.EnemyMovementData.SpeedForward;

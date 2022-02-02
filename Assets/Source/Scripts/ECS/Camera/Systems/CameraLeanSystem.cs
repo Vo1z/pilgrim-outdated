@@ -14,21 +14,25 @@ namespace Ingame
                 ref var cameraEntity = ref _mainCameraFilter.GetEntity(i);
                 ref var leanCallback = ref _mainCameraFilter.Get1(i);
                 ref var cameraTransformModel = ref _mainCameraFilter.Get2(i);
-                var camTransform = cameraTransformModel.transform;
+                var cameraTransform = cameraTransformModel.transform;
 
                 bool isAiming = cameraEntity.Has<CameraIsAimingTag>();
-                var targetLocalPos = isAiming? 
-                    cameraTransformModel.initialLocalPos :
-                    cameraTransformModel.initialLocalPos + leanCallback.positionOffset;
+                var targetLocalPos = isAiming
+                    ? cameraTransformModel.initialLocalPos
+                    : cameraTransformModel.initialLocalPos + leanCallback.positionOffset;
 
-                if (Vector3.Distance(camTransform.localPosition, targetLocalPos) < .001f)
+                if (Vector3.Distance(cameraTransform.localPosition, targetLocalPos) < .001f)
                 {
-                    camTransform.localPosition = targetLocalPos;
+                    cameraTransform.localPosition = targetLocalPos;
 
                     return;
                 }
-                
-                camTransform.localPosition = Vector3.Lerp(camTransform.localPosition, targetLocalPos, leanCallback.enterLeanSpeed * Time.fixedDeltaTime);
+
+                cameraTransform.localPosition = Vector3.Lerp
+                (cameraTransform.localPosition,
+                    targetLocalPos,
+                    leanCallback.enterLeanSpeed * Time.fixedDeltaTime
+                );
             }
         }
     }

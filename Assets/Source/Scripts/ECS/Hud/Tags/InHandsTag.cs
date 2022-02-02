@@ -1,4 +1,4 @@
-﻿namespace Ingame
+﻿namespace Ingame.Hud
 {
     public struct InHandsTag
     {

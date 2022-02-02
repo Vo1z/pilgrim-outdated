@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
-namespace Ingame
+namespace Ingame.Input
 {
     public sealed class StationaryInputSystem : IEcsRunSystem, IEcsInitSystem
     {

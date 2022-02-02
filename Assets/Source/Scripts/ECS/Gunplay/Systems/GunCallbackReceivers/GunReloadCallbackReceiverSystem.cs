@@ -1,6 +1,7 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Hud;
+using Leopotam.Ecs;
 
-namespace Ingame
+namespace Ingame.Gunplay
 {
     public sealed class GunReloadCallbackReceiverSystem : IEcsRunSystem
     {

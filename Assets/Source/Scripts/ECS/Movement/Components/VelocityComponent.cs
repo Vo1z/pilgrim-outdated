@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Movement
 {
     [Serializable]
     public struct VelocityComponent

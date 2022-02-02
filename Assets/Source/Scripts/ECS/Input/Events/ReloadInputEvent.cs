@@ -1,4 +1,4 @@
-﻿namespace Ingame
+﻿namespace Ingame.Input
 {
     internal struct ReloadInputEvent { }
 }

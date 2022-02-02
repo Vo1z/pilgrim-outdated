@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Movement
 {
     public struct CharacterControllerModel
     {

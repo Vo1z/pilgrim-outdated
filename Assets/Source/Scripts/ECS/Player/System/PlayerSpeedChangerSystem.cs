@@ -1,7 +1,7 @@
 ﻿using Ingame.PlayerLegacy;
 using Leopotam.Ecs;
 
-namespace Ingame
+namespace Ingame.Player
 {
     public sealed class PlayerSpeedChangerSystem : IEcsRunSystem
     {

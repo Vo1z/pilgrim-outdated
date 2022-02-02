@@ -3,7 +3,7 @@ using UnityEngine;
 using Voody.UniLeo;
 using Zenject;
 
-namespace Ingame
+namespace Ingame.Movement
 {
     public sealed class CharacterControllerModelProvider : MonoProvider<CharacterControllerModel>
     {

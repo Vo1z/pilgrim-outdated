@@ -3,7 +3,7 @@ using UnityEngine;
 using Voody.UniLeo;
 using Zenject;
 
-namespace Ingame
+namespace Ingame.Player
 {
     public sealed class PlayerModelProvider : MonoProvider<PlayerModel>
     {

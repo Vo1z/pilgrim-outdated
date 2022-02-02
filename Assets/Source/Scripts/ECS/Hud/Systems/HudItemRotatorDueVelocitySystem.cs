@@ -1,7 +1,9 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Movement;
+using Ingame.Player;
+using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Hud
 {
     public sealed class HudItemRotatorDueVelocitySystem : IEcsRunSystem
     {

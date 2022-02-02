@@ -1,7 +1,7 @@
 ﻿using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Movement
 {
     public class CharacterControllerInitSystem : IEcsInitSystem
     {

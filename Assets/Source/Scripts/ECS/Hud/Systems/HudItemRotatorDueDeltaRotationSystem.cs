@@ -1,7 +1,10 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Hud;
+using Ingame.Input;
+using Ingame.Movement;
+using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Hud
 {
     public sealed class HudItemRotatorDueDeltaRotationSystem : IEcsRunSystem
     {

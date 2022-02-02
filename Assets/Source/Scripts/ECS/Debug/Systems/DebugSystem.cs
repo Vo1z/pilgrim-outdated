@@ -1,7 +1,7 @@
 ﻿using Leopotam.Ecs;
 using Support;
 
-namespace Ingame
+namespace Ingame.Debuging
 {
     public class DebugSystem : IEcsRunSystem
     {

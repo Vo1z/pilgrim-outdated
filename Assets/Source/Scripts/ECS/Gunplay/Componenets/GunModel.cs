@@ -3,7 +3,7 @@ using Ingame.Guns;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Gunplay
 {
     [Serializable]
     public struct GunModel

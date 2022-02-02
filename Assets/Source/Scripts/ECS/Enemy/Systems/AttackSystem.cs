@@ -1,9 +1,12 @@
 using System;
 using DG.Tweening;
 using Ingame.Enemy.ECS;
+using Ingame.Movement;
 using Leopotam.Ecs;
+using Support;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
 
 namespace Ingame.Enemy.Ecs {
     sealed class AttackSystem : IEcsRunSystem {
@@ -65,7 +68,7 @@ namespace Ingame.Enemy.Ecs {
                         Debug.DrawRay(transformModel.transform.position, target.Target.position - transformModel.transform.position+rand);
                         if (hit.collider.tag == "Player")
                         {
-                            Debug.Log("hit");
+                            TemplateUtils.SafeDebug("hit");
                         }
                     }
                     entity.Get<ShootingBlockComponent>();

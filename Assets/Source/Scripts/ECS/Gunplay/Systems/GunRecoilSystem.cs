@@ -1,8 +1,9 @@
 ﻿using Ingame.Guns;
+using Ingame.Movement;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Gunplay
 {
     public sealed class GunRecoilSystem : IEcsRunSystem
     {

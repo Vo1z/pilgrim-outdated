@@ -1,7 +1,9 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Input;
+using Ingame.Movement;
+using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Player
 {
     public sealed class PlayerInputToRotationConverterSystem : IEcsRunSystem
     {

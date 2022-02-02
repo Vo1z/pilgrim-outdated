@@ -1,6 +1,6 @@
 ﻿using Leopotam.Ecs;
 
-namespace Ingame
+namespace Ingame.Movement
 {
     public sealed class TransformModelInitSystem : IEcsInitSystem
     {

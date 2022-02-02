@@ -2,7 +2,7 @@
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Movement
 {
     public sealed class CrouchSystem : IEcsRunSystem
     {

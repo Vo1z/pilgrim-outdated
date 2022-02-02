@@ -4,7 +4,7 @@ using Voody.UniLeo;
 using UnityEditor;
 #endif
 
-namespace Ingame
+namespace Ingame.Gunplay
 {
     public sealed class GunModelProvider : MonoProvider<GunModel>
     {

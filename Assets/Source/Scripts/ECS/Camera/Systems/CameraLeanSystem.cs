@@ -1,7 +1,8 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Movement;
+using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.CameraWork
 {
     public sealed class CameraLeanSystem : IEcsRunSystem
     {

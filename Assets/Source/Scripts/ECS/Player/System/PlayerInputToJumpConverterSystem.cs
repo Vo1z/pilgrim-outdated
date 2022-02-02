@@ -1,7 +1,10 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Input;
+using Ingame.Movement;
+using Ingame.Utils;
+using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Player
 {
     public sealed class PlayerInputToJumpConverterSystem : IEcsRunSystem
     {

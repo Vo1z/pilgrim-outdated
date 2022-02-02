@@ -1,4 +1,4 @@
-﻿namespace Ingame
+﻿namespace Ingame.Debuging
 {
     public struct DebugRequest
     {

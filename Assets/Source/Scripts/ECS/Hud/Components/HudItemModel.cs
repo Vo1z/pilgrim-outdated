@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Hud
 {
     [Serializable]
     public struct HudItemModel

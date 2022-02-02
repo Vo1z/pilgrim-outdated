@@ -1,8 +1,10 @@
-﻿using Ingame.PlayerLegacy;
+﻿using Ingame.Movement;
+using Ingame.PlayerLegacy;
+using Ingame.Utils;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Player
 {
     public sealed class PlayerInitSystem : IEcsInitSystem
     {

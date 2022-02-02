@@ -1,6 +1,6 @@
 ﻿using Voody.UniLeo;
 
-namespace Ingame
+namespace Ingame.Movement
 {
     public sealed class GravityComponentProvider : MonoProvider<GravityComponent>
     { }

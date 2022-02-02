@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ingame
+namespace Ingame.Movement
 {
     [Serializable]
     public struct GravityComponent

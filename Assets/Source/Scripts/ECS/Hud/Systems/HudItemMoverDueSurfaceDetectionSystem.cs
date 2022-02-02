@@ -1,8 +1,9 @@
 ﻿using Ingame.Guns;
+using Ingame.Movement;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Hud
 {
     public sealed class HudItemMoverDueSurfaceDetectionSystem : IEcsRunSystem
     {
@@ -14,9 +15,6 @@ namespace Ingame
             {
                 ref var hudItemEntity = ref _itemFilter.GetEntity(i);
                 ref var hudItemModel = ref _itemFilter.Get2(i);
-                
-                // if(hudItemModel.isAiming)
-                //     continue;
 
                 ref var transformModel = ref _itemFilter.Get3(i);
                 var surfaceDetector = _itemFilter.Get1(i).surfaceDetector;

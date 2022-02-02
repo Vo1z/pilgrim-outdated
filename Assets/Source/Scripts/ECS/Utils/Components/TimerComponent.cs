@@ -1,4 +1,4 @@
-﻿namespace Ingame
+﻿namespace Ingame.Utils
 {
     internal struct TimerComponent
     {

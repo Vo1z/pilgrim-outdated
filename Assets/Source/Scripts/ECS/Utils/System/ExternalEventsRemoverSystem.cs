@@ -1,6 +1,7 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Gunplay;
+using Leopotam.Ecs;
 
-namespace Ingame
+namespace Ingame.Utils
 {
     public sealed class ExternalEventsRemoverSystem : IEcsRunSystem
     {

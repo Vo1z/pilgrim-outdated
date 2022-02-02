@@ -1,6 +1,8 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Hud;
+using Ingame.Input;
+using Leopotam.Ecs;
 
-namespace Ingame
+namespace Ingame.Gunplay
 {
     public sealed class GunReloadInputConverterSystem : IEcsRunSystem
     {

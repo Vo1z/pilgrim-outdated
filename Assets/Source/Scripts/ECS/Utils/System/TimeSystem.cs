@@ -1,7 +1,8 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Gunplay;
+using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Utils
 {
     public sealed class TimeSystem : IEcsRunSystem
     {

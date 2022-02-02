@@ -1,6 +1,6 @@
 ﻿using Leopotam.Ecs;
 
-namespace Ingame
+namespace Ingame.Gunplay
 {
     public sealed class GunInitSystem : IEcsInitSystem
     {

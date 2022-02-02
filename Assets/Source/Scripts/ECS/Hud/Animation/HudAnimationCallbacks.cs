@@ -1,8 +1,9 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Gunplay;
+using Leopotam.Ecs;
 using UnityEngine;
 using Zenject;
 
-namespace Ingame
+namespace Ingame.Hud
 {
     public sealed class HudAnimationCallbacks : MonoBehaviour
     {

@@ -1,8 +1,12 @@
-﻿using Ingame.PlayerLegacy;
+﻿using Ingame.CameraWork;
+using Ingame.Hud;
+using Ingame.Input;
+using Ingame.Movement;
+using Ingame.PlayerLegacy;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Player
 {
     public sealed class PlayerInputToLeanConverterSystem : IEcsRunSystem
     {

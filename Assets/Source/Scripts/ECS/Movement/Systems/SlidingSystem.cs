@@ -2,7 +2,7 @@
 using LeoEcsPhysics;
 using Leopotam.Ecs;
 
-namespace Ingame
+namespace Ingame.Movement
 {
     public sealed class SlidingSystem : IEcsRunSystem
     {

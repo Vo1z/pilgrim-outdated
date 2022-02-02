@@ -1,6 +1,7 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Input;
+using Leopotam.Ecs;
 
-namespace Ingame
+namespace Ingame.CameraWork
 {
     public sealed class CameraInputToStatesConverterSystem : IEcsRunSystem
     {

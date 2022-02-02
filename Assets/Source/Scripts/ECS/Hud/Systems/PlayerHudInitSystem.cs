@@ -1,6 +1,6 @@
 ﻿using Leopotam.Ecs;
 
-namespace Ingame
+namespace Ingame.Hud
 {
     public sealed class PlayerHudInitSystem : IEcsInitSystem
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ingame
+namespace Ingame.CameraWork
 {
     public struct CameraModel
     {

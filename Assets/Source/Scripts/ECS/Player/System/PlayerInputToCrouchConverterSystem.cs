@@ -1,6 +1,8 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Input;
+using Ingame.Movement;
+using Leopotam.Ecs;
 
-namespace Ingame
+namespace Ingame.Player
 {
     public sealed class PlayerInputToCrouchConverterSystem : IEcsRunSystem
     {

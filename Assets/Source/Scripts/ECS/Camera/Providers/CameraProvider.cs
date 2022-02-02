@@ -2,7 +2,7 @@
 using Voody.UniLeo;
 using Zenject;
 
-namespace Ingame
+namespace Ingame.CameraWork
 {
     [RequireComponent(typeof(Camera))]
     public sealed class CameraProvider : MonoProvider<CameraModel>

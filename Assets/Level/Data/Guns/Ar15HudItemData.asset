@@ -22,11 +22,28 @@ MonoBehaviour:
   minMaxRotationAngleZ: {x: -20, y: 10}
   rotationAngleMultiplierZ: 30
   inverseRotationZ: 0
+  aimRotationSpeed: 10
+  minMaxAimRotationAngleX: {x: -5, y: 5}
+  aimRotationAngleMultiplierX: 2
+  inverseAimRotationX: 0
+  minMaxAimRotationAngleY: {x: -5, y: 5}
+  aimRotationAngleMultiplierY: 2
+  inverseAimRotationY: 0
+  minMaxAimRotationAngleZ: {x: 0, y: 0}
+  aimRotationAngleMultiplierZ: 20
+  inverseAimRotationZ: 0
   minMaxRotationMovementAngleX: {x: -12, y: 12}
   rotationMovementAngleMultiplierX: 20
   inverseRotationMovementX: 1
   minMaxRotationMovementAngleZ: {x: -15, y: 10}
   rotationMovementAngleMultiplierZ: 20
   inverseRotationMovementZ: 1
-  maximumClippingOffset: 1
+  minMaxAimRotationMovementAngleX: {x: -5, y: 5}
+  aimRotationMovementAngleMultiplierX: 10
+  inverseAimRotationMovementX: 1
+  minMaxAimRotationMovementAngleY: {x: -5, y: 5}
+  aimRotationMovementAngleMultiplierY: 5
+  inverseAimRotationMovementY: 0
+  maximumClippingOffset: 0.8
+  maximumAimClippingOffset: 0.1
   clippingMovementSpeed: 3

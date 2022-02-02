@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 12
   crouchWalkSpeed: 6
+  leanWalkSpeed: 9
   enterCrouchStateSpeed: 6
   movementAcceleration: 8
   movementFriction: 12
   jumpForce: 6
   pauseBetweenJumps: 0.2
+  enterLeanSpeed: 5
   leanDistanceOffset: 0.4
   leanAngleOffset: 15
+  cameraPositionOffsetDuringTheLean: 0.15
   gravityAcceleration: 20
   maximumGravitationForce: 40
   slidingForceModifier: 6

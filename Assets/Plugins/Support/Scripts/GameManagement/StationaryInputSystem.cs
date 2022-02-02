@@ -100,6 +100,42 @@ namespace Support
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""a8aa11d8-733c-437c-b227-0b4a2def827c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""ac73df77-89b3-4605-a745-353c7c73c4a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6714786-76c1-429f-8ecc-3140071b4a87"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DistortTheShutter"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5b50951-d069-47f8-aae9-dc84c6a9caec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -107,6 +143,17 @@ namespace Support
                     ""name"": """",
                     ""id"": ""b8e18f94-9a4c-4e4b-b05a-418f7dfb76fc"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57ff375e-b251-470d-8973-b23ddefd6f3a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -140,6 +187,39 @@ namespace Support
                     ""name"": ""positive"",
                     ""id"": ""387d1fa8-f1af-4aea-bf9e-783321fbade7"",
                     ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""LeftStick"",
+                    ""id"": ""915cdfc2-2789-4b6a-ac91-571669833acd"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementX"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""21bec5ff-f7ce-450e-85fd-c243c53f6488"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""7691288d-ce11-492f-ba6f-ef04c292e51c"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -193,6 +273,17 @@ namespace Support
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4ffb514b-ab83-4355-a624-d8091964e0ac"",
+                    ""path"": ""<Gamepad>/rightStick/x"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=8)"",
+                    ""groups"": """",
+                    ""action"": ""RotationX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""85ce53cc-f7a3-4e1a-8947-b3b24e20d811"",
                     ""path"": ""<Mouse>/Delta/Y"",
                     ""interactions"": """",
@@ -217,6 +308,17 @@ namespace Support
                     ""name"": """",
                     ""id"": ""ed7e5b89-517c-4be0-9fd3-6eca66041d3a"",
                     ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5ff1afb-af36-4adb-bf2c-a71982bedf59"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -256,6 +358,171 @@ namespace Support
                     ""action"": ""Lean"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""LeftStick"",
+                    ""id"": ""7e1224b9-1064-441f-bdd3-0b6363ac6fc4"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementY"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c906db06-f138-419d-ab36-0c40d103ec35"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""0f6c2ea3-d154-49bf-a143-b8629230bfff"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85022b76-8a10-44b6-ad00-4c3cec9de51e"",
+                    ""path"": ""<Gamepad>/rightStick/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=8)"",
+                    ""groups"": """",
+                    ""action"": ""RotationY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""LeftRightShoulders"",
+                    ""id"": ""cd2a4d12-bdcf-48ef-936d-f8c3e7b558ba"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lean"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""7ecce9d4-4205-4920-9c68-aeb7cff75547"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lean"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""cb2d6f6b-6772-451d-8af5-76e37363422f"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lean"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d68842f-30fb-4f46-b7e6-c0c5eac818d7"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f2bd9ef-c523-49a7-b447-d2ecbae84b2a"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9831997-5134-4219-9662-b186565ebee4"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c4ebac4-8006-463e-99e8-f45ae80c8e4c"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14d51426-5ab9-430b-8bd9-f28be1414c9c"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b63b821c-d2fa-48a9-b001-79ef770783d3"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56a5a5b8-8128-4a4e-9068-cd164fa2492b"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DistortTheShutter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e15eee7-9dd2-43a2-8850-32381174df36"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DistortTheShutter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -272,6 +539,10 @@ namespace Support
             m_FPS_Utility = m_FPS.FindAction("Utility", throwIfNotFound: true);
             m_FPS_Crouch = m_FPS.FindAction("Crouch", throwIfNotFound: true);
             m_FPS_Lean = m_FPS.FindAction("Lean", throwIfNotFound: true);
+            m_FPS_Shoot = m_FPS.FindAction("Shoot", throwIfNotFound: true);
+            m_FPS_Aim = m_FPS.FindAction("Aim", throwIfNotFound: true);
+            m_FPS_Reload = m_FPS.FindAction("Reload", throwIfNotFound: true);
+            m_FPS_DistortTheShutter = m_FPS.FindAction("DistortTheShutter", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -339,6 +610,10 @@ namespace Support
         private readonly InputAction m_FPS_Utility;
         private readonly InputAction m_FPS_Crouch;
         private readonly InputAction m_FPS_Lean;
+        private readonly InputAction m_FPS_Shoot;
+        private readonly InputAction m_FPS_Aim;
+        private readonly InputAction m_FPS_Reload;
+        private readonly InputAction m_FPS_DistortTheShutter;
         public struct FPSActions
         {
             private @StationaryInput m_Wrapper;
@@ -351,6 +626,10 @@ namespace Support
             public InputAction @Utility => m_Wrapper.m_FPS_Utility;
             public InputAction @Crouch => m_Wrapper.m_FPS_Crouch;
             public InputAction @Lean => m_Wrapper.m_FPS_Lean;
+            public InputAction @Shoot => m_Wrapper.m_FPS_Shoot;
+            public InputAction @Aim => m_Wrapper.m_FPS_Aim;
+            public InputAction @Reload => m_Wrapper.m_FPS_Reload;
+            public InputAction @DistortTheShutter => m_Wrapper.m_FPS_DistortTheShutter;
             public InputActionMap Get() { return m_Wrapper.m_FPS; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -384,6 +663,18 @@ namespace Support
                     @Lean.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnLean;
                     @Lean.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnLean;
                     @Lean.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnLean;
+                    @Shoot.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnShoot;
+                    @Shoot.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnShoot;
+                    @Shoot.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnShoot;
+                    @Aim.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnAim;
+                    @Aim.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnAim;
+                    @Aim.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnAim;
+                    @Reload.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnReload;
+                    @Reload.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnReload;
+                    @Reload.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnReload;
+                    @DistortTheShutter.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
+                    @DistortTheShutter.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
+                    @DistortTheShutter.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
                 }
                 m_Wrapper.m_FPSActionsCallbackInterface = instance;
                 if (instance != null)
@@ -412,6 +703,18 @@ namespace Support
                     @Lean.started += instance.OnLean;
                     @Lean.performed += instance.OnLean;
                     @Lean.canceled += instance.OnLean;
+                    @Shoot.started += instance.OnShoot;
+                    @Shoot.performed += instance.OnShoot;
+                    @Shoot.canceled += instance.OnShoot;
+                    @Aim.started += instance.OnAim;
+                    @Aim.performed += instance.OnAim;
+                    @Aim.canceled += instance.OnAim;
+                    @Reload.started += instance.OnReload;
+                    @Reload.performed += instance.OnReload;
+                    @Reload.canceled += instance.OnReload;
+                    @DistortTheShutter.started += instance.OnDistortTheShutter;
+                    @DistortTheShutter.performed += instance.OnDistortTheShutter;
+                    @DistortTheShutter.canceled += instance.OnDistortTheShutter;
                 }
             }
         }
@@ -426,6 +729,10 @@ namespace Support
             void OnUtility(InputAction.CallbackContext context);
             void OnCrouch(InputAction.CallbackContext context);
             void OnLean(InputAction.CallbackContext context);
+            void OnShoot(InputAction.CallbackContext context);
+            void OnAim(InputAction.CallbackContext context);
+            void OnReload(InputAction.CallbackContext context);
+            void OnDistortTheShutter(InputAction.CallbackContext context);
         }
     }
 }

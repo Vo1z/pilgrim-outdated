@@ -1,4 +1,3 @@
-
 using Ingame.Enemy.Ecs;
 using Ingame.Enemy.ECS;
 using LeoEcsPhysics;
@@ -83,9 +82,13 @@ namespace Ingame
                 .OneFrame<CrouchInputEvent>()
                 .OneFrame<LeanInputRequest>()
                 .OneFrame<MoveInputRequest>()
-                .OneFrame<RotateInputRequest>();
-              
-
+                .OneFrame<RotateInputRequest>()
+                .OneFrame<ShootInputEvent>()
+                .OneFrame<AimInputEvent>()
+                .OneFrame<ReloadInputEvent>()
+                .OneFrame<DistortTheShutterInputEvent>()
+                .OneFrame<HudReloadAnimationTriggerEvent>()
+                .OneFrame<HudDistortTheShutterAnimationTriggerEvent>();
         }
 
         private void AddSystems()
@@ -96,9 +99,8 @@ namespace Ingame
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem())
-                ;
-                
-            
+                .Add(new GunInitSystem());
+
             //Update
             _updateSystems
                 .Add(new StationaryInputSystem())
@@ -106,17 +108,29 @@ namespace Ingame
                 .Add(new PlayerHudInputToRotationConverterSystem())
                 .Add(new PlayerInputToCrouchConverterSystem())
                 .Add(new PlayerInputToLeanConverterSystem())
+                .Add(new PlayerSpeedChangerSystem())
+                .Add(new CameraInputToStatesConverterSystem())
+                .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
-                .Add(new TimeSystem())
-                .Add(new DebugSystem())
+                .Add(new GunDistortTheShutterInputConverterSystem())
+                .Add(new GunReloadInputConverterSystem())
+                .Add(new GunShootInputConverter())
+                .Add(new GunRecoilSystem())
+                .Add(new GunShootSystem())
+                .Add(new GunDistortTheShutterCallbackReceiverSystem())
+                .Add(new GunReloadCallbackReceiverSystem())
+                .Add(new HudGunAnimationSystem())
                 .Add(new PatrolSystem())
                 .Add(new FollowSystem())
                 .Add(new EntityReferenceSystem())
                 .Add(new AttackSystem())
-                .Add(new FleeSystem());
-                
+                .Add(new FleeSystem())
+                .Add(new TimeSystem())
+                .Add(new DebugSystem())
+                .Add(new ExternalEventsRemoverSystem());
+
 
             //FixedUpdate
             _fixedUpdateSystem
@@ -127,6 +141,7 @@ namespace Ingame
                 .Add(new PlayerInputToJumpConverterSystem())
                 .Add(new CrouchSystem())
                 .Add(new LeanSystem())
+                .Add(new CameraLeanSystem())
                 .Add(new MovementSystem());
         }
     }

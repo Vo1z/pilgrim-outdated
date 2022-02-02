@@ -27,8 +27,6 @@ namespace Ingame
 
                 playerCrouchRequest.height = targetCharacterControllerHeight;
                 playerCrouchRequest.changeHeightSpeed = playerData.EnterCrouchStateSpeed;
-
-                playerModel.currentSpeed = playerModel.isCrouching ? playerData.CrouchWalkSpeed : playerData.WalkSpeed;
             }
         }
     }

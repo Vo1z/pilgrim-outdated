@@ -12,21 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000e32bd31ff10398b994fe9d99368fd, type: 3}
   m_Name: Ar15Data
   m_EditorClassIdentifier: 
-  rotationSpeed: 1
-  minMaxRotationAngleX: {x: -15, y: 15}
-  rotationAngleMultiplierX: 20
-  inverseRotationX: 1
-  minMaxRotationAngleY: {x: -10, y: 10}
-  rotationAngleMultiplierY: 10
-  inverseRotationY: 1
-  minMaxRotationAngleZ: {x: -20, y: 10}
-  rotationAngleMultiplierZ: 30
-  inverseRotationZ: 0
-  minMaxRotationMovementAngleX: {x: -12, y: 12}
-  rotationMovementAngleMultiplierX: 5
-  inverseRotationMovementX: 1
-  minMaxRotationMovementAngleZ: {x: -15, y: 10}
-  rotationMovementAngleMultiplierZ: 5
-  inverseRotationMovementZ: 0
-  maximumClippingOffset: 1
-  fireModes: 000000000100000002000000
+  pauseBetweenShots: 0.13
+  instability: 15
+  verticalRecoilForce: 5
+  frontRecoilForce: 10
+  minMaxRecoilPositionOffset: 0.5

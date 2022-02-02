@@ -1,0 +1,28 @@
+﻿using UnityEngine;
+using Voody.UniLeo;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+namespace Ingame
+{
+    public sealed class GunModelProvider : MonoProvider<GunModel>
+    {
+#if UNITY_EDITOR
+        private const float BARREL_DIRECTION_LINE_LENGTH = 2f;
+     
+        private void OnDrawGizmos()
+        {
+            var barrelOrigin = value.barrelTransform; 
+            
+            if(barrelOrigin == null)
+                return;
+                
+            var position = barrelOrigin.position;
+            
+            Handles.color = Color.green;
+            Handles.DrawLine(position, position + barrelOrigin.forward * BARREL_DIRECTION_LINE_LENGTH);
+        }
+#endif
+    }
+}

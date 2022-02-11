@@ -33,3 +33,4 @@ MonoBehaviour:
   rotationAngleMultiplierX: 2
   minMaxRotationAngleY: {x: -5, y: 5}
   rotationAngleMultiplierY: 2
+  interactionDistance: 2

@@ -31,7 +31,7 @@ namespace Ingame.Player
                 var movementDirection = playerTransform.forward * inputVector.y + 
                                         playerTransform.right * inputVector.x;
 
-                var targetVelocity = movementDirection.normalized * playerModel.currentSpeed;
+                var targetVelocity = Vector3.ClampMagnitude(movementDirection, 1) * playerModel.currentSpeed;
                 
                 targetVelocity.y = playerVelocity.y;
 

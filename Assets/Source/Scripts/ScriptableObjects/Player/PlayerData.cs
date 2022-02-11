@@ -55,6 +55,9 @@ namespace Ingame.PlayerLegacy
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxRotationAngleY;
         [BoxGroup("HUD")] 
         [SerializeField] [Range(0, 20)] private float rotationAngleMultiplierY = 5;
+        
+        [BoxGroup("Interaction"), Space] 
+        [SerializeField] [Range(0, 20)] private float interactionDistance = .5f;
 
         public float WalkSpeed => walkSpeed;
         public float CrouchWalkSpeed => crouchWalkSpeed;
@@ -82,5 +85,7 @@ namespace Ingame.PlayerLegacy
         public float RotationAngleMultiplierX => rotationAngleMultiplierX;
         public Vector2 MinMaxRotationAngleY => minMaxRotationAngleY;
         public float RotationAngleMultiplierY => rotationAngleMultiplierY;
+
+        public float InteractionDistance => interactionDistance;
     }
 }

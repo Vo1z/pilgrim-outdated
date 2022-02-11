@@ -136,6 +136,15 @@ namespace Support
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""f1bdca15-a9f8-4b35-89c7-b20ed40a6d43"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -523,6 +532,28 @@ namespace Support
                     ""action"": ""DistortTheShutter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5cdb6b7-5f70-41e3-9742-a59d37a28c95"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ddde6696-3a56-4966-b0b1-dafcdfe2b28a"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -543,6 +574,7 @@ namespace Support
             m_FPS_Aim = m_FPS.FindAction("Aim", throwIfNotFound: true);
             m_FPS_Reload = m_FPS.FindAction("Reload", throwIfNotFound: true);
             m_FPS_DistortTheShutter = m_FPS.FindAction("DistortTheShutter", throwIfNotFound: true);
+            m_FPS_Interact = m_FPS.FindAction("Interact", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -614,6 +646,7 @@ namespace Support
         private readonly InputAction m_FPS_Aim;
         private readonly InputAction m_FPS_Reload;
         private readonly InputAction m_FPS_DistortTheShutter;
+        private readonly InputAction m_FPS_Interact;
         public struct FPSActions
         {
             private @StationaryInput m_Wrapper;
@@ -630,6 +663,7 @@ namespace Support
             public InputAction @Aim => m_Wrapper.m_FPS_Aim;
             public InputAction @Reload => m_Wrapper.m_FPS_Reload;
             public InputAction @DistortTheShutter => m_Wrapper.m_FPS_DistortTheShutter;
+            public InputAction @Interact => m_Wrapper.m_FPS_Interact;
             public InputActionMap Get() { return m_Wrapper.m_FPS; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -675,6 +709,9 @@ namespace Support
                     @DistortTheShutter.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
                     @DistortTheShutter.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
                     @DistortTheShutter.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
+                    @Interact.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnInteract;
+                    @Interact.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnInteract;
+                    @Interact.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnInteract;
                 }
                 m_Wrapper.m_FPSActionsCallbackInterface = instance;
                 if (instance != null)
@@ -715,6 +752,9 @@ namespace Support
                     @DistortTheShutter.started += instance.OnDistortTheShutter;
                     @DistortTheShutter.performed += instance.OnDistortTheShutter;
                     @DistortTheShutter.canceled += instance.OnDistortTheShutter;
+                    @Interact.started += instance.OnInteract;
+                    @Interact.performed += instance.OnInteract;
+                    @Interact.canceled += instance.OnInteract;
                 }
             }
         }
@@ -733,6 +773,7 @@ namespace Support
             void OnAim(InputAction.CallbackContext context);
             void OnReload(InputAction.CallbackContext context);
             void OnDistortTheShutter(InputAction.CallbackContext context);
+            void OnInteract(InputAction.CallbackContext context);
         }
     }
 }

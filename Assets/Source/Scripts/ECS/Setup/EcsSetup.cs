@@ -6,6 +6,8 @@ using Ingame.Gunplay;
 using Ingame.Health;
 using Ingame.Hud;
 using Ingame.Input;
+using Ingame.Interaction.Common;
+using Ingame.Interaction.Doors;
 using Ingame.Movement;
 using Ingame.Player;
 using Ingame.Utils;
@@ -92,6 +94,7 @@ namespace Ingame
                 .OneFrame<AimInputEvent>()
                 .OneFrame<ReloadInputEvent>()
                 .OneFrame<DistortTheShutterInputEvent>()
+                .OneFrame<InteractInputEvent>()
                 .OneFrame<HudReloadAnimationTriggerEvent>()
                 .OneFrame<HudDistortTheShutterAnimationTriggerEvent>();
         }
@@ -141,6 +144,9 @@ namespace Ingame
                 .Add(new BleedingSystem())
                 .Add(new DeathSystem())
                 .Add(new DestroyDeadActorsSystem())
+                //Interaction
+                .Add(new InteractionSystem())
+                .Add(new DoorRotationSystem())
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())

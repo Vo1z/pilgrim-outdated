@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace Ingame.Gunplay
 {
-    public sealed class GunShootInputConverter : IEcsRunSystem
+    public sealed class GunShootInputConverterSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world;
         

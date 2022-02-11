@@ -3,6 +3,7 @@ using Ingame.Debuging;
 using Ingame.Enemy.Ecs;
 using Ingame.Enemy.ECS;
 using Ingame.Gunplay;
+using Ingame.Health;
 using Ingame.Hud;
 using Ingame.Input;
 using Ingame.Movement;
@@ -40,11 +41,7 @@ namespace Ingame
             AddOneFrames();
             AddSystems();
             
-            
-
-            _updateSystems
-                .OneFramePhysics()
-                .Init();
+            _updateSystems.Init();
             _fixedUpdateSystem.Init();
         }
 
@@ -111,30 +108,38 @@ namespace Ingame
 
             //Update
             _updateSystems
+                //Input
                 .Add(new StationaryInputSystem())
                 .Add(new PlayerInputToRotationConverterSystem())
                 .Add(new PlayerHudInputToRotationConverterSystem())
                 .Add(new PlayerInputToCrouchConverterSystem())
                 .Add(new PlayerInputToLeanConverterSystem())
                 .Add(new PlayerSpeedChangerSystem())
+                //HUD
                 .Add(new CameraInputToStatesConverterSystem())
                 .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
+                //Gun play
                 .Add(new GunDistortTheShutterInputConverterSystem())
                 .Add(new GunReloadInputConverterSystem())
-                .Add(new GunShootInputConverter())
+                .Add(new GunShootInputConverterSystem())
                 .Add(new GunRecoilSystem())
                 .Add(new GunShootSystem())
                 .Add(new GunDistortTheShutterCallbackReceiverSystem())
                 .Add(new GunReloadCallbackReceiverSystem())
                 .Add(new HudGunAnimationSystem())
+                //AI
                 .Add(new PatrolSystem())
                 .Add(new FollowSystem())
                 .Add(new EntityReferenceSystem())
                 .Add(new AttackSystem())
                 .Add(new FleeSystem())
+                //Health
+                .Add(new BleedingSystem())
+                .Add(new DeathSystem())
+                //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())
                 .Add(new ExternalEventsRemoverSystem());
@@ -142,7 +147,9 @@ namespace Ingame
 
             //FixedUpdate
             _fixedUpdateSystem
+                 //Input   
                 .Add(new PlayerInputToMovementConvertSystem())
+                 //Movement
                 .Add(new FrictionSystem())
                 .Add(new SlidingSystem())
                 .Add(new GravitationSystem())

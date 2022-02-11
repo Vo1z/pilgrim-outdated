@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
+using Support;
 
 namespace Ingame.Movement
 {
@@ -11,9 +12,6 @@ namespace Ingame.Movement
 
         public void Run()
         {
-            if(_colliderHitFilter.IsEmpty())
-                return;
-
             foreach (var colliderHitI in _colliderHitFilter)
             {
                 ref var controllerColliderEntity = ref _colliderHitFilter.GetEntity(colliderHitI);
@@ -29,6 +27,7 @@ namespace Ingame.Movement
                     if (characterController.gameObject == controllerColliderHitEvent.senderGameObject)
                     {
                         bool isStandingOnFlatSurface = Vector3.Angle(Vector3.up, hitNormal) <= characterController.slopeLimit && characterController.isGrounded;
+
                         characterControllerModel.isStandingOnFlatSurface = isStandingOnFlatSurface;
 
                         if (!isStandingOnFlatSurface)

@@ -24,7 +24,7 @@ namespace Ingame.Player
                 ref var playerJumpTimer = ref _playerFilter.Get4(i);
 
                 var playerData = playerModel.playerData;
-                
+
                 if(!playerCharacterControllerModel.isStandingOnFlatSurface || playerJumpTimer.timePassed < playerData.PauseBetweenJumps)
                     return;
 

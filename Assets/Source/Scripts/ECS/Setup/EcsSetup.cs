@@ -133,12 +133,14 @@ namespace Ingame
                 //AI
                 .Add(new PatrolSystem())
                 .Add(new FollowSystem())
-                .Add(new EntityReferenceSystem())
+                .Add(new InitializeEntityReferenceSystem())
                 .Add(new AttackSystem())
                 .Add(new FleeSystem())
                 //Health
+                .Add(new DamageSystem())
                 .Add(new BleedingSystem())
                 .Add(new DeathSystem())
+                .Add(new DestroyDeadActorsSystem())
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())

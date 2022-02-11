@@ -1,4 +1,5 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Health;
+using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Ingame.Gunplay
@@ -21,10 +22,14 @@ namespace Ingame.Gunplay
                 
                 if(hitObject == null)
                     return;
-                
-                //TODO add logic of the shot
-                if(hitObject.name.Equals("Target"))
-                    Object.Destroy(hitObject);
+
+                if (hitObject.TryGetComponent(out EntityReference entityReference))
+                {
+                    ref var hitEntity = ref entityReference.Entity;
+
+                    if(hitEntity.Has<HealthComponent>())
+                        hitEntity.Get<DamageComponent>().damageToDeal = gunModel.gunData.Damage;
+                }
             }
         }
 

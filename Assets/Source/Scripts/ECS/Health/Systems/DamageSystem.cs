@@ -4,7 +4,7 @@ namespace Ingame.Health
 {
     public class DamageSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<DamageRequest, HealthComponent>.Exclude<DeathTag> _healthDamageFilter;
+        private readonly EcsFilter<DamageComponent, HealthComponent>.Exclude<DeathTag> _healthDamageFilter;
 
         public void Run()
         {
@@ -17,7 +17,7 @@ namespace Ingame.Health
                 if(damageReq.damageToDeal > 0)
                     healthComp.currentHealth -= damageReq.damageToDeal;
                 
-                entity.Del<DamageRequest>();
+                entity.Del<DamageComponent>();
             }
         }
     }

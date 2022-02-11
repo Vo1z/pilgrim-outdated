@@ -1,12 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Voody.UniLeo;
 using Zenject;
 
 namespace Ingame
 {
-    public class EntityReferenceRequestProvider : MonoProvider<EntityReferenceRequest>
+    [RequireComponent(typeof(EntityReference))]
+    public class EntityReferenceRequestProvider : MonoProvider<InitializeEntityReferenceRequest>
     {
+        [Inject]
+        private void Construct()
+        {
+            value = new InitializeEntityReferenceRequest
+            {
+                entityReference = GetComponent<EntityReference>()
+            };
+        }
     }
 }

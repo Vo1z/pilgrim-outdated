@@ -1,11 +1,9 @@
-using Ingame.Enemy.ECS;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Ingame {
-    sealed class EntityReferenceSystem : IEcsRunSystem
+    sealed class InitializeEntityReferenceSystem : IEcsRunSystem
     {
-        private EcsFilter<EntityReferenceRequest> _filter;
+        private EcsFilter<InitializeEntityReferenceRequest> _filter;
         public void Run()
         {
             foreach (var i in _filter)
@@ -13,8 +11,8 @@ namespace Ingame {
 
                 ref var entity = ref _filter.GetEntity(i);
                 ref var reference = ref _filter.Get1(i);
-                reference.EntityReference.Entity = entity;
-                entity.Del<EntityReferenceRequest>();
+                reference.entityReference.Entity = entity;
+                entity.Del<InitializeEntityReferenceRequest>();
              
             }
         }

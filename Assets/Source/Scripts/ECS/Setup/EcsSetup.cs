@@ -8,6 +8,7 @@ using Ingame.Hud;
 using Ingame.Input;
 using Ingame.Interaction.Common;
 using Ingame.Interaction.Doors;
+using Ingame.Inventory;
 using Ingame.Movement;
 using Ingame.Player;
 using Ingame.Utils;
@@ -147,6 +148,8 @@ namespace Ingame
                 //Interaction
                 .Add(new InteractionSystem())
                 .Add(new DoorRotationSystem())
+                //Inventory
+                .Add(new ItemPickupSystem())
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())

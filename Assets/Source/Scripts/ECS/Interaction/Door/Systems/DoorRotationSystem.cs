@@ -7,7 +7,7 @@ namespace Ingame.Interaction.Doors
 {
     public class DoorRotationSystem : IEcsRunSystem
     {
-        private EcsFilter<DoorModel, TransformModel, InteractableObjectTag, PerformInteractionTag> _interactedDoorFilter;
+        private EcsFilter<DoorModel, TransformModel, InteractiveTag, PerformInteractionTag> _interactedDoorFilter;
 
         public void Run()
         {

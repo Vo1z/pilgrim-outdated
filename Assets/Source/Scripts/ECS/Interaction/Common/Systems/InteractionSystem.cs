@@ -30,7 +30,7 @@ namespace Ingame.Interaction.Common
                 {
                     var hitEntity = entityReference.Entity;
 
-                    if (hitEntity.Has<InteractableObjectTag>())
+                    if (hitEntity.Has<InteractiveTag>())
                         hitEntity.Get<PerformInteractionTag>();
                 }
             }

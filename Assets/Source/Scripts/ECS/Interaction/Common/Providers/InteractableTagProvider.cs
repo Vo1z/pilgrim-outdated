@@ -2,5 +2,5 @@
 
 namespace Ingame.Interaction.Common
 {
-    public class InteractableTagProvider : MonoProvider<InteractableObjectTag> { }
+    public class InteractableTagProvider : MonoProvider<InteractiveTag> { }
 }

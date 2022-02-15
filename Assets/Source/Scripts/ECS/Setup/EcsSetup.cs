@@ -165,7 +165,7 @@ namespace Ingame
                 .Add(new SlidingSystem())
                 .Add(new GravitationSystem())
                 .Add(new PlayerInputToJumpConverterSystem())
-                .Add(new CrouchSystem())
+                .Add(new CharacterControllerHeightChangingSystem())
                 .Add(new LeanSystem())
                 .Add(new CameraLeanSystem())
                 .Add(new MovementSystem());

@@ -22,7 +22,7 @@ namespace Ingame.Player
                 ref var playerEntity = ref _playerFilter.GetEntity(i);
                 ref var playerModel = ref _playerFilter.Get1(i);
                 ref var playerCharacterControllerModel = ref _playerFilter.Get2(i);
-                ref var playerCrouchRequest = ref playerEntity.Get<CrouchRequest>();
+                ref var playerCrouchRequest = ref playerEntity.Get<ChangeCharacterControllerHeightRequest>();
                 var playerData = playerModel.playerData;
 
                 if (playerModel.isCrouching && CheckIfPlayerCanStand(playerCharacterControllerModel))
@@ -43,10 +43,10 @@ namespace Ingame.Player
         {
             var characterController = playerCharacterControllerModel.characterController;
             var ray = new Ray(characterController.transform.position + characterController.center, Vector3.up);
-            float freeSpaceToStandUp = playerCharacterControllerModel.initialHeight * ADDITIONAL_HEIGHT_MULTIPLIER_TO_CHECK_OBSTACLES_ABOVE;
             int layerMask = ~LayerMask.GetMask("PlayerStatic", "Ignore Raycast");
+            float freeSpaceToStandUp = playerCharacterControllerModel.initialHeight * ADDITIONAL_HEIGHT_MULTIPLIER_TO_CHECK_OBSTACLES_ABOVE;
 
-            return !Physics.Raycast(ray, out RaycastHit hit, freeSpaceToStandUp, layerMask, QueryTriggerInteraction.Ignore);
+            return !Physics.Raycast(ray, freeSpaceToStandUp, layerMask, QueryTriggerInteraction.Ignore);
         }
     }
 }

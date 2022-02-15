@@ -7,7 +7,7 @@ namespace Ingame.Inventory
 {
     public class ItemPickupSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ItemTag, InteractiveTag, PerformInteractionTag> _pickupItemsFilter;
+        private readonly EcsFilter<ItemComponent, InteractiveTag, PerformInteractionTag> _pickupItemsFilter;
 
         public void Run()
         {

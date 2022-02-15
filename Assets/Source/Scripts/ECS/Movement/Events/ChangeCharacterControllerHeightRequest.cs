@@ -1,6 +1,6 @@
 ﻿namespace Ingame.Movement
 {
-    public struct CrouchRequest
+    public struct ChangeCharacterControllerHeightRequest
     {
         public float height;
         public float changeHeightSpeed;

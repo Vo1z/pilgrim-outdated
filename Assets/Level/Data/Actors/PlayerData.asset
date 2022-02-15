@@ -28,9 +28,4 @@ MonoBehaviour:
   maximumGravitationForce: 40
   slidingForceModifier: 6
   sensitivity: 10
-  cameraRotationSpeed: 2
-  minMaxRotationAngleX: {x: -5, y: 5}
-  rotationAngleMultiplierX: 2
-  minMaxRotationAngleY: {x: -5, y: 5}
-  rotationAngleMultiplierY: 2
   interactionDistance: 2

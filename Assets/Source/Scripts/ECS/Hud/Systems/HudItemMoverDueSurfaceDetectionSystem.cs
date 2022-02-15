@@ -1,5 +1,5 @@
-﻿using Ingame.Guns;
-using Ingame.Movement;
+﻿using Ingame.Movement;
+using Ingame.Utils;
 using Leopotam.Ecs;
 using UnityEngine;
 

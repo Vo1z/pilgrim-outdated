@@ -9,12 +9,6 @@ namespace Ingame.DI.Installers
     {
         [BoxGroup("Data"), Required]
         [SerializeField] private PlayerData playerData;
-        [BoxGroup("Components"), Required]
-        [SerializeField] private PlayerInputReceiver playerInputReceiver;
-        [BoxGroup("Components"), Required] 
-        [SerializeField] private PlayerObserver playerObserver;
-        [BoxGroup("Components"), Required] 
-        [SerializeField] private PlayerMover playerMover;
         [BoxGroup("Transforms"), Required]
         [SerializeField] private Transform hands;
         [BoxGroup("Transforms"), Required]
@@ -24,19 +18,6 @@ namespace Ingame.DI.Installers
         {
             Container.Bind<PlayerData>()
                 .FromInstance(playerData)
-                .AsSingle();
-
-            Container.Bind<PlayerInputReceiver>()
-                .FromInstance(playerInputReceiver)
-                .AsSingle()
-                .NonLazy();
-
-            Container.Bind<PlayerObserver>()
-                .FromInstance(playerObserver)
-                .AsSingle();
-
-            Container.Bind<PlayerMover>()
-                .FromInstance(playerMover)
                 .AsSingle();
 
             Container.Bind<Transform>()

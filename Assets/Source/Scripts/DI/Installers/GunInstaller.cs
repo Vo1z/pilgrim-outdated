@@ -1,4 +1,5 @@
 using Ingame.Guns;
+using Ingame.Utils;
 using NaughtyAttributes;
 using UnityEngine;
 using Zenject;

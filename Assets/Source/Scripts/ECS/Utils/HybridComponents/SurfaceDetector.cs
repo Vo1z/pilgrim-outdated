@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace Ingame.Guns
+namespace Ingame.Utils
 {
 
     public sealed class SurfaceDetector : MonoBehaviour

@@ -6,7 +6,6 @@ namespace Ingame.PlayerLegacy
     [CreateAssetMenu(menuName = "Ingame/PlayerData", fileName = "Ingame/NewPlayerData")]
     public class PlayerData : ScriptableObject
     {
-        
         [BoxGroup("Movement")]
         [SerializeField][Min(0)] private float walkSpeed = 10;
         [BoxGroup("Movement")]
@@ -44,18 +43,7 @@ namespace Ingame.PlayerLegacy
         //todo move to the controls settings
         [BoxGroup("Controls"), Space] 
         [SerializeField] [Min(0)] private float sensitivity = 1;
-        
-        [BoxGroup("HUD"), Space] 
-        [SerializeField] [Range(0, 10)] private float cameraRotationSpeed = 2f;
-        [BoxGroup("HUD")] 
-        [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxRotationAngleX;
-        [BoxGroup("HUD")] 
-        [SerializeField] [Range(0, 20)] private float rotationAngleMultiplierX = 5;
-        [BoxGroup("HUD")] 
-        [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxRotationAngleY;
-        [BoxGroup("HUD")] 
-        [SerializeField] [Range(0, 20)] private float rotationAngleMultiplierY = 5;
-        
+
         [BoxGroup("Interaction"), Space] 
         [SerializeField] [Range(0, 20)] private float interactionDistance = .5f;
 
@@ -79,12 +67,6 @@ namespace Ingame.PlayerLegacy
         public float SlidingForceModifier => slidingForceModifier;
 
         public float Sensitivity => sensitivity;
-        
-        public float CameraRotationSpeed => cameraRotationSpeed;
-        public Vector2 MinMaxRotationAngleX => minMaxRotationAngleX;
-        public float RotationAngleMultiplierX => rotationAngleMultiplierX;
-        public Vector2 MinMaxRotationAngleY => minMaxRotationAngleY;
-        public float RotationAngleMultiplierY => rotationAngleMultiplierY;
 
         public float InteractionDistance => interactionDistance;
     }

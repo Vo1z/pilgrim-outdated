@@ -1,4 +1,5 @@
-﻿using Ingame.PlayerLegacy;
+﻿using Ingame.Input;
+using Ingame.PlayerLegacy;
 using Leopotam.Ecs;
 
 namespace Ingame.Player

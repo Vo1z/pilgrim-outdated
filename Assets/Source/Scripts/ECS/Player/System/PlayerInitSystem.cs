@@ -1,4 +1,5 @@
-﻿using Ingame.Movement;
+﻿using Ingame.Input;
+using Ingame.Movement;
 using Ingame.PlayerLegacy;
 using Ingame.Utils;
 using Leopotam.Ecs;

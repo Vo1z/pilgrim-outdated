@@ -8990,6 +8990,7 @@ GameObject:
   - component: {fileID: 1855058783}
   - component: {fileID: 1855058785}
   - component: {fileID: 1855058784}
+  - component: {fileID: 1855058786}
   m_Layer: 6
   m_Name: ECS_Player
   m_TagString: Untagged
@@ -9117,6 +9118,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fae84e0ae5a96ee4dac4b2f9b5127c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1855058786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855058773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afc14533622439ead296e8684e1a0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1883500627 stripped

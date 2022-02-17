@@ -1,8 +1,6 @@
-using Ingame.PlayerLegacy;
 using Leopotam.Ecs;
 using Support;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 namespace Ingame.Input

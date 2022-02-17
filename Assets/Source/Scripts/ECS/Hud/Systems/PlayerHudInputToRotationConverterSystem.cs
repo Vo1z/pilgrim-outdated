@@ -18,7 +18,7 @@ namespace Ingame.Hud
                 return;
 
             var rotationInput = _rotateRequestFilter.Get1(0).rotationInput;
-            var playerData = _playerFilter.Get1(0).playerData;
+            var playerData = _playerFilter.Get1(0).playerMovementData;
             
             foreach (var i in _hudFilter)
             {

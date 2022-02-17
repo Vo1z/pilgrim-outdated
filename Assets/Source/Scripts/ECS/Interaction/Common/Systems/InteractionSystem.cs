@@ -24,7 +24,7 @@ namespace Ingame.Interaction.Common
             var ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             int layerMask = ~LayerMask.GetMask("PlayerStatic", "Ignore Raycast");
 
-            if (Physics.Raycast(ray, out RaycastHit hit, playerModel.playerData.InteractionDistance, layerMask))
+            if (Physics.Raycast(ray, out RaycastHit hit, playerModel.playerMovementData.InteractionDistance, layerMask))
             {
                 if (hit.collider.TryGetComponent(out EntityReference entityReference))
                 {

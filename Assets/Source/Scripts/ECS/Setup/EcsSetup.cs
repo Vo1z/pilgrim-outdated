@@ -32,6 +32,8 @@ namespace Ingame
 #endif
         private void Awake()
         {
+            Application.targetFrameRate = 240;
+            
 #if UNITY_EDITOR
             _ecsProfiler = new EcsProfiler(_world, new EcsWorldDebugListener(), _updateSystems, _fixedUpdateSystem);
 #endif
@@ -108,7 +110,9 @@ namespace Ingame
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem())
-                .Add(new GunInitSystem());
+                .Add(new GunInitSystem())
+                .Add(new DeltaMovementInitializeSystem())
+                .Add(new CameraInitializeSystem());
 
             //Update
             _updateSystems
@@ -125,6 +129,7 @@ namespace Ingame
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
+                .Add(new HeadBobbingSystem())
                 //Gun play
                 .Add(new GunDistortTheShutterInputConverterSystem())
                 .Add(new GunReloadInputConverterSystem())
@@ -160,6 +165,8 @@ namespace Ingame
             _fixedUpdateSystem
                  //Input   
                 .Add(new PlayerInputToMovementConvertSystem())
+                 //Utils
+                 .Add(new DeltaMovementCalculationSystem())
                  //Movement
                 .Add(new FrictionSystem())
                 .Add(new SlidingSystem())

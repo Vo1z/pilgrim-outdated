@@ -1,4 +1,4 @@
-﻿using Ingame.PlayerLegacy;
+﻿using Ingame.Player;
 using NaughtyAttributes;
 using UnityEngine;
 using Zenject;
@@ -8,13 +8,21 @@ namespace Ingame.DI.Installers
     public class PlayerInstaller : MonoInstaller
     {
         [Required]
-        [SerializeField] private PlayerData playerData;
-
+        [SerializeField] private PlayerMovementData playerMovementData;
+        [Required]
+        [SerializeField] private PlayerHudData playerHudData;
+        
         public override void InstallBindings()
         {
             Container
-                .Bind<PlayerData>()
-                .FromInstance(playerData)
+                .Bind<PlayerMovementData>()
+                .FromInstance(playerMovementData)
+                .AsSingle()
+                .NonLazy();
+            
+            Container
+                .Bind<PlayerHudData>()
+                .FromInstance(playerHudData)
                 .AsSingle()
                 .NonLazy();
         }

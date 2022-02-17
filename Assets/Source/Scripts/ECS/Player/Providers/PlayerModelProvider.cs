@@ -1,6 +1,4 @@
-﻿using Ingame.PlayerLegacy;
-using UnityEngine;
-using Voody.UniLeo;
+﻿using Voody.UniLeo;
 using Zenject;
 
 namespace Ingame.Player
@@ -8,11 +6,12 @@ namespace Ingame.Player
     public sealed class PlayerModelProvider : MonoProvider<PlayerModel>
     {
         [Inject]
-        private void Construct(PlayerData injectedPlayerData)
+        private void Construct(PlayerMovementData injectedPlayerMovementData, PlayerHudData playerHudData)
         {
             value = new PlayerModel
             {
-                playerData = injectedPlayerData,
+                playerMovementData = injectedPlayerMovementData,
+                playerHudData = playerHudData
             };
         }
     }

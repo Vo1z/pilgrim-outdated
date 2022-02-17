@@ -24,7 +24,7 @@ namespace Ingame.Player
                 ref var playerVelocityComponent = ref _playerInputFilter.Get2(i);
                 ref var playerCharacterControllerModel = ref _playerInputFilter.Get3(i);
 
-                var playerData = playerModel.playerData;
+                var playerData = playerModel.playerMovementData;
                 var playerVelocity = playerVelocityComponent.velocity;
                 var playerTransform = playerCharacterControllerModel.characterController.transform;
                 var movementPower = playerData.MovementAcceleration * Time.fixedDeltaTime;

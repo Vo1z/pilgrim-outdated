@@ -1,4 +1,4 @@
-using Ingame.PlayerLegacy;
+using Ingame.Player;
 using NaughtyAttributes;
 using UnityEngine;
 using Zenject;
@@ -8,7 +8,7 @@ namespace Ingame.DI.Installers
     public class PlayerLegacyInstaller : MonoInstaller
     {
         [BoxGroup("Data"), Required]
-        [SerializeField] private PlayerData playerData;
+        [SerializeField] private PlayerMovementData playerMovementData;
         [BoxGroup("Transforms"), Required]
         [SerializeField] private Transform hands;
         [BoxGroup("Transforms"), Required]
@@ -16,8 +16,8 @@ namespace Ingame.DI.Installers
         
         public override void InstallBindings()
         {
-            Container.Bind<PlayerData>()
-                .FromInstance(playerData)
+            Container.Bind<PlayerMovementData>()
+                .FromInstance(playerMovementData)
                 .AsSingle();
 
             Container.Bind<Transform>()

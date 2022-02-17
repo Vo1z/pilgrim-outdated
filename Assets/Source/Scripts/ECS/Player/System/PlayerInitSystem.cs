@@ -1,6 +1,6 @@
 ﻿using Ingame.Input;
 using Ingame.Movement;
-using Ingame.PlayerLegacy;
+using Ingame.Player;
 using Ingame.Utils;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -17,7 +17,6 @@ namespace Ingame.Player
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            Application.targetFrameRate = 240;
             foreach (var i in _playerFilter)
             {
                 ref var playerEntity = ref _playerFilter.GetEntity(i);
@@ -29,7 +28,7 @@ namespace Ingame.Player
                 playerEntity.Get<TimerComponent>();
                 playerEntity.Get<VelocityComponent>();
                 
-                var playerData = playerModel.playerData;
+                var playerData = playerModel.playerMovementData;
 
                 playerGravityComponent.gravityAcceleration = playerData.GravityAcceleration;
                 playerGravityComponent.maximalGravitationalForce = playerData.MaximumGravitationForce;

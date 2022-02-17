@@ -2,7 +2,7 @@
 using Ingame.Hud;
 using Ingame.Input;
 using Ingame.Movement;
-using Ingame.PlayerLegacy;
+using Ingame.Player;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -21,7 +21,7 @@ namespace Ingame.Player
                 return;
 
             ref var playerModel = ref _playerFilter.Get1(0);
-            var playerData = playerModel.playerData;
+            var playerData = playerModel.playerMovementData;
             var leanDirectionInput = _leanInputRequestFilter.Get1(0).leanDirection;
             
             playerModel.currentLeanDirection = playerModel.currentLeanDirection == leanDirectionInput ?

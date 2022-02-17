@@ -22,7 +22,7 @@ namespace Ingame.Player
             {
                 ref var playerModel = ref _playerFilter.Get1(i);
                 ref var playerCharacterController = ref _playerFilter.Get2(i);
-                var playerData = playerModel.playerData;
+                var playerData = playerModel.playerMovementData;
                 var playerTransform = playerCharacterController.characterController.transform;
                 
                 var xRotationAngle = rotationInput.x * playerData.Sensitivity * Time.fixedDeltaTime;

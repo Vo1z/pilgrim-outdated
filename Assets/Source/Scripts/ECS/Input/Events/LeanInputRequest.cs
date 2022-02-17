@@ -1,6 +1,4 @@
-﻿using Ingame.PlayerLegacy;
-
-namespace Ingame.Input
+﻿namespace Ingame.Input
 {
     internal struct LeanInputRequest
     {

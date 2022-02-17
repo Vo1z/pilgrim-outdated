@@ -23,14 +23,14 @@ namespace Ingame.Player
                 ref var playerCharacterControllerModel = ref _playerFilter.Get3(i);
                 ref var playerJumpTimer = ref _playerFilter.Get4(i);
 
-                var playerData = playerModel.playerData;
+                var playerData = playerModel.playerMovementData;
 
                 if(!playerCharacterControllerModel.isStandingOnFlatSurface || playerJumpTimer.timePassed < playerData.PauseBetweenJumps)
                     return;
 
                 playerJumpTimer.timePassed = 0;
                 playerCharacterControllerModel.isStandingOnFlatSurface = false;
-                playerVelocityComp.velocity += Vector3.up * playerModel.playerData.JumpForce;
+                playerVelocityComp.velocity += Vector3.up * playerModel.playerMovementData.JumpForce;
             }
         }
     }

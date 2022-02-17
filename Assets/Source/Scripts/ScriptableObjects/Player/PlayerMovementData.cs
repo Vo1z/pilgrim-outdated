@@ -1,10 +1,10 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ingame.PlayerLegacy
+namespace Ingame.Player
 {
     [CreateAssetMenu(menuName = "Ingame/PlayerData", fileName = "Ingame/NewPlayerData")]
-    public class PlayerData : ScriptableObject
+    public class PlayerMovementData : ScriptableObject
     {
         [BoxGroup("Movement")]
         [SerializeField][Min(0)] private float walkSpeed = 10;

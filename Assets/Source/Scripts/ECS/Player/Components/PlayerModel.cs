@@ -1,11 +1,11 @@
 ﻿using Ingame.Input;
-using Ingame.PlayerLegacy;
 
 namespace Ingame.Player
 {
     public struct PlayerModel
     {
-        public PlayerData playerData;
+        public PlayerMovementData playerMovementData;
+        public PlayerHudData playerHudData;
         
         public float currentSpeed;
         public bool isCrouching;

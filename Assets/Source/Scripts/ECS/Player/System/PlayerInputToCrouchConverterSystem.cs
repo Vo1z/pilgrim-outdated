@@ -23,7 +23,7 @@ namespace Ingame.Player
                 ref var playerModel = ref _playerFilter.Get1(i);
                 ref var playerCharacterControllerModel = ref _playerFilter.Get2(i);
                 ref var playerCrouchRequest = ref playerEntity.Get<ChangeCharacterControllerHeightRequest>();
-                var playerData = playerModel.playerData;
+                var playerData = playerModel.playerMovementData;
 
                 if (playerModel.isCrouching && CheckIfPlayerCanStand(playerCharacterControllerModel))
                     playerModel.isCrouching = false;

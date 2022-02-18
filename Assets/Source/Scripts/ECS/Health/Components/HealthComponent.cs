@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace Ingame.Health
+﻿namespace Ingame.Health
 {
-    [Serializable]
     public struct HealthComponent
     {
+        public float initialHealth;
         public float currentHealth;
     }
 }

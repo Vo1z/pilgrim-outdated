@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65923028cc9841d79504ecae47a7bfd1, type: 3}
   m_Name: PlayerHudData
   m_EditorClassIdentifier: 
-  headBobbingStrength: 0.01
+  headBobbingStrengthX: 0
+  headBobbingStrengthY: 0.01
+  headBobbingStrengthZ: 0.005
+  headBobbingSpeedModifier: 0.4

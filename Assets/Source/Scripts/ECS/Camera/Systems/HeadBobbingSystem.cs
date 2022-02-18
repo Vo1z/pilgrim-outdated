@@ -18,13 +18,12 @@ namespace Ingame.CameraWork
 
             ref var playerModel = ref _playerModelFilter.Get1(0);
             ref var playerDeltaMovementComp = ref _playerModelFilter.Get2(0);
-            ref var mainCameraModel = ref _mainCameraFilter.Get1(0);
             ref var mainCameraTransformModel = ref _mainCameraFilter.Get2(0);
             ref var mainCameraBobbingComp = ref _mainCameraFilter.Get3(0);
 
             var playerHudData = playerModel.playerHudData;            
             var mainCameraTransform = mainCameraTransformModel.transform;
-            var mainCameraLocalPos = mainCameraTransform.localPosition;
+            
             float bobbingOffset = Mathf.Sin(mainCameraBobbingComp.timeSpentTraveling);
             float deltaMovementMagnitude = playerDeltaMovementComp.deltaMovement.magnitude * playerHudData.HeadBobbingSpeedModifier;
             
@@ -32,16 +31,17 @@ namespace Ingame.CameraWork
             {
                 mainCameraTransform.localPosition = new Vector3
                 (
-                    mainCameraLocalPos.x, 
-                    mainCameraTransformModel.initialLocalPos.y + bobbingOffset * playerHudData.HeadBobbingStrength,
-                    mainCameraLocalPos.z
+                    mainCameraTransformModel.initialLocalPos.x + bobbingOffset * playerHudData.HeadBobbingStrengthX,
+                    mainCameraTransformModel.initialLocalPos.y + bobbingOffset * playerHudData.HeadBobbingStrengthY,
+                    mainCameraTransformModel.initialLocalPos.z + bobbingOffset * playerHudData.HeadBobbingStrengthZ
                 );
+
                 mainCameraBobbingComp.timeSpentTraveling += deltaMovementMagnitude;
             }
             else
             {
                 mainCameraBobbingComp.timeSpentTraveling = 0;
-                mainCameraTransform.localPosition = Vector3.Lerp(mainCameraTransform.localPosition, mainCameraTransformModel.initialLocalPos, 5 * Time.deltaTime);
+                mainCameraTransform.localPosition = Vector3.Lerp(mainCameraTransform.localPosition, mainCameraTransformModel.initialLocalPos, playerHudData.HeadBobbingLerpingSpeed * Time.deltaTime);
             }
         }
     }

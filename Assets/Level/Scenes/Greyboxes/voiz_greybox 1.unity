@@ -235,8 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b072973770c4260940069a99f6ca227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    currentHealth: 100
+  initialActorHealth: 100
 --- !u!114 &43607564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,7 +498,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 103a4a0ff31d48128bd6bc67e0352a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 69d18ab4a87bc4a30ae2246a9e15c2c1, type: 2}
+  playerMovementData: {fileID: 11400000, guid: 69d18ab4a87bc4a30ae2246a9e15c2c1, type: 2}
+  playerHudData: {fileID: 11400000, guid: 10bd22dc13fd4484380dd8211fc33c04, type: 2}
 --- !u!1 &147448519
 GameObject:
   m_ObjectHideFlags: 0
@@ -5166,8 +5166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b072973770c4260940069a99f6ca227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    currentHealth: 100
+  initialActorHealth: 100
 --- !u!114 &830896309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5415,8 +5414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b072973770c4260940069a99f6ca227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    currentHealth: 100
+  initialActorHealth: 100
 --- !u!114 &923980435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6015,8 +6013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b072973770c4260940069a99f6ca227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    currentHealth: 100
+  initialActorHealth: 100
 --- !u!114 &1060450919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6364,8 +6361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b072973770c4260940069a99f6ca227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    currentHealth: 100
+  initialActorHealth: 100
 --- !u!114 &1111473494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7948,9 +7944,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.999
       objectReference: {fileID: 0}
+    - target: {fileID: 574534729221803743, guid: e81dbcbc7f67b847db82e5830daf6f21, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8238
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e81dbcbc7f67b847db82e5830daf6f21, type: 3}
       propertyPath: m_Name
       value: ACR_PDW
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539994309246704129, guid: e81dbcbc7f67b847db82e5830daf6f21, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650624981982216858, guid: e81dbcbc7f67b847db82e5830daf6f21, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.212
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81dbcbc7f67b847db82e5830daf6f21, type: 3}
@@ -8934,8 +8942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b072973770c4260940069a99f6ca227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    currentHealth: 100
+  initialActorHealth: 100
 --- !u!114 &1842765499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9094,8 +9101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b072973770c4260940069a99f6ca227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    currentHealth: 100
+  initialActorHealth: 100
 --- !u!114 &1855058784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9174,8 +9180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b072973770c4260940069a99f6ca227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    currentHealth: 100
+  initialActorHealth: 100
 --- !u!114 &1883500635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9807,8 +9812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b072973770c4260940069a99f6ca227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    currentHealth: 100
+  initialActorHealth: 100
 --- !u!114 &1951836748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10154,8 +10158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b072973770c4260940069a99f6ca227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    currentHealth: 100
+  initialActorHealth: 100
 --- !u!114 &1999872097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10223,8 +10226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b072973770c4260940069a99f6ca227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    currentHealth: 100
+  initialActorHealth: 100
 --- !u!114 &2003283175
 MonoBehaviour:
   m_ObjectHideFlags: 0

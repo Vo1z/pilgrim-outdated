@@ -1,4 +1,5 @@
-﻿using Ingame.Movement;
+﻿using Ingame.Input;
+using Ingame.Movement;
 using Ingame.Player;
 using Ingame.Utils;
 using Leopotam.Ecs;
@@ -23,25 +24,44 @@ namespace Ingame.CameraWork
 
             var playerHudData = playerModel.playerHudData;            
             var mainCameraTransform = mainCameraTransformModel.transform;
+            var mainCameraLocalPos = mainCameraTransform.localPosition;
             
             float bobbingOffset = Mathf.Sin(mainCameraBobbingComp.timeSpentTraveling);
             float deltaMovementMagnitude = playerDeltaMovementComp.deltaMovement.magnitude * playerHudData.HeadBobbingSpeedModifier;
-            
+
+
             if (deltaMovementMagnitude > .01f)
             {
-                mainCameraTransform.localPosition = new Vector3
-                (
-                    mainCameraTransformModel.initialLocalPos.x + bobbingOffset * playerHudData.HeadBobbingStrengthX,
-                    mainCameraTransformModel.initialLocalPos.y + bobbingOffset * playerHudData.HeadBobbingStrengthY,
-                    mainCameraTransformModel.initialLocalPos.z + bobbingOffset * playerHudData.HeadBobbingStrengthZ
-                );
+                var targetLocalPosition = new Vector3
+                {
+                    x = playerModel.currentLeanDirection == LeanDirection.None
+                        ? Mathf.Lerp(mainCameraLocalPos.x, mainCameraTransformModel.initialLocalPos.x + bobbingOffset * playerHudData.HeadBobbingStrengthX, playerHudData.HeadBobbingLerpingSpeed * Time.deltaTime)
+                        : mainCameraLocalPos.x,
 
+                    y = mainCameraTransformModel.initialLocalPos.y + bobbingOffset * playerHudData.HeadBobbingStrengthY,
+
+                    z = mainCameraTransformModel.initialLocalPos.z + bobbingOffset * playerHudData.HeadBobbingStrengthZ
+                };
+
+                mainCameraTransform.localPosition = targetLocalPosition;
                 mainCameraBobbingComp.timeSpentTraveling += deltaMovementMagnitude;
             }
             else
             {
                 mainCameraBobbingComp.timeSpentTraveling = 0;
-                mainCameraTransform.localPosition = Vector3.Lerp(mainCameraTransform.localPosition, mainCameraTransformModel.initialLocalPos, playerHudData.HeadBobbingLerpingSpeed * Time.deltaTime);
+
+                var targetLocalPosition = mainCameraTransformModel.initialLocalPos;
+                targetLocalPosition.x = mainCameraLocalPos.x;
+
+
+                mainCameraTransform.localPosition = Vector3.Lerp
+                (
+                    mainCameraTransform.localPosition,
+                    playerModel.currentLeanDirection == LeanDirection.None
+                        ? mainCameraTransformModel.initialLocalPos
+                        : targetLocalPosition, 
+                    playerHudData.HeadBobbingLerpingSpeed * Time.deltaTime
+                );
             }
         }
     }

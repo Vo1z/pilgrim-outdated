@@ -1,4 +1,4 @@
-namespace Ingame.Enemy.ECS {
+namespace Ingame.Enemy {
     public struct EnemyTag {
     }
 }

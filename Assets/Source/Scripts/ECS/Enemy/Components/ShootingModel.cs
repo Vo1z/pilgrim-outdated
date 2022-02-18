@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Ingame.Enemy.ECS
+namespace Ingame.Enemy 
 {
     [Serializable]
     public struct ShootingModel

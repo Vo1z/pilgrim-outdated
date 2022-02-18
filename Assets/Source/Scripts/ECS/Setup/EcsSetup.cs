@@ -1,7 +1,6 @@
 using Ingame.CameraWork;
 using Ingame.Debuging;
-using Ingame.Enemy.Ecs;
-using Ingame.Enemy.ECS;
+using Ingame.Enemy.System;
 using Ingame.Gunplay;
 using Ingame.Health;
 using Ingame.Hud;
@@ -140,11 +139,14 @@ namespace Ingame
                 .Add(new GunReloadCallbackReceiverSystem())
                 .Add(new HudGunAnimationSystem())
                 //AI
+                .Add(new InitializeEntityReferenceSystem())
+                .Add(new DetectSystem())
                 .Add(new PatrolSystem())
                 .Add(new FollowSystem())
-                .Add(new InitializeEntityReferenceSystem())
                 .Add(new AttackSystem())
                 .Add(new FleeSystem())
+                .Add(new HideSystem())
+                .Add(new EnemySoldierBehaviourSystem())
                 //Health
                 .Add(new DamageSystem())
                 .Add(new BleedingSystem())

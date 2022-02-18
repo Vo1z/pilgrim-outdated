@@ -1,10 +1,7 @@
-﻿namespace Ingame.Enemy.ECS
+﻿namespace Ingame.Enemy
 {
-    namespace Ingame.Enemy.ECS
+    public struct TargetableTag
     {
-        public struct TargetableTag
-        {
 
-        }
     }
 }

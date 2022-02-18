@@ -1,6 +1,6 @@
-using UnityEngine;
 
-namespace Ingame.Enemy.ECS {
+
+namespace Ingame.Enemy {
     public struct WaypointReverseComponent
     {
         public bool Direction;

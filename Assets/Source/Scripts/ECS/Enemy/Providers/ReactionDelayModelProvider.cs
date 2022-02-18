@@ -1,6 +1,6 @@
 ﻿using Voody.UniLeo;
 
-namespace Ingame.Enemy.ECS
+namespace Ingame.Enemy.Provider
 {
     public class ReactionDelayModelProvider : MonoProvider<ReactionDelayModel>
     {

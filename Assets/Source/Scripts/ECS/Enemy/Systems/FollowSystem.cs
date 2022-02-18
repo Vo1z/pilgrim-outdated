@@ -1,7 +1,8 @@
+using Ingame.Enemy.State;
 using Leopotam.Ecs;
-using UnityEngine;
+ 
 
-namespace Ingame.Enemy.ECS{
+namespace Ingame.Enemy.System{
     sealed class FollowSystem : IEcsRunSystem {
         private readonly EcsFilter<EnemyMovementComponent,LocateTargetComponent,FollowStateTag> _enemyFilter;
         

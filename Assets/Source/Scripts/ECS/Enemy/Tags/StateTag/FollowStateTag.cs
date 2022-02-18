@@ -1,5 +1,5 @@
-namespace Ingame.Enemy.ECS {
+namespace Ingame.Enemy.State {
     public struct FollowStateTag {
-        // add your data here.
+ 
     }
 }

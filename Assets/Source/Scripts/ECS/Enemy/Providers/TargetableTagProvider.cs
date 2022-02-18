@@ -1,7 +1,7 @@
-﻿using Ingame.Enemy.ECS.Ingame.Enemy.ECS;
+﻿
 using Voody.UniLeo;
 
-namespace Ingame.Enemy.ECS
+namespace Ingame.Enemy.Provider
 {
     public class TargetableTagProvider : MonoProvider<TargetableTag>
     {

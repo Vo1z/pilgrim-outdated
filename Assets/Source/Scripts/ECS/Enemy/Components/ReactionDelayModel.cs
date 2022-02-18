@@ -1,8 +1,7 @@
 ﻿using System;
 using Ingame.Enemy.Data;
-using UnityEngine;
 
-namespace Ingame.Enemy.ECS
+namespace Ingame.Enemy
 {      
     [Serializable]
     public struct ReactionDelayModel

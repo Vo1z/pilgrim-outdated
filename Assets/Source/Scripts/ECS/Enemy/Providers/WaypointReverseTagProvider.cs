@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Voody.UniLeo;
 
-namespace Ingame.Enemy.ECS
+namespace Ingame.Enemy.Provider
 {
     public class WaypointReverseTagProvider : MonoProvider<WaypointReverseComponent>
     {

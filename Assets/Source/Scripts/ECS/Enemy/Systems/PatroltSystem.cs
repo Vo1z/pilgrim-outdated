@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Ingame.Enemy.State;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame.Enemy.ECS
+namespace Ingame.Enemy.System
 {
     public sealed class PatrolSystem : IEcsRunSystem
     {

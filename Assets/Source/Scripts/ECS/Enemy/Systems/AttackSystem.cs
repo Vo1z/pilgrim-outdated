@@ -1,6 +1,5 @@
-using System;
 using DG.Tweening;
-using Ingame.Enemy.ECS;
+using Ingame.Enemy.State;
 using Ingame.Movement;
 using Leopotam.Ecs;
 using Support;
@@ -8,7 +7,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-namespace Ingame.Enemy.Ecs {
+namespace Ingame.Enemy.System {
     sealed class AttackSystem : IEcsRunSystem {
         private readonly EcsFilter<LocateTargetComponent,ShootingModel,TransformModel,EnemyMovementComponent,ReactionDelayModel,AttackStateTag> _enemyFilter;
         
@@ -69,6 +68,10 @@ namespace Ingame.Enemy.Ecs {
                         if (hit.collider.tag == "Player")
                         {
                             TemplateUtils.SafeDebug("hit");
+                        }
+                        else
+                        {
+                            TemplateUtils.SafeDebug("Dodge");
                         }
                     }
                     entity.Get<ShootingBlockComponent>();

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Ingame.Enemy.State;
+using Ingame.Health;
 using Ingame.Movement;
 using Leopotam.Ecs;
 using Support;
@@ -23,30 +24,15 @@ namespace Ingame.Enemy.System {
                 ref var reactionDelay = ref entity.Get<ReactionDelayModel>();
                 movement.NavMeshAgent.isStopped = true; 
                 
-
-                /*RaycastHit rayHit = new RaycastHit();
-                Ray ray = new Ray(transformModel.transform.position, target.Target.position - transformModel.transform.position);
-                Debug.DrawRay(transformModel.transform.position,target.Target.position - transformModel.transform.position);
-                if (Physics.Raycast(ray,out rayHit,1000,1))
-                {
-                    Debug.Log("DOdge");
-                }
-                else
-                {
-                    Debug.Log("hit");
-                }*/
                 var delay = reactionDelay.ReactionTimeData.ReactionDelayFlat+Random.Range(-reactionDelay.ReactionTimeData.ReactionDelayRandom,reactionDelay.ReactionTimeData.ReactionDelayRandom);
                
                 transformModel.transform.DOLookAt(target.Target.position,delay);
-                //transformModel.transform.rotation = Quaternion.Euler(Mathf.Clamp(transformModel.transform.localRotation.x,-15,15),transformModel.transform.rotation.y,0);
-
-
                 if (entity.Has<ShootingBlockComponent>())
                 {
                     //shooting cooldown
                     ref var block = ref entity.Get<ShootingBlockComponent>();
                     block.BlockTime += Time.deltaTime;
-                    var res = block.BlockTime >= shooting.Timer;
+                    var res = block.BlockTime >= shooting.ShootingData.Timer;
                     if (!res)
                     {
                         return;
@@ -55,23 +41,29 @@ namespace Ingame.Enemy.System {
                 }
                 else
                 {
-                    //
-                    //var randZ =  Random.Range(-shooting.Accuracy, shooting.Accuracy)*Vector3.right;
-                    var randY =  Random.Range(-shooting.Accuracy, shooting.Accuracy)*Vector3.up;
-                    var randX =  Random.Range(-shooting.Accuracy, shooting.Accuracy)*Vector3.forward;
-                    var rand = randX + randY;
+                    //random Vector
+                    var randY =  Random.Range(-shooting.ShootingData.Accuracy, shooting.ShootingData.Accuracy)*Vector3.up;
+                    var randX =  Random.Range(-shooting.ShootingData.Accuracy, shooting.ShootingData.Accuracy)*Vector3.forward;
+                    var randZ =  Random.Range(-shooting.ShootingData.Accuracy, shooting.ShootingData.Accuracy)*Vector3.left;
+                    var rand = randX + randY + randZ;
                     //shooting system
                     RaycastHit hit;
-                    if (Physics.Raycast(transformModel.transform.position, transformModel.transform.forward, out hit, 1000.0F))
+                    var position = transformModel.transform.position;
+                    Debug.DrawLine(position, position+ transformModel.transform.forward*shooting.ShootingData.Distance+rand);
+                    if (Physics.Linecast(transformModel.transform.position,transformModel.transform.position+ transformModel.transform.forward*shooting.ShootingData.Distance+rand,out hit))
                     {
-                        Debug.DrawRay(transformModel.transform.position, target.Target.position - transformModel.transform.position+rand);
-                        if (hit.collider.tag == "Player")
+                        var res = hit.collider.gameObject.TryGetComponent(out EntityReference entityReference);
+                        if (!res)
                         {
-                            TemplateUtils.SafeDebug("hit");
+                            hit.collider.gameObject.AddComponent<EntityReferenceRequestProvider>();
+                            entityReference = hit.collider.gameObject.GetComponent<EntityReference>();
                         }
-                        else
+
+                        ref var entityOfTarget = ref entityReference.Entity;
+                        if (entityOfTarget.Has<HealthComponent>())
                         {
-                            TemplateUtils.SafeDebug("Dodge");
+                            ref var damageComponent =ref entityOfTarget.Get<DamageComponent>();
+                            damageComponent.damageToDeal = shooting.ShootingData.Damage;
                         }
                     }
                     entity.Get<ShootingBlockComponent>();

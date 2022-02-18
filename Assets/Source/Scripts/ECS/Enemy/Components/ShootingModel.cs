@@ -1,15 +1,12 @@
 ﻿using System;
 using UnityEngine;
-
+using NaughtyAttributes;
 namespace Ingame.Enemy 
 {
     [Serializable]
     public struct ShootingModel
     {
-        [Min(0)]
-        public float Timer;
-        [Min(0)]
-        public float Accuracy;
-
+        [Expandable]
+        public EnemyShootingData ShootingData;
     }
 }

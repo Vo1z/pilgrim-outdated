@@ -43,20 +43,18 @@ namespace Ingame.Enemy.System
                     return;
                 }
                 //Attack State
-                ref var target = ref targetComponent.Target;
                 foreach (var item in vision.Opponents)
                 {
-                    Vector3 direction = target.transform.position- transformModel.transform.position;
+                    Vector3 direction = item.transform.position- transformModel.transform.position;
                     direction.y = 0;
                     float deltaAngle = Vector3.Angle(direction, transformModel.transform.forward);
                     if (deltaAngle>vision.Vision.Angle || deltaAngle<0)
                     {
                         continue;
                     }
-
                     var originY = transformModel.transform.position.y + vision.Vision.Height / 2;
                     var origin = new Vector3(transformModel.transform.position.x,originY,transformModel.transform.position.z);
-                    var dest = new Vector3(target.transform.position.x,originY,target.transform.position.z);
+                    var dest = new Vector3(item.transform.position.x,originY,item.transform.position.z);
             
                     if (!Physics.Linecast(origin,dest,vision.Vision.Mask))
                     {

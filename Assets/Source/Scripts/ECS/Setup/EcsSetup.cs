@@ -8,6 +8,7 @@ using Ingame.Input;
 using Ingame.Interaction.Common;
 using Ingame.Interaction.Doors;
 using Ingame.Inventory;
+using Ingame.Inventory.Items;
 using Ingame.Movement;
 using Ingame.Player;
 using Ingame.Utils;
@@ -110,6 +111,7 @@ namespace Ingame
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem())
+                .Add(new ItemInitializeSystem())
                 .Add(new GunInitSystem())
                 .Add(new DeltaMovementInitializeSystem())
                 .Add(new CameraInitializeSystem());
@@ -158,6 +160,7 @@ namespace Ingame
                 .Add(new DoorRotationSystem())
                 //Inventory
                 .Add(new ItemPickupSystem())
+                .Add(new ItemsInInventoryDisplaySystem())
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())

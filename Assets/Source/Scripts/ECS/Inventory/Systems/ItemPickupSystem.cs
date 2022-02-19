@@ -9,6 +9,7 @@ namespace Ingame.Inventory
 {
     public class ItemPickupSystem : IEcsRunSystem
     {
+        private readonly EcsWorld _world;
         private readonly EcsFilter<ItemComponent, InteractiveTag, PerformInteractionTag> _pickupItemsFilter;
         private readonly EcsFilter<PlayerModel, InventoryComponent> _playerFilter;
 
@@ -58,6 +59,8 @@ namespace Ingame.Inventory
                 
             if(itemEntity.Has<TransformModel>())
                 itemEntity.Get<TransformModel>().transform.SetGameObjectInactive();
+            
+            _world.NewEntity().Get<UpdateInventoryAppearanceEvent>();
         }
     }
 }

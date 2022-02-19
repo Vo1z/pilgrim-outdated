@@ -9,7 +9,9 @@ namespace Ingame.Enemy
     public struct EnemyMovementComponent 
     {
         public EnemyMovementData EnemyMovementData;
+        [HideInInspector]
         public Transform Waypoint;
+        [HideInInspector]
         public NavMeshAgent NavMeshAgent;
     }
 }

@@ -1,4 +1,4 @@
 ﻿namespace Ingame.Hud
 {
-    internal struct HudIsVisibleTag { }
+    public struct HudIsVisibleTag { }
 }

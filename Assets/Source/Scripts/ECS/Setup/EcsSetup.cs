@@ -110,7 +110,6 @@ namespace Ingame
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem())
-                .Add(new HudItemModelInitializeSystem())
                 .Add(new GunInitSystem())
                 .Add(new DeltaMovementInitializeSystem())
                 .Add(new CameraInitializeSystem());

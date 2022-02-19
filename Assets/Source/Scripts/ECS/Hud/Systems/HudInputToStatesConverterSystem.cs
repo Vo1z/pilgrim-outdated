@@ -15,8 +15,9 @@ namespace Ingame.Hud
             foreach (var i in _itemModelFilter)
             {
                 ref var inHandsItemEntity = ref _itemModelFilter.GetEntity(i);
+                var itemData = _itemModelFilter.Get1(i).itemData;
 
-                if (!_aimEventFilter.IsEmpty())
+                if (!_aimEventFilter.IsEmpty() && itemData.CanBeUsedAsAim)
                 {
                     if (inHandsItemEntity.Has<HudIsAimingTag>())
                         inHandsItemEntity.Del<HudIsAimingTag>();

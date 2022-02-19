@@ -7,11 +7,11 @@ namespace Ingame.DI.Installers
 {
     public class PlayerInstaller : MonoInstaller
     {
-        [Required]
+        [Required, Expandable]
         [SerializeField] private PlayerMovementData playerMovementData;
-        [Required]
+        [Required, Expandable]
         [SerializeField] private PlayerHudData playerHudData;
-        [Required]
+        [Required, Expandable]
         [SerializeField] private PlayerInventoryData playerInventoryData;
         
         public override void InstallBindings()

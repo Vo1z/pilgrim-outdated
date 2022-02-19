@@ -1,11 +1,10 @@
-﻿using Ingame.Gunplay;
-using Leopotam.Ecs;
+﻿using Leopotam.Ecs;
 
 namespace Ingame.Hud
 {
     public sealed class HudGunAnimationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemModel, GunModel, InHandsTag> _gunItemModelFilter;
+        private readonly EcsFilter<HudItemModel, InHandsTag> _gunItemModelFilter;
         private readonly EcsFilter<HudReloadAnimationTriggerEvent> _hudReloadAnimationEventFilter;
         private readonly EcsFilter<HudDistortTheShutterAnimationTriggerEvent> _hudDistortTheShutterAnimationEventFilter;
 
@@ -16,7 +15,7 @@ namespace Ingame.Hud
                 ref var hudItemEntity = ref _gunItemModelFilter.GetEntity(i);
                 ref var hudItemModel = ref _gunItemModelFilter.Get1(i);
                 var animator = hudItemModel.itemAnimator;
-                
+               
                 animator.SetBool("IsAiming", hudItemEntity.Has<HudIsAimingTag>());
                 animator.SetBool("IsVisible", hudItemEntity.Has<HudIsVisibleTag>());
 

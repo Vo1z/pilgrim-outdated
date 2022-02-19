@@ -18,6 +18,7 @@ namespace Ingame.Hud
                 var animator = hudItemModel.itemAnimator;
                 
                 animator.SetBool("IsAiming", hudItemEntity.Has<HudIsAimingTag>());
+                animator.SetBool("IsVisible", hudItemEntity.Has<HudIsVisibleTag>());
 
                 if (!_hudReloadAnimationEventFilter.IsEmpty())
                 {

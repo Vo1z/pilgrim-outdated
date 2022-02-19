@@ -97,6 +97,7 @@ namespace Ingame
                 .OneFrame<ReloadInputEvent>()
                 .OneFrame<DistortTheShutterInputEvent>()
                 .OneFrame<InteractInputEvent>()
+                .OneFrame<OpenInventoryInputEvent>()
                 .OneFrame<HudReloadAnimationTriggerEvent>()
                 .OneFrame<HudDistortTheShutterAnimationTriggerEvent>();
         }
@@ -109,6 +110,7 @@ namespace Ingame
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem())
+                .Add(new HudItemModelInitializeSystem())
                 .Add(new GunInitSystem())
                 .Add(new DeltaMovementInitializeSystem())
                 .Add(new CameraInitializeSystem());

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovementData: {fileID: 11400000, guid: 69d18ab4a87bc4a30ae2246a9e15c2c1, type: 2}
   playerHudData: {fileID: 11400000, guid: 10bd22dc13fd4484380dd8211fc33c04, type: 2}
+  playerInventoryData: {fileID: 11400000, guid: 59cc258d5313df04d9d8846cf5faf0d3, type: 2}
 --- !u!1 &820002640
 GameObject:
   m_ObjectHideFlags: 0

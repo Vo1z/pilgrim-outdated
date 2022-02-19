@@ -11,6 +11,8 @@ namespace Ingame.DI.Installers
         [SerializeField] private PlayerMovementData playerMovementData;
         [Required]
         [SerializeField] private PlayerHudData playerHudData;
+        [Required]
+        [SerializeField] private PlayerInventoryData playerInventoryData;
         
         public override void InstallBindings()
         {
@@ -23,6 +25,12 @@ namespace Ingame.DI.Installers
             Container
                 .Bind<PlayerHudData>()
                 .FromInstance(playerHudData)
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<PlayerInventoryData>()
+                .FromInstance(playerInventoryData)
                 .AsSingle()
                 .NonLazy();
         }

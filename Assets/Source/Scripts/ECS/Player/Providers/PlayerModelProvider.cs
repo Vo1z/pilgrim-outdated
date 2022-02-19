@@ -6,12 +6,13 @@ namespace Ingame.Player
     public sealed class PlayerModelProvider : MonoProvider<PlayerModel>
     {
         [Inject]
-        private void Construct(PlayerMovementData injectedPlayerMovementData, PlayerHudData playerHudData)
+        private void Construct(PlayerMovementData injectedPlayerMovementData, PlayerHudData playerHudData, PlayerInventoryData playerInventoryData)
         {
             value = new PlayerModel
             {
                 playerMovementData = injectedPlayerMovementData,
-                playerHudData = playerHudData
+                playerHudData = playerHudData,
+                playerInventoryData = playerInventoryData
             };
         }
     }

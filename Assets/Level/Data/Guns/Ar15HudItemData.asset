@@ -36,7 +36,7 @@ MonoBehaviour:
   rotationMovementAngleMultiplierX: 20
   inverseRotationMovementX: 1
   minMaxRotationMovementAngleZ: {x: -15, y: 10}
-  rotationMovementAngleMultiplierZ: 20
+  rotationMovementAngleMultiplierZ: 30
   inverseRotationMovementZ: 1
   minMaxAimRotationMovementAngleX: {x: -5, y: 5}
   aimRotationMovementAngleMultiplierX: 10

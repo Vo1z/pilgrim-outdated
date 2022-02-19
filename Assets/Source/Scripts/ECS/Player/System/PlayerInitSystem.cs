@@ -1,4 +1,5 @@
 ﻿using Ingame.Input;
+using Ingame.Inventory;
 using Ingame.Movement;
 using Ingame.Player;
 using Ingame.Utils;
@@ -27,6 +28,7 @@ namespace Ingame.Player
                 ref var playerTransformModel = ref playerEntity.Get<TransformModel>();
                 playerEntity.Get<TimerComponent>();
                 playerEntity.Get<VelocityComponent>();
+                playerEntity.Get<InventoryComponent>();
                 
                 var playerData = playerModel.playerMovementData;
 

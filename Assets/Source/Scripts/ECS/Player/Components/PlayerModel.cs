@@ -6,6 +6,7 @@ namespace Ingame.Player
     {
         public PlayerMovementData playerMovementData;
         public PlayerHudData playerHudData;
+        public PlayerInventoryData playerInventoryData;
         
         public float currentSpeed;
         public bool isCrouching;

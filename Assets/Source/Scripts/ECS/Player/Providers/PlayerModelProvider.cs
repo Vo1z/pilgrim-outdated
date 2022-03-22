@@ -1,4 +1,5 @@
-﻿using Voody.UniLeo;
+﻿using Ingame.Data.Player;
+using Voody.UniLeo;
 using Zenject;
 
 namespace Ingame.Player

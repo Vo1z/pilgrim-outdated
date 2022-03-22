@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerHudData
   m_EditorClassIdentifier: 
   headBobbingLerpingSpeed: 4
-  headBobbingSpeedModifier: 1
+  headBobbingSpeedModifier: 2.5
   headBobbingStrengthX: 0
   headBobbingStrengthY: 0.005
   headBobbingStrengthZ: 0.01

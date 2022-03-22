@@ -35,7 +35,7 @@ namespace Ingame.CameraWork
                 var targetLocalPosition = new Vector3
                 {
                     x = playerModel.currentLeanDirection == LeanDirection.None
-                        ? Mathf.Lerp(mainCameraLocalPos.x, mainCameraTransformModel.initialLocalPos.x + bobbingOffset * playerHudData.HeadBobbingStrengthX, playerHudData.HeadBobbingLerpingSpeed * Time.deltaTime)
+                        ? Mathf.Lerp(mainCameraLocalPos.x, mainCameraTransformModel.initialLocalPos.x + bobbingOffset * playerHudData.HeadBobbingStrengthX, playerHudData.HeadBobbingLerpingSpeed * Time.fixedDeltaTime)
                         : mainCameraLocalPos.x,
 
                     y = mainCameraTransformModel.initialLocalPos.y + bobbingOffset * playerHudData.HeadBobbingStrengthY,
@@ -60,7 +60,7 @@ namespace Ingame.CameraWork
                     playerModel.currentLeanDirection == LeanDirection.None
                         ? mainCameraTransformModel.initialLocalPos
                         : targetLocalPosition, 
-                    playerHudData.HeadBobbingLerpingSpeed * Time.deltaTime
+                    playerHudData.HeadBobbingLerpingSpeed * Time.fixedDeltaTime
                 );
             }
         }

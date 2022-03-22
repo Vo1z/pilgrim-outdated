@@ -1,4 +1,4 @@
-using Ingame.Guns;
+using Ingame.Data.Gunplay;
 using Ingame.Utils;
 using NaughtyAttributes;
 using UnityEngine;

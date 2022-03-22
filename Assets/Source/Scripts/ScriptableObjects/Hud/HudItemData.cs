@@ -1,12 +1,15 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Data.Hud
 {
     [CreateAssetMenu(menuName = "Ingame/HudItemData", fileName = "newHudItemData")]
     public class HudItemData : ScriptableObject
     {
-        [BoxGroup("Hud stats (Rotation)"),]
+        [BoxGroup("Hud stats (Common)")]
+        [SerializeField] private bool canBeUsedAsAim = true;
+
+        [BoxGroup("Hud stats (Rotation)")]
         [SerializeField] [Range(0, 10)] private float rotationSpeed = 5;
         
         [BoxGroup("Hud stats (Rotation)"), Space]
@@ -29,31 +32,37 @@ namespace Ingame
         [SerializeField] [Range(0, 40)] private float rotationAngleMultiplierZ = 20; 
         [BoxGroup("Hud stats (Rotation)")] 
         [SerializeField] private bool inverseRotationZ = false;
-        
-        
-        
-        [BoxGroup("Hud stats (Aim Rotation)"),]
+
+        [BoxGroup("Hud stats (Rotation)"), Space]
+        [SerializeField] private bool isItemMovedDueToRotation = false;
+        [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedDueToRotation")] 
+        [SerializeField] [MinMaxSlider(-2, 2)] private Vector2 minMaxMovementOffsetY = new(0, 0);
+        [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedDueToRotation")]
+        [SerializeField] [Range(0, 10)] private float moveSpeed = 5f;
+
+
+        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")]
         [SerializeField] [Range(0, 10)] private float aimRotationSpeed = 5;
         
-        [BoxGroup("Hud stats (Aim Rotation)"), Space]
+        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationAngleX;
-        [BoxGroup("Hud stats (Aim Rotation)")]                                           
+        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")]                                           
         [SerializeField] [Range(0, 20)] private float aimRotationAngleMultiplierX = 20;
-        [BoxGroup("Hud stats (Aim Rotation)")] 
+        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")] 
         [SerializeField] private bool inverseAimRotationX = false;
         
-        [BoxGroup("Hud stats (Aim Rotation)"), Space]
+        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationAngleY;
-        [BoxGroup("Hud stats (Aim Rotation)")]                                                      
+        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")]                                                      
         [SerializeField] [Range(0, 40)] private float aimRotationAngleMultiplierY = 20;
-        [BoxGroup("Hud stats (Aim Rotation)")] 
+        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")] 
         [SerializeField] private bool inverseAimRotationY = false;
 
-        [BoxGroup("Hud stats (Aim Rotation)"), Space]
+        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationAngleZ;
-        [BoxGroup("Hud stats (Aim Rotation)")]                                                      
+        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")]                                                      
         [SerializeField] [Range(0, 40)] private float aimRotationAngleMultiplierZ = 20; 
-        [BoxGroup("Hud stats (Aim Rotation)")] 
+        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")] 
         [SerializeField] private bool inverseAimRotationZ = false;
 
         
@@ -74,18 +83,18 @@ namespace Ingame
 
         
         
-        [BoxGroup("Hud stats (Aim Movement)"), Space]
+        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationMovementAngleX;
-        [BoxGroup("Hud stats (Aim Movement)")]
+        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim")]
         [SerializeField] [Range(0, 40)] private float aimRotationMovementAngleMultiplierX = 20;
-        [BoxGroup("Hud stats (Aim Movement)")]
+        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim")]
         [SerializeField] private bool inverseAimRotationMovementX = false;
         
-        [BoxGroup("Hud stats (Aim Movement)"), Space]
+        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationMovementAngleY;
-        [BoxGroup("Hud stats (Aim Movement)")]
+        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim")]
         [SerializeField] [Range(0, 40)] private float aimRotationMovementAngleMultiplierY = 20;
-        [BoxGroup("Hud stats (Aim Movement)")]
+        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim")]
         [SerializeField] private bool inverseAimRotationMovementY = false;
         
         
@@ -97,6 +106,8 @@ namespace Ingame
         [BoxGroup("Hud stats (Clipping)")]
         [SerializeField] [Range(0, 10f)] private float clippingMovementSpeed = 3f;
 
+        public bool CanBeUsedAsAim => canBeUsedAsAim;
+        
         public float RotationSpeed => rotationSpeed;
         
         public Vector2 MinMaxRotationAngleX => minMaxRotationAngleX;
@@ -111,6 +122,9 @@ namespace Ingame
         public float RotationAngleMultiplierZ => rotationAngleMultiplierZ;
         public float InverseRotationZ => inverseRotationZ ? -1: 1;
 
+        public bool IsItemMovedDueToRotation => isItemMovedDueToRotation;
+        public Vector2 MinMaxMovementOffsetY => minMaxMovementOffsetY;
+        public float MoveSpeed => moveSpeed;
         
         
         public float AimRotationSpeed => aimRotationSpeed;

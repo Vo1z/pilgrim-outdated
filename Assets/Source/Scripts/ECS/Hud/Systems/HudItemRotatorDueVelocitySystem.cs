@@ -1,4 +1,5 @@
-﻿using Ingame.Movement;
+﻿using Ingame.Data.Hud;
+using Ingame.Movement;
 using Ingame.Player;
 using Leopotam.Ecs;
 using UnityEngine;

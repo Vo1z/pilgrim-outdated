@@ -1,5 +1,5 @@
 ﻿using System;
-using Ingame.Guns;
+using Ingame.Data.Gunplay;
 using NaughtyAttributes;
 using UnityEngine;
 

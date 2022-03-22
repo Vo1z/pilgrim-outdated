@@ -10,6 +10,7 @@ using Ingame.Input;
 using Ingame.Interaction.Common;
 using Ingame.Interaction.Doors;
 using Ingame.Inventory;
+using Ingame.Inventory.Items;
 using Ingame.Movement;
 using Ingame.Player;
 using Ingame.Utils;
@@ -99,6 +100,7 @@ namespace Ingame
                 .OneFrame<ReloadInputEvent>()
                 .OneFrame<DistortTheShutterInputEvent>()
                 .OneFrame<InteractInputEvent>()
+                .OneFrame<OpenInventoryInputEvent>()
                 .OneFrame<HudReloadAnimationTriggerEvent>()
                 .OneFrame<HudDistortTheShutterAnimationTriggerEvent>()
                 .OneFrame<NoiseGeneratorEvent>();
@@ -112,6 +114,7 @@ namespace Ingame
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem())
+                .Add(new ItemInitializeSystem())
                 .Add(new GunInitSystem())
                 .Add(new DeltaMovementInitializeSystem())
                 .Add(new CameraInitializeSystem());
@@ -130,8 +133,9 @@ namespace Ingame
                 .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
+                .Add(new HudItemMoverSystemDueToRotation())
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
-                .Add(new HeadBobbingSystem())
+                // .Add(new HeadBobbingSystem())
                 //Gun play
                 .Add(new GunDistortTheShutterInputConverterSystem())
                 .Add(new GunReloadInputConverterSystem())
@@ -156,7 +160,11 @@ namespace Ingame
                 .Add(new AcidWaterSystem())
                 //Health
                 .Add(new DamageSystem())
+                .Add(new StopBleedingSystem())
                 .Add(new BleedingSystem())
+                .Add(new StopGasChokeSystem())
+                .Add(new GasChokeSystem())
+                .Add(new HealingSystem())
                 .Add(new DeathSystem())
                 .Add(new DestroyDeadActorsSystem())
                 //Interaction
@@ -164,6 +172,8 @@ namespace Ingame
                 .Add(new DoorRotationSystem())
                 //Inventory
                 .Add(new ItemPickupSystem())
+                .Add(new ItemsInInventoryDisplaySystem())
+                .Add(new InventoryItemUsingSystem())
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())
@@ -176,6 +186,8 @@ namespace Ingame
                 .Add(new PlayerInputToMovementConvertSystem())
                  //Utils
                  .Add(new DeltaMovementCalculationSystem())
+                 //Hud
+                 .Add(new HeadBobbingSystem())
                  //Movement
                 .Add(new FrictionSystem())
                 .Add(new SlidingSystem())

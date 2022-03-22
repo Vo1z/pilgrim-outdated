@@ -145,6 +145,15 @@ namespace Support
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""4998a9d8-5e78-4ad6-8f1a-04ada90b255b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -554,6 +563,17 @@ namespace Support
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7621c6d2-e1e9-4870-aca7-45fa9066ee66"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -575,6 +595,7 @@ namespace Support
             m_FPS_Reload = m_FPS.FindAction("Reload", throwIfNotFound: true);
             m_FPS_DistortTheShutter = m_FPS.FindAction("DistortTheShutter", throwIfNotFound: true);
             m_FPS_Interact = m_FPS.FindAction("Interact", throwIfNotFound: true);
+            m_FPS_OpenInventory = m_FPS.FindAction("OpenInventory", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -647,6 +668,7 @@ namespace Support
         private readonly InputAction m_FPS_Reload;
         private readonly InputAction m_FPS_DistortTheShutter;
         private readonly InputAction m_FPS_Interact;
+        private readonly InputAction m_FPS_OpenInventory;
         public struct FPSActions
         {
             private @StationaryInput m_Wrapper;
@@ -664,6 +686,7 @@ namespace Support
             public InputAction @Reload => m_Wrapper.m_FPS_Reload;
             public InputAction @DistortTheShutter => m_Wrapper.m_FPS_DistortTheShutter;
             public InputAction @Interact => m_Wrapper.m_FPS_Interact;
+            public InputAction @OpenInventory => m_Wrapper.m_FPS_OpenInventory;
             public InputActionMap Get() { return m_Wrapper.m_FPS; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -712,6 +735,9 @@ namespace Support
                     @Interact.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnInteract;
                     @Interact.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnInteract;
                     @Interact.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnInteract;
+                    @OpenInventory.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnOpenInventory;
+                    @OpenInventory.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnOpenInventory;
+                    @OpenInventory.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnOpenInventory;
                 }
                 m_Wrapper.m_FPSActionsCallbackInterface = instance;
                 if (instance != null)
@@ -755,6 +781,9 @@ namespace Support
                     @Interact.started += instance.OnInteract;
                     @Interact.performed += instance.OnInteract;
                     @Interact.canceled += instance.OnInteract;
+                    @OpenInventory.started += instance.OnOpenInventory;
+                    @OpenInventory.performed += instance.OnOpenInventory;
+                    @OpenInventory.canceled += instance.OnOpenInventory;
                 }
             }
         }
@@ -774,6 +803,7 @@ namespace Support
             void OnReload(InputAction.CallbackContext context);
             void OnDistortTheShutter(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
+            void OnOpenInventory(InputAction.CallbackContext context);
         }
     }
 }

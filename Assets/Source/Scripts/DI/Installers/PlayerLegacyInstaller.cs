@@ -1,4 +1,4 @@
-using Ingame.Player;
+using Ingame.Data.Player;
 using NaughtyAttributes;
 using UnityEngine;
 using Zenject;

@@ -9,7 +9,7 @@ namespace Ingame.Enemy.System
 {
     public class HideSystem: IEcsRunSystem
     {
-        private EcsFilter<EnemyMovementComponent,LocateTargetComponent,HideBehindObstacleComponent,TransformModel,HideStateTag> _filter;
+        private EcsFilter<EnemyMovementComponent,LocateTargetComponent,HideModel,TransformModel,HideStateTag> _filter;
         public void Run()
         {
             foreach (var i in _filter)
@@ -19,24 +19,19 @@ namespace Ingame.Enemy.System
                 ref var target = ref _filter.Get2(i);
                 ref var obstacle = ref _filter.Get3(i);
                 ref var enemy = ref entity.Get<TransformModel>();
-
-                var distanceA = (obstacle.Obstacle.position - target.Target.position).magnitude;
-                var distanceB = (obstacle.Obstacle.position - enemy.transform.position).magnitude;
-                if (distanceA<distanceB || (target.Target.position-enemy.transform.position).magnitude<100)
-                {
-                    //find another obstacle or flee/attack
-                    //todo
-                    //implement inside enemy
-                }
-
-                RaycastHit ray;
-                bool result = (Physics.Linecast(target.Target.position,enemy.transform.position,out ray));
-                if (ray.collider.CompareTag("Terrain"))
+                
+                bool result = (Physics.Linecast(target.Target.position,enemy.transform.position,out RaycastHit ray));
+                //Hidden
+                if (ray.collider.CompareTag("Terrain") && result)
                 {
                     enemy.transform.LookAt(target.Target);
-                   return;
+                    entity.Del<HideInProgressTag>();
+                    entity.Get<HideBlockComponent>();
+                   continue;
                 }
 
+                entity.Get<HideInProgressTag>();
+                    //Find cover
                 if (NavMesh.SamplePosition(obstacle.Obstacle.position + (obstacle.Obstacle.position-target.Target.position).normalized ,out NavMeshHit hit,1f,NavMesh.AllAreas))
                 {
                     movement.NavMeshAgent.destination = hit.position;

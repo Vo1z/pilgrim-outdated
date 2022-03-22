@@ -1,4 +1,5 @@
 ﻿using Ingame.Gunplay;
+using LeoEcsPhysics;
 using Leopotam.Ecs;
 
 namespace Ingame.Utils
@@ -7,7 +8,8 @@ namespace Ingame.Utils
     {
         private readonly EcsFilter<ReloadPerformedCallbackEvent> _reloadCallbackEventFilter;
         private readonly EcsFilter<ShutterDistortionPerformedCallbackEvent> _shutterDistortionCallbackEventFilter;
-
+        private readonly EcsFilter<OnTriggerEnterEvent> _filterEnter;
+        private readonly EcsFilter<OnTriggerExitEvent> _filterExit;
         public void Run()
         {
             foreach (var i in _reloadCallbackEventFilter)
@@ -21,6 +23,19 @@ namespace Ingame.Utils
                 ref var eventEntity = ref _shutterDistortionCallbackEventFilter.GetEntity(i);
                 eventEntity.Del<ShutterDistortionPerformedCallbackEvent>();
             }
+            
+            foreach (var i in _filterEnter)
+            {
+                ref var eventEntity = ref _filterEnter.GetEntity(i);
+                eventEntity.Del<OnTriggerEnterEvent>();
+            }
+
+            foreach (var i in _filterExit)
+            {
+                ref var eventEntity = ref _filterExit.GetEntity(i);
+                eventEntity.Del<OnTriggerExitEvent>();
+            }
+
         }
     }
 }

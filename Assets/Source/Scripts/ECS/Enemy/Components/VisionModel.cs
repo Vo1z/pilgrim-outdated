@@ -10,7 +10,7 @@ namespace Ingame.Enemy
     public struct VisionModel
     {
         [Expandable]
-        public EnemyVisionOfDetectionData Vision;
+        public EnemyVisionData Vision;
         public List<Transform> Covers;
         public List<Transform> Opponents;
     }

@@ -29,7 +29,6 @@ GameObject:
   - component: {fileID: 7838628224965418309}
   - component: {fileID: 7838628224965418310}
   - component: {fileID: 7838628224965418311}
-  - component: {fileID: 7838628224965418304}
   - component: {fileID: 7838628224965418319}
   m_Layer: 0
   m_Name: Enemy
@@ -355,20 +354,6 @@ MonoBehaviour:
     Vision: {fileID: 11400000, guid: d3c3b8b88ba8fb84bbd1bcc43d66e6e4, type: 2}
     Covers: []
     Opponents: []
---- !u!114 &7838628224965418304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7838628224965418412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11c0bd813c7849168d7869953dc29f23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    ReactionTimeData: {fileID: 11400000, guid: 4fd40763cd905274cad67eb3efaa8ac7, type: 2}
 --- !u!114 &7838628224965418319
 MonoBehaviour:
   m_ObjectHideFlags: 0

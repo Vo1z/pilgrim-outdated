@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959a5683921b5774d87b9cfd7a833f8a, type: 3}
   m_Name: EnemyShootingData
   m_EditorClassIdentifier: 
-  Timer: 0.84
-  Accuracy: 2.98
-  Distance: 96.16
-  Damage: 13.74
+  timer: 0.88
+  accuracy: 1.92
+  distance: 50.73
+  damage: 3.79

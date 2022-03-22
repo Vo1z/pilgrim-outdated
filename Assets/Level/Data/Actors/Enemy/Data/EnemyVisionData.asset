@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36aacd8b680e2254bb74825b0b1afb7d, type: 3}
   m_Name: EnemyVisionData
   m_EditorClassIdentifier: 
-  Angle: 61.41
-  Distance: 22.38
-  MaxDistance: 52.41
-  Height: 5.52
-  Mask:
+  angle: 48.1
+  distance: 20.37
+  maxDistance: 39.5
+  height: 7.32
+  mask:
     serializedVersion: 2
     m_Bits: 0

@@ -1,5 +1,7 @@
+using Ingame.Anomaly;
 using Ingame.CameraWork;
 using Ingame.Debuging;
+using Ingame.Enemy;
 using Ingame.Enemy.System;
 using Ingame.Gunplay;
 using Ingame.Health;
@@ -98,7 +100,8 @@ namespace Ingame
                 .OneFrame<DistortTheShutterInputEvent>()
                 .OneFrame<InteractInputEvent>()
                 .OneFrame<HudReloadAnimationTriggerEvent>()
-                .OneFrame<HudDistortTheShutterAnimationTriggerEvent>();
+                .OneFrame<HudDistortTheShutterAnimationTriggerEvent>()
+                .OneFrame<NoiseGeneratorEvent>();
         }
 
         private void AddSystems()
@@ -146,7 +149,11 @@ namespace Ingame
                 .Add(new AttackSystem())
                 .Add(new FleeSystem())
                 .Add(new HideSystem())
-                .Add(new EnemySoldierBehaviourSystem())
+                .Add(new EnemyBehaviourSystem())
+                .Add(new HideOnCoolDownSystem())
+                .Add(new NoiseFetcherEventSystem())
+                //Anomaly
+                .Add(new AcidWaterSystem())
                 //Health
                 .Add(new DamageSystem())
                 .Add(new BleedingSystem())

@@ -2,7 +2,7 @@
 
 namespace Ingame.Enemy.Provider
 {
-    public class EnemySoldierBehaviourTagProvider : MonoProvider<EnemySoldierBehaviourTag>
+    public class EnemySoldierBehaviourTagProvider : MonoProvider<EnemyBehaviourTag>
     {
         
     }

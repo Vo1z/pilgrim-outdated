@@ -12,33 +12,13 @@ namespace Ingame.Enemy
         public float Angle;
         public float Distance;
         public float Height;
-
-        public LayerMask Mask;
+        
         //
         private string _tag = "Player";
         private bool _value;
-        private readonly List<Collider> _colliders = new List<Collider>();
         private Transform _target;
 
-        public void OnTriggerEnter(Collider other)
-        {
-            _colliders.Add(other);
-            if (other.CompareTag(_tag))
-            {
-                _target = other.transform;
-            }
-        }
-
-        public void OnTriggerExit(Collider other)
-        {
-            _colliders.Remove(other);
-            if (other.CompareTag(_tag))
-            {
-                _value = false;
-                _target = null;
-            }
-        }
-        
+   
 
         private Mesh CreateMesh()
         {

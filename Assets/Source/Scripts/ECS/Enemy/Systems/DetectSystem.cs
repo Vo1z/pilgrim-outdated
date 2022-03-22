@@ -15,21 +15,17 @@ namespace Ingame.Enemy.System
             foreach (var i in _filterEnter)
             {
                 ref var enter = ref _filterEnter.Get1(i);
-                ref var entity = ref _filterEnter.GetEntity(i);
                 if (!enter.senderGameObject.TryGetComponent(out EntityReference entityReference))
                 {
-                    enter.senderGameObject.AddComponent<EntityReference>();
-                    return;
+                    continue;
                 }
-                var reference = enter.senderGameObject.GetComponent<EntityReference>();
-                
-                if (!reference.Entity.Has<VisionModel>())
+
+                if (!entityReference.Entity.Has<VisionModel>())
                 {
-                    entity.Del<OnTriggerEnterEvent>();
-                    return;
+                    continue;
                 }
                 //Add Item to list
-                ref var vision =  ref reference.Entity.Get<VisionModel>();
+                ref var vision =  ref entityReference.Entity.Get<VisionModel>();
                 if (enter.collider.CompareTag("Terrain"))
                 {
                     vision.Covers.Add(enter.collider.transform);
@@ -38,22 +34,20 @@ namespace Ingame.Enemy.System
                 {
                     vision.Opponents.Add(enter.collider.transform);
                 }
-                
-                entity.Del<OnTriggerEnterEvent>();
             }
             //On Trigger Exit
             foreach (var i in _filterExit)
             {
                 ref var exit = ref _filterExit.Get1(i);
-                ref var entity = ref _filterExit.GetEntity(i);
                 var reference = exit.senderGameObject.GetComponent<EntityReference>();
-                ref var vision =  ref reference.Entity.Get<VisionModel>();
                 
                 if (!reference.Entity.Has<VisionModel>())
                 {
-                    entity.Del<OnTriggerExitEvent>();
-                    return;
+                    continue;
                 }
+                
+                ref var vision =  ref reference.Entity.Get<VisionModel>();
+                
                 //Remove Item from the list
                 if (exit.collider.CompareTag("Terrain"))
                 {
@@ -63,7 +57,7 @@ namespace Ingame.Enemy.System
                 {
                     vision.Opponents.Remove(exit.collider.transform);
                 }
-                entity.Del<OnTriggerExitEvent>();
+               
             }
         }
     }

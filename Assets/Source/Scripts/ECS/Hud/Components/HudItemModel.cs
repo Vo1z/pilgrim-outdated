@@ -1,4 +1,5 @@
 ﻿using System;
+using Ingame.Data.Hud;
 using NaughtyAttributes;
 using UnityEngine;
 

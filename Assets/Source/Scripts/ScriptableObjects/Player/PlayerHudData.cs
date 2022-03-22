@@ -1,7 +1,7 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ingame.Player
+namespace Ingame.Data.Player
 {
     [CreateAssetMenu(menuName = "Ingame/PlayerHudData", fileName = "Ingame/NewPlayerHudData")]
     public class PlayerHudData : ScriptableObject
@@ -9,7 +9,7 @@ namespace Ingame.Player
         [BoxGroup("Head Bobbing")]
         [SerializeField, Range(0, 10f)] private float headBobbingLerpingSpeed = 5f;
         [BoxGroup("Head Bobbing")]
-        [SerializeField, Range(0, 1f)] private float headBobbingSpeedModifier = .4f;
+        [SerializeField, Range(0, 10f)] private float headBobbingSpeedModifier = .4f;
         [BoxGroup("Head Bobbing")]
         [SerializeField, Range(0, 0.1f)] private float headBobbingStrengthX = .01f;
         [BoxGroup("Head Bobbing")]

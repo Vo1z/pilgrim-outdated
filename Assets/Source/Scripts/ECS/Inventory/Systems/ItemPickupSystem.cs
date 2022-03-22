@@ -1,4 +1,5 @@
-﻿using Ingame.Interaction.Common;
+﻿using Ingame.Data.Player;
+using Ingame.Interaction.Common;
 using Ingame.Inventory.Items;
 using Ingame.Movement;
 using Ingame.Player;

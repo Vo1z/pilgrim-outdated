@@ -130,8 +130,9 @@ namespace Ingame
                 .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
+                .Add(new HudItemMoverSystemDueToRotation())
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
-                .Add(new HeadBobbingSystem())
+                // .Add(new HeadBobbingSystem())
                 //Gun play
                 .Add(new GunDistortTheShutterInputConverterSystem())
                 .Add(new GunReloadInputConverterSystem())
@@ -152,7 +153,11 @@ namespace Ingame
                 .Add(new EnemySoldierBehaviourSystem())
                 //Health
                 .Add(new DamageSystem())
+                .Add(new StopBleedingSystem())
                 .Add(new BleedingSystem())
+                .Add(new StopGasChokeSystem())
+                .Add(new GasChokeSystem())
+                .Add(new HealingSystem())
                 .Add(new DeathSystem())
                 .Add(new DestroyDeadActorsSystem())
                 //Interaction
@@ -161,6 +166,7 @@ namespace Ingame
                 //Inventory
                 .Add(new ItemPickupSystem())
                 .Add(new ItemsInInventoryDisplaySystem())
+                .Add(new InventoryItemUsingSystem())
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())
@@ -173,6 +179,8 @@ namespace Ingame
                 .Add(new PlayerInputToMovementConvertSystem())
                  //Utils
                  .Add(new DeltaMovementCalculationSystem())
+                 //Hud
+                 .Add(new HeadBobbingSystem())
                  //Movement
                 .Add(new FrictionSystem())
                 .Add(new SlidingSystem())

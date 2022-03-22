@@ -14,15 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeUsedAsAim: 1
   rotationSpeed: 4
-  minMaxRotationAngleX: {x: -5, y: 5}
+  minMaxRotationAngleX: {x: -10, y: 10}
   rotationAngleMultiplierX: 20
   inverseRotationX: 1
   minMaxRotationAngleY: {x: -20, y: 20}
   rotationAngleMultiplierY: 10
   inverseRotationY: 1
-  minMaxRotationAngleZ: {x: -20, y: 10}
+  minMaxRotationAngleZ: {x: -20, y: 20}
   rotationAngleMultiplierZ: 30
   inverseRotationZ: 0
+  isItemMovedDueToRotation: 1
+  minMaxMovementOffsetY: {x: -0.1, y: 0.1}
+  moveSpeed: 0.25
   aimRotationSpeed: 3
   minMaxAimRotationAngleX: {x: -5, y: 5}
   aimRotationAngleMultiplierX: 2

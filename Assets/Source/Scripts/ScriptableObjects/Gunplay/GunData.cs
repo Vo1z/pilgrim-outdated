@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ingame.Guns
+namespace Ingame.Data.Gunplay
 {
     [CreateAssetMenu(menuName = "Ingame/Gun data", fileName = "NewGunData")]
     public sealed class GunData : ScriptableObject

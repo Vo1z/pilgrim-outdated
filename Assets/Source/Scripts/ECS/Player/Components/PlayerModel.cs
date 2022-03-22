@@ -1,4 +1,5 @@
-﻿using Ingame.Input;
+﻿using Ingame.Data.Player;
+using Ingame.Input;
 
 namespace Ingame.Player
 {

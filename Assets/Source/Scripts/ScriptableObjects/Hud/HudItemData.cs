@@ -1,7 +1,7 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ingame
+namespace Ingame.Data.Hud
 {
     [CreateAssetMenu(menuName = "Ingame/HudItemData", fileName = "newHudItemData")]
     public class HudItemData : ScriptableObject
@@ -32,9 +32,15 @@ namespace Ingame
         [SerializeField] [Range(0, 40)] private float rotationAngleMultiplierZ = 20; 
         [BoxGroup("Hud stats (Rotation)")] 
         [SerializeField] private bool inverseRotationZ = false;
-        
-        
-        
+
+        [BoxGroup("Hud stats (Rotation)"), Space]
+        [SerializeField] private bool isItemMovedDueToRotation = false;
+        [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedDueToRotation")] 
+        [SerializeField] [MinMaxSlider(-2, 2)] private Vector2 minMaxMovementOffsetY = new(0, 0);
+        [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedDueToRotation")]
+        [SerializeField] [Range(0, 10)] private float moveSpeed = 5f;
+
+
         [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")]
         [SerializeField] [Range(0, 10)] private float aimRotationSpeed = 5;
         
@@ -116,6 +122,9 @@ namespace Ingame
         public float RotationAngleMultiplierZ => rotationAngleMultiplierZ;
         public float InverseRotationZ => inverseRotationZ ? -1: 1;
 
+        public bool IsItemMovedDueToRotation => isItemMovedDueToRotation;
+        public Vector2 MinMaxMovementOffsetY => minMaxMovementOffsetY;
+        public float MoveSpeed => moveSpeed;
         
         
         public float AimRotationSpeed => aimRotationSpeed;

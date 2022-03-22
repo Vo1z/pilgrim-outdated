@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ingame.Player
+namespace Ingame.Data.Player
 {
     [CreateAssetMenu(menuName = "Ingame/PlayerData", fileName = "Ingame/NewPlayerData")]
     public class PlayerMovementData : ScriptableObject

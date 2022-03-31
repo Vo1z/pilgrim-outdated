@@ -9,6 +9,7 @@ using Ingame.Hud;
 using Ingame.Input;
 using Ingame.Interaction.Common;
 using Ingame.Interaction.Doors;
+using Ingame.Interaction.DraggableObject;
 using Ingame.Inventory;
 using Ingame.Inventory.Items;
 using Ingame.Movement;
@@ -169,6 +170,9 @@ namespace Ingame
                 //Interaction
                 .Add(new InteractionSystem())
                 .Add(new DoorRotationSystem())
+                .Add(new PickUpDraggableObjectSystem())
+                .Add(new ReleaseDraggableObjectSystem())
+                .Add(new DragObjectSystem())
                 //Inventory
                 .Add(new ItemPickupSystem())
                 .Add(new ItemsInInventoryDisplaySystem())

@@ -28,4 +28,5 @@ MonoBehaviour:
   maximumGravitationForce: 40
   slidingForceModifier: 6
   sensitivity: 10
-  interactionDistance: 2
+  interactionDistance: 2.5
+  draggableObjectDistance: 2

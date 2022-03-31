@@ -46,6 +46,9 @@ namespace Ingame.Data.Player
 
         [BoxGroup("Interaction"), Space] 
         [SerializeField] [Range(0, 20)] private float interactionDistance = .5f;
+        
+        [BoxGroup("Interaction"), Space]
+        [SerializeField] [Range(0, 3f)] private float draggableObjectDistance = 1f;
 
         public float WalkSpeed => walkSpeed;
         public float CrouchWalkSpeed => crouchWalkSpeed;
@@ -69,5 +72,7 @@ namespace Ingame.Data.Player
         public float Sensitivity => sensitivity;
 
         public float InteractionDistance => interactionDistance;
+
+        public float DraggableObjectDistance => draggableObjectDistance;
     }
 }

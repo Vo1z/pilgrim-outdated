@@ -9,7 +9,11 @@ namespace Ingame.Utils
         private readonly EcsFilter<ReloadPerformedCallbackEvent> _reloadCallbackEventFilter;
         private readonly EcsFilter<ShutterDistortionPerformedCallbackEvent> _shutterDistortionCallbackEventFilter;
         private readonly EcsFilter<OnTriggerEnterEvent> _filterEnter;
+        private readonly EcsFilter<OnTriggerStayEvent> _onTriggerStayEventFilter;
         private readonly EcsFilter<OnTriggerExitEvent> _filterExit;
+        private readonly EcsFilter<OnCollisionEnterEvent> _collisionEnterEventFilter;
+        private readonly EcsFilter<OnCollisionExitEvent> _collisionExitEventFilter;
+        
         public void Run()
         {
             foreach (var i in _reloadCallbackEventFilter)
@@ -29,6 +33,12 @@ namespace Ingame.Utils
                 ref var eventEntity = ref _filterEnter.GetEntity(i);
                 eventEntity.Del<OnTriggerEnterEvent>();
             }
+            
+            foreach (var i in _onTriggerStayEventFilter)
+            {
+                ref var eventEntity = ref _onTriggerStayEventFilter.GetEntity(i);
+                eventEntity.Del<OnTriggerStayEvent>();
+            }
 
             foreach (var i in _filterExit)
             {
@@ -36,6 +46,17 @@ namespace Ingame.Utils
                 eventEntity.Del<OnTriggerExitEvent>();
             }
 
+            foreach (var i in _collisionEnterEventFilter)
+            {
+                ref var eventEntity = ref _collisionEnterEventFilter.GetEntity(i);
+                eventEntity.Del<OnCollisionEnterEvent>();
+            }
+            
+            foreach (var i in _collisionExitEventFilter)
+            {
+                ref var eventEntity = ref _collisionExitEventFilter.GetEntity(i);
+                eventEntity.Del<OnCollisionExitEvent>();
+            }
         }
     }
 }

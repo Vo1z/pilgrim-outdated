@@ -11,7 +11,7 @@ namespace Ingame.Inventory
     public class ItemPickupSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world;
-        private readonly EcsFilter<ItemComponent, InteractiveTag, PerformInteractionTag> _pickupItemsFilter;
+        private readonly EcsFilter<ItemTag, InteractiveTag, PerformInteractionTag, LootItemTag> _pickupItemsFilter;
         private readonly EcsFilter<PlayerModel, InventoryComponent> _playerFilter;
 
         public void Run()
@@ -26,17 +26,13 @@ namespace Ingame.Inventory
             foreach (var i in _pickupItemsFilter)
             {
                 ref var itemEntity = ref _pickupItemsFilter.GetEntity(i);
-                ref var itemComponent = ref _pickupItemsFilter.Get1(i);
 
-                TryAddItem(ref itemEntity, ref itemComponent, ref playerInventory, playerInventoryData);
+                TryAddItem(ref itemEntity, ref playerInventory, playerInventoryData);
             }
         }
 
-        private void TryAddItem(ref EcsEntity itemEntity, ref ItemComponent itemComponent, ref InventoryComponent playersInventory, PlayerInventoryData playerInventoryData)
+        private void TryAddItem(ref EcsEntity itemEntity, ref InventoryComponent playersInventory, PlayerInventoryData playerInventoryData)
         {
-            if(playersInventory.currentWeight + itemComponent.weight > playerInventoryData.MaximumWeight)
-                return;
-            
             if (itemEntity.Has<MorphineTag>())
                 if (playersInventory.currentNumberOfMorphine + 1 <= playerInventoryData.MaximumNumberOfMorphine)
                     playersInventory.currentNumberOfMorphine++;
@@ -48,8 +44,19 @@ namespace Ingame.Inventory
                     playersInventory.currentNumberOfBandages++;
                 else
                     return;
-
-            playersInventory.currentWeight += itemComponent.weight;
+            
+            if (itemEntity.Has<InhalatorTag>())
+                if (playersInventory.currentNumberOfInhalators + 1 <= playerInventoryData.MaximumNumberOfInhalators)
+                    playersInventory.currentNumberOfInhalators++;
+                else
+                    return;
+            
+            if (itemEntity.Has<EnergyDrinkTag>())
+                if (playersInventory.currentNumberOfEnergyDrinks + 1 <= playerInventoryData.MaximumNumberOfEnergyDrinks)
+                    playersInventory.currentNumberOfEnergyDrinks++;
+                else
+                    return;
+            
             PlaceItemInPlayerInventory(ref itemEntity);
         }
 

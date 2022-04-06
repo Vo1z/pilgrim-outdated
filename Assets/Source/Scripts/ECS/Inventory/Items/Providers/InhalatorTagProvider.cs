@@ -2,7 +2,7 @@
 
 namespace Ingame.Inventory.Items
 {
-    public sealed class SprayTagProvider : MonoProvider<SprayTag>
+    public sealed class InhalatorTagProvider : MonoProvider<InhalatorTag>
     {
         
     }

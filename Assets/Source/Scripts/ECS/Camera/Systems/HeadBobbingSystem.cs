@@ -9,7 +9,7 @@ namespace Ingame.CameraWork
 {
     public class HeadBobbingSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerModel, DeltaMovementComponent> _playerModelFilter;
+        private readonly EcsFilter<PlayerModel, DeltaMovementComponent, CharacterControllerModel> _playerModelFilter;
         private readonly EcsFilter<CameraModel, TransformModel, CameraBobbingComponent, MainCameraTag> _mainCameraFilter;
 
         public void Run()
@@ -19,9 +19,13 @@ namespace Ingame.CameraWork
 
             ref var playerModel = ref _playerModelFilter.Get1(0);
             ref var playerDeltaMovementComp = ref _playerModelFilter.Get2(0);
+            ref var characterControllerModel = ref _playerModelFilter.Get3(0);
             ref var mainCameraTransformModel = ref _mainCameraFilter.Get2(0);
             ref var mainCameraBobbingComp = ref _mainCameraFilter.Get3(0);
 
+            if(!characterControllerModel.characterController.isGrounded)
+                return;
+            
             var playerHudData = playerModel.playerHudData;            
             var mainCameraTransform = mainCameraTransformModel.transform;
             var mainCameraLocalPos = mainCameraTransform.localPosition;

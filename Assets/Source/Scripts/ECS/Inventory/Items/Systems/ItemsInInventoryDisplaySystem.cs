@@ -26,7 +26,10 @@ namespace Ingame.Inventory.Items
                
                 var morphineInsideBackpack = backpackModel.morphineInsideBackpack;
                 var bandagesInsideBackpack = backpackModel.bandagesInsideBackpack;
+                var inhalatorsInsideBackpack = backpackModel.inhalatorsInsideBackpack;
+                var energyDrinksInsideBackpack = backpackModel.energyDrinksInsideBackpack;
 
+                //todo optimize. Make everything in one loop
                 for (var morphineIndex = 0; morphineIndex < morphineInsideBackpack.Length; morphineIndex++)
                 {
                     if (morphineIndex < playerInventory.currentNumberOfMorphine)
@@ -41,6 +44,22 @@ namespace Ingame.Inventory.Items
                         bandagesInsideBackpack[bandageIndex].SetGameObjectActive();
                     else
                         bandagesInsideBackpack[bandageIndex].SetGameObjectInactive();
+                }
+                
+                for (var inhalatorIndex = 0; inhalatorIndex < inhalatorsInsideBackpack.Length; inhalatorIndex++)
+                {
+                    if(inhalatorIndex < playerInventory.currentNumberOfInhalators)
+                        inhalatorsInsideBackpack[inhalatorIndex].SetGameObjectActive();
+                    else
+                        inhalatorsInsideBackpack[inhalatorIndex].SetGameObjectInactive();
+                }
+                
+                for (var energyDrinkIndex = 0; energyDrinkIndex < energyDrinksInsideBackpack.Length; energyDrinkIndex++)
+                {
+                    if(energyDrinkIndex < playerInventory.currentNumberOfEnergyDrinks)
+                        energyDrinksInsideBackpack[energyDrinkIndex].SetGameObjectActive();
+                    else
+                        energyDrinksInsideBackpack[energyDrinkIndex].SetGameObjectInactive();
                 }
             }
         }

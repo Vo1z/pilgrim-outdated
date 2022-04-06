@@ -171,6 +171,7 @@ namespace Ingame
                 .Add(new InteractionSystem())
                 .Add(new DoorRotationSystem())
                 .Add(new PickUpDraggableObjectSystem())
+                .Add(new ReleaseDraggableObjectDueToInteractionWithPlayer())
                 .Add(new ReleaseDraggableObjectSystem())
                 .Add(new DragObjectSystem())
                 //Inventory

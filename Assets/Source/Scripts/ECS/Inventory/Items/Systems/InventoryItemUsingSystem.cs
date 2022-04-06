@@ -26,25 +26,32 @@ namespace Ingame.Inventory.Items
 
                 var itemData = inventoryItemModel.InventoryItemData;
 
-                if (itemData.StopsBleeding)
-                {
+                if (itemData.StopsBleeding) 
                     playerEntity.Get<StopBleedingTag>();
-                    
-                    if(itemEntity.Has<BandageTag>())
-                        playerInventory.currentNumberOfBandages -= 1;
-                }
 
                 if (itemData.StopsGasChoke)
-                {
                     playerEntity.Get<StopGasChokeTag>();
-                    
-                    if(itemEntity.Has<SprayTag>())
-                        playerInventory.currentNumberOfSprays -= 1;
-                }
 
+                RemoveItemFromInventory(ref itemEntity, ref playerInventory);
+                
                 _world.NewEntity().Get<UpdateInventoryAppearanceEvent>();
                 itemEntity.Del<PerformInteractionTag>();
             }
+        }
+
+        private void RemoveItemFromInventory(ref EcsEntity itemEntity, ref InventoryComponent playerInventory)
+        {
+            if(itemEntity.Has<BandageTag>())
+                playerInventory.currentNumberOfBandages -= 1;
+                
+            if(itemEntity.Has<InhalatorTag>())
+                playerInventory.currentNumberOfInhalators -= 1;
+            
+            if(itemEntity.Has<EnergyDrinkTag>())
+                playerInventory.currentNumberOfEnergyDrinks -= 1;
+            
+            if(itemEntity.Has<MorphineTag>())
+                playerInventory.currentNumberOfMorphine -= 1;
         }
     }
 }

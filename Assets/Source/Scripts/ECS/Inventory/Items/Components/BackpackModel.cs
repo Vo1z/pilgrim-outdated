@@ -8,5 +8,8 @@ namespace Ingame.Inventory.Items
     {
         public Transform[] morphineInsideBackpack;
         public Transform[] bandagesInsideBackpack;
+        public Transform[] inhalatorsInsideBackpack;
+        public Transform[] energyDrinksInsideBackpack;
+        public Transform[] creamTubesInsideBackpack;
     }
 }

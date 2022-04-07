@@ -1,4 +1,5 @@
 ﻿using Ingame.Gunplay;
+using Ingame.Inventory;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
 
@@ -6,8 +7,12 @@ namespace Ingame.Utils
 {
     public sealed class ExternalEventsRemoverSystem : IEcsRunSystem
     {
+        //Gun-play
         private readonly EcsFilter<ReloadPerformedCallbackEvent> _reloadCallbackEventFilter;
         private readonly EcsFilter<ShutterDistortionPerformedCallbackEvent> _shutterDistortionCallbackEventFilter;
+        //Inventory
+        private readonly EcsFilter<UpdateBackpackAppearanceEvent> _updateInventoryEventFilter;
+        //Physics
         private readonly EcsFilter<OnTriggerEnterEvent> _filterEnter;
         private readonly EcsFilter<OnTriggerStayEvent> _onTriggerStayEventFilter;
         private readonly EcsFilter<OnTriggerExitEvent> _filterExit;
@@ -27,7 +32,13 @@ namespace Ingame.Utils
                 ref var eventEntity = ref _shutterDistortionCallbackEventFilter.GetEntity(i);
                 eventEntity.Del<ShutterDistortionPerformedCallbackEvent>();
             }
-            
+
+            foreach (var i in _updateInventoryEventFilter)
+            {
+                ref var eventEntity = ref _updateInventoryEventFilter.GetEntity(i); 
+                eventEntity.Destroy();
+            }
+
             foreach (var i in _filterEnter)
             {
                 ref var eventEntity = ref _filterEnter.GetEntity(i);

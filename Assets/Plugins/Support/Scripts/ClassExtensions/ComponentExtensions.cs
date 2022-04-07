@@ -33,5 +33,14 @@ namespace Support.Extensions
             TemplateUtils.SafeDebug(objectContent, logType);
 #endif
         }
+    
+        /// <summary>
+        /// Checks whether attached game object is active
+        /// </summary>
+        /// <returns>Returns true if object is active. Otherwise returns false</returns>
+        public static bool IsGameObjectActive(this Component component)
+        {
+            return component.gameObject.activeSelf;
+        }
     }
 }

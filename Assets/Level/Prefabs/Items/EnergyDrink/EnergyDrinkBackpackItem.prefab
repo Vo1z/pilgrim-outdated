@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5439095436439156381}
   - component: {fileID: 2733761877052377350}
-  - component: {fileID: 4140315655060020087}
-  - component: {fileID: 6059814653192014472}
-  - component: {fileID: 3677270201580892214}
-  - component: {fileID: 9087039975423479863}
-  - component: {fileID: 1392469876592395173}
-  - component: {fileID: 4757420221695680898}
+  - component: {fileID: 7530762993535633782}
+  - component: {fileID: -384399674543183592}
+  - component: {fileID: -1286007302681224554}
+  - component: {fileID: 2566776217629670229}
+  - component: {fileID: 950786543090029390}
+  - component: {fileID: -4079746596410463709}
+  - component: {fileID: -4209299854619408961}
   m_Layer: 7
   m_Name: EnergyDrinkBackpackItem
   m_TagString: Untagged
@@ -52,19 +53,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14577845, y: 0.35894126, z: 0.14608273}
   m_Center: {x: -0.0003351122, y: 0.0017706454, z: -0.0002939701}
---- !u!114 &4140315655060020087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206996491416626636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88ad62344ee4160a24e4230ced12dde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6059814653192014472
+--- !u!114 &7530762993535633782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,21 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   convertMode: 0
---- !u!114 &3677270201580892214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206996491416626636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a676127d1cc4f8b8e516a3b92d3a5a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    InventoryItemData: {fileID: 11400000, guid: a6674c695c2bf2e4880350f620ec75ef, type: 2}
---- !u!114 &9087039975423479863
+--- !u!114 &-384399674543183592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac7c31dd8f83b28418f631cc3612760e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1392469876592395173
+--- !u!114 &-1286007302681224554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +90,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fb1d77a3638de4dac4cf0555ee8f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4757420221695680898
+--- !u!114 &2566776217629670229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206996491416626636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91acfb7ad2604511ac8db61100dd580b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &950786543090029390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206996491416626636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88ad62344ee4160a24e4230ced12dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4079746596410463709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206996491416626636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd23aa4c25ea452492f99f44b12ff2ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4209299854619408961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

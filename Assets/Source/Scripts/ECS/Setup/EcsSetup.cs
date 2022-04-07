@@ -11,7 +11,6 @@ using Ingame.Interaction.Common;
 using Ingame.Interaction.Doors;
 using Ingame.Interaction.DraggableObject;
 using Ingame.Inventory;
-using Ingame.Inventory.Items;
 using Ingame.Movement;
 using Ingame.Player;
 using Ingame.Utils;
@@ -115,7 +114,6 @@ namespace Ingame
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem())
-                .Add(new ItemInitializeSystem())
                 .Add(new GunInitSystem())
                 .Add(new DeltaMovementInitializeSystem())
                 .Add(new CameraInitializeSystem());
@@ -175,14 +173,13 @@ namespace Ingame
                 .Add(new ReleaseDraggableObjectSystem())
                 .Add(new DragObjectSystem())
                 //Inventory
-                .Add(new ItemPickupSystem())
-                .Add(new ItemsInInventoryDisplaySystem())
-                .Add(new InventoryItemUsingSystem())
+                .Add(new PickUpItemSystem())
+                .Add(new UpdateBackpackAppearanceSystem())
+                .Add(new InteractWithBackpackItemSystem())
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())
                 .Add(new ExternalEventsRemoverSystem());
-
 
             //FixedUpdate
             _fixedUpdateSystem

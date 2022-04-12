@@ -11,9 +11,13 @@ namespace Ingame.CameraWork
         [Inject]
         private void Construct()
         {
+            var vCam = GetComponent<CinemachineVirtualCamera>();
+            var vCamNoise = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            
             value = new VirtualCameraModel
             {
-                virtualCamera = GetComponent<CinemachineVirtualCamera>()
+                virtualCamera = vCam,
+                virtualCameraNoise = vCamNoise
             };
         }
     }

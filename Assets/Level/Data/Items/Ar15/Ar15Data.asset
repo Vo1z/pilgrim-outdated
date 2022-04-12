@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Ar15Data
   m_EditorClassIdentifier: 
   pauseBetweenShots: 0.13
+  damage: 30
   instability: 15
   verticalRecoilForce: 5
   frontRecoilForce: 10
   minMaxRecoilPositionOffset: 0.5
+  cameraShakeDuration: 0.1
+  cameraShakeAmplitude: 0.2
+  cameraShakeFrequency: 0.1

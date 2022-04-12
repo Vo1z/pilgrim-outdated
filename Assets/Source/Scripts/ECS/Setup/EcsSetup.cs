@@ -128,6 +128,8 @@ namespace Ingame
                 .Add(new PlayerSpeedChangerSystem())
                 //HUD
                 .Add(new CameraInputToStatesConverterSystem())
+                .Add(new MainCameraShakeEventReceiver())
+                .Add(new CameraShakeSystem())
                 .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())

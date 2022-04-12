@@ -19,6 +19,13 @@ namespace Ingame.Data.Gunplay
         [SerializeField] [Range(0, 50)] private float frontRecoilForce = 1f;
         [BoxGroup("Recoil")]
         [SerializeField] [Range(0, 5)] private float minMaxRecoilPositionOffset = 1f;
+        
+        [BoxGroup("Camera shake")]
+        [SerializeField] [Range(0, 1)] private float cameraShakeDuration = .05f;
+        [BoxGroup("Camera shake")]
+        [SerializeField] [Range(0, 10)] private float cameraShakeAmplitude = 1f;
+        [BoxGroup("Camera shake")]
+        [SerializeField] [Range(0, 10)] private float cameraShakeFrequency = 1f;
 
         public float PauseBetweenShots => pauseBetweenShots;
         public float Damage => damage;
@@ -27,6 +34,10 @@ namespace Ingame.Data.Gunplay
         public float VerticalRecoilForce => verticalRecoilForce;
         public float FrontRecoilForce => frontRecoilForce;
         public float MinMaxRecoilPositionOffset => minMaxRecoilPositionOffset;
+
+        public float CameraShakeDuration => cameraShakeDuration;
+        public float CameraShakeAmplitude => cameraShakeAmplitude;
+        public float CameraShakeFrequency => cameraShakeFrequency;
     }
 
     public enum FireMode

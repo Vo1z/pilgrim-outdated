@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Ingame.Enemy.Data
 {  
     [CreateAssetMenu(menuName = "Ingame/Enemy/Data/Vision", fileName = "EnemyVisionData")]
-    public class EnemyVisionData : ScriptableObject
+    public sealed class EnemyVisionData : ScriptableObject
     {
         [SerializeField]
         [BoxGroup("Vision")] [Min(0)]

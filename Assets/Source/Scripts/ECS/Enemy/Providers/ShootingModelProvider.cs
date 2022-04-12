@@ -2,7 +2,7 @@
 
 namespace Ingame.Enemy.Provider
 {
-    public class ShootingModelProvider : MonoProvider<ShootingModel>
+    public sealed class ShootingModelProvider : MonoProvider<ShootingModel>
     {
         
     }

@@ -2,7 +2,7 @@
 
 namespace Ingame.Enemy.Provider
 {
-    public class WaypointComponentProvider:MonoProvider<WaypointComponent>
+    public sealed class WaypointComponentProvider:MonoProvider<WaypointComponent>
     {
         
     }

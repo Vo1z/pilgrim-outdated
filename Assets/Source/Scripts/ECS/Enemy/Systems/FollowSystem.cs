@@ -3,7 +3,7 @@ using Leopotam.Ecs;
  
 
 namespace Ingame.Enemy.System{
-    sealed class FollowSystem : IEcsRunSystem {
+    public sealed class FollowSystem : IEcsRunSystem {
         private readonly EcsFilter<EnemyMovementComponent,LocateTargetComponent,FollowStateTag> _enemyFilter;
         
         void IEcsRunSystem.Run () {

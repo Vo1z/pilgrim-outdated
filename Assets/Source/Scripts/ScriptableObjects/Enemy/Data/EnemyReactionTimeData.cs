@@ -3,7 +3,7 @@
 namespace Ingame.Enemy.Data
 {
     [CreateAssetMenu(menuName = "Ingame/Enemy/Data/ReactionTimeDelay", fileName = "EnemyReactionDelayData")]
-    public class EnemyReactionTimeData: ScriptableObject
+    public sealed class EnemyReactionTimeData: ScriptableObject
     {
         [SerializeField][Min(0)] 
         private float reactionDelayFlat;

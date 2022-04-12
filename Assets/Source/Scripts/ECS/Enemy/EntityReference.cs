@@ -3,7 +3,7 @@ using Ingame;
 using Leopotam.Ecs;
 using UnityEngine;
 
-public class EntityReference : MonoBehaviour
+public sealed class EntityReference : MonoBehaviour
 {
     public EcsEntity Entity;
 

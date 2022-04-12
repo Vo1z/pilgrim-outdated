@@ -1,11 +1,10 @@
 ﻿using LeoEcsPhysics;
 using Leopotam.Ecs;
-using UnityEngine;
- 
+
 
 namespace Ingame.Enemy.System
 {
-    public class DetectSystem : IEcsRunSystem
+    public sealed class DetectSystem : IEcsRunSystem
     {
         private EcsFilter<OnTriggerEnterEvent> _filterEnter;
         private EcsFilter<OnTriggerExitEvent> _filterExit;
@@ -26,11 +25,12 @@ namespace Ingame.Enemy.System
                 }
                 //Add Item to list
                 ref var vision =  ref entityReference.Entity.Get<VisionModel>();
-                if (enter.collider.CompareTag("Terrain"))
+                if (enter.collider.CompareTag("CoverPoint"))
                 {
                     vision.Covers.Add(enter.collider.transform);
+                    
                 }
-                else
+                else if(enter.collider.CompareTag("Player")) 
                 {
                     vision.Opponents.Add(enter.collider.transform);
                 }
@@ -49,11 +49,11 @@ namespace Ingame.Enemy.System
                 ref var vision =  ref reference.Entity.Get<VisionModel>();
                 
                 //Remove Item from the list
-                if (exit.collider.CompareTag("Terrain"))
+                if (exit.collider.CompareTag("CoverPoint"))
                 {
                     vision.Covers.Remove(exit.collider.transform);
                 }
-                else
+                else if(exit.collider.CompareTag("Player"))
                 {
                     vision.Opponents.Remove(exit.collider.transform);
                 }

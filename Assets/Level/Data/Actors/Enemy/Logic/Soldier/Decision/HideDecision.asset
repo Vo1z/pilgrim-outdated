@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c0cb7e55b04ba68e94ab2457a93630, type: 3}
   m_Name: HideDecision
   m_EditorClassIdentifier: 
-  nextState: {fileID: 11400000, guid: fda039f37deb8ae4286f085cddb0686f, type: 2}
+  nextState: {fileID: 11400000, guid: 4ca1c4f4e80874d46a97e420637e6eb0, type: 2}

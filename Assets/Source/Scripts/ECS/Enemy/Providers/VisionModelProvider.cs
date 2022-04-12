@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using Ingame.Movement;
 using UnityEngine;
 using Voody.UniLeo;
 using Zenject;
 
 namespace Ingame.Enemy.Provider
 {
-    public class VisionModelProvider : MonoProvider<VisionModel>
+    public sealed class VisionModelProvider : MonoProvider<VisionModel>
     {
         [Inject]
         private void Construct()

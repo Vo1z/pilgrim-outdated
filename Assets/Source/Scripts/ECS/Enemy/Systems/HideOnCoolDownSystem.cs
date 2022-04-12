@@ -1,23 +1,40 @@
 ﻿using Leopotam.Ecs;
 using UnityEngine;
-using NotImplementedException = System.NotImplementedException;
+ 
 
 namespace Ingame.Enemy.System
 {
-    public class HideOnCoolDownSystem : IEcsRunSystem
+    public sealed class HideOnCoolDownSystem : IEcsRunSystem
     {
-        private EcsFilter<HideModel,HideBlockComponent> _filter;
+        private EcsFilter<HideModel,HideBlockOnPeekComponent> _peekFilter;
+        private EcsFilter<HideModel,HideBlockOnTakeCoverComponent> _takeCoverFilter;
         public void Run()
         {
-            foreach (var i in _filter)
+            //Peek
+            foreach (var i in _peekFilter)
             {
-                ref var entity = ref _filter.GetEntity(i);
-                ref var hideModel = ref _filter.Get1(i);
-                ref var hideBlock = ref _filter.Get2(i);
+                ref var entity = ref _peekFilter.GetEntity(i);
+                ref var hideModel = ref _peekFilter.Get1(i);
+                ref var hideBlock = ref _peekFilter.Get2(i);
 
-                if (hideBlock.RemainingTime>=hideModel.HideData.CoolDown)
+                if (hideBlock.RemainingTime>=hideModel.HideData.CoolDownOnPeek)
                 {
-                    entity.Del<HideBlockComponent>();
+                    entity.Del<HideBlockOnPeekComponent>();
+                    continue;
+                }
+
+                hideBlock.RemainingTime += Time.deltaTime;
+            }
+            //Take a cover
+            foreach (var i in _takeCoverFilter)
+            {
+                ref var entity = ref _takeCoverFilter.GetEntity(i);
+                ref var hideModel = ref _takeCoverFilter.Get1(i);
+                ref var hideBlock = ref _takeCoverFilter.Get2(i);
+
+                if (hideBlock.RemainingTime>=hideModel.HideData.CoolDownOnTakeCover)
+                {
+                    entity.Del<HideBlockOnTakeCoverComponent>();
                     continue;
                 }
 

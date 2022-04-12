@@ -16,3 +16,5 @@ MonoBehaviour:
   accuracy: 1.92
   distance: 50.73
   damage: 3.79
+  maxAmountOfAmmunition: 26
+  reloadTime: 0.97

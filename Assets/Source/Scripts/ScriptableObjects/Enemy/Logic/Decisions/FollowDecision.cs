@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using Ingame.Enemy.Extensions;
+﻿ 
 using Ingame.Enemy.State;
 using Ingame.Movement;
 using Leopotam.Ecs;
@@ -10,29 +9,31 @@ using Vector3 = UnityEngine.Vector3;
 namespace Ingame.Enemy.Logic
 {
     [CreateAssetMenu(menuName = "Ingame/Enemy/Logic/Decision/Follow", fileName = "FollowDecision")]
-    public class FollowDecision : DecisionBase
+    public sealed class FollowDecision : DecisionBase
     {
         public override bool Decide(ref EcsEntity entity)
         {
-            ref var vision = ref entity.Get<VisionModel>();
-     
-            if (entity.CanDetectTarget(0, vision.Vision.MaxDistance))
+
+            if (!entity.Has<LocateTargetComponent>() || !entity.Has<TransformModel>()|| !entity.Has<VisionBinderComponent>())
             {
-                ref var position = ref entity.Get<TransformModel>();
-                ref var target = ref entity.Get<LocateTargetComponent>();
-                ref var hideModel = ref entity.Get<HideModel>();
-                if (Physics.Linecast(position.transform.position,target.Target.position, out RaycastHit hit))
-                {
-                    Debug.Log(hit.collider.tag);
-                   var cover= hit.collider.gameObject.transform.position;
-                   if ((Vector3.Distance(cover, position.transform.position) < hideModel.HideData.MaxDistanceBetweenThisAndCover))
-                   {
-                       return false;
-                   }
-                }
+                return false;
+            }
+            ref var binder = ref entity.Get<VisionBinderComponent>();
+
+            if (!binder.FarRange.TryGetComponent(out EntityReference farEntityReference))
+            {
+                return false;
+            }
+            ref var target = ref entity.Get<LocateTargetComponent>();
+            ref var transformModel = ref entity.Get<TransformModel>();
+            ref var shortRef = ref farEntityReference.Entity;
+            ref var vision = ref shortRef.Get<VisionModel>();
+            if (vision.Vision.MaxDistance<Vector3.Distance(target.Target.position,transformModel.transform.position))
+            {
                 entity.Get<FollowStateTag>();
                 return true;
             }
+
             return false;
         }
     }

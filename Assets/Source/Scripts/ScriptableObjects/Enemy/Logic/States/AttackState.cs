@@ -1,7 +1,6 @@
 ﻿using Ingame.Enemy.State;
 using Leopotam.Ecs;
 using UnityEngine;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Ingame.Enemy.Logic
 {

@@ -1,4 +1,4 @@
-﻿using System;
+﻿ 
 using Ingame.Enemy.State;
 using Ingame.Movement;
 using Leopotam.Ecs;
@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Ingame.Enemy.System
 {
-    public class FleeSystem : IEcsRunSystem
+    public sealed class FleeSystem : IEcsRunSystem
     {
         private EcsFilter<EnemyMovementComponent,LocateTargetComponent,TransformModel, VisionModel,FleeStateTag> _filter;
         public void Run()

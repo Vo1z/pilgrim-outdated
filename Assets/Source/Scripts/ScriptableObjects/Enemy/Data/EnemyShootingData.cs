@@ -1,7 +1,8 @@
+
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Ingame/Enemy/Data/Shooting", fileName = "EnemyShootingData")]
-public class EnemyShootingData : ScriptableObject
+public sealed class EnemyShootingData : ScriptableObject
 {
     [SerializeField][Min(0)]
     private float timer;
@@ -11,9 +12,17 @@ public class EnemyShootingData : ScriptableObject
     private float distance;
     [SerializeField][Min(0)] 
     private float damage;
+
+    [SerializeField] [Min(0)] 
+    private int maxAmountOfAmmunition;
+
+    [SerializeField]
+    [Min(0)] private float reloadTime;
     
     public float Timer =>timer;
     public float Accuracy => accuracy;
     public float Distance => distance;
     public float Damage => damage;
+    public int MaxAmountOfAmmunition => maxAmountOfAmmunition;
+    public float ReloadTime => reloadTime;
 }

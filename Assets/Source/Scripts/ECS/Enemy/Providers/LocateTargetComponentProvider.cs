@@ -2,7 +2,7 @@
 
 namespace Ingame.Enemy.Provider
 {
-    public class LocateTargetComponentProvider: MonoProvider<LocateTargetComponent>
+    public sealed class LocateTargetComponentProvider: MonoProvider<LocateTargetComponent>
     {
         
     }

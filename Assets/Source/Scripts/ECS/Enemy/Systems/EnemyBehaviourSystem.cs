@@ -1,12 +1,8 @@
-﻿using System.Linq;
-using Ingame.Enemy.State;
-using Ingame.Health;
-using Ingame.Movement;
+﻿
 using Leopotam.Ecs;
-using UnityEngine;
 namespace Ingame.Enemy.System
 {
-    public class EnemyBehaviourSystem : IEcsRunSystem
+    public sealed class EnemyBehaviourSystem : IEcsRunSystem
     {
         private EcsFilter<StateModel,EnemyBehaviourTag> _filter;
         public void Run()

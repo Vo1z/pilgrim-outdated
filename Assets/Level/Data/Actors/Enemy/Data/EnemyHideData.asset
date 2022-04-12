@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: EnemyHideData
   m_EditorClassIdentifier: 
   safeDistance: 14.69
-  coolDown: 25.3
+  coolDownOnPeek: 4.67
+  coolDownOnTakeCover: 3.24
   maxDistanceBetweenThisAndCover: 5.98

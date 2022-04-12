@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Ingame.Enemy.Logic
 {
     [CreateAssetMenu(menuName = "Ingame/Enemy/Logic/Decision/Flee", fileName = "FleeDecision")]
-    public class FleeDecision : DecisionBase
+    public sealed class FleeDecision : DecisionBase
     {
         [SerializeField][Min(0)][MaxValue(1)]
         private float healthThreshold = .15f;

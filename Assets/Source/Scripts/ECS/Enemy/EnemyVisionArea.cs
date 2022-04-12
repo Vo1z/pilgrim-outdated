@@ -1,27 +1,26 @@
 using System;
 using UnityEditor;
 using System.Collections.Generic;
+using Ingame.Enemy.Data;
+using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+#if UNITY_EDITOR
 namespace Ingame.Enemy
 {
-    public class EnemyVisionArea : MonoBehaviour
+    public sealed class EnemyVisionArea : MonoBehaviour
     {
-        //'
         public float Angle;
         public float Distance;
         public float Height;
-        
-        //
-        private string _tag = "Player";
-        private bool _value;
-        private Transform _target;
-
-   
-
+        public EnemyVisionData VisionData;
         private Mesh CreateMesh()
         {
+            
+            Angle = VisionData.Angle;
+            Distance = VisionData.Distance;
+            Height = VisionData.Height;
+            
             var segment = 12;
             Mesh mesh = new Mesh();
             var numberOfTringles = segment*4+4;
@@ -94,12 +93,10 @@ namespace Ingame.Enemy
             mesh.vertices = vertices;
             mesh.triangles = triangles;
             mesh.RecalculateNormals();
-            vert = 0;
+ 
             return mesh;
         }
         
-        
-
         private void OnDrawGizmos()
         {
             var mesh = CreateMesh();
@@ -111,3 +108,4 @@ namespace Ingame.Enemy
         }
     }
 }
+#endif

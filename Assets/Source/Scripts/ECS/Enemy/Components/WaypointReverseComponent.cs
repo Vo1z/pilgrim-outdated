@@ -1,5 +1,4 @@
 
-
 namespace Ingame.Enemy {
     public struct WaypointReverseComponent
     {

@@ -1,6 +1,5 @@
 ﻿using System;
-using Ingame.Health;
-using UnityEngine;
+ 
 
 namespace Ingame.Anomaly
 {

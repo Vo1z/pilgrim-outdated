@@ -3,7 +3,7 @@ using Voody.UniLeo;
 
 namespace Ingame.Enemy.Provider
 {
-    public class PatrolStateTagProvider : MonoProvider<PatrolStateTag>
+    public sealed class PatrolStateTagProvider : MonoProvider<PatrolStateTag>
     {
         
     }

@@ -2,7 +2,7 @@
 
 namespace Ingame.Enemy.Provider
 {
-    public class HideModelProvider : MonoProvider<HideModel>
+    public sealed class HideModelProvider : MonoProvider<HideModel>
     {
     }
 }

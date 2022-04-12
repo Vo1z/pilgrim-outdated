@@ -15,17 +15,26 @@ namespace Ingame.Enemy.Logic
         
         protected override bool IsNotBlocked(ref EcsEntity entity)
         {
-            ref var position = ref entity.Get<TransformModel>();
-            ref var target = ref entity.Get<LocateTargetComponent>();
-            ref var hideModel = ref entity.Get<HideModel>();
-            if (Physics.Linecast(position.transform.position,target.Target.position, out RaycastHit hit))
+            
+            if (!entity.Has<LocateTargetComponent>() || !entity.Has<TransformModel>()|| !entity.Has<VisionBinderComponent>())
             {
-                var cover= hit.collider.gameObject.transform.position;
-                if ((Vector3.Distance(cover, target.Target.position) < hideModel.HideData.MaxDistanceBetweenThisAndCover))
-                {
-                    return true;
-                }
+                return true;
             }
+            ref var binder = ref entity.Get<VisionBinderComponent>();
+
+            if (!binder.FarRange.TryGetComponent(out EntityReference farEntityReference))
+            {
+                return true;
+            }
+            ref var target = ref entity.Get<LocateTargetComponent>();
+            ref var transformModel = ref entity.Get<TransformModel>();
+            ref var shortRef = ref farEntityReference.Entity;
+            ref var vision = ref shortRef.Get<VisionModel>();
+            if (vision.Vision.Distance<Vector3.Distance(target.Target.position,transformModel.transform.position))
+            {
+                return true;
+            }
+
             return false;
         }
     }

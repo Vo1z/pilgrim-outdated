@@ -8,5 +8,6 @@ namespace Ingame.Enemy
     {
         [Expandable]
         public EnemyShootingData ShootingData;
+        public int CurrentAmountOfAmmunition;
     }
 }

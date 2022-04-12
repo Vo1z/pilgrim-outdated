@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d10a7bfd9804bc3b9804ae3cbf2ef2d, type: 3}
   m_Name: FollowState
   m_EditorClassIdentifier: 
-  decisions:
-  - {fileID: 11400000, guid: 7aea21f7f701e964eb00edcb19a6285a, type: 2}
-  - {fileID: 11400000, guid: f4887555e005b4b4e8166503aed2b5d0, type: 2}
-  - {fileID: 11400000, guid: cd1efbefea8f34a4c9c984cc9e9781c4, type: 2}
+  decisions: []

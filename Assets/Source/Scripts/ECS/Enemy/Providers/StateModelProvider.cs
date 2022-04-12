@@ -2,7 +2,7 @@
 
 namespace Ingame.Enemy.Provider
 {
-    public class StateModelProvider : MonoProvider<StateModel>
+    public sealed class StateModelProvider : MonoProvider<StateModel>
     {
         
     }

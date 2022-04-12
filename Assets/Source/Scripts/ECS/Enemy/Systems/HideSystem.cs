@@ -1,44 +1,60 @@
 ﻿using System;
+using DG.Tweening;
 using Ingame.Enemy.State;
 using Ingame.Movement;
 using Leopotam.Ecs;
-using UnityEngine;
-using UnityEngine.AI;
-
+ 
 namespace Ingame.Enemy.System
 {
-    public class HideSystem: IEcsRunSystem
+    public sealed class HideSystem: IEcsRunSystem
     {
-        private EcsFilter<EnemyMovementComponent,LocateTargetComponent,HideModel,TransformModel,HideStateTag> _filter;
+        //find cover
+        private EcsFilter<EnemyMovementComponent,HideModel,FindCoverStateTag> _filter;
+        private EcsFilter<EnemyMovementComponent,HideModel,HideStateTag> _hideFilter;
+        private EcsFilter<EnemyMovementComponent,HideModel,PeekStateTag> _peekFilter;
         public void Run()
         {
+            //find a cover
             foreach (var i in _filter)
             {
                 ref var entity = ref _filter.GetEntity(i);
                 ref var movement = ref _filter.Get1(i);
-                ref var target = ref _filter.Get2(i);
-                ref var obstacle = ref _filter.Get3(i);
-                ref var enemy = ref entity.Get<TransformModel>();
-                
-                bool result = (Physics.Linecast(target.Target.position,enemy.transform.position,out RaycastHit ray));
-                //Hidden
-                if (ray.collider.CompareTag("Terrain") && result)
-                {
-                    enemy.transform.LookAt(target.Target);
-                    entity.Del<HideInProgressTag>();
-                    entity.Get<HideBlockComponent>();
-                   continue;
-                }
+                ref var obstacle = ref _filter.Get2(i);
 
-                entity.Get<HideInProgressTag>();
-                    //Find cover
-                if (NavMesh.SamplePosition(obstacle.Obstacle.position + (obstacle.Obstacle.position-target.Target.position).normalized ,out NavMeshHit hit,1f,NavMesh.AllAreas))
+                movement.NavMeshAgent.destination = obstacle.Obstacle.position;
+                if ((movement.NavMeshAgent.remainingDistance <= movement.NavMeshAgent.stoppingDistance && !movement.NavMeshAgent.pathPending))
                 {
-                    movement.NavMeshAgent.destination = hit.position;
+                    if (entity.Has<HideBlockTag>())
+                    {
+                        entity.Del<HideBlockTag>();
+                    }
                 }
                 
                 movement.NavMeshAgent.autoRepath = true;
                 movement.NavMeshAgent.isStopped = false;
+            }
+            //hide/take cover
+            foreach (var i in _hideFilter)
+            {
+                ref var entity = ref _hideFilter.GetEntity(i);
+                ref var transformModel = ref entity.Get<TransformModel>();
+                ref var target = ref entity.Get<LocateTargetComponent>();
+                if (entity.Has<HitboxModel>())
+                {
+                    ref var hitbox = ref entity.Get<HitboxModel>();
+                    hitbox.Hitbox.height = hitbox.HitboxData.CrouchHeight;
+                }
+                transformModel.transform.DOLookAt(target.Target.position, 0.1f);
+            }
+            //peek from cover
+            foreach (var i in _peekFilter)
+            {
+                ref var entity = ref _peekFilter.GetEntity(i);
+                if (entity.Has<HitboxModel>())
+                {
+                    ref var hitbox = ref entity.Get<HitboxModel>();
+                    hitbox.Hitbox.height = hitbox.HitboxData.NormalHeight;
+                }
             }
         }
     }

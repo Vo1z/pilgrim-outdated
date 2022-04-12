@@ -2,8 +2,10 @@ using NaughtyAttributes;
 using UnityEngine;
 namespace Ingame.Enemy.Data{
     [CreateAssetMenu(menuName = "Ingame/Enemy/Data/Movement", fileName = "EnemyMovementData")]
-    public class EnemyMovementData : ScriptableObject
+    public sealed class EnemyMovementData : ScriptableObject
     {
+        [SerializeField][BoxGroup("Movement")][Min(0)]
+        private float delayAfterAchievingWaypoint = 2.5f;
         [SerializeField][BoxGroup("Movement")][Min(0)]
         private float speedForward = 1.5f;
 
@@ -23,5 +25,6 @@ namespace Ingame.Enemy.Data{
         public float SpeedBack => speedBack;
         public float MaxFleeDistance => maxFleeDistance;
         public float MaxDistanceFromDestinationPoint => maxDistanceFromDestinationPoint;
+        public float DelayAfterAchievingWaypoint  =>delayAfterAchievingWaypoint;
     }
 }

@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: PatrolState
   m_EditorClassIdentifier: 
   decisions:
-  - {fileID: 11400000, guid: 7aea21f7f701e964eb00edcb19a6285a, type: 2}
-  - {fileID: 11400000, guid: 7496f6135fff251478900fd333fda88c, type: 2}
-  - {fileID: 11400000, guid: f4887555e005b4b4e8166503aed2b5d0, type: 2}
+  - {fileID: 11400000, guid: 1bd7a1589bb6ece45be4552fb7b5b0e5, type: 2}

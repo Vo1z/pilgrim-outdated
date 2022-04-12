@@ -3,14 +3,12 @@ using Ingame.Enemy.State;
 using Ingame.Health;
 using Ingame.Movement;
 using Leopotam.Ecs;
-using Support;
 using UnityEngine;
-using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 
 namespace Ingame.Enemy.System {
-    sealed class AttackSystem : IEcsRunSystem {
+    public sealed class AttackSystem : IEcsRunSystem {
         private readonly EcsFilter<LocateTargetComponent,ShootingModel,TransformModel,EnemyMovementComponent,ReactionDelayModel,AttackStateTag> _enemyFilter;
         
         void IEcsRunSystem.Run ()
@@ -21,13 +19,17 @@ namespace Ingame.Enemy.System {
                 ref var target = ref _enemyFilter.Get1(i);
                 ref var shooting = ref _enemyFilter.Get2(i);
                 ref var transformModel = ref _enemyFilter.Get3(i);
-                ref var movement = ref entity.Get<EnemyMovementComponent>();
                 ref var reactionDelay = ref entity.Get<ReactionDelayModel>();
-                movement.NavMeshAgent.isStopped = true; 
+                
+
                 
                 var delay = reactionDelay.ReactionTimeData.ReactionDelayFlat+Random.Range(-reactionDelay.ReactionTimeData.ReactionDelayRandom,reactionDelay.ReactionTimeData.ReactionDelayRandom);
-               
                 transformModel.transform.DOLookAt(target.Target.position,delay);
+                
+                if (shooting.CurrentAmountOfAmmunition<=0)
+                {
+                    continue;
+                }
                 if (entity.Has<ShootingBlockComponent>())
                 {
                     //shooting cooldown
@@ -52,7 +54,7 @@ namespace Ingame.Enemy.System {
                     var position = transformModel.transform.position;
                     
                     #if  UNITY_EDITOR
-                        Debug.DrawLine(position, position+ transformModel.transform.forward*shooting.ShootingData.Distance+rand);
+                        UnityEngine.Debug.DrawLine(position, position+ transformModel.transform.forward*shooting.ShootingData.Distance+rand);
                     #endif
                     
                     if (Physics.Linecast(transformModel.transform.position,transformModel.transform.position+ transformModel.transform.forward*shooting.ShootingData.Distance+rand,out hit))
@@ -71,9 +73,7 @@ namespace Ingame.Enemy.System {
                             damageComponent.damageToDeal = shooting.ShootingData.Damage;
                         }
                     }
-                    Debug.Log(target.Target.position);
                 }
-                
             }
         }
     }

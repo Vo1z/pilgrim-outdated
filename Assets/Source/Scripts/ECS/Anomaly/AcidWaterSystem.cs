@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Ingame.Anomaly
 {
-    public class AcidWaterSystem : IEcsRunSystem
+    public sealed class AcidWaterSystem : IEcsRunSystem
     {
         private EcsFilter<OnTriggerEnterEvent> _filterEnter;
         private EcsFilter<OnTriggerExitEvent> _filterExit;

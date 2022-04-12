@@ -3,7 +3,7 @@ using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Ingame.Enemy.System {
-    sealed class NoiseFetcherEventSystem : IEcsRunSystem
+    public sealed class NoiseFetcherEventSystem : IEcsRunSystem
     {
         private readonly EcsFilter<NoiseGeneratorEvent> _filter;
         private readonly EcsFilter<EnemyBehaviourTag,VisionModel> _enemyFilter;

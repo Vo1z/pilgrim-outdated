@@ -2,7 +2,7 @@
 
 namespace Ingame.Enemy.Provider
 {
-    public class ReactionDelayModelProvider : MonoProvider<ReactionDelayModel>
+    public sealed class ReactionDelayModelProvider : MonoProvider<ReactionDelayModel>
     {
     }
 }

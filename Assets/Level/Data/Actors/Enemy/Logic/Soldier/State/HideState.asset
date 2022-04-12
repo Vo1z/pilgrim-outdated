@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde196ef11444f18a3e3ff5dfc6907b3, type: 3}
   m_Name: HideState
   m_EditorClassIdentifier: 
-  decisions:
-  - {fileID: 11400000, guid: 7aea21f7f701e964eb00edcb19a6285a, type: 2}
+  decisions: []

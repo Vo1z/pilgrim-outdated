@@ -6,15 +6,15 @@ namespace Ingame.CameraWork
 {
     public sealed class CameraLeanSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<CameraLeanCallback, TransformModel> _mainCameraFilter;
+        private readonly EcsFilter<CameraLeanCallback, TransformModel, MainVirtualCameraTag> _mainVirtualCameraFilter;
 
         public void Run()
         {
-            foreach (var i in _mainCameraFilter)
+            foreach (var i in _mainVirtualCameraFilter)
             {
-                ref var cameraEntity = ref _mainCameraFilter.GetEntity(i);
-                ref var leanCallback = ref _mainCameraFilter.Get1(i);
-                ref var cameraTransformModel = ref _mainCameraFilter.Get2(i);
+                ref var cameraEntity = ref _mainVirtualCameraFilter.GetEntity(i);
+                ref var leanCallback = ref _mainVirtualCameraFilter.Get1(i);
+                ref var cameraTransformModel = ref _mainVirtualCameraFilter.Get2(i);
                 var cameraTransform = cameraTransformModel.transform;
 
                 bool isAiming = cameraEntity.Has<CameraIsAimingTag>();

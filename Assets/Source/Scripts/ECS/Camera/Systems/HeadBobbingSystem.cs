@@ -10,7 +10,7 @@ namespace Ingame.CameraWork
     public class HeadBobbingSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerModel, DeltaMovementComponent, CharacterControllerModel> _playerModelFilter;
-        private readonly EcsFilter<CameraModel, TransformModel, CameraBobbingComponent, MainCameraTag> _mainCameraFilter;
+        private readonly EcsFilter<VirtualCameraModel, TransformModel, CameraBobbingComponent, MainVirtualCameraTag> _mainCameraFilter;
 
         public void Run()
         {

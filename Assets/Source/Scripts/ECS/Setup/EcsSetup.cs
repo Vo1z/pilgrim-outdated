@@ -115,8 +115,7 @@ namespace Ingame
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem())
                 .Add(new GunInitSystem())
-                .Add(new DeltaMovementInitializeSystem())
-                .Add(new CameraInitializeSystem());
+                .Add(new DeltaMovementInitializeSystem());
 
             //Update
             _updateSystems

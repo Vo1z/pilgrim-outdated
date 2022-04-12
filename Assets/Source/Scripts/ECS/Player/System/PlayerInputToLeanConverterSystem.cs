@@ -12,7 +12,7 @@ namespace Ingame.Player
     {
         private EcsFilter<PlayerModel> _playerFilter;
         private EcsFilter<HudLeanOriginTag> _leanOriginFilter;
-        private EcsFilter<MainCameraTag> _mainCameraFilter;
+        private EcsFilter<MainVirtualCameraTag> _mainCameraFilter;
         private EcsFilter<LeanInputRequest> _leanInputRequestFilter;
 
         public void Run()

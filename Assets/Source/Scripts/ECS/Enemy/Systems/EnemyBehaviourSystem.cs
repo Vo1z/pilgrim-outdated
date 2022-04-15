@@ -11,7 +11,6 @@ namespace Ingame.Enemy.System
             {
                 ref var entity = ref _filter.GetEntity(i);
                 ref var state = ref _filter.Get1(i);
-                UnityEngine.Debug.Log(state.State.name);
                 state.State = state.State.GetPresentState(ref entity);
             }
         }

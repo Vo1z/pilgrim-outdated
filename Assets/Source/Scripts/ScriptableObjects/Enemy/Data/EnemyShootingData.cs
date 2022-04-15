@@ -19,10 +19,13 @@ public sealed class EnemyShootingData : ScriptableObject
     [SerializeField]
     [Min(0)] private float reloadTime;
     
+    [SerializeField] [Min(0)] 
+    private float continuousAttackDuration;
     public float Timer =>timer;
     public float Accuracy => accuracy;
     public float Distance => distance;
     public float Damage => damage;
     public int MaxAmountOfAmmunition => maxAmountOfAmmunition;
     public float ReloadTime => reloadTime;
+    public float ContinuousAttackDuration=> continuousAttackDuration;
 }

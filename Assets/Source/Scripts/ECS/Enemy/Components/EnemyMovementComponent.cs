@@ -12,7 +12,7 @@ namespace Ingame.Enemy
         [Expandable]
         public EnemyMovementData EnemyMovementData;
         [HideInInspector]
-        public Transform Waypoint;
+        public Vector3 Waypoint;
         [HideInInspector]
         public NavMeshAgent NavMeshAgent;
     }

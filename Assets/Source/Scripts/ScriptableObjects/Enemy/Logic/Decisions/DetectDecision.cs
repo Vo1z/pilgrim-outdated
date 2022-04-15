@@ -49,6 +49,11 @@ namespace Ingame.Enemy.Logic
                     {
                         continue;
                     }
+
+                    if (dist> vision.Vision.Distance)
+                    {
+                        continue;
+                    }
                 }
                 
                 //not behind cover

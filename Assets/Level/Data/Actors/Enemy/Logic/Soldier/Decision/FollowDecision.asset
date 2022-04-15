@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e0713a7cc74fd493bd236518a9f9fe, type: 3}
   m_Name: FollowDecision
   m_EditorClassIdentifier: 
-  nextState: {fileID: 0}
+  nextState: {fileID: 11400000, guid: 66619231fd6b9a440851d319d97cd391, type: 2}

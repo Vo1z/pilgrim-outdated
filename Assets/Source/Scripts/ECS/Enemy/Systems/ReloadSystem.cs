@@ -1,7 +1,7 @@
 ﻿using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Ingame.Enemy
+namespace Ingame.Enemy.System
 {
     public sealed class ReloadSystem: IEcsRunSystem
     {

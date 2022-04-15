@@ -21,21 +21,24 @@ namespace Ingame.Enemy.System
                 
                 ref var enemyMovement = ref _enemyFilter.Get1(i);
                 ref var waypoint = ref _enemyFilter.Get2(i);
-                if (waypoint.Waypoints ==null || waypoint.Waypoints.Count>=0)
+                if (waypoint.Waypoints ==null || waypoint.Waypoints.Count<=0)
                 {
                     continue;
                 }
-                enemyMovement.Waypoint = waypoint.Waypoints[waypoint.Index];
+                if (enemyMovement.Waypoint == null)
+                {
+                    enemyMovement.Waypoint = waypoint.Waypoints[waypoint.Index].position;
+                    enemyMovement.NavMeshAgent.destination = enemyMovement.Waypoint;
+                }
                 
-
-                enemyMovement.NavMeshAgent.destination = enemyMovement.Waypoint.position;
                 enemyMovement.NavMeshAgent.speed = enemyMovement.EnemyMovementData.SpeedForward;
                 enemyMovement.NavMeshAgent.isStopped = false;
                 if ((enemyMovement.NavMeshAgent.remainingDistance <= enemyMovement.NavMeshAgent.stoppingDistance &&
                      !enemyMovement.NavMeshAgent.pathPending))
                 {
                     entity.Get<WaitOnPointCallbackRequest>();
-                    enemyMovement.Waypoint = GetNextWaypoint(ref entity,ref waypoint);
+                    enemyMovement.Waypoint = GetNextWaypoint(ref entity,ref waypoint).position;
+                    enemyMovement.NavMeshAgent.destination = enemyMovement.Waypoint;
                 }
             }
         }

@@ -10,7 +10,7 @@ namespace Ingame.Enemy.Data{
         private float speedForward = 1.5f;
 
         [SerializeField][BoxGroup("Movement")][Min(0)]
-        private  float speedSide = 0.9f;
+        private  float speedOnReposition = 0.9f;
 
         [SerializeField][BoxGroup("Movement")][Min(0)]
         private  float speedBack = 0.7f;
@@ -20,11 +20,22 @@ namespace Ingame.Enemy.Data{
         
         [SerializeField] [BoxGroup("Movement")] [Min(0)]
         private float maxFleeDistance= 200;
+        
+        
+        [SerializeField] [BoxGroup("Movement")] [Min(0)]
+        private float minRangeOfOneStep = .5f;
+        
+        [SerializeField] [BoxGroup("Movement")] [Min(0)]
+        private float maxRangeOfOneStep = 3.5f;
+        
+        
         public float SpeedForward => speedForward;
-        public float SpeedSide => speedSide;
+        public float SpeedOnReposition => speedOnReposition;
         public float SpeedBack => speedBack;
         public float MaxFleeDistance => maxFleeDistance;
         public float MaxDistanceFromDestinationPoint => maxDistanceFromDestinationPoint;
         public float DelayAfterAchievingWaypoint  =>delayAfterAchievingWaypoint;
+        public float MaxRangeOfOneStep => maxRangeOfOneStep;
+        public float MinRangeOfOneStep => minRangeOfOneStep;
     }
 }

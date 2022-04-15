@@ -274,7 +274,6 @@ GameObject:
   - component: {fileID: 6036731664691388733}
   - component: {fileID: 6036731664691388735}
   - component: {fileID: 6036731664691388728}
-  - component: {fileID: 6036731664691388868}
   - component: {fileID: 6036731664691388869}
   - component: {fileID: 6036731664691388870}
   - component: {fileID: 6036731664691388878}
@@ -282,7 +281,6 @@ GameObject:
   - component: {fileID: 6036731664691388876}
   - component: {fileID: 6036731664691388867}
   - component: {fileID: 6036731664691388872}
-  - component: {fileID: 1932790947411923778}
   - component: {fileID: 5992540826305036944}
   - component: {fileID: 4543746790010698821}
   - component: {fileID: 4543746790010698856}
@@ -424,7 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     EnemyMovementData: {fileID: 11400000, guid: d1a20f70734eb0f4999ababe441f6343, type: 2}
-    Waypoint: {fileID: 0}
+    Waypoint: {x: 0, y: 0, z: 0}
     NavMeshAgent: {fileID: 0}
 --- !u!114 &6036731664691388733
 MonoBehaviour:
@@ -465,18 +463,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91acfb7ad2604511ac8db61100dd580b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6036731664691388868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6036731664691388715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34a301b4606426144957f91ff17154ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6036731664691388869
@@ -575,22 +561,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialActorHealth: 10.02
---- !u!114 &1932790947411923778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6036731664691388715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff65105296076464ba7b188a6d4a2695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Angle: 48.1
-  Distance: 25.66
-  Height: 7.32
-  VisionData: {fileID: 11400000, guid: d3c3b8b88ba8fb84bbd1bcc43d66e6e4, type: 2}
 --- !u!114 &5992540826305036944
 MonoBehaviour:
   m_ObjectHideFlags: 0

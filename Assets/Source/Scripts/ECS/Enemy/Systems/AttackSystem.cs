@@ -9,7 +9,8 @@ using Random = UnityEngine.Random;
 
 namespace Ingame.Enemy.System {
     public sealed class AttackSystem : IEcsRunSystem {
-        private readonly EcsFilter<LocateTargetComponent,ShootingModel,TransformModel,EnemyMovementComponent,ReactionDelayModel,AttackStateTag> _enemyFilter;
+        private readonly EcsFilter<LocateTargetComponent,ShootingModel,TransformModel,ReactionDelayModel,AttackStateTag> _enemyFilter;
+        private readonly EcsFilter<ShootingModel,ContinuousAttackTimerRequest> _attackTimerFilter;
         
         void IEcsRunSystem.Run ()
         {
@@ -20,9 +21,8 @@ namespace Ingame.Enemy.System {
                 ref var shooting = ref _enemyFilter.Get2(i);
                 ref var transformModel = ref _enemyFilter.Get3(i);
                 ref var reactionDelay = ref entity.Get<ReactionDelayModel>();
-                
 
-                
+
                 var delay = reactionDelay.ReactionTimeData.ReactionDelayFlat+Random.Range(-reactionDelay.ReactionTimeData.ReactionDelayRandom,reactionDelay.ReactionTimeData.ReactionDelayRandom);
                 transformModel.transform.DOLookAt(target.Target.position,delay);
                 
@@ -73,6 +73,19 @@ namespace Ingame.Enemy.System {
                             damageComponent.damageToDeal = shooting.ShootingData.Damage;
                         }
                     }
+                }
+            }
+
+            foreach (var i in _attackTimerFilter)
+            {
+                ref var entity = ref _attackTimerFilter.GetEntity(i);
+                ref var shooting = ref _attackTimerFilter.Get1(i);
+                ref var timer = ref _attackTimerFilter.Get2(i);
+
+                timer.TimeLeft += Time.deltaTime;
+                if (timer.TimeLeft >= shooting.ShootingData.ContinuousAttackDuration )
+                {
+                    entity.Del<ContinuousAttackTimerRequest>();
                 }
             }
         }

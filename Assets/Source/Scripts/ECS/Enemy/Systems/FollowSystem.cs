@@ -13,9 +13,9 @@ namespace Ingame.Enemy.System{
                 ref var movement = ref _enemyFilter.Get1(i);
                 ref var target = ref _enemyFilter.Get2(i);
 
-                movement.Waypoint = target.Target;
+                movement.Waypoint = target.Target.position;
                 movement.NavMeshAgent.speed = movement.EnemyMovementData.SpeedForward;
-                movement.NavMeshAgent.destination = movement.Waypoint.position;
+                movement.NavMeshAgent.destination = movement.Waypoint;
                 movement.NavMeshAgent.isStopped = false;
                 if ((movement.NavMeshAgent.remainingDistance <= movement.NavMeshAgent.stoppingDistance &&
                      !movement.NavMeshAgent.pathPending))

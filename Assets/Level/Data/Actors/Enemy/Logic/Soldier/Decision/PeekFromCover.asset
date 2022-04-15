@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e792d78a923c14eba2a0a17d759618, type: 3}
   m_Name: PeekFromCover
   m_EditorClassIdentifier: 
-  nextState: {fileID: 0}
+  nextState: {fileID: 11400000, guid: 69c95b65ecb445f4d98f3f5f762ab448, type: 2}

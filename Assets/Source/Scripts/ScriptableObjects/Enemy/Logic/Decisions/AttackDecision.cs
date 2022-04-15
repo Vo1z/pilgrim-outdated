@@ -1,4 +1,5 @@
 ﻿
+using Ingame.Enemy.State;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -9,8 +10,8 @@ namespace Ingame.Enemy.Logic
     {
         public override bool Decide(ref EcsEntity entity)
         {
-
-            return false;
+            entity.Get<AttackStateTag>();
+            return true;
         }
     }
 }

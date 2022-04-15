@@ -157,6 +157,7 @@ namespace Ingame
                 .Add(new HideOnCoolDownSystem())
                 .Add(new NoiseFetcherEventSystem())
                 .Add(new ReloadSystem())
+                .Add(new RepositionSystem())
                 //Anomaly
                 .Add(new AcidWaterSystem())
                 //Health

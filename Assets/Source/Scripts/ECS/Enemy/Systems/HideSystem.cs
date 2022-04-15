@@ -26,6 +26,7 @@ namespace Ingame.Enemy.System
                 {
                     if (entity.Has<HideBlockTag>())
                     {
+                        movement.NavMeshAgent.isStopped = true;
                         entity.Del<HideBlockTag>();
                     }
                 }

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d056e96d134b16478ca9ca87d174efe, type: 3}
   m_Name: PeekFromCover
   m_EditorClassIdentifier: 
-  decisions: []
+  decisions:
+  - {fileID: 11400000, guid: aa037e4d30c948746b01ad890ee67c82, type: 2}

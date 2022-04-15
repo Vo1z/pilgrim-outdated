@@ -30,11 +30,15 @@ namespace Ingame.Enemy.Logic
             ref var transformModel = ref entity.Get<TransformModel>();
             ref var shortRef = ref farEntityReference.Entity;
             ref var vision = ref shortRef.Get<VisionModel>();
-            if (vision.Vision.Distance<Vector3.Distance(target.Target.position,transformModel.transform.position))
+            var distance = Vector3.Distance(target.Target.position, transformModel.transform.position);
+            if (vision.Vision.Distance>distance)
             {
                 return true;
             }
-
+            if (!vision.Opponents.Contains(target.Target))
+            {
+                return true;
+            }
             return false;
         }
     }

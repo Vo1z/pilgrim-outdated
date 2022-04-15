@@ -17,4 +17,5 @@ MonoBehaviour:
   distance: 50.73
   damage: 3.79
   maxAmountOfAmmunition: 26
-  reloadTime: 0.97
+  reloadTime: 1.75
+  continuousAttackDuration: 3.13

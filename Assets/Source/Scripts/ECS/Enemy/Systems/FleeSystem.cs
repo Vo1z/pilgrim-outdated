@@ -4,13 +4,12 @@ using Ingame.Movement;
 using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 namespace Ingame.Enemy.System
 {
     public sealed class FleeSystem : IEcsRunSystem
     {
-        private EcsFilter<EnemyMovementComponent,LocateTargetComponent,TransformModel, VisionModel,FleeStateTag> _filter;
+        private EcsFilter<EnemyMovementComponent,LocateTargetComponent,TransformModel,FleeStateTag> _filter;
         public void Run()
         {
             foreach (var i in _filter)
@@ -28,11 +27,12 @@ namespace Ingame.Enemy.System
                     }
                   
                 }
-                var pos = enemy.transform.position - target.Target.position;
+                var pos = (enemy.transform.position - target.Target.position).normalized;
                 NavMeshHit hit;
                 if (NavMesh.SamplePosition(pos + enemy.transform.position,out hit,movement.EnemyMovementData.MaxDistanceFromDestinationPoint,NavMesh.AllAreas))
                 {
                     movement.NavMeshAgent.destination = hit.position;
+                    movement.NavMeshAgent.speed = movement.EnemyMovementData.SpeedForward;
                     if (Vector3.Distance(enemy.transform.position,target.Target.position)>movement.EnemyMovementData.MaxFleeDistance)
                     {
                         movement.NavMeshAgent.isStopped = true;

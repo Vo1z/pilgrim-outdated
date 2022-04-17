@@ -25,7 +25,7 @@ namespace Ingame.Enemy.System
                 var position = transformModel.transform.position;
                 var distance = Vector3.Distance(target.Target.position, position);
                 var destination = new Vector3(position.x, position.y, position.z);
-                float x = 0.1f;
+
                 var moveRightOrLeft = Math.Floor((double) Random.Range(0, 2))==0 ? 1 : -1;
                 destination += transformModel.transform.forward*Random.Range(movementData.MinRangeOfOneStep,movementData.MaxRangeOfOneStep)*(distance<_treshholdDistance?-1:1)
                                + transformModel.transform.right*moveRightOrLeft*Random.Range(movementData.MinRangeOfOneStep,movementData.MaxRangeOfOneStep);

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6cefe55040a4157b84f7628ef75ff27, type: 3}
   m_Name: EnemyHideData
   m_EditorClassIdentifier: 
-  safeDistance: 14.69
   coolDownOnPeek: 4.67
   coolDownOnTakeCover: 3.24
   maxDistanceBetweenThisAndCover: 5.98
+  dynamicFindCoverCooldown: 26.38

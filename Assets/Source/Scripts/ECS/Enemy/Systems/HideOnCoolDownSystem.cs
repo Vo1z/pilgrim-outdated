@@ -1,4 +1,5 @@
-﻿using Leopotam.Ecs;
+﻿using System;
+using Leopotam.Ecs;
 using UnityEngine;
  
 
@@ -8,6 +9,7 @@ namespace Ingame.Enemy.System
     {
         private EcsFilter<HideModel,HideBlockOnPeekComponent> _peekFilter;
         private EcsFilter<HideModel,HideBlockOnTakeCoverComponent> _takeCoverFilter;
+        private EcsFilter<HideModel,DynamicHideCooldownComponent> _dynamicHideFilter;
         public void Run()
         {
             //Peek
@@ -38,6 +40,19 @@ namespace Ingame.Enemy.System
                     continue;
                 }
 
+                hideBlock.RemainingTime += Time.deltaTime;
+            }
+            //Dynamic hide 
+            foreach (var i in _dynamicHideFilter)
+            {
+                ref var entity = ref _dynamicHideFilter.GetEntity(i);
+                ref var hideModel = ref _dynamicHideFilter.Get1(i);
+                ref var hideBlock = ref _dynamicHideFilter.Get2(i);
+                if (hideBlock.RemainingTime >= hideModel.HideData.DynamicFindCoverCooldown)
+                {
+                    entity.Del<DynamicHideCooldownComponent>();
+                    continue;
+                }
                 hideBlock.RemainingTime += Time.deltaTime;
             }
         }

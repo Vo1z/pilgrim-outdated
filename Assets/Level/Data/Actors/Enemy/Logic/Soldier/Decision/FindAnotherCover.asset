@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 959a5683921b5774d87b9cfd7a833f8a, type: 3}
-  m_Name: EnemyShootingData
+  m_Script: {fileID: 11500000, guid: 1134c241db65a7a418276fc91c4e7fff, type: 3}
+  m_Name: FindAnotherCover
   m_EditorClassIdentifier: 
-  timer: 0.27
-  accuracy: 1.92
-  distance: 50.73
-  damage: 5.14
-  maxAmountOfAmmunition: 26
-  reloadTime: 1.75
-  continuousAttackDuration: 3.13
+  nextState: {fileID: 11400000, guid: 89fc314ed22a8724bb151e4c29e61047, type: 2}

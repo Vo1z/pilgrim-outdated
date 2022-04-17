@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78985ca2630a56b4995d3bfa147933d1, type: 3}
   m_Name: EnemyMovementData
   m_EditorClassIdentifier: 
-  SpeedForward: 1.5
-  SpeedSide: 0.9
-  SpeedBack: 0.7
+  delayAfterAchievingWaypoint: 2.5
+  speedForward: 2.96
+  speedOnReposition: 1.74
+  speedBack: 0.7
+  maxDistanceFromDestinationPoint: 5
+  maxFleeDistance: 200
+  minRangeOfOneStep: 0.5
+  maxRangeOfOneStep: 3.5

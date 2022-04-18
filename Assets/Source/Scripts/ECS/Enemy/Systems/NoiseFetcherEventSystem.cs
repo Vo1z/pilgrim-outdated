@@ -8,6 +8,7 @@ namespace Ingame.Enemy.System {
     {
         private readonly EcsFilter<NoiseGeneratorEvent> _filter;
         private readonly EcsFilter<EnemyBehaviourTag,VisionBinderComponent,EnemyMovementComponent,PatrolStateTag> _enemyFilter;
+        private const float FETCH_RATIO = 2.15f;
         void IEcsRunSystem.Run () {
             foreach (var i in _filter)
             {
@@ -27,8 +28,9 @@ namespace Ingame.Enemy.System {
                         continue;
                     }
                     ref var farEntity = ref farEntityRef.Entity;
-                    ref var vision = ref farEntity.Get<VisionModel>();
-                    if (vision.Vision.MaxDistance>Vector3.Distance(enemyPosition.transform.position,pos))
+                    ref var vision = ref farEntity.Get<VisionModel>(); 
+
+                    if (vision.Vision.MaxDistance*FETCH_RATIO<Vector3.Distance(enemyPosition.transform.position,pos))
                     {
                         continue;
                     }
@@ -37,6 +39,10 @@ namespace Ingame.Enemy.System {
                     
                     if (enemyEntity.Has<EnemyMovementComponent>())
                     {
+                        if (entity.Has<WaitOnPointCallbackRequest>())
+                        {
+                            entity.Del<WaitOnPointCallbackRequest>();
+                        }
                         ref var enemyMovement = ref _enemyFilter.Get3(j);
                         enemyMovement.Waypoint = point;
                         enemyMovement.NavMeshAgent.destination = point;

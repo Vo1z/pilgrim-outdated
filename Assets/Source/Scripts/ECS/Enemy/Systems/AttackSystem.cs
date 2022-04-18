@@ -56,7 +56,7 @@ namespace Ingame.Enemy.System {
                     #if  UNITY_EDITOR
                         UnityEngine.Debug.DrawLine(position, position+ transformModel.transform.forward*shooting.ShootingData.Distance+rand);
                     #endif
-                    
+                    shooting.CurrentAmountOfAmmunition -= 1;
                     if (Physics.Linecast(transformModel.transform.position,transformModel.transform.position+ transformModel.transform.forward*shooting.ShootingData.Distance+rand,out hit))
                     {
                         var res = hit.collider.gameObject.TryGetComponent(out EntityReference entityReference);

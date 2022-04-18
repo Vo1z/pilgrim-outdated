@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisions:
   - {fileID: 11400000, guid: 82e62776ff07e4345b88cf41cc95f959, type: 2}
+  - {fileID: 11400000, guid: cc4d3bac3ee35e84b92ce05792808222, type: 2}

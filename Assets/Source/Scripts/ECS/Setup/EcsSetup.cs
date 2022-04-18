@@ -146,6 +146,7 @@ namespace Ingame
                 .Add(new HudGunAnimationSystem())
                 //AI
                 .Add(new InitializeEntityReferenceSystem())
+                .Add(new NoiseFetcherEventSystem())
                 .Add(new DetectSystem())
                 .Add(new PatrolSystem())
                 .Add(new FollowSystem())
@@ -155,7 +156,6 @@ namespace Ingame
                 .Add(new IdleSystem())
                 .Add(new EnemyBehaviourSystem())
                 .Add(new HideOnCoolDownSystem())
-                .Add(new NoiseFetcherEventSystem())
                 .Add(new ReloadSystem())
                 .Add(new RepositionSystem())
                 //Anomaly

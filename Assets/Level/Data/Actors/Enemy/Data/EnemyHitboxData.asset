@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnemyHitboxData
   m_EditorClassIdentifier: 
   _normalHeight: 2.12
-  _crouchHeight: 1.2
+  _crouchHeight: 1.5

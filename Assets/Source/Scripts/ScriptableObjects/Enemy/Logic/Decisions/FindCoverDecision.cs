@@ -58,7 +58,6 @@ namespace Ingame.Enemy.Logic
                         }
                     }
                 }
-                
             }
             return false;
         }

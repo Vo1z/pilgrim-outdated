@@ -8,11 +8,14 @@ namespace Ingame.Gunplay
     {
         private readonly EcsWorld _world;
         
-        private readonly EcsFilter<GunModel, ShootTimerComponent, InHandsTag> _gunsFilter;
+        private readonly EcsFilter<GunModel, ShootTimerComponent, InHandsTag, HudIsVisibleTag> _gunsFilter;
         private readonly EcsFilter<ShootInputEvent> _shootInputEvent;
 
         public void Run()
         {
+            if (_shootInputEvent.IsEmpty())
+                return;
+
             foreach (var i in _gunsFilter)
             {
                 ref var gunEntity = ref _gunsFilter.GetEntity(i);
@@ -20,20 +23,17 @@ namespace Ingame.Gunplay
                 ref var shootTimerComponent = ref _gunsFilter.Get2(i);
                 var gunData = gunModel.gunData;
 
-                if (!_shootInputEvent.IsEmpty())
+                bool shotCanBePerformed = shootTimerComponent.timePassedFromLastShot > gunData.PauseBetweenShots;
+                shotCanBePerformed = shotCanBePerformed && gunEntity.Has<BulletIsInShutterTag>();
+
+                if (shotCanBePerformed)
                 {
-                    bool shotCanBePerformed = shootTimerComponent.timePassedFromLastShot > gunData.PauseBetweenShots;
-                    shotCanBePerformed = shotCanBePerformed && gunEntity.Has<BulletIsInShutterTag>();
-                    
-                    if (shotCanBePerformed)
-                    {
-                        shootTimerComponent.timePassedFromLastShot = 0;
-                        
-                        gunEntity.Del<BulletIsInShutterTag>();
-                        gunEntity.Get<AwaitingShotTag>();
-                        
-                        TryMovingBulletFromMagazineToTheShutter(gunEntity);
-                    }
+                    shootTimerComponent.timePassedFromLastShot = 0;
+
+                    gunEntity.Del<BulletIsInShutterTag>();
+                    gunEntity.Get<AwaitingShotTag>();
+
+                    TryMovingBulletFromMagazineToTheShutter(gunEntity);
                 }
             }
         }

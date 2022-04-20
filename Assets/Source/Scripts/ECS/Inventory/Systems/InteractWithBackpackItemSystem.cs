@@ -17,7 +17,8 @@ namespace Ingame.Inventory
         {
             if(_playerFilter.IsEmpty())
                 return;
-            
+
+            ref var playerEntity = ref _playerFilter.GetEntity(0);
             ref var playerHealthEntity = ref _playerFilter.GetEntity(0);
             ref var playerInventory = ref _playerFilter.Get2(0);
 
@@ -50,6 +51,11 @@ namespace Ingame.Inventory
                 if (itemEntity.Has<EnergyDrinkTag>())
                 {
                     playerInventory.currentNumberOfEnergyDrinks--;
+                    ref var energyDrinkEffect = ref playerEntity.Get<EnergyEffectComponent>();
+
+                    energyDrinkEffect.numberOfEffects++;
+                    energyDrinkEffect.duration = EnergyEffectComponent.DEFAULT_EFFECT_DURATION;
+                    energyDrinkEffect.movingSpeedScale = EnergyEffectComponent.DEFAULT_MOVING_SPEED_SCALE;
                 }
                 
                 if (itemEntity.Has<InhalatorTag>())

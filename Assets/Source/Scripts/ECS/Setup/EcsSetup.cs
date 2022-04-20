@@ -164,6 +164,7 @@ namespace Ingame
                 .Add(new StopGasChokeSystem())
                 .Add(new GasChokeSystem())
                 .Add(new HealingSystem())
+                .Add(new ManageEnergyEffectSystem())
                 .Add(new DeathSystem())
                 .Add(new DestroyDeadActorsSystem())
                 //Interaction
@@ -175,6 +176,7 @@ namespace Ingame
                 .Add(new DragObjectSystem())
                 //Inventory
                 .Add(new PickUpItemSystem())
+                .Add(new PickUpGunSystem())
                 .Add(new UpdateBackpackAppearanceSystem())
                 .Add(new InteractWithBackpackItemSystem())
                 //Utils

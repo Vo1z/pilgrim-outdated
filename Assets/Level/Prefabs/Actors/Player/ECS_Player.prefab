@@ -2663,8 +2663,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
+    localPositionInsideHud: {x: 0.3190002, y: -0.22799969, z: 0.533}
+    localRotationInsideHud: {x: 0, y: 0, z: 0, w: 0}
     gunData: {fileID: 11400000, guid: 6370ff917880b114abdfc7a3a4b9a7c4, type: 2}
     barrelTransform: {fileID: 2167057581501073476}
+    handsTransform: {fileID: 1844318737504627933}
+    lootDataTransform: {fileID: 0}
 --- !u!114 &2167057582838506116
 MonoBehaviour:
   m_ObjectHideFlags: 0

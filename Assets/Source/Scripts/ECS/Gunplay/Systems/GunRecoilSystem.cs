@@ -1,5 +1,4 @@
-﻿
-using Ingame.Data.Gunplay;
+﻿using Ingame.Data.Gunplay;
 using Ingame.Movement;
 using Leopotam.Ecs;
 using UnityEngine;

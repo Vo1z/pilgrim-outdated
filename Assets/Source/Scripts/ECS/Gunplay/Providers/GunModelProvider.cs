@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NaughtyAttributes;
+using UnityEngine;
 using Voody.UniLeo;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -24,5 +25,11 @@ namespace Ingame.Gunplay
             Handles.DrawLine(position, position + barrelOrigin.forward * BARREL_DIRECTION_LINE_LENGTH);
         }
 #endif
+        [Button]
+        private void BakeHudPosition()
+        {
+            value.localPositionInsideHud = transform.localPosition;
+            value.localRotationInsideHud = transform.localRotation;
+        }
     }
 }

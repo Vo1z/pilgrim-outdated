@@ -11,7 +11,6 @@ namespace Ingame.Hud
         
         public void Run()
         {
-             
             foreach (var i in _itemModelFilter)
             {
                 ref var inHandsItemEntity = ref _itemModelFilter.GetEntity(i);

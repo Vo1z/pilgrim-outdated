@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using Support.Extensions;
 
 namespace Ingame.Hud
 {
@@ -15,17 +16,20 @@ namespace Ingame.Hud
                 ref var hudItemEntity = ref _gunItemModelFilter.GetEntity(i);
                 ref var hudItemModel = ref _gunItemModelFilter.Get1(i);
                 var animator = hudItemModel.itemAnimator;
-               
+
+                if (hudItemEntity.Has<HudIsVisibleTag>()) 
+                    animator.SetGameObjectActive();
+
                 animator.SetBool("IsAiming", hudItemEntity.Has<HudIsAimingTag>());
                 animator.SetBool("IsVisible", hudItemEntity.Has<HudIsVisibleTag>());
 
-                if (!_hudReloadAnimationEventFilter.IsEmpty())
+                if (!_hudReloadAnimationEventFilter.IsEmpty() && hudItemEntity.Has<HudIsVisibleTag>())
                 {
                     animator.ResetTrigger("Reload");
                     animator.SetTrigger("Reload");
                 }
 
-                if (!_hudDistortTheShutterAnimationEventFilter.IsEmpty())
+                if (!_hudDistortTheShutterAnimationEventFilter.IsEmpty() && hudItemEntity.Has<HudIsVisibleTag>())
                 {
                     animator.ResetTrigger("DistortTheShutter");
                     animator.SetTrigger("DistortTheShutter");

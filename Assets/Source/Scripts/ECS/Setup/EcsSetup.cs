@@ -103,6 +103,8 @@ namespace Ingame
                 .OneFrame<OpenInventoryInputEvent>()
                 .OneFrame<HudReloadAnimationTriggerEvent>()
                 .OneFrame<HudDistortTheShutterAnimationTriggerEvent>()
+                .OneFrame<InteractWithFirstSlotInputEvent>()
+                .OneFrame<InteractWithSecondSlotInputEvent>()
                 .OneFrame<NoiseGeneratorEvent>();
         }
 
@@ -128,13 +130,14 @@ namespace Ingame
                 .Add(new PlayerSpeedChangerSystem())
                 //HUD
                 .Add(new CameraInputToStatesConverterSystem())
-                .Add(new MainCameraShakeEventReceiver())
+                .Add(new MainCameraShakeEventReceiverSystem())
                 .Add(new CameraShakeSystem())
-                .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
                 .Add(new HudItemMoverSystemDueToRotation())
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
+                .Add(new HudInputToStatesConverterSystem())
+                .Add(new HudItemSlotChooseSystem())
                 //Gun play
                 .Add(new GunDistortTheShutterInputConverterSystem())
                 .Add(new GunReloadInputConverterSystem())
@@ -167,6 +170,7 @@ namespace Ingame
                 .Add(new StopGasChokeSystem())
                 .Add(new GasChokeSystem())
                 .Add(new HealingSystem())
+                .Add(new ManageEnergyEffectSystem())
                 .Add(new DeathSystem())
                 .Add(new DestroyDeadActorsSystem())
                 //Interaction
@@ -178,6 +182,7 @@ namespace Ingame
                 .Add(new DragObjectSystem())
                 //Inventory
                 .Add(new PickUpItemSystem())
+                .Add(new PickUpGunSystem())
                 .Add(new UpdateBackpackAppearanceSystem())
                 .Add(new InteractWithBackpackItemSystem())
                 //Utils

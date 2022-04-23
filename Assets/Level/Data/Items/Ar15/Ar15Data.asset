@@ -19,5 +19,5 @@ MonoBehaviour:
   frontRecoilForce: 10
   minMaxRecoilPositionOffset: 0.5
   cameraShakeDuration: 0.1
-  cameraShakeAmplitude: 0.2
+  cameraShakeAmplitude: 0.04
   cameraShakeFrequency: 0.1

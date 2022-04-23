@@ -7,11 +7,9 @@ namespace Ingame.Hud
     {
         private readonly EcsFilter<HudItemModel, InHandsTag> _itemModelFilter;
         private readonly EcsFilter<AimInputEvent> _aimEventFilter;
-        private readonly EcsFilter<OpenInventoryInputEvent> _openInventoryInputEvent;
-        
+
         public void Run()
         {
-             
             foreach (var i in _itemModelFilter)
             {
                 ref var inHandsItemEntity = ref _itemModelFilter.GetEntity(i);
@@ -23,14 +21,6 @@ namespace Ingame.Hud
                         inHandsItemEntity.Del<HudIsAimingTag>();
                     else
                         inHandsItemEntity.Get<HudIsAimingTag>();
-                }
-
-                if (!_openInventoryInputEvent.IsEmpty())
-                {
-                    if (inHandsItemEntity.Has<HudIsVisibleTag>())
-                        inHandsItemEntity.Del<HudIsVisibleTag>();
-                    else
-                        inHandsItemEntity.Get<HudIsVisibleTag>();
                 }
             }
         }

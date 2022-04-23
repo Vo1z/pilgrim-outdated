@@ -8,7 +8,9 @@ namespace Ingame.Gunplay
     {
         private readonly EcsWorld _world;
         
-        private readonly EcsFilter<GunModel, ShootTimerComponent, InHandsTag, HudIsVisibleTag> _gunsFilter;
+        private readonly EcsFilter<GunModel, ShootTimerComponent, InHandsTag, HudIsVisibleTag>
+                        .Exclude<AwaitingReloadTag, AwaitingShutterDistortionTag> _gunsFilter;
+        
         private readonly EcsFilter<ShootInputEvent> _shootInputEvent;
 
         public void Run()

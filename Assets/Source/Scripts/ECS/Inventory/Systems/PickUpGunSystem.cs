@@ -12,7 +12,6 @@ namespace Ingame.Inventory
     {
         private readonly EcsFilter<GunLootComponent, TransformModel, PerformInteractionTag>.Exclude<InHandsTag> _lootGunFilter;
         private readonly EcsFilter<HudModel, TransformModel> _playerHudFilter;
-        private readonly EcsFilter<BackpackModel, TransformModel> _backpackFilter;
 
         private readonly EcsFilter<HudItemModel, FirstHudItemSlotTag> _firstSlotFilter;
         private readonly EcsFilter<HudItemModel, SecondHudItemSlotTag> _secondSlotFilter;
@@ -67,14 +66,15 @@ namespace Ingame.Inventory
             handsTransform.SetGameObjectActive();
             handsTransform.gameObject.SetLayerToAllChildren(LayerMask.NameToLayer("HUD"));
 
-            if (!_firstSlotFilter.IsEmpty())
+            if (_firstSlotFilter.IsEmpty())
                 gunEntity.Get<FirstHudItemSlotTag>();
             else
                 gunEntity.Get<SecondHudItemSlotTag>();
-
+            
+            if(gunEntity.Has<HudIsVisibleTag>())
+                gunEntity.Del<HudIsVisibleTag>();
+            
             gunEntity.Get<InHandsTag>();
-
-            _backpackFilter.Get2(0).transform.SetGameObjectInactive();
         }
     }
 }

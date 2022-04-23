@@ -136,6 +136,7 @@ namespace Ingame
                 .Add(new HudItemRotatorDueVelocitySystem())
                 .Add(new HudItemMoverSystemDueToRotation())
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
+                .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemSlotChooseSystem())
                 //Gun play
                 .Add(new GunDistortTheShutterInputConverterSystem())

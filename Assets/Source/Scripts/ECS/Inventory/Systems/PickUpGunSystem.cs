@@ -62,10 +62,10 @@ namespace Ingame.Inventory
             gunTransform.localPosition = gunModel.localPositionInsideHud;
             gunTransform.localRotation = gunModel.localRotationInsideHud;
             gunTransform.gameObject.SetLayerToAllChildren(LayerMask.NameToLayer("Weapon"));
-            
+
             handsTransform.SetGameObjectActive();
             handsTransform.gameObject.SetLayerToAllChildren(LayerMask.NameToLayer("HUD"));
-
+            
             if (_firstSlotFilter.IsEmpty())
                 gunEntity.Get<FirstHudItemSlotTag>();
             else
@@ -75,6 +75,7 @@ namespace Ingame.Inventory
                 gunEntity.Del<HudIsVisibleTag>();
             
             gunEntity.Get<InHandsTag>();
+            gunTransform.SetGameObjectInactive();
         }
     }
 }

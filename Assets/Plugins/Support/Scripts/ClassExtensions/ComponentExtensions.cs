@@ -53,5 +53,29 @@ namespace Support.Extensions
             foreach (var transform in gameObject.GetComponentsInChildren<Transform>(true))
                 transform.gameObject.layer = layer;
         }
+
+        /// <summary>
+        /// Turns off children game objects
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public static void TurnOffChildren(this GameObject gameObject)
+        {
+            foreach (var transform in gameObject.GetComponentsInChildren<Transform>(true))
+                transform.SetGameObjectInactive();
+            
+            gameObject.SetActive(true);
+        }
+
+        /// <summary>
+        /// Turns on children game object
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public static void TurnOnChildren(this GameObject gameObject)
+        {
+            foreach (var transform in gameObject.GetComponentsInChildren<Transform>(true))
+                transform.SetGameObjectActive();
+            
+            gameObject.SetActive(true);
+        }
     }
 }

@@ -103,6 +103,8 @@ namespace Ingame
                 .OneFrame<OpenInventoryInputEvent>()
                 .OneFrame<HudReloadAnimationTriggerEvent>()
                 .OneFrame<HudDistortTheShutterAnimationTriggerEvent>()
+                .OneFrame<InteractWithFirstSlotInputEvent>()
+                .OneFrame<InteractWithSecondSlotInputEvent>()
                 .OneFrame<NoiseGeneratorEvent>();
         }
 
@@ -128,13 +130,13 @@ namespace Ingame
                 .Add(new PlayerSpeedChangerSystem())
                 //HUD
                 .Add(new CameraInputToStatesConverterSystem())
-                .Add(new MainCameraShakeEventReceiver())
+                .Add(new MainCameraShakeEventReceiverSystem())
                 .Add(new CameraShakeSystem())
-                .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
                 .Add(new HudItemMoverSystemDueToRotation())
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
+                .Add(new HudItemSlotChooseSystem())
                 //Gun play
                 .Add(new GunDistortTheShutterInputConverterSystem())
                 .Add(new GunReloadInputConverterSystem())

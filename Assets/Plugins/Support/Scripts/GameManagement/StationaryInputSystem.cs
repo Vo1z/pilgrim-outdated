@@ -154,6 +154,24 @@ namespace Support
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FirstSlotInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""83bfe484-5274-4859-86dc-09a6445f39fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondSlotInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""17dc1a19-d6b5-4694-bd42-93e706e23b90"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -574,6 +592,28 @@ namespace Support
                     ""action"": ""OpenInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec33cce8-5c1c-4474-b4e2-a0858a0b9939"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FirstSlotInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c4a8b67-308b-4550-9fc4-8d38d5a640b4"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondSlotInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -596,6 +636,8 @@ namespace Support
             m_FPS_DistortTheShutter = m_FPS.FindAction("DistortTheShutter", throwIfNotFound: true);
             m_FPS_Interact = m_FPS.FindAction("Interact", throwIfNotFound: true);
             m_FPS_OpenInventory = m_FPS.FindAction("OpenInventory", throwIfNotFound: true);
+            m_FPS_FirstSlotInteraction = m_FPS.FindAction("FirstSlotInteraction", throwIfNotFound: true);
+            m_FPS_SecondSlotInteraction = m_FPS.FindAction("SecondSlotInteraction", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -669,6 +711,8 @@ namespace Support
         private readonly InputAction m_FPS_DistortTheShutter;
         private readonly InputAction m_FPS_Interact;
         private readonly InputAction m_FPS_OpenInventory;
+        private readonly InputAction m_FPS_FirstSlotInteraction;
+        private readonly InputAction m_FPS_SecondSlotInteraction;
         public struct FPSActions
         {
             private @StationaryInput m_Wrapper;
@@ -687,6 +731,8 @@ namespace Support
             public InputAction @DistortTheShutter => m_Wrapper.m_FPS_DistortTheShutter;
             public InputAction @Interact => m_Wrapper.m_FPS_Interact;
             public InputAction @OpenInventory => m_Wrapper.m_FPS_OpenInventory;
+            public InputAction @FirstSlotInteraction => m_Wrapper.m_FPS_FirstSlotInteraction;
+            public InputAction @SecondSlotInteraction => m_Wrapper.m_FPS_SecondSlotInteraction;
             public InputActionMap Get() { return m_Wrapper.m_FPS; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -738,6 +784,12 @@ namespace Support
                     @OpenInventory.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnOpenInventory;
                     @OpenInventory.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnOpenInventory;
                     @OpenInventory.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnOpenInventory;
+                    @FirstSlotInteraction.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnFirstSlotInteraction;
+                    @FirstSlotInteraction.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnFirstSlotInteraction;
+                    @FirstSlotInteraction.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnFirstSlotInteraction;
+                    @SecondSlotInteraction.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnSecondSlotInteraction;
+                    @SecondSlotInteraction.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnSecondSlotInteraction;
+                    @SecondSlotInteraction.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnSecondSlotInteraction;
                 }
                 m_Wrapper.m_FPSActionsCallbackInterface = instance;
                 if (instance != null)
@@ -784,6 +836,12 @@ namespace Support
                     @OpenInventory.started += instance.OnOpenInventory;
                     @OpenInventory.performed += instance.OnOpenInventory;
                     @OpenInventory.canceled += instance.OnOpenInventory;
+                    @FirstSlotInteraction.started += instance.OnFirstSlotInteraction;
+                    @FirstSlotInteraction.performed += instance.OnFirstSlotInteraction;
+                    @FirstSlotInteraction.canceled += instance.OnFirstSlotInteraction;
+                    @SecondSlotInteraction.started += instance.OnSecondSlotInteraction;
+                    @SecondSlotInteraction.performed += instance.OnSecondSlotInteraction;
+                    @SecondSlotInteraction.canceled += instance.OnSecondSlotInteraction;
                 }
             }
         }
@@ -804,6 +862,8 @@ namespace Support
             void OnDistortTheShutter(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
             void OnOpenInventory(InputAction.CallbackContext context);
+            void OnFirstSlotInteraction(InputAction.CallbackContext context);
+            void OnSecondSlotInteraction(InputAction.CallbackContext context);
         }
     }
 }

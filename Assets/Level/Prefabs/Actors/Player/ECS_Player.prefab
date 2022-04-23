@@ -2591,6 +2591,7 @@ GameObject:
   - component: {fileID: 2167057582838506115}
   - component: {fileID: 2167057582838506125}
   - component: {fileID: 2059283077}
+  - component: {fileID: 5319690918971671333}
   m_Layer: 8
   m_Name: AR15
   m_TagString: Untagged
@@ -2744,6 +2745,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f72a714c69c4c4daec4eb6a6e33ec8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5319690918971671333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2167057582838506119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233f2b082ba2441199576df5a49373b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2167057582941466137

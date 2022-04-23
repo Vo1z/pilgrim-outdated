@@ -25,6 +25,8 @@ namespace Ingame.Input
         private InputAction _distortTheShutterInput;
         private InputAction _interactionInput;
         private InputAction _openInventoryInput;
+        private InputAction _firstSlotInteraction;
+        private InputAction _secondSlotInteraction;
 
         public void Init()
         {
@@ -47,6 +49,9 @@ namespace Ingame.Input
             _interactionInput = _stationaryInputSystem.FPS.Interact;
 
             _openInventoryInput = _stationaryInputSystem.FPS.OpenInventory;
+
+            _firstSlotInteraction = _stationaryInputSystem.FPS.FirstSlotInteraction;
+            _secondSlotInteraction = _stationaryInputSystem.FPS.SecondSlotInteraction;
         }
 
         public void Run()
@@ -61,7 +66,9 @@ namespace Ingame.Input
             bool distortTheShutterInput = _distortTheShutterInput.WasPressedThisFrame();
             bool interactInput = _interactionInput.WasPressedThisFrame();
             bool openInventoryInput = _openInventoryInput.WasPressedThisFrame();
-            
+            bool interactWithFirstSlot = _firstSlotInteraction.WasPressedThisFrame();
+            bool interactWithSecondSlot = _secondSlotInteraction.WasPressedThisFrame();
+
             var leanDirection = _leanInput.ReadValue<float>() switch
             {
                 < 0 => LeanDirection.Left,
@@ -74,15 +81,15 @@ namespace Ingame.Input
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
-                
+
                 inputEntity.Get<MoveInputRequest>().movementInput = movementInputVector;
             }
-            
+
             if (rotationInputVector.sqrMagnitude > 0)
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
-                
+
                 inputEntity.Get<RotateInputRequest>().rotationInput = rotationInputVector;
             }
 
@@ -90,7 +97,7 @@ namespace Ingame.Input
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
-                
+
                 inputEntity.Get<JumpInputEvent>();
             }
 
@@ -98,7 +105,7 @@ namespace Ingame.Input
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
-                
+
                 inputEntity.Get<CrouchInputEvent>();
             }
 
@@ -106,7 +113,7 @@ namespace Ingame.Input
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
-                
+
                 inputEntity.Get<LeanInputRequest>().leanDirection = leanDirection;
             }
 
@@ -122,7 +129,7 @@ namespace Ingame.Input
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
-                
+
                 inputEntity.Get<AimInputEvent>();
             }
 
@@ -130,7 +137,7 @@ namespace Ingame.Input
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
-                
+
                 inputEntity.Get<ReloadInputEvent>();
             }
 
@@ -138,24 +145,40 @@ namespace Ingame.Input
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
-                
+
                 inputEntity.Get<DistortTheShutterInputEvent>();
             }
-            
+
             if (interactInput)
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
-                
+
                 inputEntity.Get<InteractInputEvent>();
             }
-            
+
             if (openInventoryInput)
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
-                
+
                 inputEntity.Get<OpenInventoryInputEvent>();
+            }
+
+            if (interactWithFirstSlot)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+
+                inputEntity.Get<InteractWithFirstSlotInputEvent>();
+            }
+            
+            if (interactWithSecondSlot)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+
+                inputEntity.Get<InteractWithSecondSlotInputEvent>();
             }
         }
     }

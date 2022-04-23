@@ -2,7 +2,7 @@
 
 namespace Ingame.CameraWork
 {
-    public sealed class MainCameraShakeEventReceiver : IEcsRunSystem
+    public sealed class MainCameraShakeEventReceiverSystem : IEcsRunSystem
     {
         private readonly EcsFilter<VirtualCameraModel, MainVirtualCameraTag> _mainVirtualCamera;
         private readonly EcsFilter<CameraShakeRequest> _cameraShakeRequest;

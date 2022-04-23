@@ -14,6 +14,9 @@ namespace Ingame.Inventory
         private readonly EcsFilter<HudModel, TransformModel> _playerHudFilter;
         private readonly EcsFilter<BackpackModel, TransformModel> _backpackFilter;
 
+        private readonly EcsFilter<HudItemModel, FirstHudItemSlotTag> _firstSlotFilter;
+        private readonly EcsFilter<HudItemModel, SecondHudItemSlotTag> _secondSlotFilter;
+
         public void Run()
         {
             if(_playerHudFilter.IsEmpty())
@@ -28,6 +31,11 @@ namespace Ingame.Inventory
                 ref var gunLootTransform = ref _lootGunFilter.Get2(i);
 
                 ref var gunEntity = ref gunLootComponent.gunEntityReference.Entity;
+
+                bool isThereAnyAvailableSlots = _firstSlotFilter.IsEmpty() || _secondSlotFilter.IsEmpty();
+                
+                if(!isThereAnyAvailableSlots)
+                    continue;
 
                 ProcessLootData(ref gunLootEntity, ref gunLootTransform);
                 ProcessGun(ref gunEntity, ref playerHudTransformModel);
@@ -58,8 +66,14 @@ namespace Ingame.Inventory
             
             handsTransform.SetGameObjectActive();
             handsTransform.gameObject.SetLayerToAllChildren(LayerMask.NameToLayer("HUD"));
+
+            if (!_firstSlotFilter.IsEmpty())
+                gunEntity.Get<FirstHudItemSlotTag>();
+            else
+                gunEntity.Get<SecondHudItemSlotTag>();
+
             gunEntity.Get<InHandsTag>();
-            
+
             _backpackFilter.Get2(0).transform.SetGameObjectInactive();
         }
     }

@@ -10,6 +10,10 @@ namespace Ingame.Enemy.Logic
         protected override void DeleteCurrentStateTag(ref EcsEntity entity)
         {
             entity.Del<AttackStateTag>();
+            if (entity.Has<PeekStateTag>())
+            {
+                entity.Del<PeekStateTag>();
+            }
         }
     }
 }

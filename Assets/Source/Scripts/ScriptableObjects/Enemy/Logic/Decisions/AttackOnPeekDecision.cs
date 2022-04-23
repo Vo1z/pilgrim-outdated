@@ -11,6 +11,7 @@ namespace Ingame.Enemy.Logic
         public override bool Decide(ref EcsEntity entity)
         {
             entity.Get<AttackStateTag>();
+            entity.Get<EnemyLeanTag>();
             return true;
         }
     }

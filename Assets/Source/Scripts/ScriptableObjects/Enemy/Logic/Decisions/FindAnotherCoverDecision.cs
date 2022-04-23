@@ -1,4 +1,5 @@
 
+using Ingame.Cover;
 using Ingame.Enemy.State;
 using Ingame.Movement;
 using Leopotam.Ecs;
@@ -57,10 +58,14 @@ namespace Ingame.Enemy.Logic
                                     {
                                         continue;
                                     }
+                                    if (!CoverInitSystem.IsPointUnOccupied(i)) continue;
+                                    CoverInitSystem.BookCoverPoint(i);
+                                    if (hideModel.Obstacle != null)
+                                    {
+                                        CoverInitSystem.GiveUpPoint(hideModel.Obstacle);
+                                    }
                                     hideModel.Obstacle = i;
                                     entity.Get<FindCoverStateTag>();
-                                    entity.Get<HideBlockTag>();
-                                    entity.Del<HideBlockTag>();
                                     entity.Get<DynamicHideCooldownComponent>();
                                     return true;
                                 }

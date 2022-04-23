@@ -51,14 +51,25 @@ namespace Ingame.Enemy.System {
                     var rand = randX + randY + randZ;
                     //shooting system
                     RaycastHit hit;
-                    var position = transformModel.transform.position;
-                    
-                    #if  UNITY_EDITOR
-                        UnityEngine.Debug.DrawLine(position, position+ transformModel.transform.forward*shooting.ShootingData.Distance+rand);
-                    #endif
+
                     shooting.CurrentAmountOfAmmunition -= 1;
-                    if (Physics.Linecast(transformModel.transform.position,transformModel.transform.position+ transformModel.transform.forward*shooting.ShootingData.Distance+rand,out hit))
+                    //get head
+                    ref var binder = ref entity.Get<VisionBinderComponent>();
+                    binder.FarRange.TryGetComponent(out EntityReference farEntityReference);
+                    ref var farRef = ref farEntityReference.Entity;
+                    ref var vision = ref farRef.Get<VisionModel>();
+                    var headPos = vision.Vision.HeadPosition;
+                    
+#if  UNITY_EDITOR
+                    UnityEngine.Debug.DrawLine(transformModel.transform.position+headPos*Vector3.up,target.Target.position +rand);
+#endif
+                    //shooting
+                    if (Physics.Linecast(transformModel.transform.position+headPos*Vector3.up,target.Target.position +rand,out hit))
                     {
+                        if (Vector3.Distance(transformModel.transform.position,target.Target.position) > shooting.ShootingData.Distance)
+                        {
+                            continue;
+                        }
                         var res = hit.collider.gameObject.TryGetComponent(out EntityReference entityReference);
                         
                         if (!res)
@@ -66,11 +77,16 @@ namespace Ingame.Enemy.System {
                             continue;
                         }
 
+                        if (entityReference.transform == transformModel.transform)
+                        {
+                            continue;
+                        }
                         ref var entityOfTarget = ref entityReference.Entity;
                         if (entityOfTarget.Has<HealthComponent>())
                         {
                             ref var damageComponent = ref entityOfTarget.Get<DamageComponent>();
                             damageComponent.damageToDeal = shooting.ShootingData.Damage;
+                          
                         }
                     }
                 }

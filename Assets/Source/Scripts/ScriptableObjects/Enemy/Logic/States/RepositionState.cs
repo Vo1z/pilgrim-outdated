@@ -12,5 +12,6 @@ namespace Ingame.Enemy.Logic
         {
             entity.Del<RepositionStateTag>();
         }
+        
     }
 }

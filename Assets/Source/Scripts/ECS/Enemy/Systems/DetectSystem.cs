@@ -25,7 +25,7 @@ namespace Ingame.Enemy.System
                 }
                 //Add Item to list
                 ref var vision =  ref entityReference.Entity.Get<VisionModel>();
-                if (enter.collider.CompareTag("CoverPoint"))
+                if (enter.collider.CompareTag("CoverPoint") || enter.collider.CompareTag("CoverPointLeft") || enter.collider.CompareTag("CoverPointRight"))
                 {
                     vision.Covers.Add(enter.collider.transform);
                     
@@ -49,7 +49,7 @@ namespace Ingame.Enemy.System
                 ref var vision =  ref reference.Entity.Get<VisionModel>();
                 
                 //Remove Item from the list
-                if (exit.collider.CompareTag("CoverPoint"))
+                if (exit.collider.CompareTag("CoverPoint")|| exit.collider.CompareTag("CoverPointLeft") || exit.collider.CompareTag("CoverPointRight"))
                 {
                     vision.Covers.Remove(exit.collider.transform);
                 }

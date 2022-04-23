@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Numerics;
 using DG.Tweening;
+using Ingame.Cover;
 using Ingame.Enemy.State;
 using Ingame.Movement;
 using Leopotam.Ecs;
@@ -51,6 +53,8 @@ namespace Ingame.Enemy.System
             foreach (var i in _peekFilter)
             {
                 ref var entity = ref _peekFilter.GetEntity(i);
+                ref var hideModel = ref _peekFilter.Get2(i);
+                var coverType = hideModel.CoverPointType;
                 if (entity.Has<HitboxModel>())
                 {
                     ref var hitbox = ref entity.Get<HitboxModel>();

@@ -15,4 +15,4 @@ MonoBehaviour:
   coolDownOnPeek: 3.65
   coolDownOnTakeCover: 4.31
   leanAngle: 45
-  probabilityOfChoosingCover: 4.8
+  probabilityOfChoosingCover: 6

@@ -16,7 +16,7 @@ MonoBehaviour:
   speedForward: 3.65
   speedOnReposition: 2.07
   speedBack: 0.7
-  maxDistanceFromDestinationPoint: 8
+  maxDistanceFromDestinationPoint: 5
   maxFleeDistance: 200
   minRangeOfOneStep: 0.8
   maxRangeOfOneStep: 3.9

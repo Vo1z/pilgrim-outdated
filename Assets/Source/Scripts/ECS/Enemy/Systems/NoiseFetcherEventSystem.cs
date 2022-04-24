@@ -23,6 +23,10 @@ namespace Ingame.Enemy.System {
                     ref var enemyPosition = ref enemyEntity.Get<TransformModel>();
 
                     ref var visionBinder = ref _enemyFilter.Get2(j);
+                    if (visionBinder.FarRange ==null)
+                    {
+                        continue;
+                    }
                     if (!visionBinder.FarRange.TryGetComponent(out EntityReference farEntityRef))
                     {
                         continue;

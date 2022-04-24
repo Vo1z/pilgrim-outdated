@@ -9,7 +9,7 @@ namespace Ingame.Enemy.System
     public sealed class FollowerSystem : IEcsRunSystem
     {
         private EcsFilter<EnemyMovementComponent,FollowerModel,TransformModel,RoboDogTag> _filter;
-        private readonly float _distanceTreshhold = 25f;
+        private readonly float _distanceTreshhold = 9f;
         
         public void Run()
         {

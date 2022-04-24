@@ -28,6 +28,10 @@ namespace Ingame.Enemy.System
                 ref var state = ref entity.Get<StateModel>();
                 ref var visual = ref entity.Get<DebugStateVisualiserModel>();
                 var renderer = visual.MeshRenderer;
+                if (renderer == null)
+                {
+                    return;
+                }
                 if (entity.Has<AttackStateTag>())
                 {
                     if (state.State.name.Trim() == "FocusedAttack")

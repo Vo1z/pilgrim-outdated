@@ -20,7 +20,10 @@ namespace Ingame.Enemy.Logic
 
             //Get entity of Layers
             ref var binder = ref entity.Get<VisionBinderComponent>();
-
+            if (binder.ShortRange == null || binder.FarRange == null)
+            {
+                return false;
+            }
             if (!binder.ShortRange.TryGetComponent(out EntityReference shortEntityReference)||!binder.FarRange.TryGetComponent(out EntityReference farEntityReference))
             {
                 return false;

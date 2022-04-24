@@ -10,6 +10,7 @@ namespace Ingame.Enemy.Logic
     [CreateAssetMenu(menuName = "Ingame/Enemy/Logic/Decision/FindCover", fileName = "FindCover")]
     public sealed class FindCoverDecision : DecisionBase
     {
+        private const float MAX_PROBABILITY = 10;
         private float _distanceRatio = 1.2f;
         private float _maxDistanceObstacle = 25;
         public override bool Decide(ref EcsEntity entity)
@@ -44,7 +45,7 @@ namespace Ingame.Enemy.Logic
             ref var vision = ref shortRange.Get<VisionModel>();
             ref var hideModel = ref entity.Get<HideModel>();
             var rand = Random.Range(0, 10);
-            if (rand<hideModel.HideData.ProbabilityOfChoosingCover)
+            if (rand<MAX_PROBABILITY-hideModel.HideData.ProbabilityOfChoosingCover)
             {
                 return false;
             }

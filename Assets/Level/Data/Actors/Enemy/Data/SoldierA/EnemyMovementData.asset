@@ -15,7 +15,7 @@ MonoBehaviour:
   delayAfterAchievingWaypoint: 2.14
   speedForward: 2.92
   speedOnReposition: 2.07
-  speedBack: 0.7
+  speedBack: 1.27
   maxDistanceFromDestinationPoint: 5
   maxFleeDistance: 200
   minRangeOfOneStep: 0.8

@@ -2,6 +2,7 @@ using Ingame.Anomaly;
 using Ingame.CameraWork;
 using Ingame.Debuging;
 using Ingame.Enemy;
+using Ingame.Cover;
 using Ingame.Enemy.System;
 using Ingame.Gunplay;
 using Ingame.Health;
@@ -117,7 +118,8 @@ namespace Ingame
                 .Add(new PlayerInitSystem())
                 .Add(new PlayerHudInitSystem())
                 .Add(new GunInitSystem())
-                .Add(new DeltaMovementInitializeSystem());
+                .Add(new DeltaMovementInitializeSystem())
+		        .Add(new CoverInitSystem());
 
             //Update
             _updateSystems
@@ -161,6 +163,8 @@ namespace Ingame
                 .Add(new HideOnCoolDownSystem())
                 .Add(new ReloadSystem())
                 .Add(new RepositionSystem())
+		        .Add(new EnemyLeanSystem())
+                .Add(new FollowerSystem())
                 //Anomaly
                 .Add(new AcidWaterSystem())
                 //Health

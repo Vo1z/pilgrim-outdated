@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NaughtyAttributes;
+using UnityEngine;
 
 namespace Ingame.Enemy.Data
 {
@@ -7,15 +8,15 @@ namespace Ingame.Enemy.Data
     {
         [SerializeField] [Min(0)] private float coolDownOnPeek;
         [SerializeField] [Min(0)] private float coolDownOnTakeCover;
-        [SerializeField] [Min(0)] private float maxDistanceBetweenThisAndCover;
-        [SerializeField] [Min(0)] private float dynamicFindCoverCooldown;
+        [SerializeField] [Min(0)] private float leanAngle;
+        [SerializeField] [Min(0)] [MaxValue(10)]private float probabilityOfChoosingCover;
         /// <summary>
         /// returns a time factor between performing next action after previous one.
         /// </summary>
         public float CoolDownOnPeek => coolDownOnPeek;
         public float  CoolDownOnTakeCover =>  coolDownOnTakeCover;
-        public float MaxDistanceBetweenThisAndCover => maxDistanceBetweenThisAndCover;
-        public float DynamicFindCoverCooldown=> dynamicFindCoverCooldown;
+        public float LeanAngle=> leanAngle;
+        public float ProbabilityOfChoosingCover => probabilityOfChoosingCover;
 
     }
 }

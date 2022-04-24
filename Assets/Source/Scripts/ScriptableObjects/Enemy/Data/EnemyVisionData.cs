@@ -24,11 +24,18 @@ namespace Ingame.Enemy.Data
         
         [SerializeField]
         private LayerMask mask;
+
         
-        public float Angle => angle;
+        
+        [SerializeField]
+        private float headPositionAccordingToTransformPosition;
+
+            public float Angle => angle;
         public float Distance => distance;
         public float MaxDistance => maxDistance;
         public float Height => height;
         public LayerMask Mask => mask;
+        /*<summary>Position of head of a enemy</summary>*/
+        public float HeadPosition => headPositionAccordingToTransformPosition;
     }
 }

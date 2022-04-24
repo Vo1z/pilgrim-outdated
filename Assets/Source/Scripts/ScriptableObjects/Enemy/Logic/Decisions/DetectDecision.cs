@@ -1,7 +1,9 @@
 ﻿ 
+using System.Numerics;
 using Ingame.Movement;
 using Leopotam.Ecs;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Ingame.Enemy.Logic
 {
@@ -57,9 +59,20 @@ namespace Ingame.Enemy.Logic
                 }
                 
                 //not behind cover
+                //detect body 
                 if (Physics.Linecast(transformModel.transform.position, j.position, out RaycastHit hitInfo))
                 {
                     if (hitInfo.collider.CompareTag("Player"))
+                    {
+                        targetLock.Target = j.transform;
+                        return true;
+                    }
+                }
+                //detect head
+                if (Physics.Linecast(transformModel.transform.position+Vector3.up*vision.Vision.HeadPosition,
+                        j.position+Vector3.up*targetLock.TargetHeadPositionAccordingToBody, out RaycastHit hitInfo2))
+                {
+                    if (hitInfo2.collider.CompareTag("Player"))
                     {
                         targetLock.Target = j.transform;
                         return true;

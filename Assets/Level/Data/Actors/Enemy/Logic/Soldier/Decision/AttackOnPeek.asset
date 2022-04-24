@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df62aefef4043cb96f318415ec9a5d1, type: 3}
   m_Name: AttackOnPeek
   m_EditorClassIdentifier: 
-  nextState: {fileID: 11400000, guid: c7ff3a6a0624d0e46a96fa84bba95b94, type: 2}
+  nextState: {fileID: 11400000, guid: f74f6f8114593e346bdce1687caa46aa, type: 2}

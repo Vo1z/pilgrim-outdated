@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EnemyCloseVisionData
   m_EditorClassIdentifier: 
   angle: 62.23
-  distance: 5.3
-  maxDistance: 11
+  distance: 35
+  maxDistance: 50
   height: 3.3
   mask:
     serializedVersion: 2

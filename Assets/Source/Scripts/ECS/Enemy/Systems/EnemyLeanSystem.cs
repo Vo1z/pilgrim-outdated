@@ -10,7 +10,7 @@ namespace Ingame.Enemy.System
     public sealed class EnemyLeanSystem :IEcsRunSystem
     {
         private EcsFilter<EnemyLeanTag> _filter;
-        private const float MAX_DISTANCE_TRESHHOLD = 1.2f;
+        private const float MAX_DISTANCE_TRESHHOLD = 4.2f;
         public void Run()
         {
             foreach (var i in _filter)

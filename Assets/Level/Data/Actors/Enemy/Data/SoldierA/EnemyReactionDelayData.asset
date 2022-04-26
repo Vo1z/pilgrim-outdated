@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b37b7f7348242a99a652f9dc9d70868, type: 3}
   m_Name: EnemyReactionDelayData
   m_EditorClassIdentifier: 
-  reactionDelayFlat: 1.23
-  reactionDelayRandom: 1.72
+  reactionDelayFlat: 0.43
+  reactionDelayRandom: 0.76

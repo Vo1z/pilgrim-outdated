@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959a5683921b5774d87b9cfd7a833f8a, type: 3}
   m_Name: EnemyShootingData
   m_EditorClassIdentifier: 
-  timer: 0.33
-  accuracy: 1.11
-  distance: 48.81
-  damage: 12.49
+  timer: 0.18
+  accuracy: 1.1
+  distance: 49.7
+  damage: 15.3
   maxAmountOfAmmunition: 24
-  reloadTime: 2.2
-  continuousAttackDuration: 4
+  reloadTime: 2.51
+  continuousAttackDuration: 3.62

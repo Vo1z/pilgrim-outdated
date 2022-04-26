@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6cefe55040a4157b84f7628ef75ff27, type: 3}
-  m_Name: EnemyHideData
+  m_Script: {fileID: 11500000, guid: 09205b59c897418bb2b0c54b3c9162e2, type: 3}
+  m_Name: AttackAfterFollowingDecision
   m_EditorClassIdentifier: 
-  coolDownOnPeek: 4.67
-  coolDownOnTakeCover: 3.24
-  leanAngle: 45
-  probabilityOfChoosingCover: 8.5
+  nextState: {fileID: 11400000, guid: f645c8a77a56d064a84830dcc4535b21, type: 2}

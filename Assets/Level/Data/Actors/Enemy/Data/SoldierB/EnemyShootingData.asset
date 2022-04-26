@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: EnemyShootingData
   m_EditorClassIdentifier: 
   timer: 0.2
-  accuracy: 1.43
+  accuracy: 1.15
   distance: 40
-  damage: 9
+  damage: 11
   maxAmountOfAmmunition: 20
   reloadTime: 2.15
   continuousAttackDuration: 4

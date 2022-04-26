@@ -8,7 +8,7 @@ namespace Ingame.Enemy.System {
     {
         private readonly EcsFilter<NoiseGeneratorEvent> _filter;
         private readonly EcsFilter<EnemyBehaviourTag,VisionBinderComponent,EnemyMovementComponent,PatrolStateTag> _enemyFilter;
-        private const float FETCH_RATIO = 2.15f;
+        private const float FETCH_RATIO = .65f;
         void IEcsRunSystem.Run () {
             foreach (var i in _filter)
             {

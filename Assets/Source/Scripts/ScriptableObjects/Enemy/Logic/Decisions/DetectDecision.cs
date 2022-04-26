@@ -68,6 +68,7 @@ namespace Ingame.Enemy.Logic
                     if (hitInfo.collider.CompareTag("Player"))
                     {
                         targetLock.Target = j.transform;
+                        entity.Del<WaitOnPointCallbackRequest>();
                         return true;
                     }
                 }
@@ -78,6 +79,7 @@ namespace Ingame.Enemy.Logic
                     if (hitInfo2.collider.CompareTag("Player"))
                     {
                         targetLock.Target = j.transform;
+                        entity.Del<WaitOnPointCallbackRequest>();
                         return true;
                     }
                 }

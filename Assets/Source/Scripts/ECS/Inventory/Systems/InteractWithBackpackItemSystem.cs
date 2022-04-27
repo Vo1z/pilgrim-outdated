@@ -60,6 +60,7 @@ namespace Ingame.Inventory
                 
                 if (itemEntity.Has<InhalatorTag>())
                 {
+                    playerHealthEntity.Get<StopGasChokeTag>();
                     playerInventory.currentNumberOfInhalators--;
                 }
                 

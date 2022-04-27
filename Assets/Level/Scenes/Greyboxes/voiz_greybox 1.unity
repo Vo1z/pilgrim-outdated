@@ -9069,6 +9069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AR15_supressor_reddot
       objectReference: {fileID: 0}
+    - target: {fileID: 8058636841054786445, guid: 7b00653679827e941871e78ee36ea9aa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b00653679827e941871e78ee36ea9aa, type: 3}
 --- !u!1001 &2167057581906038263
@@ -9128,7 +9132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2167057582838506119, guid: e9699a0e7eea9584da93151fa2109b24, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9699a0e7eea9584da93151fa2109b24, type: 3}
@@ -9185,7 +9189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2757162165535553048, guid: f6eee9e541436fd4f842ee6caec0b577, type: 3}
       propertyPath: m_Name
-      value: AR15A2
+      value: AR15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6eee9e541436fd4f842ee6caec0b577, type: 3}

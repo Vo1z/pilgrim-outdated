@@ -571,6 +571,17 @@
                 },
                 {
                     "name": "",
+                    "id": "38d544a0-92dc-403c-a575-a285cf2d81ca",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ec33cce8-5c1c-4474-b4e2-a0858a0b9939",
                     "path": "<Keyboard>/1",
                     "interactions": "",
@@ -582,8 +593,30 @@
                 },
                 {
                     "name": "",
+                    "id": "1f1e3751-8b1d-44b1-808a-edd6e6152784",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirstSlotInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1c4a8b67-308b-4550-9fc4-8d38d5a640b4",
                     "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondSlotInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f475d26-63dc-4482-8ece-3df4301ac13d",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

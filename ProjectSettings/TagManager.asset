@@ -8,6 +8,7 @@ TagManager:
   - CoverPoint
   - CoverPointLeft
   - CoverPointRight
+  - Ladder
   layers:
   - Default
   - TransparentFX

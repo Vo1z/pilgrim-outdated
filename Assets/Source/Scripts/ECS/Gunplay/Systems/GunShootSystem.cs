@@ -1,6 +1,7 @@
 ﻿using Ingame.CameraWork;
 using Ingame.Enemy;
 using Ingame.Health;
+using Ingame.Interaction.Breakable;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -38,6 +39,8 @@ namespace Ingame.Gunplay
 
                     if(hitEntity.Has<HealthComponent>())
                         hitEntity.Get<DamageComponent>().damageToDeal = gunData.Damage;
+                    if (hitEntity.Has<BreakableObjectModel>())
+                        hitEntity.Get<BreakObjectTag>();
                 }
             }
         }

@@ -1,11 +1,12 @@
-﻿using Leopotam.Ecs;
+﻿using Ingame.Interaction.Ladder;
+using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Ingame.Movement
 {
     public sealed class MovementSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<VelocityComponent, CharacterControllerModel> _velocityFilter;
+        private readonly EcsFilter<VelocityComponent, CharacterControllerModel>.Exclude<ActorOnLadderTag> _velocityFilter;
         
         public void Run()
         {

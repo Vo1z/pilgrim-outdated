@@ -8,9 +8,12 @@ using Ingame.Gunplay;
 using Ingame.Health;
 using Ingame.Hud;
 using Ingame.Input;
+using Ingame.Interaction.Breakable;
 using Ingame.Interaction.Common;
 using Ingame.Interaction.Doors;
 using Ingame.Interaction.DraggableObject;
+using Ingame.Interaction.Explosive;
+using Ingame.Interaction.Ladder;
 using Ingame.Inventory;
 using Ingame.Movement;
 using Ingame.Player;
@@ -177,6 +180,7 @@ namespace Ingame
                 .Add(new ManageEnergyEffectSystem())
                 .Add(new DeathSystem())
                 .Add(new DestroyDeadActorsSystem())
+                .Add(new RagdollSystem())
                 //Interaction
                 .Add(new InteractionSystem())
                 .Add(new DoorRotationSystem())
@@ -184,6 +188,9 @@ namespace Ingame
                 .Add(new ReleaseDraggableObjectDueToInteractionWithPlayer())
                 .Add(new ReleaseDraggableObjectSystem())
                 .Add(new DragObjectSystem())
+                .Add(new BreakObjectSystem())
+                .Add(new ExplosionSystem())
+                .Add(new LadderSystem())
                 //Inventory
                 .Add(new PickUpItemSystem())
                 .Add(new PickUpGunSystem())

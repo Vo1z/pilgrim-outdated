@@ -19,6 +19,10 @@ namespace Ingame.Enemy.System
                     continue;
                 }
 
+                if (entityReference.Entity == EcsEntity.Null)
+                {
+                    continue;
+                }
                 if (!entityReference.Entity.Has<VisionModel>())
                 {
                     continue;

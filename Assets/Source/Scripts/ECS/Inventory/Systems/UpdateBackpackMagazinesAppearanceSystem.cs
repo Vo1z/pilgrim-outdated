@@ -27,8 +27,6 @@ namespace Ingame.Inventory
             int lastFilledTransformIndex = 0;
             foreach (var i in _magazinesInInventoryFilter)
             {
-                UnityEngine.Debug.Log("Update");
-                
                 ref var magazineTransform = ref _magazinesInInventoryFilter.Get2(i).transform;
                 var targetTransform = backpack.magazinesTransform[lastFilledTransformIndex];
                 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Ingame.Data.Gunplay;
+using NaughtyAttributes;
 
 namespace Ingame.Inventory
 {
@@ -7,6 +8,9 @@ namespace Ingame.Inventory
     public struct MagazineComponent
     {
         public int currentAmountOfAmmoInMagazine;
+        
+        [AllowNesting]
+        [Expandable]
         public MagazineData magazineData;
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Ingame.Hud;
 using Ingame.Input;
+using Ingame.Inventory;
+using Ingame.Player;
 using Leopotam.Ecs;
 
 namespace Ingame.Gunplay
@@ -10,17 +12,20 @@ namespace Ingame.Gunplay
         
         private readonly EcsFilter<GunModel, InHandsTag, HudIsVisibleTag> _gunsFilter;
         private readonly EcsFilter<ReloadInputEvent> _reloadInputEvent;
+        private readonly EcsFilter<PlayerModel, InventoryComponent> _playerInventoryFilter;
 
         public void Run()
         {
-            if(_reloadInputEvent.IsEmpty())
+            if(_reloadInputEvent.IsEmpty() || _playerInventoryFilter.IsEmpty())
                 return;
+
+            ref var playerInventory = ref _playerInventoryFilter.Get2(0);
 
             foreach (var i in _gunsFilter)
             {
                 ref var gunEntity = ref _gunsFilter.GetEntity(i);
+                ref var gunData = ref _gunsFilter.Get1(i).gunData;
                 
-                //Todo extend condition with inventory logic
                 bool reloadingCanBePerformed = !gunEntity.Has<AwaitingReloadTag>();
 
                 if (reloadingCanBePerformed)

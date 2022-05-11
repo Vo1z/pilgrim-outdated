@@ -14,6 +14,7 @@ using Ingame.Interaction.DraggableObject;
 using Ingame.Inventory;
 using Ingame.Movement;
 using Ingame.Player;
+using Ingame.UI;
 using Ingame.Utils;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
@@ -187,10 +188,13 @@ namespace Ingame
                 //Inventory
                 .Add(new PickUpItemSystem())
                 .Add(new PickUpMagazineSystem())
+                .Add(new PickUpAmmoSystem())
                 .Add(new PickUpGunSystem())
                 .Add(new UpdateBackpackMagazinesAppearanceSystem())
                 .Add(new UpdateBackpackItemsAppearanceSystem())
                 .Add(new InteractWithBackpackItemSystem())
+                //UI
+                .Add(new DisplayAmountOfAmmoSystem())
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())

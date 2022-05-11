@@ -186,8 +186,10 @@ namespace Ingame
                 .Add(new DragObjectSystem())
                 //Inventory
                 .Add(new PickUpItemSystem())
+                .Add(new PickUpMagazineSystem())
                 .Add(new PickUpGunSystem())
-                .Add(new UpdateBackpackAppearanceSystem())
+                .Add(new UpdateBackpackMagazinesAppearanceSystem())
+                .Add(new UpdateBackpackItemsAppearanceSystem())
                 .Add(new InteractWithBackpackItemSystem())
                 //Utils
                 .Add(new TimeSystem())

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Ingame.Inventory
 {
-    public sealed class UpdateBackpackAppearanceSystem : IEcsRunSystem, IEcsInitSystem
+    public sealed class UpdateBackpackItemsAppearanceSystem : IEcsRunSystem, IEcsInitSystem
     {
         private readonly EcsWorld _world;
         private readonly EcsFilter<PlayerModel, InventoryComponent> _playerInventoryFilter;

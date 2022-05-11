@@ -15,9 +15,14 @@ namespace Ingame.Data.Player
         [BoxGroup("Medecine")]
         [SerializeField] [Min(0)] private int maximumNumberOfEnergyDrinks = 20;
         
+        [BoxGroup("Combat")]
+        [SerializeField] [Min(0)] private int maximumNumberOfMagazines = 6;
+        
         public int MaximumNumberOfMorphine => maximumNumberOfMorphine;
         public int MaximumNumberOfBandages => maximumNumberOfBandages;
         public int MaximumNumberOfInhalators => maximumNumberOfInhalators;
         public int MaximumNumberOfEnergyDrinks => maximumNumberOfEnergyDrinks;
+
+        public int MaximumNumberOfMagazines => maximumNumberOfMagazines;
     }
 }

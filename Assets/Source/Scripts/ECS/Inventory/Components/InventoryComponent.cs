@@ -8,5 +8,7 @@
         public int currentNumberOfMorphine;
         public int currentNumberOfAdrenaline;
         public int currentNumberOfBandages;
+        
+        public int currentNumberOfMagazines;
     }
 }

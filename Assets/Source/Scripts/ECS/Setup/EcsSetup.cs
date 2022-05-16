@@ -117,7 +117,7 @@ namespace Ingame
                 .Add(new CharacterControllerInitSystem())
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
-                .Add(new PlayerHudInitSystem())
+                .Add(new AppearanceUpdateInitSystem())
                 .Add(new GunInitSystem())
                 .Add(new DeltaMovementInitializeSystem())
 		        .Add(new CoverInitSystem());
@@ -190,8 +190,10 @@ namespace Ingame
                 .Add(new PickUpMagazineSystem())
                 .Add(new PickUpAmmoSystem())
                 .Add(new PickUpGunSystem())
+                .Add(new InteractWithInventoryMagazineSystem())
                 .Add(new UpdateBackpackMagazinesAppearanceSystem())
                 .Add(new UpdateBackpackItemsAppearanceSystem())
+                .Add(new UpdateMagazineFullOfAmmoAppearanceSystem())
                 .Add(new InteractWithBackpackItemSystem())
                 //UI
                 .Add(new DisplayAmountOfAmmoSystem())

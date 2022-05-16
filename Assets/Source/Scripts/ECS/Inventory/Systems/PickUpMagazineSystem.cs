@@ -2,6 +2,7 @@
 using Ingame.Movement;
 using Ingame.Player;
 using Leopotam.Ecs;
+using Support.Extensions;
 using UnityEngine;
 
 namespace Ingame.Inventory
@@ -34,8 +35,10 @@ namespace Ingame.Inventory
                 if (playerInventoryComp.currentNumberOfMagazines >= maxAmountOfMagazines)
                     continue;
 
+                int hudLayer = LayerMask.NameToLayer("HUD");
                 magazineEntity.Get<MagazineIsInInventoryTag>();
-                magazineTransformModel.transform.gameObject.layer = LayerMask.NameToLayer("HUD");
+                magazineTransformModel.transform.gameObject.layer = hudLayer;
+                magazineTransformModel.transform.gameObject.SetLayerToAllChildren(hudLayer);
                 _world.NewEntity().Get<UpdateBackpackAppearanceEvent>();
             }
         }

@@ -193,7 +193,7 @@ namespace Ingame
                 .Add(new InteractWithInventoryMagazineSystem())
                 .Add(new UpdateBackpackMagazinesAppearanceSystem())
                 .Add(new UpdateBackpackItemsAppearanceSystem())
-                .Add(new UpdateMagazineFullOfAmmoAppearanceSystem())
+                .Add(new UpdateMagazineFullOfAmmoMarkSystem())
                 .Add(new InteractWithBackpackItemSystem())
                 //UI
                 .Add(new DisplayAmountOfAmmoSystem())

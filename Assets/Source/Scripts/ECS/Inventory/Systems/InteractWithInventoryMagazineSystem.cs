@@ -26,14 +26,14 @@ namespace Ingame.Inventory
 
                 int bulletsOfSameTypeAvailableInInventory = playerInventory.ammo[magazineData.AmmoType];
                 bool isAtLeastOneBulletPresentInInventory = bulletsOfSameTypeAvailableInInventory > 0;
-                bool isThereFreeSpaceForBulletsInMagazine = magazineComponent.currentAmountOfAmmoInMagazine < magazineData.AmountOfAmmoInMagazine;
+                bool isThereFreeSpaceForBulletsInMagazine = magazineComponent.currentAmountOfAmmoInMagazine < magazineData.MaxAmountOfAmmoInMagazine;
                 
                 magazineEntity.Del<PerformInteractionTag>();
                 
                 if (!isAtLeastOneBulletPresentInInventory || !isThereFreeSpaceForBulletsInMagazine)
                     continue;
                 
-                int availableAmountOfAmmoToRefillInMagazine = magazineData.AmountOfAmmoInMagazine - magazineComponent.currentAmountOfAmmoInMagazine;
+                int availableAmountOfAmmoToRefillInMagazine = magazineData.MaxAmountOfAmmoInMagazine - magazineComponent.currentAmountOfAmmoInMagazine;
                 int bulletsToRefill = Mathf.Min(bulletsOfSameTypeAvailableInInventory, availableAmountOfAmmoToRefillInMagazine);
 
                 magazineComponent.currentAmountOfAmmoInMagazine += bulletsToRefill;

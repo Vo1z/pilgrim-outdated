@@ -9867,6 +9867,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 814800426}
     m_Modifications:
+    - target: {fileID: 8692826887853446483, guid: d540b174d4280324181ea6cf0190e324, type: 3}
+      propertyPath: value.currentAmountOfAmmoInMagazine
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8692826887853446484, guid: d540b174d4280324181ea6cf0190e324, type: 3}
       propertyPath: m_RootOrder
       value: 5

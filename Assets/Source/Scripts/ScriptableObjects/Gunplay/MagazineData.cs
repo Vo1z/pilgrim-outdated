@@ -5,10 +5,10 @@ namespace Ingame.Data.Gunplay
     [CreateAssetMenu(menuName = "Ingame/MagazineData", fileName = "NewMagazineData")]
     public class MagazineData : ScriptableObject
     {
-        [SerializeField] [Min(0)] private int amountOfAmmoInMagazine = 30;
+        [SerializeField] [Min(0)] private int maxAmountOfAmmoInMagazine = 30;
         [SerializeField] private AmmoType ammoType;
         
-        public int AmountOfAmmoInMagazine => amountOfAmmoInMagazine;
+        public int MaxAmountOfAmmoInMagazine => maxAmountOfAmmoInMagazine;
         public AmmoType AmmoType => ammoType;
     }
 

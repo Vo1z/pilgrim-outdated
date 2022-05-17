@@ -1,7 +1,9 @@
-﻿using Ingame.Input;
+﻿using System;
+using System.Collections.Generic;
+using Ingame.Data.Gunplay;
+using Ingame.Input;
 using Ingame.Inventory;
 using Ingame.Movement;
-using Ingame.Player;
 using Ingame.Utils;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -26,10 +28,10 @@ namespace Ingame.Player
                 ref var playerCharacterControllerModel = ref playerEntity.Get<CharacterControllerModel>();
                 ref var playerFrictionComp = ref playerEntity.Get<FrictionComponent>();
                 ref var playerTransformModel = ref playerEntity.Get<TransformModel>();
+                ref var playerInventory = ref playerEntity.Get<InventoryComponent>();
                 playerEntity.Get<TimerComponent>();
                 playerEntity.Get<VelocityComponent>();
-                playerEntity.Get<InventoryComponent>();
-                
+
                 var playerData = playerModel.playerMovementData;
 
                 playerGravityComponent.gravityAcceleration = playerData.GravityAcceleration;
@@ -39,6 +41,10 @@ namespace Ingame.Player
                 playerTransformModel.transform = playerCharacterControllerModel.characterController.transform;
                 playerModel.currentSpeed = playerModel.isCrouching ? playerData.CrouchWalkSpeed : playerData.WalkSpeed;
                 playerModel.currentLeanDirection = LeanDirection.None;
+                
+                playerInventory.ammo = new Dictionary<AmmoType, int>();
+                foreach (AmmoType ammoType in Enum.GetValues(typeof(AmmoType))) 
+                    playerInventory.ammo.Add(ammoType, 0);
             }
         }
     }

@@ -51,8 +51,8 @@ namespace Ingame.Player
                 
                 cameraLeanCallback.positionOffset = playerModel.currentLeanDirection switch
                 {
-                    LeanDirection.Left => Vector3.left * playerData.CameraPositionOffsetDuringTheLean,
-                    LeanDirection.Right => Vector3.right * playerData.CameraPositionOffsetDuringTheLean,
+                    LeanDirection.Left => Vector3.left * playerData.CameraPositionOffsetDuringTheLeftLean,
+                    LeanDirection.Right => Vector3.right * playerData.CameraPositionOffsetDuringTheRightLean,
                     _ => Vector3.zero
                 };
 

@@ -31,7 +31,9 @@ namespace Ingame.Data.Player
         [BoxGroup("Movement (Lean)")]
         [SerializeField] [Range(0, 120)] private float leanAngleOffset = 100f;
         [BoxGroup("Movement (Lean)")]
-        [SerializeField] [Range(0, 2)] private float cameraPositionOffsetDuringTheLean = .3f;
+        [SerializeField] [Range(-2, 2)] private float cameraPositionOffsetDuringTheRightLean = .3f;
+        [BoxGroup("Movement (Lean)")]
+        [SerializeField] [Range(-2, 2)] private float cameraPositionOffsetDuringTheLeftLean = .3f;
         
         [BoxGroup("Gravitation"), Space]
         [SerializeField][Min(0)] private float gravityAcceleration = 1;
@@ -63,7 +65,8 @@ namespace Ingame.Data.Player
         public float EnterLeanSpeed => enterLeanSpeed;
         public float LeanDistanceOffset => leanDistanceOffset;
         public float LeanAngleOffset => leanAngleOffset;
-        public float CameraPositionOffsetDuringTheLean => cameraPositionOffsetDuringTheLean;
+        public float CameraPositionOffsetDuringTheRightLean => cameraPositionOffsetDuringTheRightLean;
+        public float CameraPositionOffsetDuringTheLeftLean => cameraPositionOffsetDuringTheLeftLean;
 
         public float GravityAcceleration => gravityAcceleration;
         public float MaximumGravitationForce => maximumGravitationForce;

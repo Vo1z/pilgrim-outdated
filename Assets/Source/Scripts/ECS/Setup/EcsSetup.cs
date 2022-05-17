@@ -15,6 +15,7 @@ using Ingame.Interaction.DraggableObject;
 using Ingame.Inventory;
 using Ingame.Movement;
 using Ingame.Player;
+using Ingame.UI;
 using Ingame.Utils;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
@@ -117,7 +118,7 @@ namespace Ingame
                 .Add(new CharacterControllerInitSystem())
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
-                .Add(new PlayerHudInitSystem())
+                .Add(new AppearanceUpdateInitSystem())
                 .Add(new GunInitSystem())
                 .Add(new DeltaMovementInitializeSystem())
 		        .Add(new CoverInitSystem());
@@ -187,11 +188,18 @@ namespace Ingame
                 .Add(new DragObjectSystem())
                 //Inventory
                 .Add(new PickUpItemSystem())
+                .Add(new PickUpMagazineSystem())
+                .Add(new PickUpAmmoSystem())
                 .Add(new PickUpGunSystem())
-                .Add(new UpdateBackpackAppearanceSystem())
+                .Add(new InteractWithInventoryMagazineSystem())
+                .Add(new UpdateBackpackMagazinesAppearanceSystem())
+                .Add(new UpdateBackpackItemsAppearanceSystem())
+                .Add(new UpdateMagazineFullOfAmmoMarkSystem())
                 .Add(new InteractWithBackpackItemSystem())
                 //Effects
                 .Add(new HealthDisplaySystem())
+                //UI
+                .Add(new DisplayAmountOfAmmoSystem())
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())

@@ -12,6 +12,8 @@ namespace Ingame.Inventory
         public Transform[] inhalatorsInsideBackpack;
         public Transform[] energyDrinksInsideBackpack;
         public Transform[] creamTubesInsideBackpack;
+        
+        public Transform[] magazinesTransform;
 
         public int MaxAmountOfMorphine => morphineInsideBackpack.Length;
         public int MaxAmountOfAdrenaline => adrenalineInsideBackpack.Length;
@@ -19,5 +21,7 @@ namespace Ingame.Inventory
         public int MaxAmountOfInhalators => inhalatorsInsideBackpack.Length;
         public int MaxAmountOfEnergyDrinks => energyDrinksInsideBackpack.Length;
         public int MaxAmountOfCream => creamTubesInsideBackpack.Length;
+        
+        public int MaxAmountOfMagazines => magazinesTransform.Length;
     }
 }

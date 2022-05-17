@@ -10,6 +10,8 @@ namespace Ingame.Data.Gunplay
         [SerializeField] [Min(0)] private float pauseBetweenShots = .2f;
         [BoxGroup("Stats")]
         [SerializeField] [Min(0)] private float damage = 30f;
+        [BoxGroup("Stats")]
+        [SerializeField] private AmmoType ammoType;
         
         [BoxGroup("Recoil"), Space]
         [SerializeField] [Range(0, 20)] private float instability = 1f;
@@ -29,6 +31,7 @@ namespace Ingame.Data.Gunplay
 
         public float PauseBetweenShots => pauseBetweenShots;
         public float Damage => damage;
+        public AmmoType AmmoType => ammoType;
         
         public float Instability => instability;
         public float VerticalRecoilForce => verticalRecoilForce;

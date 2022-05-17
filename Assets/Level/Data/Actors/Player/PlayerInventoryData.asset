@@ -16,3 +16,11 @@ MonoBehaviour:
   maximumNumberOfBandages: 5
   maximumNumberOfInhalators: 3
   maximumNumberOfEnergyDrinks: 2
+  maximumNumberOfMagazines: 6
+  ammoTypeAmounts:
+  - ammoType: 0
+    maximumAmount: 60
+  - ammoType: 1
+    maximumAmount: 60
+  - ammoType: 2
+    maximumAmount: 60

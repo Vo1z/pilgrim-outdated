@@ -12,13 +12,14 @@ namespace Ingame.Utils
         private readonly EcsFilter<ShutterDistortionPerformedCallbackEvent> _shutterDistortionCallbackEventFilter;
         //Inventory
         private readonly EcsFilter<UpdateBackpackAppearanceEvent> _updateInventoryEventFilter;
+        private readonly EcsFilter<UpdateMagazineAppearanceEvent> _updateMagazineAppearanceEventFilter;
         //Physics
         private readonly EcsFilter<OnTriggerEnterEvent> _filterEnter;
         private readonly EcsFilter<OnTriggerStayEvent> _onTriggerStayEventFilter;
         private readonly EcsFilter<OnTriggerExitEvent> _filterExit;
         private readonly EcsFilter<OnCollisionEnterEvent> _collisionEnterEventFilter;
         private readonly EcsFilter<OnCollisionExitEvent> _collisionExitEventFilter;
-        
+
         public void Run()
         {
             foreach (var i in _reloadCallbackEventFilter)
@@ -36,7 +37,15 @@ namespace Ingame.Utils
             foreach (var i in _updateInventoryEventFilter)
             {
                 ref var eventEntity = ref _updateInventoryEventFilter.GetEntity(i); 
-                eventEntity.Destroy();
+                eventEntity.Del<UpdateBackpackAppearanceEvent>();
+            }
+
+            foreach (var i in _updateMagazineAppearanceEventFilter)
+            {
+                ref var eventEntity = ref _updateInventoryEventFilter.GetEntity(i); 
+                
+                if(eventEntity.IsAlive())
+                    eventEntity.Del<UpdateMagazineAppearanceEvent>();
             }
 
             foreach (var i in _filterEnter)

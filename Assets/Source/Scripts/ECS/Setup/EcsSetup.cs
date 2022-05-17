@@ -3,6 +3,7 @@ using Ingame.CameraWork;
 using Ingame.Debuging;
 using Ingame.Enemy;
 using Ingame.Cover;
+using Ingame.Effects;
 using Ingame.Enemy.System;
 using Ingame.Gunplay;
 using Ingame.Health;
@@ -189,6 +190,8 @@ namespace Ingame
                 .Add(new PickUpGunSystem())
                 .Add(new UpdateBackpackAppearanceSystem())
                 .Add(new InteractWithBackpackItemSystem())
+                //Effects
+                .Add(new HealthDisplaySystem())
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())

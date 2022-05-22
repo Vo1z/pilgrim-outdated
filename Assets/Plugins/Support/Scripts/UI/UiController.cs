@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Support.UI
@@ -7,6 +8,17 @@ namespace Support.UI
     /// </summary>
     public class UiController : MonoBehaviour
     {
+        public event Action OnUiRestartLevelTransition;
+        public event Action OnUiLoadNextLevelTransition;
+
+        public void PlayUiRestartLevelTransition()
+        {
+            OnUiRestartLevelTransition?.Invoke();
+        }
         
+        public void PlayUiLoadNextLevelTransition()
+        {
+            OnUiLoadNextLevelTransition?.Invoke();
+        }
     }
 }

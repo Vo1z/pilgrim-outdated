@@ -1,5 +1,6 @@
 ﻿using Ingame.Gunplay;
 using Ingame.Inventory;
+using Ingame.SupportCommunication;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
 
@@ -19,6 +20,8 @@ namespace Ingame.Utils
         private readonly EcsFilter<OnTriggerExitEvent> _filterExit;
         private readonly EcsFilter<OnCollisionEnterEvent> _collisionEnterEventFilter;
         private readonly EcsFilter<OnCollisionExitEvent> _collisionExitEventFilter;
+        //Support messages
+        private readonly EcsFilter<LevelEndRequest> _levelEndRequestFilter;
 
         public void Run()
         {
@@ -76,6 +79,12 @@ namespace Ingame.Utils
             {
                 ref var eventEntity = ref _collisionExitEventFilter.GetEntity(i);
                 eventEntity.Del<OnCollisionExitEvent>();
+            }
+            
+            foreach (var i in _levelEndRequestFilter)
+            {
+                ref var eventEntity = ref _levelEndRequestFilter.GetEntity(i);
+                eventEntity.Del<LevelEndRequest>();
             }
         }
     }

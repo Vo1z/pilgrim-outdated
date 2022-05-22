@@ -9,23 +9,10 @@ namespace Support
     /// </summary>
     public class GameController : MonoBehaviour
     {
-        [Inject] private LevelManager _levelManager;
-        
         /// <summary>Event that invokes each time when level is ended</summary>
         public event Action<bool> OnLevelEnded;
-        /// <summary>Event that invokes each time when level is restarted</summary>
-        public event Action OnLevelRestart;
 
         private bool _isLevelEnded = false;
-
-        /// <summary>
-        /// Method that restarts level and triggers OnLevel RestartEvent
-        /// </summary>
-        public void RestartLevel()
-        {
-            OnLevelRestart?.Invoke();
-            _levelManager.RestartLevel();
-        }
 
         /// <summary>
         /// Method that should be invoked when level is ended
@@ -37,7 +24,10 @@ namespace Support
                 return;
 
             _isLevelEnded = true;
-
+            
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            
             OnLevelEnded?.Invoke(isVictory);
         }
     }

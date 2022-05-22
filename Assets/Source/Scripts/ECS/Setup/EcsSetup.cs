@@ -15,6 +15,7 @@ using Ingame.Interaction.DraggableObject;
 using Ingame.Inventory;
 using Ingame.Movement;
 using Ingame.Player;
+using Ingame.SupportCommunication;
 using Ingame.UI;
 using Ingame.Utils;
 using LeoEcsPhysics;
@@ -28,6 +29,7 @@ namespace Ingame
 {
     public sealed class EcsSetup : MonoBehaviour
     {
+        [Inject] private GameController _gameController;
         [Inject] private StationaryInput _stationaryInput;
         [Inject] private EcsWorld _world;
         [Inject(Id = "UpdateSystems")] private EcsSystems _updateSystems;
@@ -86,7 +88,8 @@ namespace Ingame
         private void AddInjections()
         {
             _updateSystems
-                .Inject(_stationaryInput);
+                .Inject(_stationaryInput)
+                .Inject(_gameController);
         }
 
         private void AddOneFrames()
@@ -203,6 +206,8 @@ namespace Ingame
                 .Add(new EnergyEffectDisplaySystem())
                 //UI
                 .Add(new DisplayAmountOfAmmoSystem())
+                //SupportCommunication
+                .Add(new ProcessMessagesToSupportSystem())
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())

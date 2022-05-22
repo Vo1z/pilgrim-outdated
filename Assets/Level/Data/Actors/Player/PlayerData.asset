@@ -23,8 +23,8 @@ MonoBehaviour:
   enterLeanSpeed: 4
   leanDistanceOffset: 0.4
   leanAngleOffset: 12
-  cameraPositionOffsetDuringTheRightLean: 0.2
-  cameraPositionOffsetDuringTheLeftLean: 0.15
+  cameraPositionOffsetDuringTheRightLean: 0.1
+  cameraPositionOffsetDuringTheLeftLean: 0.1
   gravityAcceleration: 20
   maximumGravitationForce: 40
   slidingForceModifier: 6

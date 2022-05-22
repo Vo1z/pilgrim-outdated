@@ -11,9 +11,13 @@ namespace Ingame.Health
         {
             foreach (var i in _gasChokeFilter)
             {
+                ref var gasChokeActorEntity = ref _gasChokeFilter.GetEntity(i);
                 ref var healthComp = ref _gasChokeFilter.Get1(i);
                 ref var gasChokeComp = ref _gasChokeFilter.Get2(i);
                 
+                if(gasChokeComp.gasAmountInLungs < 0)
+                    gasChokeActorEntity.Del<GasChokeComponent>();
+
                 gasChokeComp.timePassedFromLastGasReleaseFromLungs += Time.deltaTime;
 
                 if(gasChokeComp.timePassedFromLastGasReleaseFromLungs < 1)

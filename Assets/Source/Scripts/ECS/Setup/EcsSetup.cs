@@ -198,6 +198,9 @@ namespace Ingame
                 .Add(new InteractWithBackpackItemSystem())
                 //Effects
                 .Add(new HealthDisplaySystem())
+                .Add(new BleedingDisplaySystem())
+                .Add(new GasChokeDisplaySystem())
+                .Add(new EnergyEffectDisplaySystem())
                 //UI
                 .Add(new DisplayAmountOfAmmoSystem())
                 //Utils

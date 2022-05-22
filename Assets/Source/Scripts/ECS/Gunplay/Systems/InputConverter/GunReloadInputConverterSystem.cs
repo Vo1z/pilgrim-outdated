@@ -24,7 +24,7 @@ namespace Ingame.Gunplay
                 ref var gunEntity = ref _gunsFilter.GetEntity(i);
                 var gunAmmoType = _gunsFilter.Get1(i).gunData.AmmoType;
 
-                bool reloadingCanBePerformed = !gunEntity.Has<AwaitingReloadTag>() && IsThereAvailableMagazine(gunAmmoType);
+                bool reloadingCanBePerformed = !gunEntity.Has<AwaitingReloadTag>();
 
                 if (reloadingCanBePerformed)
                 {

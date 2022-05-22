@@ -66,6 +66,7 @@ namespace Ingame.Inventory
                 
                 if (itemEntity.Has<MorphineTag>())
                 {
+                    playerHealthEntity.Get<HealComponent>().hpToRestore = MorphineTag.AMOUNT_OF_HP_RESTORED;
                     playerInventory.currentNumberOfMorphine--;
                 }
             }

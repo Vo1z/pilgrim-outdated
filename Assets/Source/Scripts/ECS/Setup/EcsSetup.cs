@@ -3,6 +3,7 @@ using Ingame.CameraWork;
 using Ingame.Debuging;
 using Ingame.Enemy;
 using Ingame.Cover;
+using Ingame.Effects;
 using Ingame.Enemy.System;
 using Ingame.Gunplay;
 using Ingame.Health;
@@ -195,6 +196,11 @@ namespace Ingame
                 .Add(new UpdateBackpackItemsAppearanceSystem())
                 .Add(new UpdateMagazineFullOfAmmoMarkSystem())
                 .Add(new InteractWithBackpackItemSystem())
+                //Effects
+                .Add(new HealthDisplaySystem())
+                .Add(new BleedingDisplaySystem())
+                .Add(new GasChokeDisplaySystem())
+                .Add(new EnergyEffectDisplaySystem())
                 //UI
                 .Add(new DisplayAmountOfAmmoSystem())
                 //Utils

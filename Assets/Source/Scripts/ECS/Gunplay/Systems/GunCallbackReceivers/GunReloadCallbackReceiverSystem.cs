@@ -1,6 +1,4 @@
 ﻿using Ingame.Hud;
-using Ingame.Inventory;
-using Ingame.Movement;
 using Leopotam.Ecs;
 
 namespace Ingame.Gunplay
@@ -9,11 +7,10 @@ namespace Ingame.Gunplay
     {
         private readonly EcsFilter<GunModel, InHandsTag, AwaitingReloadTag> _gunsFilter;
         private readonly EcsFilter<ReloadPerformedCallbackEvent> _reloadCallbackFilter;
-        private readonly EcsFilter<MagazineComponent, TransformModel, MagazineIsInInventoryTag, MagazineNextToUseInReloadTag> _inventoryMagazineFilter;
-        
+
         public void Run()
         {
-            if (_reloadCallbackFilter.IsEmpty() || _inventoryMagazineFilter.IsEmpty())
+            if (_reloadCallbackFilter.IsEmpty())
                 return;
 
             foreach (var i in _gunsFilter)

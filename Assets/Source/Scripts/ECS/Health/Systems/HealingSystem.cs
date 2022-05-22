@@ -11,11 +11,14 @@ namespace Ingame.Health
         {
             foreach (var i in _healFilter)
             {
+                ref var healEntity = ref _healFilter.GetEntity(i);
                 ref var healthComp = ref _healFilter.Get1(i);
                 ref var healComp = ref _healFilter.Get2(i);
 
                 healComp.hpToRestore = Mathf.Max(0, healComp.hpToRestore);
                 healthComp.currentHealth = Mathf.Min(healthComp.initialHealth, healthComp.currentHealth + healComp.hpToRestore);
+                
+                healEntity.Del<HealComponent>();
             }
         }
     }

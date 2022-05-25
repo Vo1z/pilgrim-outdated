@@ -211,6 +211,7 @@ namespace Ingame
                 //Utils
                 .Add(new TimeSystem())
                 .Add(new DebugSystem())
+                .Add(new UpdateSettingsSystem())
                 .Add(new ExternalEventsRemoverSystem());
 
             //FixedUpdate

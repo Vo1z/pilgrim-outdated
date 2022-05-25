@@ -6,7 +6,6 @@ using Ingame.Inventory;
 using Ingame.Movement;
 using Ingame.Utils;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Ingame.Player
 {
@@ -16,10 +15,6 @@ namespace Ingame.Player
 
         public void Init()
         {
-            //todo move to settings
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
             foreach (var i in _playerFilter)
             {
                 ref var playerEntity = ref _playerFilter.GetEntity(i);

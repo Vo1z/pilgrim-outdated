@@ -22,6 +22,8 @@ namespace Ingame.Utils
         private readonly EcsFilter<OnCollisionExitEvent> _collisionExitEventFilter;
         //Support messages
         private readonly EcsFilter<LevelEndRequest> _levelEndRequestFilter;
+        //Utils
+        private readonly EcsFilter<UpdateSettingsRequest> _updateSettingsRequestFilter;
 
         public void Run()
         {
@@ -85,6 +87,12 @@ namespace Ingame.Utils
             {
                 ref var eventEntity = ref _levelEndRequestFilter.GetEntity(i);
                 eventEntity.Del<LevelEndRequest>();
+            }
+            
+            foreach (var i in _updateSettingsRequestFilter)
+            {
+                ref var eventEntity = ref _updateSettingsRequestFilter.GetEntity(i);
+                eventEntity.Del<UpdateSettingsRequest>();
             }
         }
     }

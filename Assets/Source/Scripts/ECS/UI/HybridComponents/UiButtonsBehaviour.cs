@@ -17,5 +17,10 @@ namespace Ingame.UI
         {
             _uiController.PlayUiLoadNextLevelTransition();
         }
+
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }

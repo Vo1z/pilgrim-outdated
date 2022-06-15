@@ -15,7 +15,7 @@ namespace Ingame.UI
         [Inject] private readonly UiController _uiController;
         [Inject] private readonly LevelManager _levelManager;
 
-        private const float ADDITIONAL_PAUSE_BEFORE_TRANSITION = .2f;
+        private const float ADDITIONAL_PAUSE_BEFORE_TRANSITION = 1.3f;
         
         private void Awake()
         {

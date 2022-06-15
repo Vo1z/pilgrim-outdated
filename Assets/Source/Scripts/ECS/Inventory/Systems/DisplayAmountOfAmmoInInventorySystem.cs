@@ -1,10 +1,10 @@
-﻿using Ingame.Inventory;
-using Ingame.Player;
+﻿using Ingame.Player;
+using Ingame.UI;
 using Leopotam.Ecs;
 
-namespace Ingame.UI
+namespace Ingame.Inventory
 {
-    public sealed class DisplayAmountOfAmmoSystem : IEcsRunSystem
+    public sealed class DisplayAmountOfAmmoInInventorySystem : IEcsRunSystem
     {
         private readonly EcsFilter<TmpTextModel, UiAmmoCountTextComponent> _ammoBoxTextFilter;
         private readonly EcsFilter<PlayerModel, InventoryComponent> _playerInventoryFilter;

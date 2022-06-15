@@ -14,6 +14,8 @@ namespace Ingame.UI
         [BoxGroup("References"), Required]
         [SerializeField] private CanvasGroup settingsCanvasGroup;
 
+        private const float ADDITIONA_TIME_OFFSET_BEFORE_TURNING_OFF_GAME_OBJECT = .3f;
+        
         private Vector3 _initialMainScreenLocalScale; 
         private Vector3 _initialSettingsScreenLocalScale; 
         
@@ -52,7 +54,7 @@ namespace Ingame.UI
             canvasGroup.DOFade(0, animationDuration / 2);
             canvasGroup.transform
                 .DOScale(Vector3.zero, animationDuration)
-                .OnComplete(canvasGroup.SetGameObjectInactive);
+                .OnComplete(() => this.WaitAndDoCoroutine(ADDITIONA_TIME_OFFSET_BEFORE_TURNING_OFF_GAME_OBJECT, canvasGroup.SetGameObjectInactive));
         }
     }
 }

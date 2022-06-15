@@ -17,6 +17,7 @@ using Ingame.Movement;
 using Ingame.Player;
 using Ingame.SupportCommunication;
 using Ingame.UI;
+using Ingame.UI.Raycastable;
 using Ingame.Utils;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
@@ -205,7 +206,8 @@ namespace Ingame
                 .Add(new GasChokeDisplaySystem())
                 .Add(new EnergyEffectDisplaySystem())
                 //UI
-                .Add(new DisplayAmountOfAmmoSystem())
+                .Add(new InteractWithRaycastableUiSystem())
+                .Add(new DisplayAmountOfAmmoInInventorySystem())
                 //SupportCommunication
                 .Add(new ProcessMessagesToSupportSystem())
                 //Utils

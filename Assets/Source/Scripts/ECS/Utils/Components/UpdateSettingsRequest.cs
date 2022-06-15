@@ -6,5 +6,6 @@ namespace Ingame.Utils
     public struct UpdateSettingsRequest
     {
         public bool isCursorAvailable;
+        public bool isAimDotVisible;
     }
 }

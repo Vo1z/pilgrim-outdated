@@ -31,5 +31,12 @@ namespace Ingame.Gunplay
             value.localPositionInsideHud = transform.localPosition;
             value.localRotationInsideHud = transform.localRotation;
         }
+
+        [Button]
+        private void MoveBackedPosition()
+        {
+            transform.localPosition = value.localPositionInsideHud;
+            transform.localRotation = value.localRotationInsideHud;
+        }
     }
 }

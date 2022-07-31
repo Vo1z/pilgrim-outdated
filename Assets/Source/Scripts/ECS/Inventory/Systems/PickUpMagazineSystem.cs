@@ -10,7 +10,7 @@ namespace Ingame.Inventory
     public sealed class PickUpMagazineSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world;
-        private readonly EcsFilter<MagazineComponent, TransformModel, PerformInteractionTag>.Exclude<MagazineIsInInventoryTag> _pickUpMagazineFilter;
+        private readonly EcsFilter<MagazineComponent, TransformModel, RigidbodyModel, ColliderModel, PerformInteractionTag>.Exclude<MagazineIsInInventoryTag> _pickUpMagazineFilter;
         private readonly EcsFilter<PlayerModel, InventoryComponent> _playerInventoryFilter;
         private readonly EcsFilter<BackpackModel> _backpackFilter;
         
@@ -29,16 +29,25 @@ namespace Ingame.Inventory
             {
                 ref var magazineEntity = ref _pickUpMagazineFilter.GetEntity(i);
                 ref var magazineTransformModel = ref _pickUpMagazineFilter.Get2(i);
-        
+                var magazineRigidbody = _pickUpMagazineFilter.Get3(i).rigidbody;
+                var magazineCollider = _pickUpMagazineFilter.Get4(i).collider;
+
                 magazineEntity.Del<PerformInteractionTag>();
                 
                 if (playerInventoryComp.currentNumberOfMagazines >= maxAmountOfMagazines)
                     continue;
-
+                
                 int hudLayer = LayerMask.NameToLayer("HUD");
+                
                 magazineEntity.Get<MagazineIsInInventoryTag>();
+                
                 magazineTransformModel.transform.gameObject.layer = hudLayer;
                 magazineTransformModel.transform.gameObject.SetLayerToAllChildren(hudLayer);
+
+                magazineRigidbody.isKinematic = true;
+                magazineRigidbody.useGravity = false;
+                magazineCollider.isTrigger = true;
+                
                 _world.NewEntity().Get<UpdateBackpackAppearanceEvent>();
             }
         }

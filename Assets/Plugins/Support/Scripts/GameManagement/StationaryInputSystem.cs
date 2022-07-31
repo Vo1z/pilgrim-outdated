@@ -138,12 +138,30 @@ namespace Support
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ShutterDelay"",
+                    ""type"": ""Button"",
+                    ""id"": ""031ad4ac-d432-45b0-ab2c-09a15bc376e4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""f1bdca15-a9f8-4b35-89c7-b20ed40a6d43"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LongInteract"",
+                    ""type"": ""Button"",
+                    ""id"": ""5e54b899-d8fd-4a3b-97a1-e56683e3537c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.4)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -171,6 +189,15 @@ namespace Support
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DropItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""70a5bc23-e79a-4199-9e34-1924684a18df"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -542,7 +569,7 @@ namespace Support
                     ""name"": """",
                     ""id"": ""56a5a5b8-8128-4a4e-9068-cd164fa2492b"",
                     ""path"": ""<Keyboard>/t"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.4)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""DistortTheShutter"",
@@ -553,7 +580,7 @@ namespace Support
                     ""name"": """",
                     ""id"": ""8e15eee7-9dd2-43a2-8850-32381174df36"",
                     ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.4)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""DistortTheShutter"",
@@ -647,6 +674,72 @@ namespace Support
                     ""action"": ""SecondSlotInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00292408-ce91-4535-b6c1-1665389a239c"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShutterDelay"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d980d89c-a2f5-43e7-b9f2-1f12490c223f"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShutterDelay"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d304e820-efc5-4ab8-a32e-c4ee1071a948"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5685f858-cef8-4ba9-aafa-0c7448095897"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0827c61-bf15-48ce-97de-a78c35ab9b50"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LongInteract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db606165-a0b8-4f87-9d4a-6ce372f866be"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LongInteract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -667,10 +760,13 @@ namespace Support
             m_FPS_Aim = m_FPS.FindAction("Aim", throwIfNotFound: true);
             m_FPS_Reload = m_FPS.FindAction("Reload", throwIfNotFound: true);
             m_FPS_DistortTheShutter = m_FPS.FindAction("DistortTheShutter", throwIfNotFound: true);
+            m_FPS_ShutterDelay = m_FPS.FindAction("ShutterDelay", throwIfNotFound: true);
             m_FPS_Interact = m_FPS.FindAction("Interact", throwIfNotFound: true);
+            m_FPS_LongInteract = m_FPS.FindAction("LongInteract", throwIfNotFound: true);
             m_FPS_OpenInventory = m_FPS.FindAction("OpenInventory", throwIfNotFound: true);
             m_FPS_FirstSlotInteraction = m_FPS.FindAction("FirstSlotInteraction", throwIfNotFound: true);
             m_FPS_SecondSlotInteraction = m_FPS.FindAction("SecondSlotInteraction", throwIfNotFound: true);
+            m_FPS_DropItem = m_FPS.FindAction("DropItem", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -742,10 +838,13 @@ namespace Support
         private readonly InputAction m_FPS_Aim;
         private readonly InputAction m_FPS_Reload;
         private readonly InputAction m_FPS_DistortTheShutter;
+        private readonly InputAction m_FPS_ShutterDelay;
         private readonly InputAction m_FPS_Interact;
+        private readonly InputAction m_FPS_LongInteract;
         private readonly InputAction m_FPS_OpenInventory;
         private readonly InputAction m_FPS_FirstSlotInteraction;
         private readonly InputAction m_FPS_SecondSlotInteraction;
+        private readonly InputAction m_FPS_DropItem;
         public struct FPSActions
         {
             private @StationaryInput m_Wrapper;
@@ -762,10 +861,13 @@ namespace Support
             public InputAction @Aim => m_Wrapper.m_FPS_Aim;
             public InputAction @Reload => m_Wrapper.m_FPS_Reload;
             public InputAction @DistortTheShutter => m_Wrapper.m_FPS_DistortTheShutter;
+            public InputAction @ShutterDelay => m_Wrapper.m_FPS_ShutterDelay;
             public InputAction @Interact => m_Wrapper.m_FPS_Interact;
+            public InputAction @LongInteract => m_Wrapper.m_FPS_LongInteract;
             public InputAction @OpenInventory => m_Wrapper.m_FPS_OpenInventory;
             public InputAction @FirstSlotInteraction => m_Wrapper.m_FPS_FirstSlotInteraction;
             public InputAction @SecondSlotInteraction => m_Wrapper.m_FPS_SecondSlotInteraction;
+            public InputAction @DropItem => m_Wrapper.m_FPS_DropItem;
             public InputActionMap Get() { return m_Wrapper.m_FPS; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -811,9 +913,15 @@ namespace Support
                     @DistortTheShutter.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
                     @DistortTheShutter.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
                     @DistortTheShutter.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
+                    @ShutterDelay.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnShutterDelay;
+                    @ShutterDelay.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnShutterDelay;
+                    @ShutterDelay.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnShutterDelay;
                     @Interact.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnInteract;
                     @Interact.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnInteract;
                     @Interact.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnInteract;
+                    @LongInteract.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnLongInteract;
+                    @LongInteract.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnLongInteract;
+                    @LongInteract.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnLongInteract;
                     @OpenInventory.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnOpenInventory;
                     @OpenInventory.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnOpenInventory;
                     @OpenInventory.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnOpenInventory;
@@ -823,6 +931,9 @@ namespace Support
                     @SecondSlotInteraction.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnSecondSlotInteraction;
                     @SecondSlotInteraction.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnSecondSlotInteraction;
                     @SecondSlotInteraction.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnSecondSlotInteraction;
+                    @DropItem.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropItem;
+                    @DropItem.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropItem;
+                    @DropItem.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropItem;
                 }
                 m_Wrapper.m_FPSActionsCallbackInterface = instance;
                 if (instance != null)
@@ -863,9 +974,15 @@ namespace Support
                     @DistortTheShutter.started += instance.OnDistortTheShutter;
                     @DistortTheShutter.performed += instance.OnDistortTheShutter;
                     @DistortTheShutter.canceled += instance.OnDistortTheShutter;
+                    @ShutterDelay.started += instance.OnShutterDelay;
+                    @ShutterDelay.performed += instance.OnShutterDelay;
+                    @ShutterDelay.canceled += instance.OnShutterDelay;
                     @Interact.started += instance.OnInteract;
                     @Interact.performed += instance.OnInteract;
                     @Interact.canceled += instance.OnInteract;
+                    @LongInteract.started += instance.OnLongInteract;
+                    @LongInteract.performed += instance.OnLongInteract;
+                    @LongInteract.canceled += instance.OnLongInteract;
                     @OpenInventory.started += instance.OnOpenInventory;
                     @OpenInventory.performed += instance.OnOpenInventory;
                     @OpenInventory.canceled += instance.OnOpenInventory;
@@ -875,6 +992,9 @@ namespace Support
                     @SecondSlotInteraction.started += instance.OnSecondSlotInteraction;
                     @SecondSlotInteraction.performed += instance.OnSecondSlotInteraction;
                     @SecondSlotInteraction.canceled += instance.OnSecondSlotInteraction;
+                    @DropItem.started += instance.OnDropItem;
+                    @DropItem.performed += instance.OnDropItem;
+                    @DropItem.canceled += instance.OnDropItem;
                 }
             }
         }
@@ -893,10 +1013,13 @@ namespace Support
             void OnAim(InputAction.CallbackContext context);
             void OnReload(InputAction.CallbackContext context);
             void OnDistortTheShutter(InputAction.CallbackContext context);
+            void OnShutterDelay(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
+            void OnLongInteract(InputAction.CallbackContext context);
             void OnOpenInventory(InputAction.CallbackContext context);
             void OnFirstSlotInteraction(InputAction.CallbackContext context);
             void OnSecondSlotInteraction(InputAction.CallbackContext context);
+            void OnDropItem(InputAction.CallbackContext context);
         }
     }
 }

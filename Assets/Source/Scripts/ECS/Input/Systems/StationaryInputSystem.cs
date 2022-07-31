@@ -9,7 +9,9 @@ namespace Ingame.Input
     {
         private EcsWorld _world;
         private StationaryInput _stationaryInputSystem;
-        
+
+        private bool _isDistortTheShutterPerformedThisFrame = false; 
+        private bool _isLongInteractPerformedThisFrame = false; 
         private float timePassedFromLastLeanInputRequest;
 
         private InputAction _movementInputX;
@@ -23,7 +25,10 @@ namespace Ingame.Input
         private InputAction _aimInput;
         private InputAction _reloadInput;
         private InputAction _distortTheShutterInput;
+        private InputAction _shutterDelayInput;
         private InputAction _interactionInput;
+        private InputAction _longInteractInput;
+        private InputAction _dropItemInput;
         private InputAction _openInventoryInput;
         private InputAction _firstSlotInteraction;
         private InputAction _secondSlotInteraction;
@@ -45,13 +50,36 @@ namespace Ingame.Input
 
             _reloadInput = _stationaryInputSystem.FPS.Reload;
             _distortTheShutterInput = _stationaryInputSystem.FPS.DistortTheShutter;
+            _shutterDelayInput = _stationaryInputSystem.FPS.ShutterDelay;
 
             _interactionInput = _stationaryInputSystem.FPS.Interact;
+            _longInteractInput = _stationaryInputSystem.FPS.LongInteract;
+            _dropItemInput = _stationaryInputSystem.FPS.DropItem;
 
             _openInventoryInput = _stationaryInputSystem.FPS.OpenInventory;
 
             _firstSlotInteraction = _stationaryInputSystem.FPS.FirstSlotInteraction;
             _secondSlotInteraction = _stationaryInputSystem.FPS.SecondSlotInteraction;
+
+
+            _distortTheShutterInput.performed += OnDistortTheShutterPerformed;
+            _longInteractInput.performed += OnLongInteractPerformed;
+        }
+
+        private void OnDistortTheShutterPerformed(InputAction.CallbackContext callbackContext)
+        {
+            if(callbackContext.canceled || callbackContext.duration < .05f)
+                return;
+
+            _isDistortTheShutterPerformedThisFrame = true;
+        }
+        
+        private void OnLongInteractPerformed(InputAction.CallbackContext callbackContext)
+        {
+            if(callbackContext.canceled || callbackContext.duration < .05f)
+                return;
+
+            _isLongInteractPerformedThisFrame = true;
         }
 
         public void Run()
@@ -63,8 +91,9 @@ namespace Ingame.Input
             bool shootInput = _shootInput.IsPressed();
             bool aimInput = _aimInput.WasPressedThisFrame();
             bool reloadInput = _reloadInput.WasPressedThisFrame();
-            bool distortTheShutterInput = _distortTheShutterInput.WasPressedThisFrame();
+            bool shutterDelayInput = _shutterDelayInput.WasPressedThisFrame();
             bool interactInput = _interactionInput.WasPressedThisFrame();
+            bool dopItemInput = _dropItemInput.WasPressedThisFrame();
             bool openInventoryInput = _openInventoryInput.WasPressedThisFrame();
             bool interactWithFirstSlot = _firstSlotInteraction.WasPressedThisFrame();
             bool interactWithSecondSlot = _secondSlotInteraction.WasPressedThisFrame();
@@ -141,12 +170,20 @@ namespace Ingame.Input
                 inputEntity.Get<ReloadInputEvent>();
             }
 
-            if (distortTheShutterInput)
+            if (_isDistortTheShutterPerformedThisFrame)
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
 
                 inputEntity.Get<DistortTheShutterInputEvent>();
+            }
+
+            if (shutterDelayInput)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+
+                inputEntity.Get<ShutterDelayInputEvent>();
             }
 
             if (interactInput)
@@ -155,6 +192,14 @@ namespace Ingame.Input
                     inputEntity = _world.NewEntity();
 
                 inputEntity.Get<InteractInputEvent>();
+            }
+            
+            if (_isLongInteractPerformedThisFrame)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+
+                inputEntity.Get<LongInteractionInputEvent>();
             }
 
             if (openInventoryInput)
@@ -180,6 +225,17 @@ namespace Ingame.Input
 
                 inputEntity.Get<InteractWithSecondSlotInputEvent>();
             }
+
+            if (dopItemInput)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+
+                inputEntity.Get<InteractWithSecondSlotInputEvent>();
+            }
+
+            _isDistortTheShutterPerformedThisFrame = false;
+            _isLongInteractPerformedThisFrame = false;
         }
     }
 }

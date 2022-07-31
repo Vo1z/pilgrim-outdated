@@ -106,7 +106,9 @@ namespace Ingame
                 .OneFrame<AimInputEvent>()
                 .OneFrame<ReloadInputEvent>()
                 .OneFrame<DistortTheShutterInputEvent>()
+                .OneFrame<ShutterDelayInputEvent>()
                 .OneFrame<InteractInputEvent>()
+                .OneFrame<LongInteractionInputEvent>()
                 .OneFrame<OpenInventoryInputEvent>()
                 .OneFrame<HudReloadAnimationTriggerEvent>()
                 .OneFrame<HudDistortTheShutterAnimationTriggerEvent>()
@@ -185,6 +187,7 @@ namespace Ingame
                 .Add(new DestroyDeadActorsSystem())
                 //Interaction
                 .Add(new InteractionSystem())
+                .Add(new LongInteractionSystem())
                 .Add(new DoorRotationSystem())
                 .Add(new PickUpDraggableObjectSystem())
                 .Add(new ReleaseDraggableObjectDueToInteractionWithPlayer())
@@ -193,6 +196,7 @@ namespace Ingame
                 //Inventory
                 .Add(new PickUpItemSystem())
                 .Add(new PickUpMagazineSystem())
+                .Add(new DropMagazineSystem())
                 .Add(new PickUpAmmoSystem())
                 .Add(new PickUpGunSystem())
                 .Add(new InteractWithInventoryMagazineSystem())

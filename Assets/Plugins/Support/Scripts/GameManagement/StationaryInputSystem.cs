@@ -192,12 +192,12 @@ namespace Support
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""DropItem"",
+                    ""name"": ""DropGun"",
                     ""type"": ""Button"",
                     ""id"": ""70a5bc23-e79a-4199-9e34-1924684a18df"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.4)"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -704,7 +704,7 @@ namespace Support
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DropItem"",
+                    ""action"": ""DropGun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -715,7 +715,7 @@ namespace Support
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DropItem"",
+                    ""action"": ""DropGun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -766,7 +766,7 @@ namespace Support
             m_FPS_OpenInventory = m_FPS.FindAction("OpenInventory", throwIfNotFound: true);
             m_FPS_FirstSlotInteraction = m_FPS.FindAction("FirstSlotInteraction", throwIfNotFound: true);
             m_FPS_SecondSlotInteraction = m_FPS.FindAction("SecondSlotInteraction", throwIfNotFound: true);
-            m_FPS_DropItem = m_FPS.FindAction("DropItem", throwIfNotFound: true);
+            m_FPS_DropGun = m_FPS.FindAction("DropGun", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -844,7 +844,7 @@ namespace Support
         private readonly InputAction m_FPS_OpenInventory;
         private readonly InputAction m_FPS_FirstSlotInteraction;
         private readonly InputAction m_FPS_SecondSlotInteraction;
-        private readonly InputAction m_FPS_DropItem;
+        private readonly InputAction m_FPS_DropGun;
         public struct FPSActions
         {
             private @StationaryInput m_Wrapper;
@@ -867,7 +867,7 @@ namespace Support
             public InputAction @OpenInventory => m_Wrapper.m_FPS_OpenInventory;
             public InputAction @FirstSlotInteraction => m_Wrapper.m_FPS_FirstSlotInteraction;
             public InputAction @SecondSlotInteraction => m_Wrapper.m_FPS_SecondSlotInteraction;
-            public InputAction @DropItem => m_Wrapper.m_FPS_DropItem;
+            public InputAction @DropGun => m_Wrapper.m_FPS_DropGun;
             public InputActionMap Get() { return m_Wrapper.m_FPS; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -931,9 +931,9 @@ namespace Support
                     @SecondSlotInteraction.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnSecondSlotInteraction;
                     @SecondSlotInteraction.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnSecondSlotInteraction;
                     @SecondSlotInteraction.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnSecondSlotInteraction;
-                    @DropItem.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropItem;
-                    @DropItem.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropItem;
-                    @DropItem.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropItem;
+                    @DropGun.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropGun;
+                    @DropGun.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropGun;
+                    @DropGun.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropGun;
                 }
                 m_Wrapper.m_FPSActionsCallbackInterface = instance;
                 if (instance != null)
@@ -992,9 +992,9 @@ namespace Support
                     @SecondSlotInteraction.started += instance.OnSecondSlotInteraction;
                     @SecondSlotInteraction.performed += instance.OnSecondSlotInteraction;
                     @SecondSlotInteraction.canceled += instance.OnSecondSlotInteraction;
-                    @DropItem.started += instance.OnDropItem;
-                    @DropItem.performed += instance.OnDropItem;
-                    @DropItem.canceled += instance.OnDropItem;
+                    @DropGun.started += instance.OnDropGun;
+                    @DropGun.performed += instance.OnDropGun;
+                    @DropGun.canceled += instance.OnDropGun;
                 }
             }
         }
@@ -1019,7 +1019,7 @@ namespace Support
             void OnOpenInventory(InputAction.CallbackContext context);
             void OnFirstSlotInteraction(InputAction.CallbackContext context);
             void OnSecondSlotInteraction(InputAction.CallbackContext context);
-            void OnDropItem(InputAction.CallbackContext context);
+            void OnDropGun(InputAction.CallbackContext context);
         }
     }
 }

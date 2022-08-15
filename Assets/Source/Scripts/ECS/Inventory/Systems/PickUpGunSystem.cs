@@ -32,22 +32,28 @@ namespace Ingame.Inventory
                 ref var gunEntity = ref gunLootComponent.gunEntityReference.Entity;
 
                 bool isThereAnyAvailableSlots = _firstSlotFilter.IsEmpty() || _secondSlotFilter.IsEmpty();
+                bool hasSlotTag = gunEntity.Has<FirstHudItemSlotTag>() || gunEntity.Has<SecondHudItemSlotTag>(); 
                 
-                if(!isThereAnyAvailableSlots)
+                gunLootEntity.Del<PerformInteractionTag>();
+                
+                if(!isThereAnyAvailableSlots || hasSlotTag)
                     continue;
-
-                ProcessLootData(ref gunLootEntity, ref gunLootTransform);
-                ProcessGun(ref gunEntity, ref playerHudTransformModel);
+                
+                gunLootTransform.transform.SetGameObjectInactive();
+                
+                PickUpGun(ref gunEntity, ref playerHudTransformModel);
+                
+                if (gunEntity.Has<ColliderModel>() && gunEntity.Has<RigidbodyModel>())
+                {
+                    var gunCollider = gunEntity.Get<ColliderModel>().collider;
+                    var gunRigidbody = gunEntity.Get<RigidbodyModel>().rigidbody;
+                    
+                    DisableGunPhysics(gunCollider, gunRigidbody);
+                }
             }
         }
-
-        private void ProcessLootData(ref EcsEntity gunLootEntity, ref TransformModel gunLootTransform)
-        {
-            gunLootEntity.Del<PerformInteractionTag>();
-            gunLootTransform.transform.SetGameObjectInactive();
-        }
-
-        private void ProcessGun(ref EcsEntity gunEntity, ref TransformModel playerHudTransformModel)
+        
+        private void PickUpGun(ref EcsEntity gunEntity, ref TransformModel playerHudTransformModel)
         {
             ref var gunTransformModel = ref gunEntity.Get<TransformModel>();
             ref var gunModel = ref gunEntity.Get<GunModel>();
@@ -76,6 +82,15 @@ namespace Ingame.Inventory
             
             gunEntity.Get<InHandsTag>();
             gunTransform.SetGameObjectInactive();
+        }
+
+        private void DisableGunPhysics(Collider gunCollider, Rigidbody gunRigidbody)
+        {
+            gunCollider.enabled = false;
+            gunCollider.isTrigger = true;
+
+            gunRigidbody.isKinematic = true;
+            gunRigidbody.useGravity = false;
         }
     }
 }

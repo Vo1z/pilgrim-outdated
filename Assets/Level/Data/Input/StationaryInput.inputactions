@@ -168,12 +168,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DropItem",
+                    "name": "DropGun",
                     "type": "Button",
                     "id": "70a5bc23-e79a-4199-9e34-1924684a18df",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.4)",
                     "initialStateCheck": false
                 }
             ],
@@ -680,7 +680,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DropItem",
+                    "action": "DropGun",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -691,7 +691,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DropItem",
+                    "action": "DropGun",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -11,7 +11,8 @@ namespace Ingame.Input
         private StationaryInput _stationaryInputSystem;
 
         private bool _isDistortTheShutterPerformedThisFrame = false; 
-        private bool _isLongInteractPerformedThisFrame = false; 
+        private bool _isLongInteractPerformedThisFrame = false;
+        private bool _isDropGunInputWasPerformedThisFrame = false;
         private float timePassedFromLastLeanInputRequest;
 
         private InputAction _movementInputX;
@@ -28,7 +29,7 @@ namespace Ingame.Input
         private InputAction _shutterDelayInput;
         private InputAction _interactionInput;
         private InputAction _longInteractInput;
-        private InputAction _dropItemInput;
+        private InputAction _dropGunInput;
         private InputAction _openInventoryInput;
         private InputAction _firstSlotInteraction;
         private InputAction _secondSlotInteraction;
@@ -54,7 +55,7 @@ namespace Ingame.Input
 
             _interactionInput = _stationaryInputSystem.FPS.Interact;
             _longInteractInput = _stationaryInputSystem.FPS.LongInteract;
-            _dropItemInput = _stationaryInputSystem.FPS.DropItem;
+            _dropGunInput = _stationaryInputSystem.FPS.DropGun;
 
             _openInventoryInput = _stationaryInputSystem.FPS.OpenInventory;
 
@@ -64,6 +65,7 @@ namespace Ingame.Input
 
             _distortTheShutterInput.performed += OnDistortTheShutterPerformed;
             _longInteractInput.performed += OnLongInteractPerformed;
+            _dropGunInput.performed += OnDropGunInputPerformed;
         }
 
         private void OnDistortTheShutterPerformed(InputAction.CallbackContext callbackContext)
@@ -82,6 +84,14 @@ namespace Ingame.Input
             _isLongInteractPerformedThisFrame = true;
         }
 
+        private void OnDropGunInputPerformed(InputAction.CallbackContext callbackContext)
+        {
+            if(callbackContext.canceled || callbackContext.duration < .05f)
+                return;
+
+            _isDropGunInputWasPerformedThisFrame = true;
+        }
+
         public void Run()
         {
             var movementInputVector = new Vector2(_movementInputX.ReadValue<float>(), _movementInputY.ReadValue<float>());
@@ -93,7 +103,6 @@ namespace Ingame.Input
             bool reloadInput = _reloadInput.WasPressedThisFrame();
             bool shutterDelayInput = _shutterDelayInput.WasPressedThisFrame();
             bool interactInput = _interactionInput.WasPressedThisFrame();
-            bool dopItemInput = _dropItemInput.WasPressedThisFrame();
             bool openInventoryInput = _openInventoryInput.WasPressedThisFrame();
             bool interactWithFirstSlot = _firstSlotInteraction.WasPressedThisFrame();
             bool interactWithSecondSlot = _secondSlotInteraction.WasPressedThisFrame();
@@ -226,16 +235,17 @@ namespace Ingame.Input
                 inputEntity.Get<InteractWithSecondSlotInputEvent>();
             }
 
-            if (dopItemInput)
+            if (_isDropGunInputWasPerformedThisFrame)
             {
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
 
-                inputEntity.Get<InteractWithSecondSlotInputEvent>();
+                inputEntity.Get<DropGunInputEvent>();
             }
 
             _isDistortTheShutterPerformedThisFrame = false;
             _isLongInteractPerformedThisFrame = false;
+            _isDropGunInputWasPerformedThisFrame = false;
         }
     }
 }

@@ -24,12 +24,18 @@ namespace Ingame.Inventory
                 ref var gunModel = ref _gunToDropFilter.Get1(i);
 
                 var gunTransform = _gunToDropFilter.Get2(i).transform;
-                var gunCollider = _gunToDropFilter.Get3(i).collider;
-                var gunRigidbody = _gunToDropFilter.Get4(i).rigidbody;
-                
+
                 DeleteGunOddTags(gunEntity);
                 SetProperConfigurationForGunGameObject(gunModel, gunTransform);
-                EnableGunPhysics(gunCollider, gunRigidbody);
+
+                if (gunEntity.Has<HudItemModel>())
+                {
+                    var gunCollider = _gunToDropFilter.Get3(i).collider;
+                    var gunRigidbody = _gunToDropFilter.Get4(i).rigidbody;
+                    var animator = gunEntity.Get<HudItemModel>().itemAnimator;
+                        
+                    EnableGunPhysics(gunCollider, gunRigidbody, animator);
+                }
             }
         }
 
@@ -47,24 +53,26 @@ namespace Ingame.Inventory
 
         private void SetProperConfigurationForGunGameObject(GunModel gunModel, Transform gunTransform)
         {
-            int defaultLayer = LayerMask.NameToLayer("Default");
+            int targetLayer = LayerMask.NameToLayer("IgnoreCollisionWithPlayer");
             
             gunModel.lootDataTransform.SetGameObjectActive();
             gunModel.handsTransform.SetGameObjectInactive();
             
-            gunModel.handsTransform.gameObject.SetLayerToAllChildren(defaultLayer);
-            gunTransform.gameObject.SetLayerToAllChildren(defaultLayer);
+            gunModel.handsTransform.gameObject.SetLayerToAllChildren(targetLayer);
+            gunTransform.gameObject.SetLayerToAllChildren(targetLayer);
             
             gunTransform.SetParent(null);
         }
 
-        private void EnableGunPhysics(Collider gunCollider, Rigidbody gunRigidbody)
+        private void EnableGunPhysics(Collider gunCollider, Rigidbody gunRigidbody, Animator gunAnimator)
         {
             gunCollider.enabled = true;
             gunCollider.isTrigger = false;
 
             gunRigidbody.isKinematic = false;
             gunRigidbody.useGravity = true;
+            
+            gunAnimator.enabled = false;
         }
     }
 }

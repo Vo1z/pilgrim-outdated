@@ -43,12 +43,13 @@ namespace Ingame.Inventory
                 
                 PickUpGun(ref gunEntity, ref playerHudTransformModel);
                 
-                if (gunEntity.Has<ColliderModel>() && gunEntity.Has<RigidbodyModel>())
+                if (gunEntity.Has<ColliderModel>() && gunEntity.Has<RigidbodyModel>() && gunEntity.Has<HudItemModel>())
                 {
                     var gunCollider = gunEntity.Get<ColliderModel>().collider;
                     var gunRigidbody = gunEntity.Get<RigidbodyModel>().rigidbody;
+                    var gunAnimator = gunEntity.Get<HudItemModel>().itemAnimator;
                     
-                    DisableGunPhysics(gunCollider, gunRigidbody);
+                    DisableGunPhysics(gunCollider, gunRigidbody, gunAnimator);
                 }
             }
         }
@@ -84,13 +85,15 @@ namespace Ingame.Inventory
             gunTransform.SetGameObjectInactive();
         }
 
-        private void DisableGunPhysics(Collider gunCollider, Rigidbody gunRigidbody)
+        private void DisableGunPhysics(Collider gunCollider, Rigidbody gunRigidbody, Animator gunAnimator)
         {
             gunCollider.enabled = false;
             gunCollider.isTrigger = true;
 
             gunRigidbody.isKinematic = true;
             gunRigidbody.useGravity = false;
+            
+            gunAnimator.enabled = true;
         }
     }
 }

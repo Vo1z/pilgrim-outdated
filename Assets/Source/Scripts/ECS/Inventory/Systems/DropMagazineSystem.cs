@@ -18,14 +18,14 @@ namespace Ingame.Inventory
                 var magazineTransform = _magazineToDropFilter.Get2(i).transform;
                 var magazineRigidbody = _magazineToDropFilter.Get3(i).rigidbody;
                 var magazineCollider = _magazineToDropFilter.Get4(i).collider;
-                int defaultLayer = LayerMask.NameToLayer("Default");
+                int targetLayer = LayerMask.NameToLayer("IgnoreCollisionWithPlayer");
                 
                 magazineEntity.Del<PerformLongInteractionTag>();
                 magazineEntity.Del<MagazineIsInInventoryTag>();
 
                 magazineTransform.SetParent(null);
-                magazineTransform.gameObject.layer = defaultLayer;
-                magazineTransform.gameObject.SetLayerToAllChildren(defaultLayer);
+                magazineTransform.gameObject.layer = targetLayer;
+                magazineTransform.gameObject.SetLayerToAllChildren(targetLayer);
 
                 magazineRigidbody.isKinematic = false;
                 magazineRigidbody.useGravity = true;

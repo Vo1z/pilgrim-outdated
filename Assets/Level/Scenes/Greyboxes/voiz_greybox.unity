@@ -9958,10 +9958,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mp5
       objectReference: {fileID: 0}
-    - target: {fileID: 5080726926130580910, guid: ceef8a52ee9ad764bb643e5475493fdd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5080726926130580916, guid: ceef8a52ee9ad764bb643e5475493fdd, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -10119,14 +10115,6 @@ PrefabInstance:
     - target: {fileID: 5577267149569064093, guid: f1a19f19474b2f64ab1a8cf1d310aa7b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8082484887637774462, guid: f1a19f19474b2f64ab1a8cf1d310aa7b, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8082484887637774462, guid: f1a19f19474b2f64ab1a8cf1d310aa7b, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1a19f19474b2f64ab1a8cf1d310aa7b, type: 3}

@@ -56,10 +56,6 @@ Material:
         m_Texture: {fileID: 2800000, guid: 4d21131328c09bd4f98986236dee8c0b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: 4d21131328c09bd4f98986236dee8c0b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -78,6 +74,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SubsurfaceTex:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WindNoiseTexture:
+        m_Texture: {fileID: 2800000, guid: ee89ea0190089404c957f70a11e43668, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -111,6 +111,8 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _HueVariationKwToggle: 0
+    - _ISGRASS: 0
+    - _ISTREELEAFS: 1
     - _Metallic: 0
     - _NormalMapKwToggle: 0
     - _OcclusionStrength: 1
@@ -126,20 +128,20 @@ Material:
     - _SubsurfaceKwToggle: 0
     - _Surface: 1
     - _TwoSided: 2
+    - _WindDensity: 5.5
     - _WindQuality: 0
-    - _WindSpeed: 2
-    - _WindStrength: 1
+    - _WindSpeed: 1
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 0, g: 0.5471698, b: 0.049709134, a: 1}
-    - _Color: {r: 0.6792453, g: 0.43248576, b: 0.40049842, a: 1}
+    - _Color: {r: 0.18222678, g: 0.4245283, b: 0.20472834, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _HueVariationColor: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SubsurfaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _WindDirection: {r: 1, g: 1, b: 1, a: 0}
+    - _WindDirection: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &283259805737591145
 MonoBehaviour:

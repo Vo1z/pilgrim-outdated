@@ -211,6 +211,7 @@ namespace Ingame
                 .Add(new BleedingDisplaySystem())
                 .Add(new GasChokeDisplaySystem())
                 .Add(new EnergyEffectDisplaySystem())
+                .Add(new PlayerPositionSetterSystem())
                 //UI
                 .Add(new InteractWithRaycastableUiSystem())
                 .Add(new DisplayAmountOfAmmoInInventorySystem())

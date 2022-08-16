@@ -92,8 +92,9 @@ namespace Ingame.Inventory
 
             gunRigidbody.isKinematic = true;
             gunRigidbody.useGravity = false;
-            
-            gunAnimator.enabled = true;
+         
+            if(gunAnimator != null)
+                gunAnimator.enabled = true;
         }
     }
 }

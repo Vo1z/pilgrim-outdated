@@ -16,7 +16,6 @@ using Ingame.Inventory;
 using Ingame.Movement;
 using Ingame.Player;
 using Ingame.SupportCommunication;
-using Ingame.UI;
 using Ingame.UI.Raycastable;
 using Ingame.Utils;
 using LeoEcsPhysics;

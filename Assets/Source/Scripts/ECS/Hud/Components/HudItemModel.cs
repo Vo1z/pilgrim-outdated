@@ -11,7 +11,6 @@ namespace Ingame.Hud
         [Required, Expandable]
         [AllowNesting]
         public HudItemData itemData;
-        [Required]
         [AllowNesting]
         public Animator itemAnimator;
     }

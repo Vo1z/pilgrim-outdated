@@ -16,6 +16,7 @@ using Ingame.Inventory;
 using Ingame.Movement;
 using Ingame.Player;
 using Ingame.SupportCommunication;
+using Ingame.UI;
 using Ingame.UI.Raycastable;
 using Ingame.Utils;
 using LeoEcsPhysics;
@@ -148,15 +149,6 @@ namespace Ingame
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
                 .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemSlotChooseSystem())
-                //Gun play
-                .Add(new GunDistortTheShutterInputConverterSystem())
-                .Add(new GunReloadInputConverterSystem())
-                .Add(new GunShootInputConverterSystem())
-                .Add(new GunRecoilSystem())
-                .Add(new GunShootSystem())
-                .Add(new GunDistortTheShutterCallbackReceiverSystem())
-                .Add(new GunReloadCallbackReceiverSystem())
-                .Add(new HudGunAnimationSystem())
                 //AI
                 .Add(new InitializeEntityReferenceSystem())
                 .Add(new NoiseFetcherEventSystem())
@@ -193,6 +185,15 @@ namespace Ingame
                 .Add(new ReleaseDraggableObjectDueToInteractionWithPlayer())
                 .Add(new ReleaseDraggableObjectSystem())
                 .Add(new DragObjectSystem())
+                //Gun play
+                .Add(new GunDistortTheShutterInputConverterSystem())
+                .Add(new GunReloadInputConverterSystem())
+                .Add(new GunShootInputConverterSystem())
+                .Add(new GunRecoilSystem())
+                .Add(new GunShootSystem())
+                .Add(new GunDistortTheShutterCallbackReceiverSystem())
+                .Add(new GunReloadCallbackReceiverSystem())
+                .Add(new HudGunAnimationSystem())
                 //Inventory
                 .Add(new PickUpItemSystem())
                 .Add(new PickUpMagazineSystem())
@@ -214,6 +215,7 @@ namespace Ingame
                 //UI
                 .Add(new InteractWithRaycastableUiSystem())
                 .Add(new DisplayAmountOfAmmoInInventorySystem())
+                .Add(new DisplayAimDotOnInteractionSystem())
                 //SupportCommunication
                 .Add(new ProcessMessagesToSupportSystem())
                 //Utils

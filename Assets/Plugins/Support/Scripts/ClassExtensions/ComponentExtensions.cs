@@ -77,5 +77,12 @@ namespace Support.Extensions
             
             gameObject.SetActive(true);
         }
+
+        public static Ray GetCenterScreenRay(this Camera camera)
+        {
+            var screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
+            return camera.ScreenPointToRay(screenCenter);
+        }
     }
 }

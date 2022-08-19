@@ -1,4 +1,5 @@
 ﻿using Ingame.CameraWork;
+using Ingame.Hud;
 using Ingame.Interaction.Common;
 using Ingame.Movement;
 using Ingame.Player;
@@ -14,12 +15,21 @@ namespace Ingame.Interaction.DraggableObject
         private readonly EcsFilter<RigidbodyModel, DraggableObjectModel, ObjectIsBeingDraggedTag> _draggingObjectFilter;
         private readonly EcsFilter<CameraModel, MainCameraTag> _mainCameraFilter;
         private readonly EcsFilter<PlayerModel> _playerFilter;
+        
+        private readonly EcsFilter<HudItemModel, InHandsTag, HudIsVisibleTag> _visibleHudItems;
 
         public void Run()
         {
             if(_draggingObjectFilter.IsEmpty() || _mainCameraFilter.IsEmpty() || _playerFilter.IsEmpty())
                 return;
 
+            foreach (var i in _visibleHudItems)
+            {
+                ref var hudItemEntity = ref _visibleHudItems.GetEntity(i);
+                
+                hudItemEntity.Del<HudIsVisibleTag>();
+            }
+            
             ref var draggableObjectEntity = ref _draggingObjectFilter.GetEntity(0);
             ref var transformModel = ref _draggingObjectFilter.Get1(0);
             ref var draggableObjectModel = ref _draggingObjectFilter.Get2(0);

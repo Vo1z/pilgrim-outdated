@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Ingame.Effects
 {
-    public sealed class HealthDisplaySystem : IEcsRunSystem
+    public sealed class HealthDisplaySystem : IEcsRunSystem, IEcsDestroySystem
     {
         private const float EFFECTS_LERP_SPEED = 4f;
         
-        private readonly EcsFilter<PostProcessingVignetteModel> _vignetteFilter;
+        private readonly EcsFilter<Vignette2DMaterialModel> _vignetteFilter;
         private readonly EcsFilter<PlayerModel, HealthComponent> _playerHealthFilter;
 
         public void Run()
@@ -22,9 +22,23 @@ namespace Ingame.Effects
             foreach (var i in _vignetteFilter)
             {
                 ref var vignetteComp = ref _vignetteFilter.Get1(i);
-                float vignetteValue = 1 + vignetteComp.initialIntensity - Mathf.InverseLerp(0, playerHealth.initialHealth, playerHealth.currentHealth);
+                var vignette2DMaterial = vignetteComp.vignette2DMaterial;
+                float currentVignetteValue = vignette2DMaterial.GetFloat(vignetteComp.RADIUS_PROP_ID);
+                float targetVignetteValue = 1 - Mathf.InverseLerp(0, playerHealth.initialHealth, playerHealth.currentHealth);
+                float lerpVignetteValue = Mathf.Lerp(currentVignetteValue, targetVignetteValue, EFFECTS_LERP_SPEED * Time.deltaTime);
                 
-                vignetteComp.vignette.intensity.value = Mathf.Lerp(vignetteComp.vignette.intensity.value, vignetteValue, EFFECTS_LERP_SPEED * Time.deltaTime);
+                vignette2DMaterial.SetFloat(vignetteComp.RADIUS_PROP_ID, lerpVignetteValue);
+            }
+        }
+
+        public void Destroy()
+        {
+            foreach (var i in _vignetteFilter)
+            {
+                ref var vignetteComp = ref _vignetteFilter.Get1(i);
+                var vignette2DMaterial = vignetteComp.vignette2DMaterial;
+                
+                vignette2DMaterial.SetFloat(vignetteComp.RADIUS_PROP_ID, 0);
             }
         }
     }

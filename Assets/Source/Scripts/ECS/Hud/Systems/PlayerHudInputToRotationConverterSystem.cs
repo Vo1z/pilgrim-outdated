@@ -8,7 +8,7 @@ namespace Ingame.Hud
 {
     public sealed class PlayerHudInputToRotationConverterSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerModel> _playerFilter;
+        private readonly EcsFilter<PlayerModel>.Exclude<BlockRotationRequest> _playerFilter;
         private readonly EcsFilter<HudModel, TransformModel> _hudFilter;
         private readonly EcsFilter<RotateInputRequest> _rotateRequestFilter;
 

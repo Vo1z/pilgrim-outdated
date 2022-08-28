@@ -1,8 +1,10 @@
+using Client;
 using Ingame.Anomaly;
 using Ingame.CameraWork;
 using Ingame.Debuging;
 using Ingame.Enemy;
 using Ingame.Cover;
+using Ingame.Dialog;
 using Ingame.Effects;
 using Ingame.Enemy.System;
 using Ingame.Gunplay;
@@ -194,6 +196,9 @@ namespace Ingame
                 .Add(new GunDistortTheShutterCallbackReceiverSystem())
                 .Add(new GunReloadCallbackReceiverSystem())
                 .Add(new HudGunAnimationSystem())
+                //Dialog
+                .Add(new DialogSystem())
+                .Add(new DialogCutDownDialogSystem())
                 //Inventory
                 .Add(new PickUpItemSystem())
                 .Add(new PickUpMagazineSystem())

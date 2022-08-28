@@ -7,7 +7,7 @@ namespace Ingame.Player
 {
     public sealed class PlayerInputToRotationConverterSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerModel, CharacterControllerModel> _playerFilter;
+        private readonly EcsFilter<PlayerModel, CharacterControllerModel>.Exclude<BlockRotationRequest> _playerFilter;
         private readonly EcsFilter<RotateInputRequest> _rotationFilter;
 
         public void Run()

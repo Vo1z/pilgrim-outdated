@@ -5,7 +5,7 @@ namespace Ingame.Movement
 {
     public sealed class MovementSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<VelocityComponent, CharacterControllerModel> _velocityFilter;
+        private readonly EcsFilter<VelocityComponent, CharacterControllerModel>.Exclude<BlockMovementRequest> _velocityFilter;
         
         public void Run()
         {

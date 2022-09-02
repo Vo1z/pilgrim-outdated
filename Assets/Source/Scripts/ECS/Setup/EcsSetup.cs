@@ -1,5 +1,6 @@
 using Client;
 using Ingame.Anomaly;
+using Ingame.Breakable;
 using Ingame.CameraWork;
 using Ingame.Debuging;
 using Ingame.Enemy;
@@ -187,6 +188,7 @@ namespace Ingame
                 .Add(new ReleaseDraggableObjectDueToInteractionWithPlayer())
                 .Add(new ReleaseDraggableObjectSystem())
                 .Add(new DragObjectSystem())
+                .Add(new BreakableSystem())
                 //Gun play
                 .Add(new GunDistortTheShutterInputConverterSystem())
                 .Add(new GunReloadInputConverterSystem())

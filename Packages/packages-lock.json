@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.dbrizov.naughtybeziercurves": {
+      "version": "https://github.com/dbrizov/NaughtyBezierCurves.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "a03040a199787420187535838a622cbdcd9226e2"
+    },
     "com.leopotam.ecs": {
       "version": "https://github.com/Leopotam/ecs.git",
       "depth": 0,

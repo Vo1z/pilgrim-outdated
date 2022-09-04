@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoothMovement: 0
   useCharacterController: 0
-  speedRate: 0
-  smoothingRate: 0
+  speedRate: 0.015
+  typeOfSmoothing: 0
+  smoothingRate: 0.444
+  velocity: {x: 0, y: 0, z: 0}

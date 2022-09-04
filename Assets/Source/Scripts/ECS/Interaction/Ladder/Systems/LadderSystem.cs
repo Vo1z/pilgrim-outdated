@@ -50,7 +50,19 @@ namespace Ingame.Ladder
             //player
             ref var character = ref _playerFilter.Get1(0);
             ref var characterEntity = ref _playerFilter.GetEntity(0);
+            //look at the ladder direction
             
+          
+            character.characterController.transform.rotation = Quaternion.Euler(0,  ladder.Curve.transform.eulerAngles.y+90 , 0);
+            
+            //todo 
+            //rotate player with object then nullify rotation after closing laddering???
+            
+            /*ladder.Curve.transform.rotation.ToAngleAxis(out var angle,out var axis);
+            var ang = Quaternion.AngleAxis(angle+90,ladder.Curve.transform.up);
+            var yAxis = ang.eulerAngles.y;
+            character.characterController.transform.rotation = Quaternion.Euler(0, yAxis, 0);*/
+
             if (!characterEntity.Has<VelocityComponent>())
             {
                 return;
@@ -103,11 +115,9 @@ namespace Ingame.Ladder
                 newPosition = ladder.Curve.GetPoint(ladder.Progress);
                 ladder.Progress += ladder.CurveData.SpeedRate*input;
             }
-            UnityEngine.Debug.Log("XD");
             //stop climbing
             if (ladder.Progress is > 1 or < 0)
             {
-                UnityEngine.Debug.Log("EXITING");
                 character.characterController.enabled = true;
                 ladderEntity.Del<PerformInteractionTag>();
                 characterEntity.Del<BlockRotationRequest>();

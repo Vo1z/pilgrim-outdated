@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ingame.Behaviour
 {
+    [Serializable]
     public abstract class DecoratorNode : Node
     {
         [SerializeField]
-        [HideInInspector]
         private Node child;
 
         public Node Child

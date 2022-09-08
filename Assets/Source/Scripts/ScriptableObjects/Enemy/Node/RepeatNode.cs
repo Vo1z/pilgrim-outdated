@@ -1,8 +1,10 @@
-﻿using NaughtyAttributes;
+﻿using System;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Ingame.Behaviour
 {
+    [Serializable]
     public class RepeatNode : DecoratorNode
     {
         private enum TypeOfRepetition
@@ -14,7 +16,7 @@ namespace Ingame.Behaviour
 
         [SerializeField] private TypeOfRepetition type;
 
-        [ShowIf("type == TypeOfRepetition.Fixed")]
+        //[ShowIf("type == TypeOfRepetition.Fixed")]
         [SerializeField] 
         private int loops = 1;
         

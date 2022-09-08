@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 namespace Ingame.Behaviour{
+    [Serializable]
     [CreateAssetMenu(fileName = "BehaviourTree",menuName = "Behaviour/Tree")]
     public class BehaviourTree : ScriptableObject
     {
         [SerializeField] private Node root;
         [SerializeField] private Node.State state = Node.State.Running;
-        public List<Node> Nodes { get; private set; } = new();
+        
+        [SerializeField]
+        [HideInInspector]
+        public List<Node> Nodes  = new();
         public Node Root
         {
             get => root;

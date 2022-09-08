@@ -17,6 +17,8 @@ namespace Ingame.Editor
 
         public Action<NodeView> OnNodeSelected;
         private BehaviourTree _tree;
+
+        public BehaviourTree Tree => _tree;
         public BehaviourTreePanelView()
         {
             Insert(0,new GridBackground());
@@ -30,7 +32,7 @@ namespace Ingame.Editor
                 AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Source/Scripts/Editor/BehaviourTreeEditorWindow.uss");
                 this.styleSheets.Add(styleSheet);
         }
-
+        
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
            // base.BuildContextualMenu(evt);

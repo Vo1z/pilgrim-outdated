@@ -82,5 +82,12 @@ namespace Ingame.Editor
 
             return false;
         }
+
+        private void OnDestroy()
+        {
+            _treePanelView.Tree.Nodes.ForEach(EditorUtility.SetDirty);
+            EditorUtility.SetDirty(_treePanelView.Tree);
+            AssetDatabase.SaveAssets();
+        }
     }
 }

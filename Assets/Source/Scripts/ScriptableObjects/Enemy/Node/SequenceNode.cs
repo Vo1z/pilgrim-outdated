@@ -1,5 +1,9 @@
-﻿namespace Ingame.Behaviour
+﻿using System;
+using UnityEngine;
+
+namespace Ingame.Behaviour
 {
+    [Serializable]
     public class SequenceNode : CompositeNode
     {
         private int _currentNodeIndex = 0;

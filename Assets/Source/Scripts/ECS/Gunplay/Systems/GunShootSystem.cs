@@ -1,5 +1,5 @@
 ﻿using Ingame.CameraWork;
-using Ingame.Enemy;
+ 
 using Ingame.Health;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -28,7 +28,7 @@ namespace Ingame.Gunplay
                 
                 var hitObject = GetHitObjectWithRayCast(gunModel.barrelTransform);
                 gunEntity.Del<AwaitingShotTag>();
-                gunEntity.Get<NoiseGeneratorEvent>();
+               // gunEntity.Get<NoiseGeneratorEvent>();
                 if(hitObject == null)
                     return;
 

@@ -1,4 +1,5 @@
-﻿#if UNITY_EDITOR
+﻿using UnityEngine;
+#if UNITY_EDITOR
 using Ingame.Health;
 using Ingame.Player;
 using Leopotam.Ecs;

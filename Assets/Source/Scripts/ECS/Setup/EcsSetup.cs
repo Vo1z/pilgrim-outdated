@@ -3,11 +3,10 @@ using Ingame.Anomaly;
 using Ingame.Breakable;
 using Ingame.CameraWork;
 using Ingame.Debuging;
-using Ingame.Enemy;
-using Ingame.Cover;
+ 
 using Ingame.Dialog;
 using Ingame.Effects;
-using Ingame.Enemy.System;
+ 
 using Ingame.Gunplay;
 using Ingame.Health;
 using Ingame.Hud;
@@ -117,8 +116,7 @@ namespace Ingame
                 .OneFrame<HudReloadAnimationTriggerEvent>()
                 .OneFrame<HudDistortTheShutterAnimationTriggerEvent>()
                 .OneFrame<InteractWithFirstSlotInputEvent>()
-                .OneFrame<InteractWithSecondSlotInputEvent>()
-                .OneFrame<NoiseGeneratorEvent>();
+                .OneFrame<InteractWithSecondSlotInputEvent>();
         }
 
         private void AddSystems()
@@ -130,11 +128,12 @@ namespace Ingame
                 .Add(new PlayerInitSystem())
                 .Add(new AppearanceUpdateInitSystem())
                 .Add(new GunInitSystem())
-                .Add(new DeltaMovementInitializeSystem())
-		        .Add(new CoverInitSystem());
+                .Add(new DeltaMovementInitializeSystem());
+		        //.Add(new CoverInitSystem());
 
             //Update
             _updateSystems
+                .Add(new InitializeEntityReferenceSystem())
                 //Input
                 .Add(new StationaryInputSystem())
                 .Add(new PlayerInputToRotationConverterSystem())
@@ -153,21 +152,7 @@ namespace Ingame
                 .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemSlotChooseSystem())
                 //AI
-                .Add(new InitializeEntityReferenceSystem())
-                .Add(new NoiseFetcherEventSystem())
-                .Add(new DetectSystem())
-                .Add(new PatrolSystem())
-                .Add(new FollowSystem())
-                .Add(new AttackSystem())
-                .Add(new FleeSystem())
-                .Add(new HideSystem())
-                .Add(new IdleSystem())
-                .Add(new EnemyBehaviourSystem())
-                .Add(new HideOnCoolDownSystem())
-                .Add(new ReloadSystem())
-                .Add(new RepositionSystem())
-		        .Add(new EnemyLeanSystem())
-                .Add(new FollowerSystem())
+                
                 //Anomaly
                 .Add(new AcidWaterSystem())
                 //Health

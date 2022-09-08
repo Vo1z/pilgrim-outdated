@@ -259,6 +259,12 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.unity.ui.builder": {
+      "version": "2.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
     "com.voody.unileo": {
       "version": "https://github.com/voody2506/UniLeo.git",
       "depth": 0,

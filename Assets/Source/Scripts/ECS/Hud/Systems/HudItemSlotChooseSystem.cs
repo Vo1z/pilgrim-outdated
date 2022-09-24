@@ -6,7 +6,7 @@ namespace Ingame.Hud
 {
     public sealed class HudItemSlotChooseSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemModel, InHandsTag> _hudItemsFilter;
+        private readonly EcsFilter<HudItemModel, InInventryTag> _hudItemsFilter;
 
         private readonly EcsFilter<InteractWithFirstSlotInputEvent> _interactWithFirstSlotEventFilter;
         private readonly EcsFilter<InteractWithSecondSlotInputEvent> _interactWithSecondSlotEventFilter;
@@ -27,20 +27,20 @@ namespace Ingame.Hud
                 
                 if (isInteractedWithFirstSlot && hudItemEntity.Has<FirstHudItemSlotTag>())
                 {
-                    hudItemEntity.Get<HudIsVisibleTag>();
+                    hudItemEntity.Get<HudIsInHandsTag>();
                     continue;
                 }
                 
                 if (isInteractedWithSecondSlot && hudItemEntity.Has<SecondHudItemSlotTag>())
                 {
-                    hudItemEntity.Get<HudIsVisibleTag>();
+                    hudItemEntity.Get<HudIsInHandsTag>();
                     continue;
                 }
 
                 if (isInteractedWithInventory && hudItemEntity.Has<BackpackModel>())
-                    hudItemEntity.Get<HudIsVisibleTag>();
+                    hudItemEntity.Get<HudIsInHandsTag>();
                 else
-                    hudItemEntity.Del<HudIsVisibleTag>();
+                    hudItemEntity.Del<HudIsInHandsTag>();
             }
         }
     }

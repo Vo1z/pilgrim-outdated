@@ -8,7 +8,7 @@ namespace Ingame.Hud
 {
     public sealed class HudItemMoverSystemDueToRotation : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemModel, TransformModel, InHandsTag, HudIsVisibleTag> _itemFilter;
+        private readonly EcsFilter<HudItemModel, TransformModel, InInventryTag, HudIsInHandsTag> _itemFilter;
         private readonly EcsFilter<RotateInputRequest> _rotateInputFilter;
         private readonly EcsFilter<PlayerModel> _playerFilter;
         

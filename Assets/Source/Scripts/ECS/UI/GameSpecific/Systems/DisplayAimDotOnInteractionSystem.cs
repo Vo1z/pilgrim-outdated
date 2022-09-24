@@ -1,4 +1,5 @@
 ﻿using Ingame.CameraWork;
+using Ingame.Hud;
 using Ingame.Interaction.Common;
 using Ingame.Player;
 using Ingame.Utils;
@@ -34,8 +35,10 @@ namespace Ingame.UI
 
             if (Physics.Raycast(ray, out RaycastHit hit, maxPlayerInteractionDistance)) // Is there any object was hit
                 if (hit.collider.TryGetComponent(out EntityReference entityReference)) // Is there EntityReference on hit game object
-                    if (entityReference.Entity.Has<InteractiveTag>()) // Is this entity is interactive
-                        isAimDotDisplayed = true;
+                    if (entityReference.Entity.Has<InteractiveTag>()) // Is this entity is interactive|
+                        if(!entityReference.Entity.Has<InInventryTag>()) // Is item not in players hands
+                            if(!entityReference.Entity.Has<HudIsInHandsTag>()) // Item in hands is hidden
+                                isAimDotDisplayed = true;
 
             _world.NewEntity().Get<UpdateSettingsRequest>() = new UpdateSettingsRequest
             {

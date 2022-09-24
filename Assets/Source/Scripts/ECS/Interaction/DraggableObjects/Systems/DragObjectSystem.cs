@@ -16,7 +16,7 @@ namespace Ingame.Interaction.DraggableObject
         private readonly EcsFilter<CameraModel, MainCameraTag> _mainCameraFilter;
         private readonly EcsFilter<PlayerModel> _playerFilter;
         
-        private readonly EcsFilter<HudItemModel, InHandsTag, HudIsVisibleTag> _visibleHudItems;
+        private readonly EcsFilter<HudItemModel, InInventryTag, HudIsInHandsTag> _visibleHudItems;
 
         public void Run()
         {
@@ -27,7 +27,7 @@ namespace Ingame.Interaction.DraggableObject
             {
                 ref var hudItemEntity = ref _visibleHudItems.GetEntity(i);
                 
-                hudItemEntity.Del<HudIsVisibleTag>();
+                hudItemEntity.Del<HudIsInHandsTag>();
             }
             
             ref var draggableObjectEntity = ref _draggingObjectFilter.GetEntity(0);

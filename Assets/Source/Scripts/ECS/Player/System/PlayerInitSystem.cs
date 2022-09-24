@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Ingame.Data.Gunplay;
-using Ingame.Input;
+﻿using Ingame.Input;
 using Ingame.Inventory;
 using Ingame.Movement;
 using Ingame.Utils;
@@ -36,10 +33,6 @@ namespace Ingame.Player
                 playerTransformModel.transform = playerCharacterControllerModel.characterController.transform;
                 playerModel.currentSpeed = playerModel.isCrouching ? playerData.CrouchWalkSpeed : playerData.WalkSpeed;
                 playerModel.currentLeanDirection = LeanDirection.None;
-                
-                playerInventory.ammo = new Dictionary<AmmoType, int>();
-                foreach (AmmoType ammoType in Enum.GetValues(typeof(AmmoType))) 
-                    playerInventory.ammo.Add(ammoType, 0);
             }
         }
     }

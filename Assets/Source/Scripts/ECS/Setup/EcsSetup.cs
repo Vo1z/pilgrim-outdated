@@ -129,7 +129,6 @@ namespace Ingame
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new AppearanceUpdateInitSystem())
-                .Add(new GunInitSystem())
                 .Add(new DeltaMovementInitializeSystem())
 		        .Add(new CoverInitSystem());
 
@@ -190,28 +189,15 @@ namespace Ingame
                 .Add(new DragObjectSystem())
                 .Add(new BreakableSystem())
                 //Gun play
-                .Add(new GunDistortTheShutterInputConverterSystem())
-                .Add(new GunReloadInputConverterSystem())
-                .Add(new GunShootInputConverterSystem())
-                .Add(new GunRecoilSystem())
-                .Add(new GunShootSystem())
-                .Add(new GunDistortTheShutterCallbackReceiverSystem())
-                .Add(new GunReloadCallbackReceiverSystem())
+                .Add(new RifleShootSystem())
+                .Add(new PerformShotSystem())
                 .Add(new HudGunAnimationSystem())
                 //Dialog
                 .Add(new DialogSystem())
                 .Add(new DialogCutDownDialogSystem())
                 //Inventory
                 .Add(new PickUpItemSystem())
-                .Add(new PickUpMagazineSystem())
-                .Add(new DropMagazineSystem())
-                .Add(new DropGunSystem())
-                .Add(new PickUpAmmoSystem())
-                .Add(new PickUpGunSystem())
-                .Add(new InteractWithInventoryMagazineSystem())
-                .Add(new UpdateBackpackMagazinesAppearanceSystem())
                 .Add(new UpdateBackpackItemsAppearanceSystem())
-                .Add(new UpdateMagazineFullOfAmmoMarkSystem())
                 .Add(new InteractWithBackpackItemSystem())
                 //Effects
                 .Add(new HealthDisplaySystem())
@@ -221,7 +207,6 @@ namespace Ingame
                 .Add(new PlayerPositionSetterSystem())
                 //UI
                 .Add(new InteractWithRaycastableUiSystem())
-                .Add(new DisplayAmountOfAmmoInInventorySystem())
                 .Add(new DisplayAimDotOnInteractionSystem())
                 //SupportCommunication
                 .Add(new ProcessMessagesToSupportSystem())

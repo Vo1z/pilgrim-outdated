@@ -7,7 +7,7 @@ namespace Ingame.Hud
 {
     public sealed class HudItemMoverDueSurfaceDetectionSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<SurfaceDetectorModel, HudItemModel, TransformModel, InHandsTag> _itemFilter;
+        private readonly EcsFilter<SurfaceDetectorModel, HudItemModel, TransformModel, InInventryTag> _itemFilter;
 
         public void Run()
         {

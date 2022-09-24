@@ -340,7 +340,6 @@ GameObject:
   - component: {fileID: 1074794981398761430}
   - component: {fileID: 4631363001509329012}
   - component: {fileID: 9181727690452707188}
-  - component: {fileID: 7685158400724968929}
   m_Layer: 7
   m_Name: 9x19AmmoText
   m_TagString: Untagged
@@ -490,20 +489,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9f85e569b343db8e695288c155eef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7685158400724968929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3858904047235741107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2615827fa7494472878e67e8888cd3b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    ammoType: 2
 --- !u!1 &3916275365900276436
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +540,6 @@ GameObject:
   - component: {fileID: 2817445448522148167}
   - component: {fileID: 88791544253819543}
   - component: {fileID: 982094577324488498}
-  - component: {fileID: 5420423658754553723}
   m_Layer: 7
   m_Name: 7.62AmmoText
   m_TagString: Untagged
@@ -705,20 +689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9f85e569b343db8e695288c155eef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5420423658754553723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5514236325617408967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2615827fa7494472878e67e8888cd3b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    ammoType: 1
 --- !u!1 &6150335534557152783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,7 +1024,6 @@ GameObject:
   - component: {fileID: 2343801501451501028}
   - component: {fileID: 3819015621018232985}
   - component: {fileID: 321303739390438490}
-  - component: {fileID: 481423470846730887}
   m_Layer: 7
   m_Name: 5.56AmmoText
   m_TagString: Untagged
@@ -1204,20 +1173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9f85e569b343db8e695288c155eef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &481423470846730887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8341445301412967675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2615827fa7494472878e67e8888cd3b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    ammoType: 0
 --- !u!1 &8635523940900339852
 GameObject:
   m_ObjectHideFlags: 0

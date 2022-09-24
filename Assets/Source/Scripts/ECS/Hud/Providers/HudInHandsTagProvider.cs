@@ -2,5 +2,5 @@
 
 namespace Ingame.Hud
 {
-    public sealed class HudInHandsTagProvider : MonoProvider<InHandsTag> { }
+    public sealed class HudInHandsTagProvider : MonoProvider<InInventryTag> { }
 }

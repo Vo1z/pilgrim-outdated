@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6b080d99cf72f4cb6a35fbaa0ae601, type: 3}
   m_Name: newCurveMovementData
   m_EditorClassIdentifier: 
-  smoothMovement: 0
+  smoothMovement: 1
   useCharacterController: 0
-  speedRate: 0.015
-  typeOfSmoothing: 0
-  smoothingRate: 0.444
+  speedRate: 0.188
+  typeOfSmoothing: 2
+  smoothingRate: 1.95
   velocity: {x: 0, y: 0, z: 0}

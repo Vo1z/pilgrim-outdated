@@ -1,5 +1,6 @@
 using Client;
 using Ingame.Anomaly;
+using Ingame.Behaviour;
 using Ingame.Breakable;
 using Ingame.CameraWork;
 using Ingame.Debuging;
@@ -134,6 +135,7 @@ namespace Ingame
             //Update
             _updateSystems
                 .Add(new InitializeEntityReferenceSystem())
+                .Add(new BehaviourBinderSystem())
                 //Input
                 .Add(new StationaryInputSystem())
                 .Add(new PlayerInputToRotationConverterSystem())
@@ -152,7 +154,8 @@ namespace Ingame
                 .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemSlotChooseSystem())
                 //AI
-                
+                .Add(new BehaviourBinderSystem())
+                .Add(new BehaviourSystem())
                 //Anomaly
                 .Add(new AcidWaterSystem())
                 //Health

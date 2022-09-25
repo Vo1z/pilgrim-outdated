@@ -17,7 +17,8 @@ namespace Ingame.Editor
 
         public Action<NodeView> OnNodeSelected;
         private BehaviourTree _tree;
-
+        private float _paddingRate = 2.15f;
+        
         public BehaviourTree Tree => _tree;
         public BehaviourTreePanelView()
         {
@@ -98,6 +99,15 @@ namespace Ingame.Editor
                     _tree.AddChild(parent.Node,child.Node);
                 });
             }
+            //Sort Nodes based on th
+            if (graphviewchange.movedElements != null)
+            {
+                nodes.ForEach((e) =>
+                {
+                    var n = e as NodeView;
+                    n.SortNodes();
+                });
+            }
             return graphviewchange;
         }
 
@@ -118,7 +128,7 @@ namespace Ingame.Editor
             //create nodes and edges
             _tree.Nodes.ForEach(e =>
             {
-                var children = _tree.GetChildren(e);
+                var children = BehaviourTree.GetChildren(e);
                 children.ForEach(child =>
                 {
                     var c = FindNode(child);
@@ -128,6 +138,7 @@ namespace Ingame.Editor
                     AddElement(edge);
                 });
             });
+           
         }
         
         public void CreateNodeView(Node node)
@@ -141,6 +152,11 @@ namespace Ingame.Editor
         {
             var node = _tree.CreateNode(type);
             CreateNodeView(node);
+        }
+        
+        public void UpdateNodesState()
+        {
+            nodes.ForEach(e =>(e as NodeView)?.UpdateState() );
         }
     }
 }

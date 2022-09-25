@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Ingame.Behaviour;
+using UnityEditor;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using Node = Ingame.Behaviour.Node;
 
@@ -15,6 +17,8 @@ namespace Ingame.Editor
         public Node Node;
         public Port Input;
         public Port Output;
+
+        private string _nameOfDescription = "Description";
         
         public NodeView(Node node) : base("Assets/Source/Scripts/Editor/View/NodeView.uxml")
         {
@@ -27,6 +31,15 @@ namespace Ingame.Editor
 
             CreateInputPorts();
             CreateOutputPorts();
+            AdjustNodeWithNodeViewBinding();
+
+        }
+
+        private void AdjustNodeWithNodeViewBinding()
+        {
+            var description = this.Q<Label>(_nameOfDescription);
+            description.bindingPath = _nameOfDescription;
+            description.Bind(new SerializedObject(Node));
         }
         
         public override void SetPosition(Rect newPos)
@@ -42,66 +55,78 @@ namespace Ingame.Editor
             base.OnSelected();
             OnNodeSelected?.Invoke(this);
         }
-
+        
         private void CreateInputPorts()
         {
             if (Node is RootNode)
             {
-                
+                //no input
             }
-            
-            if (Node is ActionNode)
+
+            if (Node is DecoratorNode or CompositeNode or ActionNode)
             {
                 Input = InstantiatePort(Orientation.Vertical, Direction.Input,Port.Capacity.Single,typeof(bool));
             }
 
-            if (Node is CompositeNode)
-            {
-
-                Input = InstantiatePort(Orientation.Vertical, Direction.Input,Port.Capacity.Single,typeof(bool));
-            }
-
-            if (Node is DecoratorNode)
-            {
-
-                Input = InstantiatePort(Orientation.Vertical, Direction.Input,Port.Capacity.Single,typeof(bool));
-            }
-          
-            if (Input !=null)
-            {
-                Input.portName = "".ToString();
-                Input.style.flexDirection = FlexDirection.Column;
-                inputContainer.Add(Input);
-            }
+            if (Input == null) return;
+            Input.portName = "".ToString();
+            Input.style.flexDirection = FlexDirection.Column;
+            inputContainer.Add(Input);
         }
         private void CreateOutputPorts()
         {
-            if (Node is RootNode)
-            {
-                Output = InstantiatePort(Orientation.Vertical, Direction.Output,Port.Capacity.Single,typeof(bool));
-            }
-            
-            if (Node is ActionNode)
-            {
-                //end
-            }
-
-            if (Node is CompositeNode)
+       
+            if (Node is CompositeNode )
             {
                 Output = InstantiatePort(Orientation.Vertical, Direction.Output,Port.Capacity.Multi,typeof(bool));
             }
 
-            if (Node is DecoratorNode)
+            if (Node is DecoratorNode or RootNode)
             {
                 Output = InstantiatePort(Orientation.Vertical, Direction.Output,Port.Capacity.Single,typeof(bool));
             }
+
+            if (Output == null) return;
             
-            if (Output !=null)
+            Output.portName = "".ToString();
+            Output.style.flexDirection = FlexDirection.ColumnReverse;
+            outputContainer.Add(Output);
+        }
+
+        public void SortNodes()
+        {
+            var comp = Node as CompositeNode;
+            if (comp)
             {
-                Output.portName = "".ToString();
-                Output.style.flexDirection = FlexDirection.ColumnReverse;
-                outputContainer.Add(Output);
+                comp.Children.Sort((a,b)=> a.Position.x < b.Position.x ? -1 : 1);
             }
         }
+        public void UpdateState()
+        {
+            if (!Application.isPlaying) return;
+            //removing previous states
+            RemoveFromClassList("running");
+            RemoveFromClassList("success");
+            RemoveFromClassList("failure");
+            RemoveFromClassList("abandon");
+            //updating state
+            
+            switch (Node.CurrentState)
+            {
+                case Behaviour.Node.State.Running when Node.IsRunning:
+                    AddToClassList("running");
+                    break;
+                case Behaviour.Node.State.Success:
+                    AddToClassList("success");
+                    break;
+                case Behaviour.Node.State.Failure:
+                    AddToClassList("failure");
+                    break;
+                case Behaviour.Node.State.Abandon:
+                    AddToClassList("abandon");
+                    break;
+            }  
+        }
+        
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using Ingame.Behaviour;
+using Leopotam.Ecs;
 using PlasticGui.WorkspaceWindow.CodeReview;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -14,8 +15,7 @@ namespace Ingame.Editor
     public class BehaviourTreeEditorWindow : EditorWindow
     {
         private BehaviourTreePanelView _treePanelView;
-        private BehaviourPanelInspectorView _insepctorPanelView;
-        
+        private BehaviourPanelInspectorView _inspectorPanelView;
         
         [MenuItem("Editor/Behaviour/BehaviourTreeEditorWindow")]
         public static void Init()
@@ -26,65 +26,124 @@ namespace Ingame.Editor
 
         public void CreateGUI()
         {
-            // Each editor window contains a root VisualElement object
             VisualElement root = rootVisualElement;
 
-            // VisualElements objects can contain other VisualElement following a tree hierarchy.
-            /*VisualElement label = new Label("Hello World! From C#");
-            root.Add(label);*/
-
-            // Import UXML
-            var visualTree =
-                AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
-                    "Assets/Source/Scripts/Editor/BehaviourTreeEditorWindow.uxml");
+            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Source/Scripts/Editor/BehaviourTreeEditorWindow.uxml"); 
             visualTree.CloneTree(root);
-            //VisualElement labelFromUXML = visualTree.Instantiate();
-            //root.Add(labelFromUXML);
 
-            // A stylesheet can be added to a VisualElement.
-            // The style will be applied to the VisualElement and all of its children.
-            var styleSheet =
-                AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Source/Scripts/Editor/BehaviourTreeEditorWindow.uss");
-            //VisualElement labelWithStyle = new Label("Hello World! With Style");
-            //labelWithStyle.styleSheets.Add(styleSheet);
+            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Source/Scripts/Editor/BehaviourTreeEditorWindow.uss");
+       
             root.styleSheets.Add(styleSheet);
 
             _treePanelView = root.Q<BehaviourTreePanelView>();
-            _insepctorPanelView = root.Q<BehaviourPanelInspectorView>();
+            _inspectorPanelView = root.Q<BehaviourPanelInspectorView>();
             _treePanelView.OnNodeSelected = OnNodeSelectionChange;
             
             OnSelectionChange();
         }
 
+        private void OnEnable()
+        {
+            EditorApplication.playModeStateChanged -= ChangeModeDependingOnEditorStateChange;
+            EditorApplication.playModeStateChanged += ChangeModeDependingOnEditorStateChange;
+        }
+
+        private void OnDisable()
+        {
+            EditorApplication.playModeStateChanged -= ChangeModeDependingOnEditorStateChange;
+        }
+
+        private void OnInspectorUpdate()
+        {
+            _treePanelView?.UpdateNodesState();
+        }
+
+        private void ChangeModeDependingOnEditorStateChange(PlayModeStateChange state)
+        {
+            switch (state)
+            {
+                case PlayModeStateChange.EnteredEditMode:
+                case  PlayModeStateChange.EnteredPlayMode:
+                    OnSelectionChange();
+                    break;
+                
+                default:
+                    break;
+            }
+        }
+        
         private void OnSelectionChange()
         {
+            
             var tree = Selection.activeObject as BehaviourTree;
-            if (tree && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
+            //Get Current behaviour tree from agent
+            if (!tree)
+            {
+                try
+                {
+                    if (Selection.activeObject && Selection.activeGameObject.TryGetComponent<EntityReference>(out var entity) && Application.isPlaying)
+                    {
+                        if (entity.Entity !=null && entity.Entity.Has<BehaviourAgentModel>())
+                        {
+                            tree = entity.Entity.Get<BehaviourAgentModel>().Tree;
+                        }
+                    }
+                    else if(Selection.activeObject && Selection.activeGameObject.TryGetComponent<BehaviourAgentModelProvider>(out var treeModel))
+                    {
+                        var treeProvider = treeModel.GetTree().Tree;
+                        if (treeProvider !=null)
+                        {
+                            tree =  treeProvider;
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    //DO NOTHING    
+                }
+            }
+
+            if (!tree) return;
+            
+            //Create a Panel
+            if (Application.isPlaying)
             {
                 _treePanelView.PopulateView(tree);
-              
+            }
+            else if(AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
+            {
+                _treePanelView.PopulateView(tree);
             }
         }
 
         private void OnNodeSelectionChange(NodeView nodeView)
         {
-            _insepctorPanelView.UpdateSelection(nodeView);
+            _inspectorPanelView.UpdateSelection(nodeView);
         }
 
         [OnOpenAsset]
         public static bool OnOpenAsset(int id, int line)
         {
-            if (Selection.activeObject is BehaviourTree )
-            {
-                Init();
-                return true;
-            }
+            if (Selection.activeObject is not BehaviourTree) return false;
+            Init();
+            return true;
 
-            return false;
         }
 
         private void OnDestroy()
         {
+           SaveAll();
+        }
+
+        private void SaveAll()
+        {
+            if (_treePanelView.Tree == null)
+            {
+                #if UNITY_EDITOR
+                    UnityEngine.Debug.LogError("Tree can not be saved, ensure such a tree exists!!!");
+                #endif
+                return;
+            }
             _treePanelView.Tree.Nodes.ForEach(EditorUtility.SetDirty);
             EditorUtility.SetDirty(_treePanelView.Tree);
             AssetDatabase.SaveAssets();

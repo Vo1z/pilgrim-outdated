@@ -24,7 +24,7 @@ namespace Ingame.Gunplay
                 if (!TryPerformRaycast(firearmComponent.barrelOrigin.position, firearmComponent.barrelOrigin.forward, out RaycastHit hit))
                     return;
                 
-                if(!TryApplyDamage(hit.collider.gameObject, firearmComponent.firearmConfig.Damage))
+                if(!TryApplyDamage(hit.collider.gameObject, firearmComponent.damage))
                     return;
                 
                 //TODO - Viktor: add decal effects

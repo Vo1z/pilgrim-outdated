@@ -6,112 +6,115 @@ namespace Ingame.Data.Hud
     [CreateAssetMenu(menuName = "Ingame/HudItemData", fileName = "newHudItemData")]
     public class HudItemData : ScriptableObject
     {
-        [BoxGroup("Hud stats (Common)")]
+        [Foldout("Hud stats (Common)")]
         [SerializeField] private bool canBeUsedAsAim = true;
+        [Foldout("Hud stats (Common)")]
+        [SerializeField] [Range(0, 1)] private float defaultInstability = .2f;
 
-        [BoxGroup("Hud stats (Rotation)")]
+        [Foldout("Hud stats (Due to player rotation)")]
         [SerializeField] [Range(0, 10)] private float rotationSpeed = 5;
         
-        [BoxGroup("Hud stats (Rotation)"), Space]
+        [Foldout("Hud stats (Due to player rotation)"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxRotationAngleX;
-        [BoxGroup("Hud stats (Rotation)")]                                           
+        [Foldout("Hud stats (Due to player rotation)")]                                           
         [SerializeField] [Range(0, 20)] private float rotationAngleMultiplierX = 20;
-        [BoxGroup("Hud stats (Rotation)")] 
+        [Foldout("Hud stats (Due to player rotation)")] 
         [SerializeField] private bool inverseRotationX = false;
         
-        [BoxGroup("Hud stats (Rotation)"), Space]
+        [Foldout("Hud stats (Due to player rotation)"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxRotationAngleY;
-        [BoxGroup("Hud stats (Rotation)")]                                                      
+        [Foldout("Hud stats (Due to player rotation)")]                                                      
         [SerializeField] [Range(0, 40)] private float rotationAngleMultiplierY = 20;
-        [BoxGroup("Hud stats (Rotation)")] 
+        [Foldout("Hud stats (Due to player rotation)")] 
         [SerializeField] private bool inverseRotationY = false;
 
-        [BoxGroup("Hud stats (Rotation)"), Space]
+        [Foldout("Hud stats (Due to player rotation)"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxRotationAngleZ;
-        [BoxGroup("Hud stats (Rotation)")]                                                      
+        [Foldout("Hud stats (Due to player rotation)")]                                                      
         [SerializeField] [Range(0, 40)] private float rotationAngleMultiplierZ = 20; 
-        [BoxGroup("Hud stats (Rotation)")] 
+        [Foldout("Hud stats (Due to player rotation)")] 
         [SerializeField] private bool inverseRotationZ = false;
 
-        [BoxGroup("Hud stats (Rotation)"), Space]
+        [Foldout("Hud stats (Due to player rotation)"), Space]
         [SerializeField] private bool isItemMovedDueToRotation = false;
-        [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedDueToRotation")] 
+        [Foldout("Hud stats (Due to player rotation)"), ShowIf("isItemMovedDueToRotation")] 
         [SerializeField] private bool isItemMovedBackToInitialPosition = false;
-        [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedBackToInitialPosition")]
+        [Foldout("Hud stats (Due to player rotation)"), ShowIf("isItemMovedBackToInitialPosition")]
         [SerializeField] [Range(0, 10)] private float moveToInitialPosSpeed = 3f;
-        [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedDueToRotation")] 
+        [Foldout("Hud stats (Due to player rotation)"), ShowIf("isItemMovedDueToRotation")] 
         [SerializeField] [MinMaxSlider(-2, 2)] private Vector2 minMaxMovementOffsetY = new(0, 0);
-        [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedDueToRotation")]
+        [Foldout("Hud stats (Due to player rotation)"), ShowIf("isItemMovedDueToRotation")]
         [SerializeField] [Range(0, 10)] private float moveSpeed = 5f;
 
 
-        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")]
+        [Foldout("Hud stats (Due to player rotation while aiming)"), ShowIf("canBeUsedAsAim")]
         [SerializeField] [Range(0, 10)] private float aimRotationSpeed = 5;
         
-        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim"), Space]
+        [Foldout("Hud stats (Due to player rotation while aiming)"), ShowIf("canBeUsedAsAim"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationAngleX;
-        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")]                                           
+        [Foldout("Hud stats (Due to player rotation while aiming)"), ShowIf("canBeUsedAsAim")]                                           
         [SerializeField] [Range(0, 20)] private float aimRotationAngleMultiplierX = 20;
-        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")] 
+        [Foldout("Hud stats (Due to player rotation while aiming)"), ShowIf("canBeUsedAsAim")] 
         [SerializeField] private bool inverseAimRotationX = false;
         
-        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim"), Space]
+        [Foldout("Hud stats (Due to player rotation while aiming)"), ShowIf("canBeUsedAsAim"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationAngleY;
-        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")]                                                      
+        [Foldout("Hud stats (Due to player rotation while aiming)"), ShowIf("canBeUsedAsAim")]                                                      
         [SerializeField] [Range(0, 40)] private float aimRotationAngleMultiplierY = 20;
-        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")] 
+        [Foldout("Hud stats (Due to player rotation while aiming)"), ShowIf("canBeUsedAsAim")] 
         [SerializeField] private bool inverseAimRotationY = false;
 
-        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim"), Space]
+        [Foldout("Hud stats (Due to player rotation while aiming)"), ShowIf("canBeUsedAsAim"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationAngleZ;
-        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")]                                                      
+        [Foldout("Hud stats (Due to player rotation while aiming)"), ShowIf("canBeUsedAsAim")]                                                      
         [SerializeField] [Range(0, 40)] private float aimRotationAngleMultiplierZ = 20; 
-        [BoxGroup("Hud stats (Aim Rotation)"), ShowIf("canBeUsedAsAim")] 
+        [Foldout("Hud stats (Due to player rotation while aiming)"), ShowIf("canBeUsedAsAim")] 
         [SerializeField] private bool inverseAimRotationZ = false;
 
         
         
-        [BoxGroup("Hud stats (Movement)"), Space]
+        [Foldout("Hud stats (Due to player movement)"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxRotationMovementAngleX;
-        [BoxGroup("Hud stats (Movement)")]
+        [Foldout("Hud stats (Due to player movement)")]
         [SerializeField] [Range(0, 40)] private float rotationMovementAngleMultiplierX = 20;
-        [BoxGroup("Hud stats (Movement)")]
+        [Foldout("Hud stats (Due to player movement)")]
         [SerializeField] private bool inverseRotationMovementX = false;
         
-        [BoxGroup("Hud stats (Movement)"), Space]
+        [Foldout("Hud stats (Due to player movement)"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxRotationMovementAngleZ;
-        [BoxGroup("Hud stats (Movement)")]
+        [Foldout("Hud stats (Due to player movement)")]
         [SerializeField] [Range(0, 40)] private float rotationMovementAngleMultiplierZ = 20;
-        [BoxGroup("Hud stats (Movement)")]
+        [Foldout("Hud stats (Due to player movement)")]
         [SerializeField] private bool inverseRotationMovementZ = false;
 
         
         
-        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim"), Space]
+        [Foldout("Hud stats (Due to player movement while aiming)"), ShowIf("canBeUsedAsAim"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationMovementAngleX;
-        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim")]
+        [Foldout("Hud stats (Due to player movement while aiming)"), ShowIf("canBeUsedAsAim")]
         [SerializeField] [Range(0, 40)] private float aimRotationMovementAngleMultiplierX = 20;
-        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim")]
+        [Foldout("Hud stats (Due to player movement while aiming)"), ShowIf("canBeUsedAsAim")]
         [SerializeField] private bool inverseAimRotationMovementX = false;
         
-        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim"), Space]
+        [Foldout("Hud stats (Due to player movement while aiming)"), ShowIf("canBeUsedAsAim"), Space]
         [SerializeField] [MinMaxSlider(-50f, 50f)] private Vector2 minMaxAimRotationMovementAngleY;
-        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim")]
+        [Foldout("Hud stats (Due to player movement while aiming)"), ShowIf("canBeUsedAsAim")]
         [SerializeField] [Range(0, 40)] private float aimRotationMovementAngleMultiplierY = 20;
-        [BoxGroup("Hud stats (Aim Movement)"), ShowIf("canBeUsedAsAim")]
+        [Foldout("Hud stats (Due to player movement while aiming)"), ShowIf("canBeUsedAsAim")]
         [SerializeField] private bool inverseAimRotationMovementY = false;
         
         
         
-        [BoxGroup("Hud stats (Clipping)"), Space] 
+        [Foldout("Hud stats (Wall clipping)"), Space] 
         [SerializeField] [Range(0, 2f)] private float maximumClippingOffset = 1.5f;
-        [BoxGroup("Hud stats (Clipping)")] 
+        [Foldout("Hud stats (Wall clipping)")] 
         [SerializeField] [Range(0, 2f)] private float maximumAimClippingOffset = .3f;
-        [BoxGroup("Hud stats (Clipping)")]
+        [Foldout("Hud stats (Wall clipping)")]
         [SerializeField] [Range(0, 10f)] private float clippingMovementSpeed = 3f;
 
         public bool CanBeUsedAsAim => canBeUsedAsAim;
-        
+        public float DefaultInstability => defaultInstability;
+
         public float RotationSpeed => rotationSpeed;
         
         public Vector2 MinMaxRotationAngleX => minMaxRotationAngleX;

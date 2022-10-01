@@ -1,4 +1,6 @@
-﻿using Ingame.Input;
+﻿using System.Runtime.CompilerServices;
+using Ingame.Data.Hud;
+using Ingame.Input;
 using Ingame.Movement;
 using Ingame.Player;
 using Leopotam.Ecs;
@@ -6,7 +8,7 @@ using UnityEngine;
 
 namespace Ingame.Hud
 {
-    public sealed class HudItemMoverSystemDueToRotation : IEcsRunSystem
+    public sealed class HudItemMoveSystem : IEcsRunSystem
     {
         private readonly EcsFilter<HudItemModel, TransformModel, InInventoryTag, HudIsInHandsTag> _itemFilter;
         private readonly EcsFilter<RotateInputRequest> _rotateInputFilter;
@@ -37,11 +39,23 @@ namespace Ingame.Hud
                     continue;
 
                 var initialLocalPosX = transformModel.initialLocalPos.x; 
-                var nextLocalPos = itemTransform.localPosition + Vector3.left * deltaRotation.x * itemData.MoveSpeed * Time.deltaTime;
+                var nextLocalPos = itemTransform.localPosition + GetLocalPositionOffsetDueToPlayerRotation(itemData, deltaRotation);
                 nextLocalPos.x = Mathf.Clamp(nextLocalPos.x, initialLocalPosX + itemData.MinMaxMovementOffsetY.x, initialLocalPosX + itemData.MinMaxMovementOffsetY.y);
 
                 itemTransform.localPosition = nextLocalPos;
             }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private Vector3 GetLocalPositionOffsetDueToPlayerRotation(HudItemData itemData, in Vector2 deltaRotation)
+        {
+            return Vector3.left * deltaRotation.x * itemData.MoveSpeed;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private Vector3 GetLocalPositionOffsetDueToItemInstability(HudItemData itemData)
+        {
+            return Vector3.zero;
         }
     }
 }

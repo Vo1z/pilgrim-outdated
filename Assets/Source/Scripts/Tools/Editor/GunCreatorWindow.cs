@@ -30,7 +30,7 @@ namespace Ingame.Tools
         private readonly Type[] _rifleComponentsTypes =
         {
             typeof(FirearmComponentProvider),
-            typeof(StabilityComponentProvider),
+            typeof(HudItemStabilityComponentProvider),
             typeof(TimerComponentProvider),
             typeof(RifleComponentProvider)
         };

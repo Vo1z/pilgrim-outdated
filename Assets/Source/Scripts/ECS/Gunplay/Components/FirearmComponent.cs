@@ -4,7 +4,7 @@ namespace Ingame.Gunplay
 {
     public struct FirearmComponent
     {
-        public FirearmConfig firearmConfig;
+        public float damage;
         public Transform barrelOrigin;
     }
 }

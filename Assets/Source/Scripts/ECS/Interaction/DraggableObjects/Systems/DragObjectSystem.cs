@@ -16,7 +16,7 @@ namespace Ingame.Interaction.DraggableObject
         private readonly EcsFilter<CameraModel, MainCameraTag> _mainCameraFilter;
         private readonly EcsFilter<PlayerModel> _playerFilter;
         
-        private readonly EcsFilter<HudItemModel, InInventryTag, HudIsInHandsTag> _visibleHudItems;
+        private readonly EcsFilter<HudItemModel, InInventoryTag, HudIsInHandsTag> _visibleHudItems;
 
         public void Run()
         {

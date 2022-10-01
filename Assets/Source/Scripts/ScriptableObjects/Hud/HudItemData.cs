@@ -36,6 +36,10 @@ namespace Ingame.Data.Hud
         [BoxGroup("Hud stats (Rotation)"), Space]
         [SerializeField] private bool isItemMovedDueToRotation = false;
         [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedDueToRotation")] 
+        [SerializeField] private bool isItemMovedBackToInitialPosition = false;
+        [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedBackToInitialPosition")]
+        [SerializeField] [Range(0, 10)] private float moveToInitialPosSpeed = 3f;
+        [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedDueToRotation")] 
         [SerializeField] [MinMaxSlider(-2, 2)] private Vector2 minMaxMovementOffsetY = new(0, 0);
         [BoxGroup("Hud stats (Rotation)"), ShowIf("isItemMovedDueToRotation")]
         [SerializeField] [Range(0, 10)] private float moveSpeed = 5f;
@@ -123,6 +127,8 @@ namespace Ingame.Data.Hud
         public float InverseRotationZ => inverseRotationZ ? -1: 1;
 
         public bool IsItemMovedDueToRotation => isItemMovedDueToRotation;
+        public bool IsItemMovedBackToInitialPosition => isItemMovedBackToInitialPosition;
+        public float MoveToInitialPosSpeed => moveToInitialPosSpeed;
         public Vector2 MinMaxMovementOffsetY => minMaxMovementOffsetY;
         public float MoveSpeed => moveSpeed;
         

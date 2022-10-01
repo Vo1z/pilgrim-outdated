@@ -36,7 +36,7 @@ namespace Ingame.UI
             if (Physics.Raycast(ray, out RaycastHit hit, maxPlayerInteractionDistance)) // Is there any object was hit
                 if (hit.collider.TryGetComponent(out EntityReference entityReference)) // Is there EntityReference on hit game object
                     if (entityReference.Entity.Has<InteractiveTag>()) // Is this entity is interactive|
-                        if(!entityReference.Entity.Has<InInventryTag>()) // Is item not in players hands
+                        if(!entityReference.Entity.Has<InInventoryTag>()) // Is item not in players hands
                             if(!entityReference.Entity.Has<HudIsInHandsTag>()) // Item in hands is hidden
                                 isAimDotDisplayed = true;
 

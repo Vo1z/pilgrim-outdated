@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ar15HudItemData
   m_EditorClassIdentifier: 
   canBeUsedAsAim: 1
-  rotationSpeed: 4
+  rotationSpeed: 3
   minMaxRotationAngleX: {x: -10, y: 10}
   rotationAngleMultiplierX: 20
   inverseRotationX: 1
@@ -21,11 +21,13 @@ MonoBehaviour:
   rotationAngleMultiplierY: 10
   inverseRotationY: 1
   minMaxRotationAngleZ: {x: -20, y: 20}
-  rotationAngleMultiplierZ: 30
+  rotationAngleMultiplierZ: 20
   inverseRotationZ: 0
   isItemMovedDueToRotation: 1
+  isItemMovedBackToInitialPosition: 0
+  moveToInitialPosSpeed: 3
   minMaxMovementOffsetY: {x: -0.1, y: 0.1}
-  moveSpeed: 0.25
+  moveSpeed: 0.07
   aimRotationSpeed: 3
   minMaxAimRotationAngleX: {x: -5, y: 5}
   aimRotationAngleMultiplierX: 2
@@ -37,7 +39,7 @@ MonoBehaviour:
   aimRotationAngleMultiplierZ: 20
   inverseAimRotationZ: 0
   minMaxRotationMovementAngleX: {x: -12, y: 12}
-  rotationMovementAngleMultiplierX: 20
+  rotationMovementAngleMultiplierX: 10
   inverseRotationMovementX: 1
   minMaxRotationMovementAngleZ: {x: -15, y: 10}
   rotationMovementAngleMultiplierZ: 30

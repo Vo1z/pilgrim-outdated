@@ -5,7 +5,7 @@ namespace Ingame.Hud
 {
     public sealed class HudInputToStatesConverterSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemModel, InInventryTag> _itemModelFilter;
+        private readonly EcsFilter<HudItemModel, InInventoryTag> _itemModelFilter;
         private readonly EcsFilter<AimInputEvent> _aimEventFilter;
 
         public void Run()

@@ -6,7 +6,7 @@ namespace Ingame.Hud
 {
     public sealed class HudItemSlotChooseSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemModel, InInventryTag> _hudItemsFilter;
+        private readonly EcsFilter<HudItemModel, InInventoryTag> _hudItemsFilter;
 
         private readonly EcsFilter<InteractWithFirstSlotInputEvent> _interactWithFirstSlotEventFilter;
         private readonly EcsFilter<InteractWithSecondSlotInputEvent> _interactWithSecondSlotEventFilter;

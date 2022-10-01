@@ -10,7 +10,6 @@ namespace Ingame.Hud
     {
         [SerializeField] private Vector3 localPositionInHud;
         [SerializeField] private Quaternion localRotationInHud;
-        [Expandable]
         [Required, SerializeField] private HudItemData itemData;
 
         [Inject]

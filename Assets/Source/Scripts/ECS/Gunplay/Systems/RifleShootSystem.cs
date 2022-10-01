@@ -7,7 +7,7 @@ namespace Ingame.Gunplay
 {
     public sealed class RifleShootSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<FirearmComponent, RifleComponent, TimerComponent, InInventryTag, HudIsInHandsTag> _firearmShootFilter;
+        private readonly EcsFilter<FirearmComponent, RifleComponent, TimerComponent, InInventoryTag, HudIsInHandsTag> _firearmShootFilter;
         private readonly EcsFilter<ShootInputEvent> _shootInputFilter;
 
         public void Run()

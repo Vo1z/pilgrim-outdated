@@ -149,6 +149,7 @@ namespace Ingame
                 .Add(new HudItemRotatorDueVelocitySystem())
                 .Add(new HudItemMoverSystemDueToRotation())
                 .Add(new HudItemMoverDueSurfaceDetectionSystem())
+                .Add(new HudItemMoveToInitialPositionSystem())
                 .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemSlotChooseSystem())
                 //AI
@@ -192,6 +193,7 @@ namespace Ingame
                 .Add(new RifleShootSystem())
                 .Add(new PerformShotSystem())
                 .Add(new HudGunAnimationSystem())
+                .Add(new MoveFirearmDueStabilitySystem())
                 //Dialog
                 .Add(new DialogSystem())
                 .Add(new DialogCutDownDialogSystem())

@@ -6,7 +6,7 @@ namespace Ingame.Hud
 {
     public sealed class HudGunAnimationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemModel, AnimatorModel, InInventryTag> _gunItemModelFilter;
+        private readonly EcsFilter<HudItemModel, AnimatorModel, InInventoryTag> _gunItemModelFilter;
         private readonly EcsFilter<HudReloadAnimationTriggerEvent> _hudReloadAnimationEventFilter;
         private readonly EcsFilter<HudDistortTheShutterAnimationTriggerEvent> _hudDistortTheShutterAnimationEventFilter;
 

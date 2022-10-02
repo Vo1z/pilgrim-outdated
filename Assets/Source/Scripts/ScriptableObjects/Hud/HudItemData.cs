@@ -8,8 +8,6 @@ namespace Ingame.Data.Hud
     {
         [Foldout("Hud stats (Common)")]
         [SerializeField] private bool canBeUsedAsAim = true;
-        [Foldout("Hud stats (Common)")]
-        [SerializeField] [Range(0, 1)] private float defaultInstability = .2f;
 
         [Foldout("Hud stats (Due to player rotation)")]
         [SerializeField] [Range(0, 10)] private float rotationSpeed = 5;
@@ -41,10 +39,12 @@ namespace Ingame.Data.Hud
         [SerializeField] private bool isItemMovedBackToInitialPosition = false;
         [Foldout("Hud stats (Due to player rotation)"), ShowIf("isItemMovedBackToInitialPosition")]
         [SerializeField] [Range(0, 10)] private float moveToInitialPosSpeed = 3f;
-        [Foldout("Hud stats (Due to player rotation)"), ShowIf("isItemMovedDueToRotation")] 
-        [SerializeField] [MinMaxSlider(-2, 2)] private Vector2 minMaxMovementOffsetY = new(0, 0);
         [Foldout("Hud stats (Due to player rotation)"), ShowIf("isItemMovedDueToRotation")]
         [SerializeField] [Range(0, 10)] private float moveSpeed = 5f;
+        [Foldout("Hud stats (Due to player rotation)")] 
+        [SerializeField] [MinMaxSlider(-2, 2)] private Vector2 minMaxMovementOffsetY = new(0, 0);
+        [Foldout("Hud stats (Due to player rotation)")] 
+        [SerializeField] [MinMaxSlider(-2, 2)] private Vector2 minMaxMovementOffsetX = new(0, 0);
 
 
         [Foldout("Hud stats (Due to player rotation while aiming)"), ShowIf("canBeUsedAsAim")]
@@ -105,6 +105,15 @@ namespace Ingame.Data.Hud
         
         
         
+        [Foldout("Hud stats (Instability)"), Space]
+        [SerializeField] [Range(0, 1)] private float initialInstability = .2f;
+        [Foldout("Hud stats (Instability)"), Space]
+        [SerializeField] [Range(0, 5)] private float defaultInstabilityMovementTime = 1f;
+        [Foldout("Hud stats (Instability)"), Space]
+        [SerializeField] [Range(0, 10)] private float defaultInstabilityMovingSpeed = .2f;
+
+        
+        
         [Foldout("Hud stats (Wall clipping)"), Space] 
         [SerializeField] [Range(0, 2f)] private float maximumClippingOffset = 1.5f;
         [Foldout("Hud stats (Wall clipping)")] 
@@ -113,7 +122,6 @@ namespace Ingame.Data.Hud
         [SerializeField] [Range(0, 10f)] private float clippingMovementSpeed = 3f;
 
         public bool CanBeUsedAsAim => canBeUsedAsAim;
-        public float DefaultInstability => defaultInstability;
 
         public float RotationSpeed => rotationSpeed;
         
@@ -132,10 +140,11 @@ namespace Ingame.Data.Hud
         public bool IsItemMovedDueToRotation => isItemMovedDueToRotation;
         public bool IsItemMovedBackToInitialPosition => isItemMovedBackToInitialPosition;
         public float MoveToInitialPosSpeed => moveToInitialPosSpeed;
-        public Vector2 MinMaxMovementOffsetY => minMaxMovementOffsetY;
         public float MoveSpeed => moveSpeed;
-        
-        
+        public Vector2 MinMaxMovementOffsetY => minMaxMovementOffsetY;
+        public Vector2 MinMaxMovementOffsetX => minMaxMovementOffsetX;
+
+
         public float AimRotationSpeed => aimRotationSpeed;
         
         public Vector2 MinMaxAimRotationAngleX => minMaxAimRotationAngleX;
@@ -169,7 +178,12 @@ namespace Ingame.Data.Hud
         public float AimRotationMovementAngleMultiplierY => aimRotationMovementAngleMultiplierY;
         public float InverseAimRotationMovementY => inverseAimRotationMovementY ? -1: 1;
 
-        
+
+        public float InitialInstability => initialInstability;
+        public float DefaultInstabilityMovementTime => defaultInstabilityMovementTime;
+        public float DefaultInstabilityMovingSpeed => defaultInstabilityMovingSpeed;
+
+
         public float MaximumClippingOffset => maximumClippingOffset;
         public float MaximumAimClippingOffset => maximumAimClippingOffset;
         public float ClippingMovementSpeed => clippingMovementSpeed;

@@ -4206,7 +4206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrelOrigin: {fileID: 794909691}
-  firearmConfig: {fileID: 11400000, guid: 8228950958d41ba4fb8c8fa9503a2c70, type: 2}
+  damage: 0
 --- !u!114 &283956986
 MonoBehaviour:
   m_ObjectHideFlags: 0

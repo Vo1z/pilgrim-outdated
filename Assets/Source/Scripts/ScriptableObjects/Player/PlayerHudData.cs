@@ -18,7 +18,13 @@ namespace Ingame.Data.Player
         [SerializeField, Range(0, 0.1f)] private float headBobbingStrengthZ = .01f;
         
         [BoxGroup("Hud bobbing"), Space]
-        [SerializeField, Range(0, 1)] private float hudBobbingStrengthY = .1f;
+        [SerializeField, Range(0, 10f)] private float hudBobbingLerpingSpeed = 5f;
+        [BoxGroup("Hud bobbing")]
+        [SerializeField, Range(0, 20f)] private float hudBobbingSpeedModifier = 3f;
+        [BoxGroup("Hud bobbing")]
+        [SerializeField, Range(0, .1f)] private float hudBobbingPositionStrengthY = .1f;
+        [BoxGroup("Hud bobbing")]
+        [SerializeField, Range(0, .1f)] private float hudBobbingRotationStrengthZ = .1f;
 
         public float HeadBobbingLerpingSpeed => headBobbingLerpingSpeed;
         public float HeadBobbingStrengthX => headBobbingStrengthX;
@@ -26,6 +32,9 @@ namespace Ingame.Data.Player
         public float HeadBobbingStrengthZ => headBobbingStrengthZ;
         public float HeadBobbingSpeedModifier => headBobbingSpeedModifier;
 
-        public float HUDBobbingStrengthY => hudBobbingStrengthY;
+        public float HUDBobbingLerpingSpeed => hudBobbingLerpingSpeed;
+        public float HUDBobbingSpeedModifier => hudBobbingSpeedModifier;
+        public float HUDBobbingPositionStrengthY => hudBobbingPositionStrengthY;
+        public float HUDBobbingRotationStrengthZ => hudBobbingRotationStrengthZ;
     }
 }   

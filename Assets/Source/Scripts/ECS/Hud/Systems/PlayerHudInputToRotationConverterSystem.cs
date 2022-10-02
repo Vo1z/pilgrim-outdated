@@ -24,12 +24,13 @@ namespace Ingame.Hud
             {
                 ref var hudModel = ref _hudFilter.Get1(i);
                 ref var hudTransformModel = ref _hudFilter.Get2(i);
+                var localEulerAngles = hudTransformModel.transform.localEulerAngles;
 
                 var yRotation = rotationInput.y * playerData.Sensitivity * Time.fixedDeltaTime;
                 hudModel.hudLocalRotationX -= yRotation;
                 hudModel.hudLocalRotationX = Mathf.Clamp(hudModel.hudLocalRotationX, -90, 90);
 
-                hudTransformModel.transform.localRotation = Quaternion.Euler(hudModel.hudLocalRotationX, 0, 0);
+                hudTransformModel.transform.localRotation = Quaternion.Euler(hudModel.hudLocalRotationX, localEulerAngles.y, localEulerAngles.z);
             }
         }
     }

@@ -19,15 +19,11 @@ namespace Ingame.Gunplay
                 
                 firearmEntity.Del<AwaitingShotTag>();
 
-                TemplateUtils.SafeDebug("Shot");
-                
                 if (!TryPerformRaycast(firearmComponent.barrelOrigin.position, firearmComponent.barrelOrigin.forward, out RaycastHit hit))
                     return;
                 
                 if(!TryApplyDamage(hit.collider.gameObject, firearmComponent.damage))
                     return;
-                
-                //TODO - Viktor: add decal effects
             }
         }
         

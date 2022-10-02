@@ -145,6 +145,7 @@ namespace Ingame
                 .Add(new CameraInputToStatesConverterSystem())
                 .Add(new MainCameraShakeEventReceiverSystem())
                 .Add(new CameraShakeSystem())
+                .Add(new HudBobbingSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
                 .Add(new HudItemMoveSystem())
@@ -223,7 +224,7 @@ namespace Ingame
                  //Utils
                  .Add(new DeltaMovementCalculationSystem())
                  //Hud
-                 .Add(new HeadBobbingSystem())
+                 .Add(new CameraBobbingSystem())
                  //Movement
                 .Add(new FrictionSystem())
                 .Add(new SlidingSystem())

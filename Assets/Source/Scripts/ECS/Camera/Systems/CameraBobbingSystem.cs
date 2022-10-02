@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Ingame.CameraWork
 {
-    public class HeadBobbingSystem : IEcsRunSystem
+    public class CameraBobbingSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerModel, DeltaMovementComponent, CharacterControllerModel> _playerModelFilter;
         private readonly EcsFilter<VirtualCameraModel, TransformModel, BobbingComponent, MainVirtualCameraTag> _mainCameraFilter;

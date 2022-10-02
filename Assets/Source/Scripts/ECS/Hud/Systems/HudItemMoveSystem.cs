@@ -29,8 +29,6 @@ namespace Ingame.Hud
                 var itemData = _itemFilter.Get1(i).itemData;
 
                 instabilityComponent.currentInstability = itemData.InitialInstability;
-                instabilityComponent.currentMovementDirection = Vector3.zero;
-                instabilityComponent.timeLeftMoving = 0f;
             }
         }
 
@@ -106,35 +104,15 @@ namespace Ingame.Hud
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private Vector3 GetLocalPositionOffsetDueToItemInstability(HudItemData itemData, ref HudItemInstabilityComponent instabilityComponent)
         {
-            if (instabilityComponent.timeLeftMoving <= 0f)
-            {
-                float timeLeftForMoving = instabilityComponent.currentInstability * itemData.DefaultInstabilityMovementTime / itemData.InitialInstability;
-                float movementSpeed = instabilityComponent.currentInstability * itemData.DefaultInstabilityMovingSpeed / itemData.InitialInstability;
-                Vector2 movementDirection;
+            var targetBobbingSpeed = instabilityComponent.currentInstability * itemData.InstabilityBobbingSpeed / itemData.InitialInstability;
 
-                if (instabilityComponent.currentMovementDirection == Vector2.zero)
-                {
-                    instabilityComponent.timeLeftMoving = 1f;
-                    movementDirection = Random.insideUnitCircle.normalized;
-                }
-                else
-                {
-                    instabilityComponent.timeLeftMoving = timeLeftForMoving;
-                    movementDirection = Vector2.zero;
-                }
+            var positionOffset = Vector3.right * Mathf.Sin(instabilityComponent.horizontalSinTime) * itemData.InstabilityMovementOffset;
+            positionOffset += Vector3.up * Mathf.Sin(instabilityComponent.verticalSinTime) * itemData.InstabilityMovementOffset;
 
-                instabilityComponent.timeLeftMoving = timeLeftForMoving;
-                instabilityComponent.currentMovementSpeed = movementSpeed;
-                instabilityComponent.currentMovementDirection = movementDirection;
-                instabilityComponent.sinTime = 0f;
-            }
+            instabilityComponent.verticalSinTime += Time.deltaTime * Random.Range(.5f, 1f) * targetBobbingSpeed;
+            instabilityComponent.horizontalSinTime += Time.deltaTime * Random.value * targetBobbingSpeed;
 
-            instabilityComponent.timeLeftMoving -= Time.deltaTime;
-            instabilityComponent.sinTime += Time.deltaTime;
-            
-            var movementOffset = instabilityComponent.currentMovementDirection * instabilityComponent.currentMovementSpeed * Mathf.Sin(instabilityComponent.sinTime);
-
-            return movementOffset;
+            return positionOffset;
         }
     }
 }

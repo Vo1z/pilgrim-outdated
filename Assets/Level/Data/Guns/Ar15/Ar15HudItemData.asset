@@ -20,12 +20,12 @@ MonoBehaviour:
   minMaxRotationAngleY: {x: -20, y: 20}
   rotationAngleMultiplierY: 10
   inverseRotationY: 1
-  minMaxRotationAngleZ: {x: -20, y: 20}
+  minMaxRotationAngleZ: {x: -10, y: 10}
   rotationAngleMultiplierZ: 10
   inverseRotationZ: 0
   isItemMovedDueToRotation: 1
   isItemMovedBackToInitialPosition: 1
-  moveToInitialPosSpeed: 5.22
+  moveToInitialPosSpeed: 3
   moveSpeed: 0.07
   minMaxMovementOffsetY: {x: -1, y: 1}
   minMaxMovementOffsetX: {x: -0.05, y: 0.05}
@@ -40,7 +40,7 @@ MonoBehaviour:
   aimRotationAngleMultiplierZ: 20
   inverseAimRotationZ: 0
   minMaxRotationMovementAngleX: {x: -12, y: 12}
-  rotationMovementAngleMultiplierX: 10
+  rotationMovementAngleMultiplierX: 20
   inverseRotationMovementX: 1
   minMaxRotationMovementAngleZ: {x: -15, y: 10}
   rotationMovementAngleMultiplierZ: 30
@@ -51,11 +51,11 @@ MonoBehaviour:
   minMaxAimRotationMovementAngleY: {x: -5, y: 5}
   aimRotationMovementAngleMultiplierY: 5
   inverseAimRotationMovementY: 0
-  initialInstability: 0.2
-  defaultInstabilityMovementTime: 1
-  defaultInstabilityMovingSpeed: 0.1
-  minMaxInstabilityOffsetY: {x: -0.1, y: 0.1}
-  minMaxInstabilityOffsetX: {x: -0.1, y: 0.1}
+  initialInstability: 0.1
+  instabilityBobbingSpeed: 1
+  instabilityMovementOffset: 0.05
+  minMaxInstabilityOffsetY: {x: -0.05, y: 0.05}
+  minMaxInstabilityOffsetX: {x: -0.05, y: 0.05}
   maximumClippingOffset: 0.8
   maximumAimClippingOffset: 0.1
   clippingMovementSpeed: 3

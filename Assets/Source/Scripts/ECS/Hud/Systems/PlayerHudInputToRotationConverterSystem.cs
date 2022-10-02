@@ -14,7 +14,7 @@ namespace Ingame.Hud
 
         public void Run()
         {
-            if (_rotateRequestFilter.IsEmpty() || _playerFilter.IsEmpty())
+            if (_playerFilter.IsEmpty())
                 return;
 
             var rotationInput = _rotateRequestFilter.Get1(0).rotationInput;

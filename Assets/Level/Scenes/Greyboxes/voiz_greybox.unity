@@ -4662,8 +4662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00a141bce7b4efb8d15e71ec840330c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firearmConfig: {fileID: 11400000, guid: 7f0c195fd8b138c44aa1f280b1a566ee, type: 2}
   barrelOrigin: {fileID: 794909691}
-  damage: 0
 --- !u!114 &283956986
 MonoBehaviour:
   m_ObjectHideFlags: 0

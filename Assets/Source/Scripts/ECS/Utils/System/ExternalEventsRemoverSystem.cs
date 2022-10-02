@@ -1,4 +1,5 @@
-﻿using Ingame.Inventory;
+﻿using Ingame.Hud;
+using Ingame.Inventory;
 using Ingame.SupportCommunication;
 using LeoEcsPhysics;
 using Leopotam.Ecs;
@@ -19,6 +20,8 @@ namespace Ingame.Utils
         private readonly EcsFilter<LevelEndRequest> _levelEndRequestFilter;
         //Utils
         private readonly EcsFilter<UpdateSettingsRequest> _updateSettingsRequestFilter;
+        //Gunplay
+        private readonly EcsFilter<RecoilRequest> _recoilRequestFilter;
 
         public void Run()
         {
@@ -68,6 +71,12 @@ namespace Ingame.Utils
             {
                 ref var eventEntity = ref _updateSettingsRequestFilter.GetEntity(i);
                 eventEntity.Del<UpdateSettingsRequest>();
+            }
+
+            foreach (var i in _recoilRequestFilter)
+            {
+                ref var eventEntity = ref _recoilRequestFilter.GetEntity(i);
+                eventEntity.Del<RecoilRequest>();
             }
         }
     }

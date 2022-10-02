@@ -191,7 +191,9 @@ namespace Ingame
                 .Add(new BreakableSystem())
                 //Gun play
                 .Add(new RifleShootSystem())
+                .Add(new CreateRecoilRequestSystem())
                 .Add(new PerformShotSystem())
+                .Add(new HudRecoilSystem())
                 .Add(new HudGunAnimationSystem())
                 //Dialog
                 .Add(new DialogSystem())

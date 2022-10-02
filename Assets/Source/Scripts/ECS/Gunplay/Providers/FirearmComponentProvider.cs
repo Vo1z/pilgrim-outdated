@@ -7,16 +7,16 @@ namespace Ingame.Gunplay
 {
     public sealed class FirearmComponentProvider : MonoProvider<FirearmComponent>
     {
+        [Required, SerializeField] private FirearmConfig firearmConfig;
         [Required, SerializeField] private Transform barrelOrigin;
-        [SerializeField] [Min(0)] private float damage;
-        
+
         [Inject]
         private void Construct()
         {
             value = new FirearmComponent
             {
+                firearmConfig = firearmConfig,
                 barrelOrigin = barrelOrigin,
-                damage = damage
             };
         }
         

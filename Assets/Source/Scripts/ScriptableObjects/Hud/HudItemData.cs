@@ -107,10 +107,14 @@ namespace Ingame.Data.Hud
         
         [Foldout("Hud stats (Instability)"), Space]
         [SerializeField] [Range(0, 1)] private float initialInstability = .2f;
-        [Foldout("Hud stats (Instability)"), Space]
+        [Foldout("Hud stats (Instability)")]
         [SerializeField] [Range(0, 5)] private float defaultInstabilityMovementTime = 1f;
-        [Foldout("Hud stats (Instability)"), Space]
+        [Foldout("Hud stats (Instability)")]
         [SerializeField] [Range(0, 10)] private float defaultInstabilityMovingSpeed = .2f;
+        [Foldout("Hud stats (Instability)")]
+        [SerializeField] [MinMaxSlider(-2, 2)] private Vector2 minMaxInstabilityOffsetY = new(0, 0);
+        [Foldout("Hud stats (Instability)")]
+        [SerializeField] [MinMaxSlider(-2, 2)] private Vector2 minMaxInstabilityOffsetX = new(0, 0);
 
         
         
@@ -182,6 +186,8 @@ namespace Ingame.Data.Hud
         public float InitialInstability => initialInstability;
         public float DefaultInstabilityMovementTime => defaultInstabilityMovementTime;
         public float DefaultInstabilityMovingSpeed => defaultInstabilityMovingSpeed;
+        public Vector2 MinMaxInstabilityOffsetY => minMaxInstabilityOffsetY;
+        public Vector2 MinMaxInstabilityOffsetX => minMaxInstabilityOffsetX;
 
 
         public float MaximumClippingOffset => maximumClippingOffset;

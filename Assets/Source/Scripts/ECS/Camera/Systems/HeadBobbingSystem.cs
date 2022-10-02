@@ -10,7 +10,7 @@ namespace Ingame.CameraWork
     public class HeadBobbingSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerModel, DeltaMovementComponent, CharacterControllerModel> _playerModelFilter;
-        private readonly EcsFilter<VirtualCameraModel, TransformModel, CameraBobbingComponent, MainVirtualCameraTag> _mainCameraFilter;
+        private readonly EcsFilter<VirtualCameraModel, TransformModel, BobbingComponent, MainVirtualCameraTag> _mainCameraFilter;
 
         public void Run()
         {
@@ -56,8 +56,7 @@ namespace Ingame.CameraWork
 
                 var targetLocalPosition = mainCameraTransformModel.initialLocalPos;
                 targetLocalPosition.x = mainCameraLocalPos.x;
-
-
+                
                 mainCameraTransform.localPosition = Vector3.Lerp
                 (
                     mainCameraTransform.localPosition,

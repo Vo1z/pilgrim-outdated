@@ -59,19 +59,32 @@ namespace Ingame.Hud
                     
                     nextLocalPos += GetLocalPositionOffsetDueToPlayerRotation(itemData, deltaRotation);
                 }
-                
-                //Movement due to instability
-                if (itemEntity.Has<HudItemInstabilityComponent>())
-                {
-                    ref var instabilityComponent = ref itemEntity.Get<HudItemInstabilityComponent>();
-                    nextLocalPos += GetLocalPositionOffsetDueToItemInstability(itemData, ref instabilityComponent);
-                }
-                
+
                 nextLocalPos *= Time.deltaTime;
                 nextLocalPos += itemTransform.localPosition;
                 
                 nextLocalPos.x = Mathf.Clamp(nextLocalPos.x, initialLocalPosX + itemData.MinMaxMovementOffsetX.x, initialLocalPosX + itemData.MinMaxMovementOffsetX.y);
                 nextLocalPos.y = Mathf.Clamp(nextLocalPos.y, initialLocalPosY + itemData.MinMaxMovementOffsetY.x, initialLocalPosY + itemData.MinMaxMovementOffsetY.y);
+
+                if(itemData.IsItemMovedBackToInitialPosition)
+                    nextLocalPos = Vector3.Lerp(nextLocalPos, transformModel.initialLocalPos, itemData.MoveToInitialPosSpeed * Time.deltaTime);
+                
+                itemTransform.localPosition = nextLocalPos;
+                
+                //Movement due to instability
+                if (!itemEntity.Has<HudItemInstabilityComponent>())
+                    continue;
+                
+                nextLocalPos = Vector3.zero;
+                
+                ref var instabilityComponent = ref itemEntity.Get<HudItemInstabilityComponent>();
+                nextLocalPos += GetLocalPositionOffsetDueToItemInstability(itemData, ref instabilityComponent);
+
+                nextLocalPos *= Time.deltaTime;
+                nextLocalPos += itemTransform.localPosition;
+                
+                nextLocalPos.x = Mathf.Clamp(nextLocalPos.x, initialLocalPosX + itemData.MinMaxInstabilityOffsetX.x, initialLocalPosX + itemData.MinMaxInstabilityOffsetX.y);
+                nextLocalPos.y = Mathf.Clamp(nextLocalPos.y, initialLocalPosY + itemData.MinMaxInstabilityOffsetY.x, initialLocalPosY + itemData.MinMaxInstabilityOffsetY.y);
 
                 itemTransform.localPosition = nextLocalPos;
             }
@@ -83,16 +96,12 @@ namespace Ingame.Hud
             Vector3 positionOffset = Vector3.zero;
             positionOffset.x += -deltaRotation.x * itemData.MoveSpeed;
 
-            return positionOffset;
-        }
-
-        private Vector3 GetLocalPositionOffsetDueToInitialPositionMovement(HudItemData itemData, in Vector3 initialLocalPos, in Vector3 currentLocalPos)
-        {
-            Vector3 positionOffset = Vector3.zero;
-            positionOffset.x = initialLocalPos.x - currentLocalPos.x * itemData.MoveToInitialPosSpeed;
+            if (itemData.IsItemMovedBackToInitialPosition) 
+                positionOffset.x = Mathf.Lerp(positionOffset.x, 0, itemData.MoveToInitialPosSpeed * Time.deltaTime);
 
             return positionOffset;
         }
+        
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private Vector3 GetLocalPositionOffsetDueToItemInstability(HudItemData itemData, ref HudItemInstabilityComponent instabilityComponent)
@@ -101,15 +110,29 @@ namespace Ingame.Hud
             {
                 float timeLeftForMoving = instabilityComponent.currentInstability * itemData.DefaultInstabilityMovementTime / itemData.InitialInstability;
                 float movementSpeed = instabilityComponent.currentInstability * itemData.DefaultInstabilityMovingSpeed / itemData.InitialInstability;
-                var movementDirection = Random.insideUnitCircle.normalized;
+                Vector2 movementDirection;
+
+                if (instabilityComponent.currentMovementDirection == Vector2.zero)
+                {
+                    instabilityComponent.timeLeftMoving = 1f;
+                    movementDirection = Random.insideUnitCircle.normalized;
+                }
+                else
+                {
+                    instabilityComponent.timeLeftMoving = timeLeftForMoving;
+                    movementDirection = Vector2.zero;
+                }
 
                 instabilityComponent.timeLeftMoving = timeLeftForMoving;
                 instabilityComponent.currentMovementSpeed = movementSpeed;
                 instabilityComponent.currentMovementDirection = movementDirection;
+                instabilityComponent.sinTime = 0f;
             }
 
             instabilityComponent.timeLeftMoving -= Time.deltaTime;
-            var movementOffset = instabilityComponent.currentMovementDirection * instabilityComponent.currentMovementSpeed * Mathf.Sin(Time.time);
+            instabilityComponent.sinTime += Time.deltaTime;
+            
+            var movementOffset = instabilityComponent.currentMovementDirection * instabilityComponent.currentMovementSpeed * Mathf.Sin(instabilityComponent.sinTime);
 
             return movementOffset;
         }

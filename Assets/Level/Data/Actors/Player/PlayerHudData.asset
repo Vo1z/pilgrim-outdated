@@ -16,4 +16,5 @@ MonoBehaviour:
   headBobbingSpeedModifier: 2.5
   headBobbingStrengthX: 0
   headBobbingStrengthY: 0.005
-  headBobbingStrengthZ: 0.01
+  headBobbingStrengthZ: 0.001
+  hudBobbingStrengthY: 0.1

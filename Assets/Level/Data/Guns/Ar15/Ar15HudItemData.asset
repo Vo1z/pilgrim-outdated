@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Ar15HudItemData
   m_EditorClassIdentifier: 
   canBeUsedAsAim: 1
-  defaultInstability: 0.2
   rotationSpeed: 3
   minMaxRotationAngleX: {x: -10, y: 10}
   rotationAngleMultiplierX: 20
@@ -22,14 +21,14 @@ MonoBehaviour:
   rotationAngleMultiplierY: 10
   inverseRotationY: 1
   minMaxRotationAngleZ: {x: -20, y: 20}
-  rotationAngleMultiplierZ: 20
+  rotationAngleMultiplierZ: 10
   inverseRotationZ: 0
   isItemMovedDueToRotation: 1
-  isItemMovedBackToInitialPosition: 0
-  moveToInitialPosSpeed: 3
+  isItemMovedBackToInitialPosition: 1
+  moveToInitialPosSpeed: 5.22
   moveSpeed: 0.07
-  minMaxMovementOffsetY: {x: -0.1, y: 0.1}
-  minMaxMovementOffsetX: {x: -0.03, y: 0.03}
+  minMaxMovementOffsetY: {x: -1, y: 1}
+  minMaxMovementOffsetX: {x: -0.05, y: 0.05}
   aimRotationSpeed: 3
   minMaxAimRotationAngleX: {x: -5, y: 5}
   aimRotationAngleMultiplierX: 2
@@ -53,8 +52,10 @@ MonoBehaviour:
   aimRotationMovementAngleMultiplierY: 5
   inverseAimRotationMovementY: 0
   initialInstability: 0.2
-  defaultInstabilityMovementTime: 5
-  defaultInstabilityMovingSpeed: 0.08
+  defaultInstabilityMovementTime: 1
+  defaultInstabilityMovingSpeed: 0.1
+  minMaxInstabilityOffsetY: {x: -0.1, y: 0.1}
+  minMaxInstabilityOffsetX: {x: -0.1, y: 0.1}
   maximumClippingOffset: 0.8
   maximumAimClippingOffset: 0.1
   clippingMovementSpeed: 3

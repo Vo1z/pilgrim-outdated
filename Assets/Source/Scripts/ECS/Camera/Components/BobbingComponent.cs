@@ -1,6 +1,6 @@
 ﻿namespace Ingame.CameraWork
 {
-    public struct CameraBobbingComponent
+    public struct BobbingComponent
     {
         public float timeSpentTraveling;
     }

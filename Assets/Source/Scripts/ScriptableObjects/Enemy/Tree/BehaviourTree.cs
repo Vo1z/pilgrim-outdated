@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Ingame.Enemy;
 using Leopotam.Ecs;
 using UnityEditor;
- 
 using UnityEngine;
+
 
 namespace Ingame.Behaviour{
     [Serializable]
@@ -154,6 +154,11 @@ namespace Ingame.Behaviour{
         public void InjectEntity(EcsEntity entity)
         {
             Traverse(root,(e)=>e.Entity = entity);
+        }
+
+        public void InjectWorld(EcsWorld world)
+        {
+            Traverse(root,(e)=>e.World = world);
         }
     }
 }

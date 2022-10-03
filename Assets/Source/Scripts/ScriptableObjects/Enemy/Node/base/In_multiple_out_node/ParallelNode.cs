@@ -23,7 +23,9 @@ namespace Ingame.Behaviour
         protected override State ActOnTick()
         {
             var hasFinished = true;
-            foreach (var item in _childrenState)
+            //todo change a cloning
+            var dir = _childrenState.ToDictionary(e=> e.Key,e=>e.Value);
+            foreach (var item in dir)
             {
                 if (item.Value != State.Running)
                 {

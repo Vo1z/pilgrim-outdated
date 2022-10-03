@@ -19,6 +19,7 @@ using Ingame.Inventory;
 using Ingame.Movement;
 using Ingame.Player;
 using Ingame.SupportCommunication;
+using Ingame.Systems;
 using Ingame.UI;
 using Ingame.UI.Raycastable;
 using Ingame.Utils;
@@ -154,7 +155,6 @@ namespace Ingame
                 .Add(new HudInputToStatesConverterSystem())
                 .Add(new HudItemSlotChooseSystem())
                 //AI
-                .Add(new BehaviourBinderSystem())
                 .Add(new BehaviourSystem())
                 //Anomaly
                 .Add(new AcidWaterSystem())
@@ -235,7 +235,10 @@ namespace Ingame
                 .Add(new CharacterControllerHeightChangingSystem())
                 .Add(new LeanSystem())
                 .Add(new CameraLeanSystem())
-                .Add(new MovementSystem());
+                .Add(new MovementSystem())
+                 //NoiseDetection
+                 .Add(new NoiseDetectionSystem())
+                 .Add(new SharedCameraDetectionSystem());
         }
     }
 }

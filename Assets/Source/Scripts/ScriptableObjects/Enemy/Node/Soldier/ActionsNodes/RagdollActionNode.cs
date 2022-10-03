@@ -7,11 +7,11 @@ namespace Ingame.Enemy
     public sealed class RagdollActionNode : ActionNode
     {
         private Animator _animator;
-
+        private const string ANIMATION_NAME = "RAGDOLL";
         protected override void ActOnStart()
         {
             _animator = Entity.Get<AnimatorModel>().Animator;
-            _animator.Play("RAGDOLL");
+            _animator.Play(ANIMATION_NAME);
         }
 
         protected override void ActOnStop()
@@ -22,8 +22,8 @@ namespace Ingame.Enemy
         protected override State ActOnTick()
         {
             //is dying
-            _animator.Play("RAGDOLL");
-            var animationState = _animator.IsAnimationPlaying("RAGDOLL");
+            _animator.Play(ANIMATION_NAME);
+            var animationState = _animator.IsAnimationPlaying(ANIMATION_NAME);
             //animation has ended
             if (!animationState)
             {

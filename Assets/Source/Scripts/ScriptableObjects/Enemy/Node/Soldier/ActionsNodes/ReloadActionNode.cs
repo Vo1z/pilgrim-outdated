@@ -1,26 +1,23 @@
-﻿using System.Timers;
-using Ingame.Behaviour;
-using Ingame.Health;
+﻿using Ingame.Behaviour;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Ingame.Enemy
 {
-    public class HealActionNode : ActionNode
+    public class ReloadActionNode : ActionNode
     {
-        [SerializeField] private float timeToHeal = 2f;
         [SerializeField] 
-        [Range(0, 1)] 
-        private float percentageOfHeal = 0.4f;
+        private float timeToReload;
+
         private float _timer;
         protected override void ActOnStart()
         {
-            _timer = timeToHeal;
+            _timer = timeToReload;
         }
 
         protected override void ActOnStop()
         {
-        
+          
         }
 
         protected override State ActOnTick()
@@ -30,8 +27,9 @@ namespace Ingame.Enemy
                 _timer -= Time.deltaTime;
                 return State.Running;
             }
-            ref var health = ref Entity.Get<HealthComponent>();
-            health.currentHealth += percentageOfHeal * health.initialHealth;
+
+            ref var enemy = ref Entity.Get<EnemyStateModel>();
+            enemy.CurrentAmmo = enemy.MaxAmmo;
             return State.Success;
         }
     }

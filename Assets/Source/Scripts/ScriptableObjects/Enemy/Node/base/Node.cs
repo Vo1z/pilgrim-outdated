@@ -26,7 +26,9 @@ namespace Ingame.Behaviour
         public Vector2 Position = Vector2.zero;
 
         [TextArea] public string Description;
+        
         public EcsEntity Entity;
+        public EcsWorld World;
         
         private bool _isRunning = false;
         private State _state = State.Running;

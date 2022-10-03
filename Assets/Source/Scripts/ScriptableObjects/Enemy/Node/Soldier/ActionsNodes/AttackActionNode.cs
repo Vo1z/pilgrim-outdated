@@ -43,6 +43,8 @@ namespace Ingame.Enemy
                 _currentIntervalTime -= Time.deltaTime;
                 return State.Running;
             }
+            ref var enemyModel = ref Entity.Get<EnemyStateModel>();
+            enemyModel.CurrentAmmo -= 1;
             
             //hit chance - do miss
             if (chanceToHit < Random.Range(0f, 1f))
@@ -50,7 +52,6 @@ namespace Ingame.Enemy
                 return State.Failure;
             }
             
-            ref var enemyModel = ref Entity.Get<EnemyStateModel>();
             ref var transform = ref Entity.Get<TransformModel>();
 
             //shoot

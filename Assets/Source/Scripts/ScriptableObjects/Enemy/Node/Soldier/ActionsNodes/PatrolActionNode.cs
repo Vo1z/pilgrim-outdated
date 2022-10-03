@@ -19,12 +19,22 @@ namespace Ingame.Enemy
         private Transform _point;
         private NavMeshAgent _agent;
         private Animator _animator;
+        private bool _stopPatrolling = false;
         protected override void ActOnStart()
         {
+            
             ref var waypoints = ref Entity.Get<WayPointsComponent>().WayPoints;
+            _agent = Entity.Get<NavMeshAgentModel>().Agent;
+            
+            if (waypoints == null || waypoints.Count <=0)
+            {
+                _stopPatrolling = true;
+                return;
+            }
+            
             AdjustWayPoints(waypoints);
             
-            _agent = Entity.Get<NavMeshAgentModel>().Agent;
+          
             _agent.destination = _point.position;
             _agent.speed = speed;
             _agent.stoppingDistance = stoppingDistance;
@@ -40,8 +50,11 @@ namespace Ingame.Enemy
 
         protected override State ActOnTick()
         {
-            
-            //
+            if (_stopPatrolling)
+            {
+                return State.Failure;
+            }
+      
             // _animator.Play("WALK_FORWARD");
             if (_agent.pathPending)
             {

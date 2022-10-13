@@ -5,29 +5,35 @@ namespace Ingame.Enemy
 {
     public struct EnemyStateModel
     {
+        //hp
         [Header("Low Hp")]
         public bool IsDying;
         public bool IsDead;
         
+        //attack
         [Header("Ammo")] 
         public int MaxAmmo;
         public int CurrentAmmo;
         
+        //detection of player
         [Header("Detection")]
         public bool IsTargetDetected;
-        //public bool CanUseCamera;
+        public Transform Target;
         
+        //special detections
         public bool ShouldSearchForTarget;
         public bool HasDetectedNoises;
         public bool HasLostTarget;
         
-        //player
-        public Transform Target;
-        //noise position
         public Vector3? NoisePosition;
         public List<Vector3> LastRememberedNoises;
         
         public Vector3 Location;
+        
+        //Covers
+        public HashSet<Transform> Covers;
+        public HashSet<Transform> UndefinedCovers;
+
         public Transform Cover;
 
     }

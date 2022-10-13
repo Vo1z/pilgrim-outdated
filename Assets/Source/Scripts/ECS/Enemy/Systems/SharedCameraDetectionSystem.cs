@@ -40,14 +40,13 @@ namespace Ingame.Systems
                 
                 var environment = GetRenderTexture(camera.Camera,cameraModel.MaskForEnvironment);
                 var all = GetRenderTexture(camera.Camera,cameraModel.MaskForEnvironmentWithPlayer);
-                //UnityEngine.Debug.Log("HERE");
+            
                 //1st phase of player recognition
                 var visibilityOfPlayer = GetNumberOfPixelsOfPLayer(camera.Camera, environment, all);
                 if (visibilityOfPlayer>=_pixelDetectionThreshold)
                 {
                     model.IsTargetDetected = true;
                     _enemyFilter.GetEntity(enemy).Del<EnemyUseCameraRequest>();
-                    //UnityEngine.Debug.Log($"ENEMY{enemy} {visibilityOfPlayer}");
                     continue;
                 }
                 
@@ -58,7 +57,7 @@ namespace Ingame.Systems
                 {
                     model.IsTargetDetected = true;
                 }
-               // UnityEngine.Debug.Log($"ENEMY{enemy} {percentageVision}");
+               
                 _enemyFilter.GetEntity(enemy).Del<EnemyUseCameraRequest>();
             }
         }
@@ -106,7 +105,7 @@ namespace Ingame.Systems
             var texture = new Texture2D(_width, _height, TextureFormat.RGBA32, false);
             texture.ReadPixels(new(0,0,_width,_height),0,0);
             texture.Apply();
-            camera.gameObject.SetActive(false);     
+           // camera.gameObject.SetActive(false);     
             return texture;
         }
         

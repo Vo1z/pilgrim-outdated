@@ -1,15 +1,24 @@
 ﻿using Ingame.Behaviour;
 using Ingame.Movement;
 using Leopotam.Ecs;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Ingame.Enemy
 {
     public class DetectTargetActionNode : ActionNode
     {
+        private enum TypeOfDetection
+        {
+            RayCast,
+            PhotoScanning
+        }
+
+        [SerializeField] private TypeOfDetection typeOfDetection;
         [SerializeField] private float detectionRange = 45f;
         [SerializeField] private float detectionAngle = 55;
         //[SerializeField] private float timeToBeDetected = 1.5f;
+        [ShowIf("IsRayCastDetectionUsed")]
         [SerializeField] private LayerMask ignoredLayers;
         
         private Transform _transform;
@@ -31,9 +40,8 @@ namespace Ingame.Enemy
     
         protected override State ActOnTick()
         {
-            Entity.Get<EnemyUseCameraRequest>();
-            return State.Running;
-            /*if (Entity.Get<EnemyStateModel>().IsTargetDetected)
+            
+            if (Entity.Get<EnemyStateModel>().IsTargetDetected)
             {
                 return State.Success;
             }
@@ -53,22 +61,44 @@ namespace Ingame.Enemy
                 return State.Failure;
             }
 
-            /#1#/ not covered
-            if (!Physics.Linecast(_transform.position, _target.position, out RaycastHit hit,ignoredLayers,QueryTriggerInteraction.Ignore))
-                return State.Failure;#1#
-
-            /*
-            if (_time>0)
+            var state = State.Failure;
+            switch (typeOfDetection)
+            {
+                case TypeOfDetection.RayCast:
+                    state = GetPlayerStateFromRayCast();
+                    break;
+                
+                case TypeOfDetection.PhotoScanning:
+                    state = GetPlayerStateFromPhotoScanning();
+                    break;
+            }
+            /*if (_time>0)
             {
                 _time -= Time.deltaTime;
                 return State.Running;
-            }#1#
+            } */
+
+            return state;
+        }
+
+        private State GetPlayerStateFromRayCast()
+        {
+            if (!Physics.Linecast(_transform.position, _target.position, out RaycastHit hit,ignoredLayers,QueryTriggerInteraction.Ignore))
+                return State.Failure;
+            Entity.Get<EnemyStateModel>().IsTargetDetected = true;
+            return State.Success;
+        }
+        
+        private State GetPlayerStateFromPhotoScanning()
+        {
             if ( Entity.Has<EnemyUseCameraRequest>())
             {
                 return State.Running;
             }
             Entity.Get<EnemyUseCameraRequest>();
-            return State.Running;*/
+            return State.Running;         
         }
+
+        private bool IsRayCastDetectionUsed() => typeOfDetection == TypeOfDetection.RayCast;
     }
 }

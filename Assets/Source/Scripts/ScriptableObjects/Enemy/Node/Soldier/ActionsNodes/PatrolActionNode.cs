@@ -45,6 +45,10 @@ namespace Ingame.Enemy
 
         protected override void ActOnStop()
         {
+            if (_agent == null)
+            {
+                return;
+            }
             _agent.isStopped = true;
         }
 

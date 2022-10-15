@@ -35,6 +35,7 @@ namespace Ingame.Systems
                 }
 
                 ref var enemyStateModel = ref entityParentReference.Entity.Get<EnemyStateModel>();
+                
                 //enter.collider;
                 // enemyStateModel.Co
             }

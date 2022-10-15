@@ -9,7 +9,7 @@ namespace Ingame.Enemy
 {
     public class AttackActionNode : ActionNode
     {
-
+        
         [SerializeField] 
         private float damageOnHit;
         [SerializeField] 
@@ -20,6 +20,7 @@ namespace Ingame.Enemy
         [SerializeField] 
         private LayerMask ignoredLayers;
 
+        [SerializeField] private bool shouldIgnoreObstacles;
         private float _currentIntervalTime;
         protected override void ActOnStart()
         {
@@ -30,7 +31,6 @@ namespace Ingame.Enemy
         {
           
         }
-
         /// <summary>
         /// Try to attack after [shootIntervalTime] time
         /// </summary>
@@ -55,6 +55,10 @@ namespace Ingame.Enemy
             ref var transform = ref Entity.Get<TransformModel>();
 
             //shoot
+            if (shouldIgnoreObstacles)
+            {
+                
+            }
             if (!Physics.Linecast(transform.transform.position, enemyModel.Target.position, out RaycastHit hit, ignoredLayers, QueryTriggerInteraction.Ignore))
             {
                 return State.Failure;

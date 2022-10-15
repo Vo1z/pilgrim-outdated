@@ -80,5 +80,10 @@ namespace Ingame.Behaviour
                 node.RequestToStop();
             });
         }
+
+        public void RestartState()
+        {
+            ActOnStart();
+        }
     }
 }

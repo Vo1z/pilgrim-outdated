@@ -37,7 +37,7 @@ namespace Ingame.Systems
                 camera.Camera.transform.parent = transform.transform;
                 camera.Camera.transform.localPosition = new Vector3(0, ENEMY_HEIGHT, 0);
                 camera.Camera.transform.localRotation = Quaternion.Euler(0,0,0);
-                
+           
                 var environment = GetRenderTexture(camera.Camera,cameraModel.MaskForEnvironment);
                 var all = GetRenderTexture(camera.Camera,cameraModel.MaskForEnvironmentWithPlayer);
             
@@ -57,7 +57,6 @@ namespace Ingame.Systems
                 {
                     model.IsTargetDetected = true;
                 }
-               
                 _enemyFilter.GetEntity(enemy).Del<EnemyUseCameraRequest>();
             }
         }
@@ -105,7 +104,7 @@ namespace Ingame.Systems
             var texture = new Texture2D(_width, _height, TextureFormat.RGBA32, false);
             texture.ReadPixels(new(0,0,_width,_height),0,0);
             texture.Apply();
-           // camera.gameObject.SetActive(false);     
+            camera.gameObject.SetActive(false);     
             return texture;
         }
         

@@ -33,7 +33,12 @@ namespace Ingame.Enemy
         //Covers
         public HashSet<Transform> Covers;
         public HashSet<Transform> UndefinedCovers;
-
+        
+        //Transparent Covers
+        public HashSet<Transform> TransparentCovers;
+        public HashSet<Transform> UndefinedTransparentCovers;
+        
+        
         public Transform Cover;
 
     }

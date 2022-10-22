@@ -25,6 +25,9 @@ namespace Ingame.Data.Player
         [SerializeField, Range(0, .1f)] private float hudBobbingPositionStrengthY = .1f;
         [BoxGroup("Hud bobbing")]
         [SerializeField, Range(0, .1f)] private float hudBobbingRotationStrengthZ = .1f;
+        
+        [BoxGroup("Recoil")]
+        [SerializeField, Range(0, 10f)] private float recoilStabilizationSpeed = 3f;
 
         public float HeadBobbingLerpingSpeed => headBobbingLerpingSpeed;
         public float HeadBobbingStrengthX => headBobbingStrengthX;
@@ -36,5 +39,7 @@ namespace Ingame.Data.Player
         public float HUDBobbingSpeedModifier => hudBobbingSpeedModifier;
         public float HUDBobbingPositionStrengthY => hudBobbingPositionStrengthY;
         public float HUDBobbingRotationStrengthZ => hudBobbingRotationStrengthZ;
+
+        public float RecoilStabilizationSpeed => recoilStabilizationSpeed;
     }
 }   

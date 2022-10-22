@@ -13,9 +13,10 @@ namespace Ingame.Hud
 
 		public void Run()
 		{
-			if(_hudModelFilter.IsEmpty() || _hudModelFilter.IsEmpty())
+			if(_hudModelFilter.IsEmpty())
 				return;
 
+			var playerHudData = _playerModelFilter.Get1(0).playerHudData;
 			var playerCharacterController = _playerModelFilter.Get2(0).characterController;
 			ref var hudModel = ref _hudModelFilter.Get1(0);
 
@@ -24,8 +25,11 @@ namespace Ingame.Hud
 				ref var recoilRequest = ref _recoilRequestFilter.Get1(i);
 
 				playerCharacterController.transform.eulerAngles += Vector3.up * recoilRequest.angleStrength.x;
-				hudModel.hudLocalRotationX -= recoilRequest.angleStrength.y;
+				
+				hudModel.currentRecoilX -= recoilRequest.angleStrength.y;
 			}
+			
+			hudModel.currentRecoilX = Mathf.Lerp(hudModel.currentRecoilX, 0, playerHudData.RecoilStabilizationSpeed * Time.deltaTime);
 		}
 	}
 }

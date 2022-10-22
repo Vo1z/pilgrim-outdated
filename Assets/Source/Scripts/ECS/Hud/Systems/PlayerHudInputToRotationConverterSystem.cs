@@ -29,8 +29,9 @@ namespace Ingame.Hud
                 var yRotation = rotationInput.y * playerData.Sensitivity * Time.fixedDeltaTime;
                 hudModel.hudLocalRotationX -= yRotation;
                 hudModel.hudLocalRotationX = Mathf.Clamp(hudModel.hudLocalRotationX, -90, 90);
+                float targetVerticalRotation = Mathf.Clamp(hudModel.hudLocalRotationX + hudModel.currentRecoilX , -90, 90);
 
-                hudTransformModel.transform.localRotation = Quaternion.Euler(hudModel.hudLocalRotationX, localEulerAngles.y, localEulerAngles.z);
+                hudTransformModel.transform.localRotation = Quaternion.Euler(targetVerticalRotation, localEulerAngles.y, localEulerAngles.z);
             }
         }
     }

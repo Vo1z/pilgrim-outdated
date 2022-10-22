@@ -24,7 +24,8 @@ namespace Ingame.Tools
             typeof(EntityReferenceRequestProvider),
             typeof(TransformModelProvider),
             typeof(HudItemModelProvider),
-            typeof(InteractiveTagProvider)
+            typeof(InteractiveTagProvider),
+            typeof(HudItemRecoilComponentProvider)
         };
 
         private readonly Type[] _rifleComponentsTypes =

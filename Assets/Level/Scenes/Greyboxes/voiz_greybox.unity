@@ -4559,6 +4559,7 @@ GameObject:
   - component: {fileID: 283956991}
   - component: {fileID: 283956990}
   - component: {fileID: 283956992}
+  - component: {fileID: 283956993}
   m_Layer: 7
   m_Name: Gun - AR15
   m_TagString: Untagged
@@ -4749,6 +4750,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70419d5a7ca74c2d9313c50fd87c9ec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &283956993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283956971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3139a57c5843afa3679efa7530718c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &298407159

@@ -116,8 +116,12 @@ namespace Ingame.Data.Hud
         [Foldout("Hud stats (Instability)")]
         [SerializeField] [MinMaxSlider(-2, 2)] private Vector2 minMaxInstabilityOffsetX = new(0, 0);
 
+        [Foldout("Hud stats (Recoil)")]
+        [SerializeField] [Range(0, 1f)] private float recoilOffsetZ = .1f;
+        [Foldout("Hud stats (Recoil)")]
+        [SerializeField] [Range(0, 20f)] private float recoilStabilizationSpeed = 3f;
         
-        
+
         [Foldout("Hud stats (Wall clipping)"), Space] 
         [SerializeField] [Range(0, 2f)] private float maximumClippingOffset = 1.5f;
         [Foldout("Hud stats (Wall clipping)")] 
@@ -188,6 +192,10 @@ namespace Ingame.Data.Hud
         public float InstabilityMovementOffset => instabilityMovementOffset;
         public Vector2 MinMaxInstabilityOffsetY => minMaxInstabilityOffsetY;
         public Vector2 MinMaxInstabilityOffsetX => minMaxInstabilityOffsetX;
+
+
+        public float RecoilOffsetZ => recoilOffsetZ;
+        public float RecoilStabilizationSpeed => recoilStabilizationSpeed;
 
 
         public float MaximumClippingOffset => maximumClippingOffset;

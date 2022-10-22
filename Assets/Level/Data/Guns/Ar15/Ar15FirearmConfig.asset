@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Ar15FirearmConfig
   m_EditorClassIdentifier: 
   damage: 33
-  recoilBoost: {x: 0.01, y: 0.01}
+  recoilBoost: {x: 0.5, y: 1}
   recoilStabilizationSpeed: 3

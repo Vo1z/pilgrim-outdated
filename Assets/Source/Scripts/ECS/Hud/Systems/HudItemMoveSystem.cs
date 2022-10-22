@@ -70,21 +70,33 @@ namespace Ingame.Hud
                 itemTransform.localPosition = nextLocalPos;
                 
                 //Movement due to instability
-                if (!itemEntity.Has<HudItemInstabilityComponent>())
-                    continue;
-                
-                nextLocalPos = Vector3.zero;
-                
-                ref var instabilityComponent = ref itemEntity.Get<HudItemInstabilityComponent>();
-                nextLocalPos += GetLocalPositionOffsetDueToItemInstability(itemData, ref instabilityComponent);
+                if (itemEntity.Has<HudItemInstabilityComponent>())
+                {
 
-                nextLocalPos *= Time.deltaTime;
-                nextLocalPos += itemTransform.localPosition;
-                
-                nextLocalPos.x = Mathf.Clamp(nextLocalPos.x, initialLocalPosX + itemData.MinMaxInstabilityOffsetX.x, initialLocalPosX + itemData.MinMaxInstabilityOffsetX.y);
-                nextLocalPos.y = Mathf.Clamp(nextLocalPos.y, initialLocalPosY + itemData.MinMaxInstabilityOffsetY.x, initialLocalPosY + itemData.MinMaxInstabilityOffsetY.y);
+                    nextLocalPos = Vector3.zero;
 
-                itemTransform.localPosition = nextLocalPos;
+                    ref var instabilityComponent = ref itemEntity.Get<HudItemInstabilityComponent>();
+                    nextLocalPos += GetLocalPositionOffsetDueToItemInstability(itemData, ref instabilityComponent);
+
+                    nextLocalPos *= Time.deltaTime;
+                    nextLocalPos += itemTransform.localPosition;
+
+                    nextLocalPos.x = Mathf.Clamp(nextLocalPos.x, initialLocalPosX + itemData.MinMaxInstabilityOffsetX.x, initialLocalPosX + itemData.MinMaxInstabilityOffsetX.y);
+                    nextLocalPos.y = Mathf.Clamp(nextLocalPos.y, initialLocalPosY + itemData.MinMaxInstabilityOffsetY.x, initialLocalPosY + itemData.MinMaxInstabilityOffsetY.y);
+
+                    itemTransform.localPosition = nextLocalPos;
+                }
+
+                if(itemEntity.Has<HudItemRecoilComponent>())
+                {
+                    ref var recoilComp = ref itemEntity.Get<HudItemRecoilComponent>();
+                    float targetPosZ = transformModel.initialLocalPos.z - recoilComp.currentRecoilPosOffsetZ;
+
+                    nextLocalPos = itemTransform.localPosition;
+                    nextLocalPos.z = targetPosZ;
+
+                    itemTransform.localPosition = nextLocalPos;
+                }
             }
         }
 

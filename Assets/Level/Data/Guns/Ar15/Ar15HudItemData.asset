@@ -56,6 +56,8 @@ MonoBehaviour:
   instabilityMovementOffset: 0.05
   minMaxInstabilityOffsetY: {x: -0.05, y: 0.05}
   minMaxInstabilityOffsetX: {x: -0.05, y: 0.05}
+  recoilOffsetZ: 0.1
+  recoilStabilizationSpeed: 8
   maximumClippingOffset: 0.8
   maximumAimClippingOffset: 0.1
   clippingMovementSpeed: 3

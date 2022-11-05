@@ -30,10 +30,11 @@ namespace Ingame.Input
         private InputAction _interactionInput;
         private InputAction _longInteractInput;
         private InputAction _dropGunInput;
+        private InputAction _hideGunInput;
         private InputAction _openInventoryInput;
         private InputAction _firstSlotInteraction;
         private InputAction _secondSlotInteraction;
-
+        
         public void Init()
         {
             _movementInputX = _stationaryInputSystem.FPS.MovementX;
@@ -56,12 +57,12 @@ namespace Ingame.Input
             _interactionInput = _stationaryInputSystem.FPS.Interact;
             _longInteractInput = _stationaryInputSystem.FPS.LongInteract;
             _dropGunInput = _stationaryInputSystem.FPS.DropGun;
+            _hideGunInput = _stationaryInputSystem.FPS.HideGun;
 
             _openInventoryInput = _stationaryInputSystem.FPS.OpenInventory;
 
             _firstSlotInteraction = _stationaryInputSystem.FPS.FirstSlotInteraction;
             _secondSlotInteraction = _stationaryInputSystem.FPS.SecondSlotInteraction;
-
 
             _distortTheShutterInput.performed += OnDistortTheShutterPerformed;
             _longInteractInput.performed += OnLongInteractPerformed;
@@ -103,6 +104,7 @@ namespace Ingame.Input
             bool reloadInput = _reloadInput.WasPressedThisFrame();
             bool shutterDelayInput = _shutterDelayInput.WasPressedThisFrame();
             bool interactInput = _interactionInput.WasPressedThisFrame();
+            bool hideGunInput = _hideGunInput.WasPressedThisFrame();
             bool openInventoryInput = _openInventoryInput.WasPressedThisFrame();
             bool interactWithFirstSlot = _firstSlotInteraction.WasPressedThisFrame();
             bool interactWithSecondSlot = _secondSlotInteraction.WasPressedThisFrame();
@@ -202,7 +204,15 @@ namespace Ingame.Input
 
                 inputEntity.Get<InteractInputEvent>();
             }
-            
+
+            if (hideGunInput)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+
+                inputEntity.Get<HideGunInputEvent>();
+            }
+
             if (_isLongInteractPerformedThisFrame)
             {
                 if (inputEntity == EcsEntity.Null)

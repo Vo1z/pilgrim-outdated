@@ -102,7 +102,7 @@ namespace Ingame.Tools
 
         private void OnBringToPlayerButtonClicked()
         {
-            var playerItemsGo = FindObjectOfType<HudPlayerItemContainerProvider>();
+            var playerItemsGo = FindObjectOfType<HudPlayerItemContainerComponentProvider>();
             var selectedGo = Selection.gameObjects[0];
             
             if(playerItemsGo == null || selectedGo == null)

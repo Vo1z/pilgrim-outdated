@@ -110,6 +110,8 @@ namespace Ingame.Data.Hud
         [Foldout("Hud stats (Instability)")]
         [SerializeField] [Range(0, 10)] private float instabilityBobbingSpeed;
         [Foldout("Hud stats (Instability)")]
+        [SerializeField] [Range(0, 40)] private float instabilityAimStabilizationSpeed = 10f;
+        [Foldout("Hud stats (Instability)")]
         [SerializeField] [Range(0, 10)] private float instabilityMovementOffset;
         [Foldout("Hud stats (Instability)")]
         [SerializeField] [MinMaxSlider(-2, 2)] private Vector2 minMaxInstabilityOffsetY = new(0, 0);
@@ -189,6 +191,7 @@ namespace Ingame.Data.Hud
 
         public float InitialInstability => initialInstability;
         public float InstabilityBobbingSpeed => instabilityBobbingSpeed;
+        public float InstabilityAimStabilizationSpeed => instabilityAimStabilizationSpeed;
         public float InstabilityMovementOffset => instabilityMovementOffset;
         public Vector2 MinMaxInstabilityOffsetY => minMaxInstabilityOffsetY;
         public Vector2 MinMaxInstabilityOffsetX => minMaxInstabilityOffsetX;

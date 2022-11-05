@@ -3,6 +3,7 @@ using Ingame.Data.Hud;
 using Ingame.Input;
 using Ingame.Movement;
 using Ingame.Player;
+using Ingame.Utils;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -46,6 +47,7 @@ namespace Ingame.Hud
                 
                 var initialLocalPosX = transformModel.initialLocalPos.x;
                 var initialLocalPosY = transformModel.initialLocalPos.y;
+                bool isAiming = itemEntity.Has<HudIsAimingTag>();
                 Vector3 nextLocalPos = Vector3.zero;
 
                 //Movement due to player rotation
@@ -72,11 +74,10 @@ namespace Ingame.Hud
                 //Movement due to instability
                 if (itemEntity.Has<HudItemInstabilityComponent>())
                 {
-
                     nextLocalPos = Vector3.zero;
-
+                    
                     ref var instabilityComponent = ref itemEntity.Get<HudItemInstabilityComponent>();
-                    nextLocalPos += GetLocalPositionOffsetDueToItemInstability(itemData, ref instabilityComponent);
+                    nextLocalPos += GetLocalPositionOffsetDueToItemInstability(itemData, ref instabilityComponent, ref transformModel, isAiming);
 
                     nextLocalPos *= Time.deltaTime;
                     nextLocalPos += itemTransform.localPosition;
@@ -86,16 +87,36 @@ namespace Ingame.Hud
 
                     itemTransform.localPosition = nextLocalPos;
                 }
-
+                
+                //Movement due to recoil
                 if(itemEntity.Has<HudItemRecoilComponent>())
                 {
                     ref var recoilComp = ref itemEntity.Get<HudItemRecoilComponent>();
                     float targetPosZ = transformModel.initialLocalPos.z - recoilComp.currentRecoilPosOffsetZ;
-
+                    
                     nextLocalPos = itemTransform.localPosition;
-                    nextLocalPos.z = targetPosZ;
-
+                    nextLocalPos.z = Mathf.Lerp(nextLocalPos.z, targetPosZ, 50f * Time.deltaTime);
+                    
                     itemTransform.localPosition = nextLocalPos;
+                }
+                
+                //Movement due to surfaceDetection
+                if (itemEntity.Has<SurfaceDetectorModel>())
+                {
+                    nextLocalPos = itemTransform.localPosition;
+                    
+                    var surfaceDetector = itemEntity.Get<SurfaceDetectorModel>().surfaceDetector;
+                    var gunSurfaceDetectionResult = surfaceDetector.SurfaceDetectionType;
+
+                    if (gunSurfaceDetectionResult != SurfaceDetectionType.SameSpot)
+                    {
+                        float maxClippingOffset = itemEntity.Has<HudIsAimingTag>() ? itemData.MaximumAimClippingOffset : itemData.MaximumClippingOffset;
+                        float movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetectionType.Detection ? -maxClippingOffset : 0;
+                        float nextGunZ = nextLocalPos.z + movementDirectionZ;
+
+                        nextLocalPos.z = Mathf.Lerp(nextLocalPos.z, nextGunZ, itemData.ClippingMovementSpeed * Time.deltaTime);
+                        itemTransform.localPosition = nextLocalPos;
+                    }
                 }
             }
         }
@@ -114,12 +135,15 @@ namespace Ingame.Hud
         
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private Vector3 GetLocalPositionOffsetDueToItemInstability(HudItemData itemData, ref HudItemInstabilityComponent instabilityComponent)
+        private Vector3 GetLocalPositionOffsetDueToItemInstability(HudItemData itemData, ref HudItemInstabilityComponent instabilityComponent, ref TransformModel transformModel, bool isAiming)
         {
             var targetBobbingSpeed = instabilityComponent.currentInstability * itemData.InstabilityBobbingSpeed / itemData.InitialInstability;
-
+            
             var positionOffset = Vector3.right * Mathf.Sin(instabilityComponent.horizontalSinTime) * itemData.InstabilityMovementOffset;
             positionOffset += Vector3.up * Mathf.Sin(instabilityComponent.verticalSinTime) * itemData.InstabilityMovementOffset;
+
+            if (isAiming)
+                positionOffset += (transformModel.initialLocalPos - transformModel.transform.localPosition) * itemData.InstabilityAimStabilizationSpeed;
 
             instabilityComponent.verticalSinTime += Time.deltaTime * Random.Range(.5f, 1f) * targetBobbingSpeed;
             instabilityComponent.horizontalSinTime += Time.deltaTime * Random.value * targetBobbingSpeed;

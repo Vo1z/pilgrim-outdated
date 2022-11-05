@@ -1,4 +1,5 @@
 using Client;
+using Ingame.Animation;
 using Ingame.Anomaly;
 using Ingame.Breakable;
 using Ingame.CameraWork;
@@ -118,6 +119,7 @@ namespace Ingame
                 .OneFrame<HudDistortTheShutterAnimationTriggerEvent>()
                 .OneFrame<InteractWithFirstSlotInputEvent>()
                 .OneFrame<InteractWithSecondSlotInputEvent>()
+                .OneFrame<HideGunInputEvent>()
                 .OneFrame<NoiseGeneratorEvent>();
         }
 
@@ -141,6 +143,10 @@ namespace Ingame
                 .Add(new PlayerInputToCrouchConverterSystem())
                 .Add(new PlayerInputToLeanConverterSystem())
                 .Add(new PlayerSpeedChangerSystem())
+                //Animation 
+                .Add(new HudItemSlotChooseSystem())
+                .Add(new HudInputToStatesConverterSystem())
+                .Add(new ShowHideHudItemSystem())
                 //HUD
                 .Add(new CameraInputToStatesConverterSystem())
                 .Add(new MainCameraShakeEventReceiverSystem())
@@ -149,9 +155,7 @@ namespace Ingame
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
                 .Add(new HudItemMoveSystem())
-                .Add(new HudItemMoverDueSurfaceDetectionSystem())
-                .Add(new HudInputToStatesConverterSystem())
-                .Add(new HudItemSlotChooseSystem())
+                // .Add(new HudItemMoverDueSurfaceDetectionSystem())
                 //AI
                 .Add(new InitializeEntityReferenceSystem())
                 .Add(new NoiseFetcherEventSystem())
@@ -194,7 +198,7 @@ namespace Ingame
                 .Add(new CreateRecoilRequestSystem())
                 .Add(new PerformShotSystem())
                 .Add(new HudRecoilSystem())
-                .Add(new HudGunAnimationSystem())
+                .Add(new HudItemAnimationSystem())
                 //Dialog
                 .Add(new DialogSystem())
                 .Add(new DialogCutDownDialogSystem())

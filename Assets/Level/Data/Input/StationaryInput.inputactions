@@ -175,6 +175,15 @@
                     "processors": "",
                     "interactions": "Hold(duration=0.4)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HideGun",
+                    "type": "Button",
+                    "id": "f77b2c21-8efe-498d-bc9a-7b3cd1b992fc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -714,6 +723,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "LongInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4a66c7a5-5780-44ae-986f-27628427abe6",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HideGun",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

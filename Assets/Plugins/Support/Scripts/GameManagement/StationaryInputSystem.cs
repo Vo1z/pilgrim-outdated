@@ -199,6 +199,15 @@ namespace Support
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=0.4)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HideGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""f77b2c21-8efe-498d-bc9a-7b3cd1b992fc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -740,6 +749,17 @@ namespace Support
                     ""action"": ""LongInteract"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a66c7a5-5780-44ae-986f-27628427abe6"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HideGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -767,6 +787,7 @@ namespace Support
             m_FPS_FirstSlotInteraction = m_FPS.FindAction("FirstSlotInteraction", throwIfNotFound: true);
             m_FPS_SecondSlotInteraction = m_FPS.FindAction("SecondSlotInteraction", throwIfNotFound: true);
             m_FPS_DropGun = m_FPS.FindAction("DropGun", throwIfNotFound: true);
+            m_FPS_HideGun = m_FPS.FindAction("HideGun", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -845,6 +866,7 @@ namespace Support
         private readonly InputAction m_FPS_FirstSlotInteraction;
         private readonly InputAction m_FPS_SecondSlotInteraction;
         private readonly InputAction m_FPS_DropGun;
+        private readonly InputAction m_FPS_HideGun;
         public struct FPSActions
         {
             private @StationaryInput m_Wrapper;
@@ -868,6 +890,7 @@ namespace Support
             public InputAction @FirstSlotInteraction => m_Wrapper.m_FPS_FirstSlotInteraction;
             public InputAction @SecondSlotInteraction => m_Wrapper.m_FPS_SecondSlotInteraction;
             public InputAction @DropGun => m_Wrapper.m_FPS_DropGun;
+            public InputAction @HideGun => m_Wrapper.m_FPS_HideGun;
             public InputActionMap Get() { return m_Wrapper.m_FPS; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -934,6 +957,9 @@ namespace Support
                     @DropGun.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropGun;
                     @DropGun.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropGun;
                     @DropGun.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropGun;
+                    @HideGun.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnHideGun;
+                    @HideGun.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnHideGun;
+                    @HideGun.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnHideGun;
                 }
                 m_Wrapper.m_FPSActionsCallbackInterface = instance;
                 if (instance != null)
@@ -995,6 +1021,9 @@ namespace Support
                     @DropGun.started += instance.OnDropGun;
                     @DropGun.performed += instance.OnDropGun;
                     @DropGun.canceled += instance.OnDropGun;
+                    @HideGun.started += instance.OnHideGun;
+                    @HideGun.performed += instance.OnHideGun;
+                    @HideGun.canceled += instance.OnHideGun;
                 }
             }
         }
@@ -1020,6 +1049,7 @@ namespace Support
             void OnFirstSlotInteraction(InputAction.CallbackContext context);
             void OnSecondSlotInteraction(InputAction.CallbackContext context);
             void OnDropGun(InputAction.CallbackContext context);
+            void OnHideGun(InputAction.CallbackContext context);
         }
     }
 }

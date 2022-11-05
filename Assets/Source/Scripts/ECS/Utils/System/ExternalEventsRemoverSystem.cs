@@ -1,4 +1,5 @@
-﻿using Ingame.Hud;
+﻿using Ingame.Animation;
+using Ingame.Hud;
 using Ingame.Inventory;
 using Ingame.SupportCommunication;
 using LeoEcsPhysics;
@@ -22,6 +23,8 @@ namespace Ingame.Utils
         private readonly EcsFilter<UpdateSettingsRequest> _updateSettingsRequestFilter;
         //Gunplay
         private readonly EcsFilter<RecoilRequest> _recoilRequestFilter;
+        //Animation
+        private readonly EcsFilter<UpdateItemVisibilityAnimationCallbackEvent> _updateItemsVisibilityCallbackFilter;
 
         public void Run()
         {
@@ -77,6 +80,12 @@ namespace Ingame.Utils
             {
                 ref var eventEntity = ref _recoilRequestFilter.GetEntity(i);
                 eventEntity.Del<RecoilRequest>();
+            }
+            
+            foreach (var i in _updateItemsVisibilityCallbackFilter)
+            {
+                ref var eventEntity = ref _updateItemsVisibilityCallbackFilter.GetEntity(i);
+                eventEntity.Del<UpdateItemVisibilityAnimationCallbackEvent>();
             }
         }
     }

@@ -53,6 +53,7 @@ MonoBehaviour:
   inverseAimRotationMovementY: 0
   initialInstability: 0.1
   instabilityBobbingSpeed: 1
+  instabilityAimStabilizationSpeed: 15
   instabilityMovementOffset: 0.05
   minMaxInstabilityOffsetY: {x: -0.05, y: 0.05}
   minMaxInstabilityOffsetX: {x: -0.05, y: 0.05}

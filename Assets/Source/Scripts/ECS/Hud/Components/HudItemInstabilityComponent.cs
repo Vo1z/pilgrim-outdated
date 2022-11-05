@@ -4,7 +4,7 @@
 	{
 		public float verticalSinTime;
 		public float horizontalSinTime;
-		
+
 		public float currentInstability;
 	}
 }

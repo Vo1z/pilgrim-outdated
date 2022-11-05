@@ -20,10 +20,10 @@ namespace Ingame.Gunplay
                 firearmEntity.Del<AwaitingShotTag>();
 
                 if (!TryPerformRaycast(firearmComponent.barrelOrigin.position, firearmComponent.barrelOrigin.forward, out RaycastHit hit))
-                    return;
-                
+                    continue;
+
                 if(!TryApplyDamage(hit.collider.gameObject, firearmComponent.firearmConfig.Damage))
-                    return;
+                    continue;
             }
         }
         
@@ -33,21 +33,21 @@ namespace Ingame.Gunplay
             var ray = new Ray(originPos, direction);
             int layerMask = ~LayerMask.GetMask("Ignore Raycast", "PlayerStatic", "HUD", "Weapon");
 
-            return Physics.Raycast(ray, out hit, layerMask);
+            return Physics.Raycast(ray, out hit, 1000, layerMask, QueryTriggerInteraction.Ignore);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool TryApplyDamage(GameObject gameObject, float damage)
         {
             damage = Mathf.Max(0, damage);
-            
+
             if (damage <= 0) 
                 TemplateUtils.SafeDebug("Damage of the shot is less then 0", LogType.Warning);
 
             if(!gameObject.TryGetComponent(out EntityReference entityReference))
                 return false;
-            
-            if(!entityReference.Entity.Has<HealComponent>())
+
+            if(!entityReference.Entity.Has<HealthComponent>())
                 return false;
 
             ref var appliedDamageComponent = ref entityReference.Entity.Get<DamageComponent>();

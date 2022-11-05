@@ -22,7 +22,7 @@ namespace Ingame.Gunplay
                 ref var timerComponent = ref _firearmShootFilter.Get3(i);
 
                 if (timerComponent.timePassed < rifleComponent.rifleConfig.PauseBetweenShots)
-                    return;
+                    continue;
 
                 rifleEntity.Get<AwaitingShotTag>();
                 timerComponent.timePassed = 0;

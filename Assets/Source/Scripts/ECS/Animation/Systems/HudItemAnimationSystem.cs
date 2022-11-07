@@ -1,4 +1,5 @@
 ﻿using Ingame.Hud;
+using Ingame.Input;
 using Leopotam.Ecs;
 using Support;
 using Support.Extensions;
@@ -8,8 +9,10 @@ namespace Ingame.Animation
     public sealed class HudItemAnimationSystem : IEcsRunSystem
     {
         private readonly EcsFilter<HudItemModel, AnimatorModel, AvailableAnimationsComponent, InInventoryTag> _gunItemModelFilter;
-        private readonly EcsFilter<HudReloadAnimationTriggerEvent> _hudReloadAnimationEventFilter;
-        private readonly EcsFilter<HudDistortTheShutterAnimationTriggerEvent> _hudDistortTheShutterAnimationEventFilter;
+        
+        private readonly EcsFilter<MagazineSwitchInputEvent> _magSwitchEventFilter;
+        private readonly EcsFilter<DistortTheShutterInputEvent> _distortShutterEventFilter;
+        private readonly EcsFilter<ShutterDelayInputEvent> _shutterDelayEventFilter;
 
         public void Run()
         {
@@ -32,30 +35,31 @@ namespace Ingame.Animation
                 if (itemAvailableAnimations.HasAnimation(AnimationType.Aim))
                     animator.SetBool("IsAiming", hudItemEntity.Has<HudIsAimingTag>());
 
+                
                 if (itemAvailableAnimations.HasAnimation(AnimationType.Reload))
                 {
-                    if (!_hudReloadAnimationEventFilter.IsEmpty() && hudItemEntity.Has<HudIsInHandsTag>())
+                    if (!_magSwitchEventFilter.IsEmpty() && hudItemEntity.Has<HudIsInHandsTag>())
                     {
                         animator.ResetTrigger("Reload");
                         animator.SetTrigger("Reload");
                     }
                 }
-
+                
                 if (itemAvailableAnimations.HasAnimation(AnimationType.DistortTheShutter))
                 {
-                    if (!_hudDistortTheShutterAnimationEventFilter.IsEmpty() && hudItemEntity.Has<HudIsInHandsTag>())
+                    if (!_distortShutterEventFilter.IsEmpty() && hudItemEntity.Has<HudIsInHandsTag>())
                     {
                         animator.ResetTrigger("DistortTheShutter");
                         animator.SetTrigger("DistortTheShutter");
                     }
                 }
-
+                
                 if (itemAvailableAnimations.HasAnimation(AnimationType.ShutterDelay))
                 {
-                    if (!_hudDistortTheShutterAnimationEventFilter.IsEmpty() && hudItemEntity.Has<HudIsInHandsTag>())
+                    if (!_shutterDelayEventFilter.IsEmpty() && hudItemEntity.Has<HudIsInHandsTag>())
                     {
-                        animator.ResetTrigger("DistortTheShutter");
-                        animator.SetTrigger("DistortTheShutter");
+                        animator.ResetTrigger("ShutterDelay");
+                        animator.SetTrigger("ShutterDelay");
                     }
                 }
             }

@@ -178,7 +178,7 @@ namespace Ingame.Input
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
 
-                inputEntity.Get<ReloadInputEvent>();
+                inputEntity.Get<MagazineSwitchInputEvent>();
             }
 
             if (_isDistortTheShutterPerformedThisFrame)

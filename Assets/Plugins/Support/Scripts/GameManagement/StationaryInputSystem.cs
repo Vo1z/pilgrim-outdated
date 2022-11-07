@@ -138,6 +138,15 @@ namespace Support
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ShowAmountOfAmmo"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ede40ba-b7f7-4944-9984-2acb40736b3f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""ShutterDelay"",
                     ""type"": ""Button"",
                     ""id"": ""031ad4ac-d432-45b0-ab2c-09a15bc376e4"",
@@ -760,6 +769,28 @@ namespace Support
                     ""action"": ""HideGun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8443558-4c6e-4cab-8396-3bfc8032eae1"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": ""Hold(duration=0.4)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowAmountOfAmmo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36744ba0-a3fc-440e-8e23-176bebcc5196"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": ""Hold(duration=0.4)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowAmountOfAmmo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -780,6 +811,7 @@ namespace Support
             m_FPS_Aim = m_FPS.FindAction("Aim", throwIfNotFound: true);
             m_FPS_Reload = m_FPS.FindAction("Reload", throwIfNotFound: true);
             m_FPS_DistortTheShutter = m_FPS.FindAction("DistortTheShutter", throwIfNotFound: true);
+            m_FPS_ShowAmountOfAmmo = m_FPS.FindAction("ShowAmountOfAmmo", throwIfNotFound: true);
             m_FPS_ShutterDelay = m_FPS.FindAction("ShutterDelay", throwIfNotFound: true);
             m_FPS_Interact = m_FPS.FindAction("Interact", throwIfNotFound: true);
             m_FPS_LongInteract = m_FPS.FindAction("LongInteract", throwIfNotFound: true);
@@ -859,6 +891,7 @@ namespace Support
         private readonly InputAction m_FPS_Aim;
         private readonly InputAction m_FPS_Reload;
         private readonly InputAction m_FPS_DistortTheShutter;
+        private readonly InputAction m_FPS_ShowAmountOfAmmo;
         private readonly InputAction m_FPS_ShutterDelay;
         private readonly InputAction m_FPS_Interact;
         private readonly InputAction m_FPS_LongInteract;
@@ -883,6 +916,7 @@ namespace Support
             public InputAction @Aim => m_Wrapper.m_FPS_Aim;
             public InputAction @Reload => m_Wrapper.m_FPS_Reload;
             public InputAction @DistortTheShutter => m_Wrapper.m_FPS_DistortTheShutter;
+            public InputAction @ShowAmountOfAmmo => m_Wrapper.m_FPS_ShowAmountOfAmmo;
             public InputAction @ShutterDelay => m_Wrapper.m_FPS_ShutterDelay;
             public InputAction @Interact => m_Wrapper.m_FPS_Interact;
             public InputAction @LongInteract => m_Wrapper.m_FPS_LongInteract;
@@ -936,6 +970,9 @@ namespace Support
                     @DistortTheShutter.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
                     @DistortTheShutter.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
                     @DistortTheShutter.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
+                    @ShowAmountOfAmmo.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnShowAmountOfAmmo;
+                    @ShowAmountOfAmmo.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnShowAmountOfAmmo;
+                    @ShowAmountOfAmmo.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnShowAmountOfAmmo;
                     @ShutterDelay.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnShutterDelay;
                     @ShutterDelay.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnShutterDelay;
                     @ShutterDelay.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnShutterDelay;
@@ -1000,6 +1037,9 @@ namespace Support
                     @DistortTheShutter.started += instance.OnDistortTheShutter;
                     @DistortTheShutter.performed += instance.OnDistortTheShutter;
                     @DistortTheShutter.canceled += instance.OnDistortTheShutter;
+                    @ShowAmountOfAmmo.started += instance.OnShowAmountOfAmmo;
+                    @ShowAmountOfAmmo.performed += instance.OnShowAmountOfAmmo;
+                    @ShowAmountOfAmmo.canceled += instance.OnShowAmountOfAmmo;
                     @ShutterDelay.started += instance.OnShutterDelay;
                     @ShutterDelay.performed += instance.OnShutterDelay;
                     @ShutterDelay.canceled += instance.OnShutterDelay;
@@ -1042,6 +1082,7 @@ namespace Support
             void OnAim(InputAction.CallbackContext context);
             void OnReload(InputAction.CallbackContext context);
             void OnDistortTheShutter(InputAction.CallbackContext context);
+            void OnShowAmountOfAmmo(InputAction.CallbackContext context);
             void OnShutterDelay(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
             void OnLongInteract(InputAction.CallbackContext context);

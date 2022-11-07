@@ -109,6 +109,7 @@ namespace Ingame
                 .OneFrame<ShootInputEvent>()
                 .OneFrame<AimInputEvent>()
                 .OneFrame<MagazineSwitchInputEvent>()
+                .OneFrame<ShowAmountOfAmmoInputEvent>()
                 .OneFrame<DistortTheShutterInputEvent>()
                 .OneFrame<ShutterDelayInputEvent>()
                 .OneFrame<InteractInputEvent>()
@@ -216,6 +217,7 @@ namespace Ingame
                 //UI
                 .Add(new InteractWithRaycastableUiSystem())
                 .Add(new DisplayAimDotOnInteractionSystem())
+                .Add(new DisplayAmountOfAmmoInMagazineSystem())
                 //SupportCommunication
                 .Add(new ProcessMessagesToSupportSystem())
                 //Utils

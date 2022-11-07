@@ -13,6 +13,7 @@ namespace Ingame.Input
         private bool _isDistortTheShutterPerformedThisFrame = false; 
         private bool _isLongInteractPerformedThisFrame = false;
         private bool _isDropGunInputWasPerformedThisFrame = false;
+        private bool _isShowAmmountOfAmmoWasPerformedThisFrame = false;
         private float timePassedFromLastLeanInputRequest;
 
         private InputAction _movementInputX;
@@ -25,6 +26,7 @@ namespace Ingame.Input
         private InputAction _shootInput;
         private InputAction _aimInput;
         private InputAction _reloadInput;
+        private InputAction _showAmountOfAmmoInput;
         private InputAction _distortTheShutterInput;
         private InputAction _shutterDelayInput;
         private InputAction _interactionInput;
@@ -51,6 +53,7 @@ namespace Ingame.Input
             _aimInput = _stationaryInputSystem.FPS.Aim;
 
             _reloadInput = _stationaryInputSystem.FPS.Reload;
+            _showAmountOfAmmoInput = _stationaryInputSystem.FPS.ShowAmountOfAmmo;
             _distortTheShutterInput = _stationaryInputSystem.FPS.DistortTheShutter;
             _shutterDelayInput = _stationaryInputSystem.FPS.ShutterDelay;
 
@@ -67,6 +70,7 @@ namespace Ingame.Input
             _distortTheShutterInput.performed += OnDistortTheShutterPerformed;
             _longInteractInput.performed += OnLongInteractPerformed;
             _dropGunInput.performed += OnDropGunInputPerformed;
+            _showAmountOfAmmoInput.performed += OnAmountOfAmmoInputPerformed;
         }
 
         private void OnDistortTheShutterPerformed(InputAction.CallbackContext callbackContext)
@@ -91,6 +95,14 @@ namespace Ingame.Input
                 return;
 
             _isDropGunInputWasPerformedThisFrame = true;
+        }
+        
+        private void OnAmountOfAmmoInputPerformed(InputAction.CallbackContext callbackContext)
+        {
+            if(callbackContext.canceled || callbackContext.duration < .05f)
+                return;
+
+            _isShowAmmountOfAmmoWasPerformedThisFrame = true;
         }
 
         public void Run()
@@ -253,9 +265,18 @@ namespace Ingame.Input
                 inputEntity.Get<DropGunInputEvent>();
             }
 
+            if (_isShowAmmountOfAmmoWasPerformedThisFrame)
+            {
+                if (inputEntity == EcsEntity.Null)
+                    inputEntity = _world.NewEntity();
+
+                inputEntity.Get<ShowAmountOfAmmoInputEvent>();
+            }
+
             _isDistortTheShutterPerformedThisFrame = false;
             _isLongInteractPerformedThisFrame = false;
             _isDropGunInputWasPerformedThisFrame = false;
+            _isShowAmmountOfAmmoWasPerformedThisFrame = false;
         }
     }
 }

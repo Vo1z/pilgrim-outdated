@@ -114,6 +114,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ShowAmountOfAmmo",
+                    "type": "Button",
+                    "id": "8ede40ba-b7f7-4944-9984-2acb40736b3f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ShutterDelay",
                     "type": "Button",
                     "id": "031ad4ac-d432-45b0-ab2c-09a15bc376e4",
@@ -734,6 +743,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "HideGun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8443558-4c6e-4cab-8396-3bfc8032eae1",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Hold(duration=0.4)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowAmountOfAmmo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36744ba0-a3fc-440e-8e23-176bebcc5196",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "Hold(duration=0.4)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowAmountOfAmmo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

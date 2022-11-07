@@ -134,7 +134,7 @@ namespace Support
                     ""id"": ""f5b50951-d069-47f8-aae9-dc84c6a9caec"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -577,7 +577,7 @@ namespace Support
                 {
                     ""name"": """",
                     ""id"": ""56a5a5b8-8128-4a4e-9068-cd164fa2492b"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""path"": ""<Keyboard>/y"",
                     ""interactions"": ""Hold(duration=0.4)"",
                     ""processors"": """",
                     ""groups"": """",

@@ -198,6 +198,7 @@ namespace Ingame
                 .Add(new HudRecoilSystem())
                 .Add(new HudItemAnimationSystem())
                 .Add(new Ar15ReloadSystem())
+                .Add(new Mp5ReloadSystem())
                 //Dialog
                 .Add(new DialogSystem())
                 .Add(new DialogCutDownDialogSystem())

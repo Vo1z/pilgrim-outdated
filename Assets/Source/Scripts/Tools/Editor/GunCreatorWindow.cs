@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using Ingame.Animation;
 using Ingame.Gunplay;
 using Ingame.Hud;
 using Ingame.Interaction.Common;
@@ -23,6 +24,7 @@ namespace Ingame.Tools
             typeof(EntityReference),
             typeof(EntityReferenceRequestProvider),
             typeof(TransformModelProvider),
+            typeof(AnimatorModelProvider),
             typeof(HudItemModelProvider),
             typeof(InteractiveTagProvider),
             typeof(HudItemRecoilComponentProvider)
@@ -35,7 +37,7 @@ namespace Ingame.Tools
             typeof(TimerComponentProvider),
             typeof(RifleComponentProvider)
         };
-        
+
         private Toggle _createBarrelOriginToggle;
         private Toggle _createSurfaceDetectorToggle;
         private RadioButton _rifleRadioButton;

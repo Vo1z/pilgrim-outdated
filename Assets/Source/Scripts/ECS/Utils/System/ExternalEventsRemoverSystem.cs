@@ -25,6 +25,9 @@ namespace Ingame.Utils
         private readonly EcsFilter<RecoilRequest> _recoilRequestFilter;
         //Animation
         private readonly EcsFilter<UpdateItemVisibilityAnimationCallbackEvent> _updateItemsVisibilityCallbackFilter;
+        private readonly EcsFilter<PerformDistortShutterAnimationCallbackEvent> _performDistortShutterAnimationCallbackFilter;
+        private readonly EcsFilter<PerformMagazineSwitchAnimationCallback> _performMagazineSwitchCallbackFilter;
+        private readonly EcsFilter<PerformShutterDelayAnimationCallbackEvent> _performShutterDelayCallbackFilter;
 
         public void Run()
         {
@@ -86,6 +89,24 @@ namespace Ingame.Utils
             {
                 ref var eventEntity = ref _updateItemsVisibilityCallbackFilter.GetEntity(i);
                 eventEntity.Del<UpdateItemVisibilityAnimationCallbackEvent>();
+            }
+            
+            foreach (var i in _performDistortShutterAnimationCallbackFilter)
+            {
+                ref var eventEntity = ref _performDistortShutterAnimationCallbackFilter.GetEntity(i);
+                eventEntity.Del<PerformDistortShutterAnimationCallbackEvent>();
+            }
+            
+            foreach (var i in _performMagazineSwitchCallbackFilter)
+            {
+                ref var eventEntity = ref _performMagazineSwitchCallbackFilter.GetEntity(i);
+                eventEntity.Del<PerformMagazineSwitchAnimationCallback>();
+            }
+            
+            foreach (var i in _performShutterDelayCallbackFilter)
+            {
+                ref var eventEntity = ref _performShutterDelayCallbackFilter.GetEntity(i);
+                eventEntity.Del<PerformShutterDelayAnimationCallbackEvent>();
             }
         }
     }

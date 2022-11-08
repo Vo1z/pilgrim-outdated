@@ -17,7 +17,7 @@ namespace Ingame.Enemy
         [SerializeField] private TypeOfDetection typeOfDetection;
         [SerializeField] private float detectionRange = 45f;
         [SerializeField] private float detectionAngle = 55;
-        //[SerializeField] private float timeToBeDetected = 1.5f;
+       
         [ShowIf("IsRayCastDetectionUsed")]
         [SerializeField] private LayerMask ignoredLayers;
         
@@ -29,8 +29,7 @@ namespace Ingame.Enemy
             _transform =  Entity.Get<TransformModel>().transform;
             ref var enemyModel = ref Entity.Get<EnemyStateModel>();
             _target =  enemyModel.Target;
-            
-            //_time = timeToBeDetected;
+        
         }
 
         protected override void ActOnStop()
@@ -72,11 +71,7 @@ namespace Ingame.Enemy
                     state = GetPlayerStateFromPhotoScanning();
                     break;
             }
-            /*if (_time>0)
-            {
-                _time -= Time.deltaTime;
-                return State.Running;
-            } */
+      
 
             return state;
         }

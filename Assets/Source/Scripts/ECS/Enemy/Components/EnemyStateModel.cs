@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ingame.Enemy
 {
+    [Serializable]
     public struct EnemyStateModel
     {
         //hp
@@ -28,7 +30,7 @@ namespace Ingame.Enemy
         public Vector3? NoisePosition;
         public List<Vector3> LastRememberedNoises;
         
-        public Vector3 Location;
+        //public Vector3 Location;
         
         //Covers
         public HashSet<Transform> Covers;
@@ -38,8 +40,12 @@ namespace Ingame.Enemy
         public HashSet<Transform> TransparentCovers;
         public HashSet<Transform> UndefinedTransparentCovers;
         
+        //Occupied Covers
+        public static HashSet<Transform> OccupiedUndefinedCovers;
+        public static HashSet<Transform> OccupiedCovers;
         
-        public Transform Cover;
+        public List<Transform> Flank;
+        public Vector3 Cover;
 
     }
 }

@@ -42,10 +42,11 @@ namespace Ingame.Behaviour{
         public Node CreateNode(Type typeOfNode)
         {
             var node = ScriptableObject.CreateInstance(typeOfNode) as Node;
+            
             node.name = typeOfNode.Name;
             node.Guid = GUID.Generate().ToString();
             Nodes.Add(node);
-
+            
             if (!Application.isPlaying)
             {
                 AssetDatabase.AddObjectToAsset(node,this);

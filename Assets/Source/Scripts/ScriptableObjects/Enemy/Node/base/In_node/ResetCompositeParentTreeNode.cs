@@ -1,12 +1,11 @@
-﻿using Ingame.Behaviour;
-using UnityEngine;
+﻿ using UnityEngine;
 
-namespace Ingame.Enemy
+ namespace Ingame.Behaviour
 {
-    public class IsCoverNearbyNode : ActionNode
+    public class ResetCompositeParentTreeNode : ActionNode
     {
         [SerializeField] 
-        private  TypeOfCover type;
+        private CompositeNode compositeParentNode;
         protected override void ActOnStart()
         {
              
@@ -14,12 +13,13 @@ namespace Ingame.Enemy
 
         protected override void ActOnStop()
         {
-            
+        
         }
 
         protected override State ActOnTick()
         {
-            return State.Failure;
+            compositeParentNode.RestartState();
+            return State.Success;
         }
     }
 }

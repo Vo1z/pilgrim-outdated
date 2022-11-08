@@ -6,8 +6,6 @@ TagManager:
   tags:
   - Terrain
   - CoverPoint
-  - CoverPointLeft
-  - CoverPointRight
   layers:
   - Default
   - TransparentFX
@@ -21,7 +19,7 @@ TagManager:
   - IgnoreCollisionWithPlayer
   - Helmet
   - Actor
-  - 
+  - TransparentObstacle
   - 
   - 
   - 

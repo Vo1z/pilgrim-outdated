@@ -18,5 +18,6 @@ namespace Ingame.Behaviour
             node.Children = Children.ConvertAll(e=>e.Clone());
             return node;
         }
+        
     }
 }

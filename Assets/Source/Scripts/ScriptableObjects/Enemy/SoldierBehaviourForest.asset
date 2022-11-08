@@ -1,26 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9119824693205152358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe1e807216e14de88b9532496e7d4e9f, type: 3}
-  m_Name: RepeatNode
-  m_EditorClassIdentifier: 
-  Guid: 55c0e587c36b254438db6cdd8bf072c8
-  Position: {x: 516, y: 1260}
-  Description: 
-  child: {fileID: 322131405339897238}
-  type: 2
-  loops: 1
-  stateOnResetState: 2
-  minLoops: 0
-  maxLoops: 0
 --- !u!114 &-9101390332049630350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,7 +31,7 @@ MonoBehaviour:
   m_Name: SuccessNode
   m_EditorClassIdentifier: 
   Guid: 926412d4e95664945aee4cb8c3e1f401
-  Position: {x: -932.99994, y: -434.9997}
+  Position: {x: -521.9132, y: -470.74078}
   Description: Detect Target
   child: {fileID: -3902936309046262282}
 --- !u!114 &-8211253586484928295
@@ -121,7 +100,7 @@ MonoBehaviour:
   m_Name: RootNode
   m_EditorClassIdentifier: 
   Guid: 3a9eac101bc26f847ace64aa4ff977f5
-  Position: {x: -279.00024, y: -1869.6337}
+  Position: {x: 862.99994, y: -1674.8256}
   Description: 
   child: {fileID: 3961247054021511787}
 --- !u!114 &-7062069520252567819
@@ -261,36 +240,6 @@ MonoBehaviour:
   Children:
   - {fileID: -6547707525063080088}
   - {fileID: 1498429352241645124}
---- !u!114 &-5103145248085784921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e8c610a503a4552b71041b91e397a51, type: 3}
-  m_Name: IsTargetDetectedNode
-  m_EditorClassIdentifier: 
-  Guid: 92955a3cd463e8444b7647130f0dacdf
-  Position: {x: -531.7003, y: 1337.0004}
-  Description: 
---- !u!114 &-5022720593125259377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f83c5877ea4c59b51948155e452b48, type: 3}
-  m_Name: RepositionActionNode
-  m_EditorClassIdentifier: 
-  Guid: 87baaed508171314aaf2aa316bd00c41
-  Position: {x: -166.00005, y: 1954.4381}
-  Description: 
 --- !u!114 &-4373366903603424304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,23 +274,6 @@ MonoBehaviour:
   - {fileID: -3857310393512887571}
   - {fileID: -7948368040096966933}
   - {fileID: -5317162177212687475}
---- !u!114 &-4168731663125738662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0210031ad617433f8359215f3b9803a1, type: 3}
-  m_Name: FindCoverPointActionNode
-  m_EditorClassIdentifier: 
-  Guid: 6eea53e79f6df364988a1e3151334691
-  Position: {x: -618.50006, y: 1922}
-  Description: 
-  typeOfCover: 0
-  typeOfCoverSpot: 0
 --- !u!114 &-4163685507017967133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,7 +287,7 @@ MonoBehaviour:
   m_Name: RagdollActionNode
   m_EditorClassIdentifier: 
   Guid: f5eaeb023d004524583f22dc015a51af
-  Position: {x: -1414.5245, y: -266.77722}
+  Position: {x: -1148.362, y: 1548.822}
   Description: 
 --- !u!114 &-3914831050548050993
 MonoBehaviour:
@@ -407,8 +339,6 @@ MonoBehaviour:
   Guid: 215b4f56f128340488513143ba5b84ea
   Position: {x: -3707.7507, y: 3260}
   Description: 
-  typeOfCover: 0
-  typeOfCoverSpot: 0
 --- !u!114 &-3545046794581427750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +352,7 @@ MonoBehaviour:
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
   Guid: b4eb204205f766d4caad4965b0a842f6
-  Position: {x: -1800.5245, y: -494.77722}
+  Position: {x: -1545.5001, y: 1357}
   Description: DEAD
   Children:
   - {fileID: 4946914923887460841}
@@ -440,7 +370,7 @@ MonoBehaviour:
   m_Name: NegatorNode
   m_EditorClassIdentifier: 
   Guid: 0ce0763ebfdebfc469084ba12b050b5f
-  Position: {x: -1038.9996, y: 80.99994}
+  Position: {x: -1039, y: 83.13958}
   Description: 
   child: {fileID: 5796900872876215210}
 --- !u!114 &-3189220981860567887
@@ -456,7 +386,7 @@ MonoBehaviour:
   m_Name: RandomSelectorNode
   m_EditorClassIdentifier: 
   Guid: 150bdcaab8b85a745858d36a155451a2
-  Position: {x: 6433, y: 1282.15}
+  Position: {x: 6425, y: 1273}
   Description: 
   Children:
   - {fileID: -3914831050548050993}
@@ -492,7 +422,7 @@ MonoBehaviour:
   m_Name: ParallelNode
   m_EditorClassIdentifier: 
   Guid: 5a07c5740b650ac4898e6c4170d34bc2
-  Position: {x: 86.00006, y: -745.0001}
+  Position: {x: 514.00006, y: -901.6801}
   Description: 
   Children:
   - {fileID: -8400375008989760523}
@@ -577,7 +507,7 @@ MonoBehaviour:
   m_Name: SelectorNode
   m_EditorClassIdentifier: 
   Guid: eb5f2e3fbcbd0bf4fbb694f8d86ec86b
-  Position: {x: -23.978115, y: 406.00003}
+  Position: {x: -296.83548, y: 470.00003}
   Description: 
   Children:
   - {fileID: -1629785311154166183}
@@ -599,7 +529,6 @@ MonoBehaviour:
   Guid: a2b528c77e384f4448848f143dd5e569
   Position: {x: -3631.9436, y: 2897.9998}
   Description: 
-  type: 0
 --- !u!114 &-2141979094338447222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,6 +577,21 @@ MonoBehaviour:
   Guid: e2e0cb1ab1b794341b95bebadc90a343
   Position: {x: -1815.9995, y: 4338.999}
   Description: 
+--- !u!114 &-1819048758685561464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e8c610a503a4552b71041b91e397a51, type: 3}
+  m_Name: IsTargetDetectedNode
+  m_EditorClassIdentifier: 
+  Guid: 3b8f6e4c167c65a49a12a418ff9356f9
+  Position: {x: -575.99976, y: 1126.0001}
+  Description: 
 --- !u!114 &-1701407852246471076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,7 +625,7 @@ MonoBehaviour:
   Description: LOW HP
   Children:
   - {fileID: -7990969904676916805}
-  - {fileID: -6987254750632265475}
+  - {fileID: 8790215246248795618}
 --- !u!114 &-1128787773329477967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,7 +656,7 @@ MonoBehaviour:
   m_Name: IsNoiseDetectedNode
   m_EditorClassIdentifier: 
   Guid: 5b65821f9b8fd414da18b584440455ce
-  Position: {x: 1511.4003, y: 1724.0502}
+  Position: {x: 2221, y: 1892}
   Description: 
 --- !u!114 &-517903436464289377
 MonoBehaviour:
@@ -773,7 +717,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e5fd61c90fa4ac8807fb8e6bfb07fb6, type: 3}
-  m_Name: SoldierBehaviour
+  m_Name: SoldierBehaviourForest
   m_EditorClassIdentifier: 
   root: {fileID: -7216184966238769662}
   state: 0
@@ -850,17 +794,7 @@ MonoBehaviour:
   - {fileID: -2364750473729545703}
   - {fileID: 6384005280682141023}
   - {fileID: 1693278040883172597}
-  - {fileID: -5103145248085784921}
-  - {fileID: -4168731663125738662}
-  - {fileID: 2862811523759006175}
-  - {fileID: -5022720593125259377}
-  - {fileID: 5921394391941577797}
-  - {fileID: 8634403642044168309}
-  - {fileID: 322131405339897238}
-  - {fileID: 615408010712528308}
-  - {fileID: 8580649835504514441}
-  - {fileID: -9119824693205152358}
-  - {fileID: 5000534813836071804}
+  - {fileID: -1819048758685561464}
 --- !u!114 &53868262438421317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -894,25 +828,6 @@ MonoBehaviour:
   Position: {x: -3181, y: 4399}
   Description: 
   child: {fileID: -517903436464289377}
---- !u!114 &322131405339897238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b5840557365954792bf635f7e039ab, type: 3}
-  m_Name: SequenceNode
-  m_EditorClassIdentifier: 
-  Guid: 00985cd806b99184f85a581daa7cd5e7
-  Position: {x: 508, y: 1473}
-  Description: FLANK
-  Children:
-  - {fileID: 5000534813836071804}
-  - {fileID: 5921394391941577797}
-  - {fileID: 8580649835504514441}
 --- !u!114 &389758098277397014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,23 +844,6 @@ MonoBehaviour:
   Position: {x: -3107.1003, y: 3987.0005}
   Description: 
   minAmmoPercentage: 0
---- !u!114 &615408010712528308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf5879144f13440581ea7558410af0ec, type: 3}
-  m_Name: IsFlankPositionValid
-  m_EditorClassIdentifier: 
-  Guid: 2a4c05f0a0eee954bb911ae67d60a017
-  Position: {x: 118.000084, y: 1849.9999}
-  Description: 
-  playerVisionAngle: 50
-  playerBackRangeAngle: 65
 --- !u!114 &844800726396638547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,11 +857,10 @@ MonoBehaviour:
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
   Guid: 3d3ce26a4184ee54ba17cd777e0e027e
-  Position: {x: -16.999977, y: 976.502}
+  Position: {x: -230.49983, y: 904.068}
   Description: ATTACK
   Children:
-  - {fileID: -5103145248085784921}
-  - {fileID: -9119824693205152358}
+  - {fileID: -1819048758685561464}
 --- !u!114 &988792360875951996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1035,7 +932,7 @@ MonoBehaviour:
   m_Name: SuccessNode
   m_EditorClassIdentifier: 
   Guid: 6394e431a0659f444a702570cc9586e6
-  Position: {x: -27.804897, y: 72.64498}
+  Position: {x: -19.00209, y: 62.00006}
   Description: 
   child: {fileID: -2180279978643013751}
 --- !u!114 &1827132107948215468
@@ -1069,26 +966,8 @@ MonoBehaviour:
   m_Name: ResetTreeNode
   m_EditorClassIdentifier: 
   Guid: c6f04a7df7f212849a6c02bdb21e0931
-  Position: {x: -1823.5245, y: -182.77716}
+  Position: {x: -1557, y: 1633}
   Description: 
---- !u!114 &2862811523759006175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b5840557365954792bf635f7e039ab, type: 3}
-  m_Name: SequenceNode
-  m_EditorClassIdentifier: 
-  Guid: 46fe0c2124fa72946a934b15f0a5d813
-  Position: {x: -380.79312, y: 1615.9999}
-  Description: 
-  Children:
-  - {fileID: -4168731663125738662}
-  - {fileID: -5022720593125259377}
 --- !u!114 &3922639114169426676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1120,9 +999,9 @@ MonoBehaviour:
   m_Name: RepeatNode
   m_EditorClassIdentifier: 
   Guid: 5cf90672fd127de45b8c9d811932216a
-  Position: {x: -287.18304, y: -1427.8589}
+  Position: {x: 505.57825, y: -1223.1655}
   Description: 
-  child: {fileID: 8634403642044168309}
+  child: {fileID: -3130875441797585090}
   type: 0
   loops: 1
   stateOnResetState: 0
@@ -1141,7 +1020,7 @@ MonoBehaviour:
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
   Guid: 95cfb05b95798df4ca84ced73e93faf6
-  Position: {x: 6441, y: 1029.8}
+  Position: {x: 6455, y: 1031}
   Description: PARTOL
   Children:
   - {fileID: -3189220981860567887}
@@ -1158,7 +1037,7 @@ MonoBehaviour:
   m_Name: IsDeadNode
   m_EditorClassIdentifier: 
   Guid: b747b0b21c774124fa4e947575f8ccd3
-  Position: {x: -1979.5245, y: -270.77722}
+  Position: {x: -1713.362, y: 1544.822}
   Description: 
 --- !u!114 &4968063578194382316
 MonoBehaviour:
@@ -1173,7 +1052,7 @@ MonoBehaviour:
   m_Name: IsDyingNode
   m_EditorClassIdentifier: 
   Guid: b2f4f4d2783178a4fa40050c903f0e28
-  Position: {x: -1618.5245, y: -262.77722}
+  Position: {x: -1352.3618, y: 1552.8221}
   Description: 
 --- !u!114 &4989856180884746055
 MonoBehaviour:
@@ -1193,22 +1072,6 @@ MonoBehaviour:
   Children:
   - {fileID: 94341757780722669}
   - {fileID: -4373366903603424304}
---- !u!114 &5000534813836071804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cae171a60824d5db7fc8da10997f0d1, type: 3}
-  m_Name: NegatorNode
-  m_EditorClassIdentifier: 
-  Guid: 36ba763f83837d04bac5f189f803219f
-  Position: {x: 136, y: 1644}
-  Description: 
-  child: {fileID: 615408010712528308}
 --- !u!114 &5288292721308863642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,7 +1101,7 @@ MonoBehaviour:
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
   Guid: c1b04bc94821557478a89e2f6bfa1eb3
-  Position: {x: -1465.5245, y: -466.77722}
+  Position: {x: -1199.3619, y: 1348.822}
   Description: DYING
   Children:
   - {fileID: 4968063578194382316}
@@ -1273,27 +1136,8 @@ MonoBehaviour:
   m_Name: IsTargetDetectedNode
   m_EditorClassIdentifier: 
   Guid: e4482f86b74628648a96dc47c79a03ab
-  Position: {x: -1073.4374, y: 243.99998}
+  Position: {x: -1094, y: 397.9999}
   Description: 
---- !u!114 &5921394391941577797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9061a1347ff71c9429eabfe61952d192, type: 3}
-  m_Name: FlankActionNode
-  m_EditorClassIdentifier: 
-  Guid: 9e586b661ec970c4d8038248d670356d
-  Position: {x: 393.00003, y: 1858}
-  Description: 
-  typeOfCover: 2
-  safeDistance: 4
-  minDistance: 2
-  maxDistance: 25
 --- !u!114 &6382782118190361526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1324,7 +1168,7 @@ MonoBehaviour:
   m_Name: WaitNode
   m_EditorClassIdentifier: 
   Guid: 389e07a6e318ff6418990c60b2aa6de2
-  Position: {x: -809.00024, y: 227.72762}
+  Position: {x: -831.21423, y: 276.01895}
   Description: 
   delayDuration: 0.2
 --- !u!114 &7390358338270468278
@@ -1391,7 +1235,7 @@ MonoBehaviour:
   m_Name: DetectTargetActionNode
   m_EditorClassIdentifier: 
   Guid: 35c97a79aca3027458c686de5d1d6528
-  Position: {x: -584.0003, y: 235.99998}
+  Position: {x: -584, y: 158.00006}
   Description: 
   typeOfDetection: 1
   detectionRange: 25
@@ -1415,39 +1259,6 @@ MonoBehaviour:
   Position: {x: 6531.5, y: 2595}
   Description: TARGET LOST
   Children: []
---- !u!114 &8580649835504514441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f83c5877ea4c59b51948155e452b48, type: 3}
-  m_Name: RepositionActionNode
-  m_EditorClassIdentifier: 
-  Guid: cd0ce761744eb4542a1bbb3b1429f6ec
-  Position: {x: 717.0001, y: 1857.9999}
-  Description: 
---- !u!114 &8634403642044168309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc9d025c1cc004469ee71dfa6bf0cbf, type: 3}
-  m_Name: SelectorNode
-  m_EditorClassIdentifier: 
-  Guid: 820239a2867b96c4899a7a4cff64bb0f
-  Position: {x: -861.9999, y: -1018.6441}
-  Description: 
-  Children:
-  - {fileID: 8790215246248795618}
-  - {fileID: -3130875441797585090}
 --- !u!114 &8790215246248795618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,11 +1272,12 @@ MonoBehaviour:
   m_Name: SelectorNode
   m_EditorClassIdentifier: 
   Guid: 7f7c23f6c83aea544813d26785978a82
-  Position: {x: -1645.5245, y: -628.7771}
-  Description: DIE
+  Position: {x: -1172.3618, y: 1093.822}
+  Description: 
   Children:
   - {fileID: -3545046794581427750}
   - {fileID: 5476743354842694984}
+  - {fileID: -6987254750632265475}
 --- !u!114 &9153302113086318958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1497,8 +1309,8 @@ MonoBehaviour:
   m_Name: IsCoverValidNode
   m_EditorClassIdentifier: 
   Guid: 8b0f74d277508644a80f161064bcb81d
-  Position: {x: -3473.1506, y: 3763.0005}
-  Description: New position of player
+  Position: {x: -3479.9995, y: 3755}
+  Description: 
 --- !u!114 &9174185136761409404
 MonoBehaviour:
   m_ObjectHideFlags: 0

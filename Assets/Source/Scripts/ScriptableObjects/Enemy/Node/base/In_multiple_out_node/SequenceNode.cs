@@ -37,23 +37,7 @@ namespace Ingame.Behaviour
                     return State.Abandon;
             }
 
-            return /*_currentNodeIndex == Children.Count?State.Success:*/ State.Running; 
-            /*for (var i = _currentNodeIndex; i < Children.Count; i++) {
-                _currentNodeIndex = i;
-                var child = Children[i];
-
-                switch (child.Tick()) {
-                    case State.Running:
-                        return State.Running;
-                    case State.Success:
-                        return State.Success;
-                    case State.Abandon:
-                        return State.Abandon;
-                    case State.Failure:
-                        continue;
-                }
-            }
-            return State.Failure;*/
+            return State.Running;
         }
     }
 }

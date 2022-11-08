@@ -14,7 +14,8 @@ namespace Ingame.Behaviour
            Running,
            Failure,
            Success,
-           Abandon
+           Abandon,
+           ForceStop
         }
         
       
@@ -81,7 +82,7 @@ namespace Ingame.Behaviour
             });
         }
 
-        public void RestartState()
+        public virtual void RestartState()
         {
             ActOnStart();
         }

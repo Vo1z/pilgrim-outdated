@@ -19,7 +19,7 @@ namespace Ingame.Behaviour
             foreach (var i in _behaviorAgentBeforeInitFilter)
             { 
                 ref var agent =  ref _behaviorAgentBeforeInitFilter.Get1(i);
-                agent.Tree = agent.Tree.Clone();
+                agent.Tree = agent.OriginalTree.Clone();
                 ref var entity =  ref _behaviorAgentBeforeInitFilter.GetEntity(i);
                 
 #if UNITY_EDITOR

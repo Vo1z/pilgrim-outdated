@@ -56,9 +56,10 @@ namespace Ingame.Editor
 
         private void AddOptionAction(ContextualMenuPopulateEvent evt,TypeCache.TypeCollection collection)
         {
+            var position = this.ChangeCoordinatesTo(contentViewContainer, evt.localMousePosition);
             foreach (var t in collection)
             {
-                evt.menu.AppendAction($"[{t.BaseType.Name}] {t.Name}",(e)=>CreateNode(t));
+                evt.menu.AppendAction($"[{t.BaseType.Name}] {t.Name}",(e)=>CreateNode(t,position));
             }
         }
         private NodeView FindNode(Node node)
@@ -99,7 +100,7 @@ namespace Ingame.Editor
                     _tree.AddChild(parent.Node,child.Node);
                 });
             }
-            //Sort Nodes based on th
+            //Sort Nodes based on the position
             if (graphviewchange.movedElements != null)
             {
                 nodes.ForEach((e) =>
@@ -145,15 +146,24 @@ namespace Ingame.Editor
         {
             var view = new NodeView(node);
             view.OnNodeSelected = OnNodeSelected;
+            #if UNITY_EDITOR
+                UnityEngine.Debug.LogWarning($"New node {view.Node.name} has been created!");
+            #endif
             this.AddElement(view);
         }
-        
+
         public void CreateNode(System.Type type)
         {
             var node = _tree.CreateNode(type);
             CreateNodeView(node);
         }
         
+        public void CreateNode(System.Type type,Vector2 pos)
+        {
+            var node = _tree.CreateNode(type);
+            node.Position = pos;
+            CreateNodeView(node);
+        }
         public void UpdateNodesState()
         {
             nodes.ForEach(e =>(e as NodeView)?.UpdateState() );

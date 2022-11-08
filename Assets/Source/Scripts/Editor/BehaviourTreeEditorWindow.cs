@@ -90,7 +90,7 @@ namespace Ingame.Editor
                     }
                     else if(Selection.activeObject && Selection.activeGameObject.TryGetComponent<BehaviourAgentModelProvider>(out var treeModel))
                     {
-                        var treeProvider = treeModel.GetTree().Tree;
+                        var treeProvider = treeModel.GetTree().OriginalTree;
                         if (treeProvider !=null)
                         {
                             tree =  treeProvider;
@@ -106,7 +106,7 @@ namespace Ingame.Editor
             if (!tree) return;
             
             //Create a Panel
-            if (Application.isPlaying)
+            if (Application.isPlaying && _treePanelView!=null)
             {
                 _treePanelView.PopulateView(tree);
             }

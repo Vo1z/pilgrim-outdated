@@ -156,6 +156,7 @@ namespace Ingame
                 .Add(new HudItemSlotChooseSystem())
                 //AI
                 .Add(new BehaviourSystem())
+                .Add(new EnemyObstacleDetectionSystem())
                 //Anomaly
                 .Add(new AcidWaterSystem())
                 //Health

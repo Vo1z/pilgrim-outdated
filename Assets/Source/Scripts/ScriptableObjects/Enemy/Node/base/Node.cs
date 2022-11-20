@@ -72,13 +72,13 @@ namespace Ingame.Behaviour
         public void RequestToStop()
         {
             ActOnStop();
-            _state = State.Abandon;
         }
-        public void Abort() {
+        public void Abort(bool isForceful = false) {
             BehaviourTree.Traverse(this, (node) => {
                 node.IsRunning = false;
                 node._state = State.Running;
                 node.RequestToStop();
+                _state = isForceful ? State.Abandon : _state;
             });
         }
 

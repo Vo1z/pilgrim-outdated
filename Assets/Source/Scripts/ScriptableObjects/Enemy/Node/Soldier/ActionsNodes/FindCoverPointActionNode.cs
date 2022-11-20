@@ -17,13 +17,7 @@ namespace Ingame.Enemy
         Both
     }
 
-    public enum CoverMovementMode
-    {
-        Walk,
-        Run,
-        Strefa,
-        Observe
-    }
+   
     public class FindCoverPointActionNode : ActionNode
     {
     

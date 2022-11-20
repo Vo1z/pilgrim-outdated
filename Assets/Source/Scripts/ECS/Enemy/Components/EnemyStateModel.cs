@@ -21,7 +21,8 @@ namespace Ingame.Enemy
         [Header("Detection")]
         public bool IsTargetDetected;
         public Transform Target;
-        
+
+        public int VisibleTagretPixels;
         //special detections
         public bool ShouldSearchForTarget;
         public bool HasDetectedNoises;
@@ -44,7 +45,6 @@ namespace Ingame.Enemy
         public static HashSet<Transform> OccupiedUndefinedCovers;
         public static HashSet<Transform> OccupiedCovers;
         
-        public List<Transform> Flank;
         public Vector3 Cover;
 
     }

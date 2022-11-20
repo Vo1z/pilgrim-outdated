@@ -1,5 +1,6 @@
 using System;
 using Ingame.Behaviour;
+using Ingame.Enemy;
 using Leopotam.Ecs;
 using PlasticGui.WorkspaceWindow.CodeReview;
 using UnityEditor;
@@ -16,6 +17,7 @@ namespace Ingame.Editor
     {
         private BehaviourTreePanelView _treePanelView;
         private BehaviourPanelInspectorView _inspectorPanelView;
+        private BehaviourPanelStateView _stateView;
         
         [MenuItem("Editor/Behaviour/BehaviourTreeEditorWindow")]
         public static void Init()
@@ -37,6 +39,7 @@ namespace Ingame.Editor
 
             _treePanelView = root.Q<BehaviourTreePanelView>();
             _inspectorPanelView = root.Q<BehaviourPanelInspectorView>();
+            _stateView = root.Q<BehaviourPanelStateView>();
             _treePanelView.OnNodeSelected = OnNodeSelectionChange;
             
             OnSelectionChange();
@@ -56,7 +59,10 @@ namespace Ingame.Editor
         private void OnInspectorUpdate()
         {
             _treePanelView?.UpdateNodesState();
+            _stateView.UpdateEntityInfo();
         }
+
+   
 
         private void ChangeModeDependingOnEditorStateChange(PlayModeStateChange state)
         {
@@ -81,11 +87,13 @@ namespace Ingame.Editor
             {
                 try
                 {
+                    //running
                     if (Selection.activeObject && Selection.activeGameObject.TryGetComponent<EntityReference>(out var entity) && Application.isPlaying)
                     {
                         if (entity.Entity !=null && entity.Entity.Has<BehaviourAgentModel>())
                         {
                             tree = entity.Entity.Get<BehaviourAgentModel>().Tree;
+                            _stateView.UpdateEntityInfo(tree);
                         }
                     }
                     else if(Selection.activeObject && Selection.activeGameObject.TryGetComponent<BehaviourAgentModelProvider>(out var treeModel))

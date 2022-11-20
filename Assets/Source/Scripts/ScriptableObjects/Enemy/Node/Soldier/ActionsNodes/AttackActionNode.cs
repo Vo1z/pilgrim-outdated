@@ -37,13 +37,20 @@ namespace Ingame.Enemy
         /// <returns>Return Success if hit target, Failure if not and Running if it's still on a cooldown</returns>
         protected override State ActOnTick()
         {
+            ref var enemyModel = ref Entity.Get<EnemyStateModel>();
+            ref var transform = ref Entity.Get<TransformModel>();
+            
+            var lookPos = enemyModel.Target.position - transform.transform.position;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            transform.transform.rotation = Quaternion.Slerp(transform.transform.rotation, rotation, 1.5f);
             //cooldown
             if (_currentIntervalTime>0)
             {
                 _currentIntervalTime -= Time.deltaTime;
                 return State.Running;
             }
-            ref var enemyModel = ref Entity.Get<EnemyStateModel>();
+            
             enemyModel.CurrentAmmo -= 1;
             
             //hit chance - do miss
@@ -52,7 +59,7 @@ namespace Ingame.Enemy
                 return State.Failure;
             }
             
-            ref var transform = ref Entity.Get<TransformModel>();
+           
 
             //shoot
             if (shouldIgnoreObstacles)

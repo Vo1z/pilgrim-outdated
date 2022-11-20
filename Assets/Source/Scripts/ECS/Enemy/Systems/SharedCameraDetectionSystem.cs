@@ -43,6 +43,7 @@ namespace Ingame.Systems
             
                 //1st phase of player recognition
                 var visibilityOfPlayer = GetNumberOfPixelsOfPLayer(camera.Camera, environment, all);
+                model.VisibleTagretPixels = visibilityOfPlayer;
                 if (visibilityOfPlayer>=_pixelDetectionThreshold)
                 {
                     model.IsTargetDetected = true;

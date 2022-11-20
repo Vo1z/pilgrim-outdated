@@ -146,9 +146,6 @@ namespace Ingame.Editor
         {
             var view = new NodeView(node);
             view.OnNodeSelected = OnNodeSelected;
-            #if UNITY_EDITOR
-                UnityEngine.Debug.LogWarning($"New node {view.Node.name} has been created!");
-            #endif
             this.AddElement(view);
         }
 
@@ -162,6 +159,9 @@ namespace Ingame.Editor
         {
             var node = _tree.CreateNode(type);
             node.Position = pos;
+#if UNITY_EDITOR
+            UnityEngine.Debug.LogWarning($"New node {type.Name} has been created!");
+#endif
             CreateNodeView(node);
         }
         public void UpdateNodesState()

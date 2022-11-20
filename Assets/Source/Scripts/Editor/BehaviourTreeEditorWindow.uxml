@@ -7,6 +7,10 @@
         <ui:VisualElement name="left">
             <ui:Label text="Inspector View" display-tooltip-when-elided="true" />
             <Ingame.Editor.BehaviourPanelInspectorView />
+            <ui:VisualElement style="justify-content: flex-end; border-top-width: 250px;">
+                <ui:Label text="Entity Status" display-tooltip-when-elided="true" />
+                <Ingame.Editor.BehaviourPanelStateView style="-unity-slice-top: 25;" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="right">
             <ui:Label text="Tree Graph View" display-tooltip-when-elided="true" />

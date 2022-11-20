@@ -166,6 +166,7 @@ MonoBehaviour:
   Guid: a2b528c77e384f4448848f143dd5e569
   Position: {x: -111, y: 1499}
   Description: 
+  type: 0
 --- !u!114 &-1629785311154166183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +253,8 @@ MonoBehaviour:
   type: 0
   loops: 1
   stateOnResetState: 0
+  minLoops: 0
+  maxLoops: 0
 --- !u!114 &4353104976709733041
 MonoBehaviour:
   m_ObjectHideFlags: 0

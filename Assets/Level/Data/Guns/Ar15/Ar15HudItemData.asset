@@ -16,13 +16,13 @@ MonoBehaviour:
   rotationSpeed: 3
   minMaxRotationAngleX: {x: -10, y: 10}
   rotationAngleMultiplierX: 20
-  inverseRotationX: 1
+  inverseRotationX: 0
   minMaxRotationAngleY: {x: -20, y: 20}
-  rotationAngleMultiplierY: 10
+  rotationAngleMultiplierY: 8
   inverseRotationY: 1
-  minMaxRotationAngleZ: {x: -10, y: 10}
-  rotationAngleMultiplierZ: 10
-  inverseRotationZ: 0
+  minMaxRotationAngleZ: {x: -15, y: 15}
+  rotationAngleMultiplierZ: 8
+  inverseRotationZ: 1
   isItemMovedDueToRotation: 1
   isItemMovedBackToInitialPosition: 1
   moveToInitialPosSpeed: 3
@@ -41,7 +41,7 @@ MonoBehaviour:
   inverseAimRotationZ: 0
   minMaxRotationMovementAngleX: {x: -12, y: 12}
   rotationMovementAngleMultiplierX: 20
-  inverseRotationMovementX: 1
+  inverseRotationMovementX: 0
   minMaxRotationMovementAngleZ: {x: -15, y: 10}
   rotationMovementAngleMultiplierZ: 30
   inverseRotationMovementZ: 1

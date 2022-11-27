@@ -1,8 +1,10 @@
-﻿using Ingame.Hud;
+﻿using Ingame.Gunplay;
+using Ingame.Hud;
 using Ingame.Input;
 using Leopotam.Ecs;
 using Support;
 using Support.Extensions;
+using UnityEngine;
 
 namespace Ingame.Animation
 {
@@ -14,6 +16,9 @@ namespace Ingame.Animation
         private readonly EcsFilter<DistortTheShutterInputEvent> _distortShutterEventFilter;
         private readonly EcsFilter<ShutterDelayInputEvent> _shutterDelayEventFilter;
 
+        private const float LAYER_SWITCH_SPEED = 50f;
+        private const int DISTORT_SHUTTER_LAYER = 1;
+        
         public void Run()
         {
             foreach (var i in _gunItemModelFilter)
@@ -61,6 +66,16 @@ namespace Ingame.Animation
                         animator.ResetTrigger("ShutterDelay");
                         animator.SetTrigger("ShutterDelay");
                     }
+                }
+
+                if (itemAvailableAnimations.HasAnimation(AnimationType.ShutterDelayLayer))
+                {
+                    float targetWeight = hudItemEntity.Has<ShutterIsInDelayPositionTag>() ? 1f : 0f;
+
+                    float previousDistortShutterLayerWeight = animator.GetLayerWeight(DISTORT_SHUTTER_LAYER);
+                    float currentDistortShutterLayerWeight = Mathf.Lerp(previousDistortShutterLayerWeight, targetWeight, LAYER_SWITCH_SPEED * Time.deltaTime);
+
+                    animator.SetLayerWeight(DISTORT_SHUTTER_LAYER, currentDistortShutterLayerWeight);
                 }
             }
         }

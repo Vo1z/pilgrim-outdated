@@ -206,6 +206,7 @@ namespace Ingame
                 .Add(new DialogCutDownDialogSystem())
                 //Inventory
                 .Add(new PickUpItemSystem())
+                .Add(new PickUpWeaponSystem())
                 .Add(new UpdateBackpackItemsAppearanceSystem())
                 .Add(new UpdateAmmoBoxViewSystem())
                 .Add(new InteractWithBackpackItemSystem())

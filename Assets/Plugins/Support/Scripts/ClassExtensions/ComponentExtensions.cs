@@ -48,8 +48,10 @@ namespace Support.Extensions
         /// </summary>
         /// <param name="gameObject">Parent game object</param>
         /// <param name="layer">Layer to set</param>
-        public static void SetLayerToAllChildren(this GameObject gameObject, int layer)
+        public static void SetLayerToAllChildrenAndSelf(this GameObject gameObject, int layer)
         {
+            gameObject.layer = layer;
+            
             foreach (var transform in gameObject.GetComponentsInChildren<Transform>(true))
                 transform.gameObject.layer = layer;
         }

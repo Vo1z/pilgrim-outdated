@@ -114,7 +114,7 @@ namespace Ingame
                 .OneFrame<ShutterDelayInputEvent>()
                 .OneFrame<InteractInputEvent>()
                 .OneFrame<LongInteractionInputEvent>()
-                .OneFrame<DropGunInputEvent>()
+                .OneFrame<DropWeaponInputEvent>()
                 .OneFrame<OpenInventoryInputEvent>()
                 .OneFrame<InteractWithFirstSlotInputEvent>()
                 .OneFrame<InteractWithSecondSlotInputEvent>()
@@ -207,6 +207,7 @@ namespace Ingame
                 //Inventory
                 .Add(new PickUpItemSystem())
                 .Add(new PickUpWeaponSystem())
+                .Add(new DropWeaponSystem())
                 .Add(new UpdateBackpackItemsAppearanceSystem())
                 .Add(new UpdateAmmoBoxViewSystem())
                 .Add(new InteractWithBackpackItemSystem())

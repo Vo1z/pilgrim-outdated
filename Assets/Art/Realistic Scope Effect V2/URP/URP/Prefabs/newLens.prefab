@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 5747628053915691042}
   - component: {fileID: 8677441243543365511}
   - component: {fileID: 6883894554272535373}
-  - component: {fileID: 5208716701491498806}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: newLens
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,14 +25,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4938335460553831064}
-  m_LocalRotation: {x: 0.7071062, y: 0.7071075, z: -0.0000011336441, w: -0.0000011391137}
+  m_LocalRotation: {x: 0.70710653, y: 0.70710707, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: -0.1303}
-  m_LocalScale: {x: 1.932324, y: 1.9323239, z: 1.9323243}
+  m_LocalScale: {x: 2.4245257, y: 2.4245257, z: 2.4245262}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5208716701080530701}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 360}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 450}
 --- !u!33 &8677441243543365511
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -53,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -83,55 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5208716701491498806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4938335460553831064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 954904c0dd9ff814a97e33b304568185, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScopeCamera: {fileID: 5208716701080530698}
-  reticleBrightness:
-    can_Illuminate: 1
-    brightness_increase: 273
-    brightness_decrease: 274
-    v_brightness_increase: 1
-    v_brightness_max: 25
-    v_brightness_min: 0
-    v_brightness: 1
-  zooming:
-    zoomType: 2
-    ActivatorKey: 308
-    zoomReticle: 1
-    startFOV: 60
-    zoomSpeed: 3
-    currentSize: 1
-    sizeIncrements: 14
-    minSize: 855
-    maxSize: 980
-    currentZoom: 1
-    zoomIncrements: 1
-    minZoom: 1
-    maxZoom: 6
-    isToggled: 0
-    ToggleKey: 324
-    ToggledZoomFOV: 10
-    UntoggledZoomFOV: 60
-    t_zoomReticle: 1
-    ToggledReticleSize: 980
-    unToggledReticleSize: 855
-  cameraFPS:
-    fPSLimitType: 2
-    fixedFps: 60
-  cameraDisable:
-    o_cameraDisable: 1
-    distance: 0.1
-    canZoomCamera: 0
 --- !u!1 &5208716701080530702
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,9 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5208716701080530701}
   - component: {fileID: 5208716701080530698}
-  - component: {fileID: 5208716701080530699}
   - component: {fileID: 553914726348182721}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,8 +110,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5208716701080530702}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.0035, z: -0.0928}
+  m_LocalPosition: {x: -0, y: 0.0035, z: -0.0679}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5747628053915691042}
   m_RootOrder: 0
@@ -188,9 +140,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.02
   far clip plane: 1000
-  field of view: 60
+  field of view: 15
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -208,14 +160,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &5208716701080530699
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5208716701080530702}
-  m_Enabled: 1
 --- !u!114 &553914726348182721
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
-﻿using Ingame.Gunplay;
+﻿using System.Runtime.CompilerServices;
+using Ingame.Animation;
+using Ingame.Gunplay;
 using Ingame.Hud;
 using Ingame.Interaction.Common;
 using Ingame.Movement;
@@ -31,19 +33,21 @@ namespace Ingame.Inventory
 			foreach (var i in _droppedWeaponFilter)
 			{
 				ref var weaponEntity = ref _droppedWeaponFilter.GetEntity(i);
-				ref var weaponTransformModel = ref _droppedWeaponFilter.Get2(i);
-				ref var weaponHudItemModel = ref _droppedWeaponFilter.Get3(i);
-				
+
 				if(!TryModifyingComponentsOnWeapon(weaponEntity, isFirstSlotAvailable, isSecondSlotAvailable))
 					continue;
-				
+
 				if(!TryRemovingPhysicsForWeapon(weaponEntity))
 					continue;
-
+				
+				if(!TryActivatingHands(weaponEntity))
+					continue;
+				
 				TryPlacingWeaponInHands(weaponEntity, hudItemTransform);
 			}
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool TryModifyingComponentsOnWeapon(in EcsEntity weaponEntity, bool isFirstSlotAvailable, bool isSecondSlotAvailable)
 		{
 			if (!isFirstSlotAvailable && !isSecondSlotAvailable)
@@ -58,42 +62,71 @@ namespace Ingame.Inventory
 				weaponEntity.Get<FirstHudItemSlotTag>();
 			else
 				weaponEntity.Get<SecondHudItemSlotTag>();
+			
+			weaponEntity.Get<InInventoryTag>();
 
 			return true;
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool TryRemovingPhysicsForWeapon(in EcsEntity weaponEntity)
 		{
-			if (weaponEntity.Has<ColliderModel>())
+			if (!weaponEntity.Has<ColliderModel>())
 			{
 				TemplateUtils.SafeDebug($"Weapon should have {typeof(ColliderModel)}", LogType.Error);
 				return false;
 			}
 
-			if (weaponEntity.Has<RigidbodyModel>())
+			if (!weaponEntity.Has<RigidbodyModel>())
 			{
 				TemplateUtils.SafeDebug($"Weapon should have {typeof(RigidbodyModel)}", LogType.Error);
 				return false;
 			}
 			
-
+			if (!weaponEntity.Has<AnimatorModel>())
+			{
+				TemplateUtils.SafeDebug($"Weapon should have {typeof(AnimatorModel)}", LogType.Error);
+				return false;
+			}
+			
 			ref var weaponColliderModel = ref weaponEntity.Get<ColliderModel>();
 			ref var weaponRigidbodyModel = ref weaponEntity.Get<RigidbodyModel>();
+			ref var weaponAnimatorModel = ref weaponEntity.Get<AnimatorModel>();
 
 			weaponColliderModel.collider.enabled = false;
 			weaponRigidbodyModel.rigidbody.isKinematic = true;
+			weaponAnimatorModel.animator.enabled = true;
 
 			return true;
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool TryActivatingHands(in EcsEntity weaponEntity)
+		{
+			if (!weaponEntity.Has<HudItemHandsModel>())
+			{
+				TemplateUtils.SafeDebug($"Weapon should have {typeof(HudItemHandsModel)}", LogType.Error);
+				return false;
+			}
+
+			ref var hudItemHandsComponent = ref weaponEntity.Get<HudItemHandsModel>();
+			hudItemHandsComponent.handsTransform.SetGameObjectActive();
+
+			return true;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool TryPlacingWeaponInHands(in EcsEntity weaponEntity, in TransformModel hudItemContainerTransformModel)
 		{
 			ref var weaponHudItemModel = ref weaponEntity.Get<HudItemModel>();
-			var weaponTransform = weaponEntity.Get<TransformModel>().transform;
+			ref var weaponTransformModel = ref weaponEntity.Get<TransformModel>();
+			var weaponTransform = weaponTransformModel.transform;
 			var itemContainerTransform = hudItemContainerTransformModel.transform;
 			int hudLayerIndex = LayerMask.NameToLayer("HUD");
 			
 			weaponTransform.SetParent(itemContainerTransform);
+			weaponTransformModel.initialLocalPos = weaponHudItemModel.localPositionInHud; 
+			weaponTransformModel.initialLocalRotation = weaponHudItemModel.localRotationInHud; 
 			weaponTransform.localPosition = weaponHudItemModel.localPositionInHud;
 			weaponTransform.localRotation = weaponHudItemModel.localRotationInHud;
 			

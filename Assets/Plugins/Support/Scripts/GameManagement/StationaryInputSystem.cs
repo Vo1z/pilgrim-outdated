@@ -718,7 +718,7 @@ namespace Support
                 {
                     ""name"": """",
                     ""id"": ""d304e820-efc5-4ab8-a32e-c4ee1071a948"",
-                    ""path"": ""<Keyboard>/y"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

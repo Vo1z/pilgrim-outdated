@@ -6,6 +6,7 @@ using Ingame.Hud;
 using Ingame.Interaction.Common;
 using Ingame.Movement;
 using Ingame.Utils;
+using Support.Extensions;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -20,28 +21,31 @@ namespace Ingame.Tools
 
         private readonly Type[] _commonComponents =
         {
+            typeof(Animator),
+            typeof(BoxCollider),
+            typeof(Rigidbody),
+            typeof(FirearmAnimationCallbacks),
             typeof(ConvertToEntity),
             typeof(EntityReference),
             typeof(EntityReferenceRequestProvider),
             typeof(TransformModelProvider),
             typeof(AnimatorModelProvider),
+            typeof(ColliderModelProvider),
+            typeof(RigidbodyModelProvider),
             typeof(HudItemModelProvider),
-            typeof(InteractiveTagProvider),
-            typeof(HudItemRecoilComponentProvider)
-        };
-
-        private readonly Type[] _rifleComponentsTypes =
-        {
-            typeof(FirearmComponentProvider),
-            typeof(HudItemInstabilityComponentProvider),
+            typeof(HudItemHandsModelProvider),
             typeof(TimerComponentProvider),
-            typeof(RifleComponentProvider)
+            typeof(FirearmComponentProvider),
+            typeof(RifleComponentProvider),
+            typeof(MagazineComponentProvider),
+            typeof(AvailableAnimationsComponentProvider),
+            typeof(HudItemInstabilityComponentProvider),
+            typeof(HudItemRecoilComponentProvider),
+            typeof(InteractiveTagProvider),
         };
 
         private Toggle _createBarrelOriginToggle;
         private Toggle _createSurfaceDetectorToggle;
-        private RadioButton _rifleRadioButton;
-        private RadioButton _dmrRadioButton;
         private Button _createGunButton;
         private Button _deleteComponentsButton;
         private Button _bringToPlayerButton;
@@ -66,8 +70,6 @@ namespace Ingame.Tools
             
             _createBarrelOriginToggle = rootVisualElement.Q<Toggle>("CreateBarrelOrigin");
             _createSurfaceDetectorToggle = rootVisualElement.Q<Toggle>("CreateSurfaceDetector");
-            _rifleRadioButton = rootVisualElement.Q<RadioButton>("Rifle");
-            _dmrRadioButton = rootVisualElement.Q<RadioButton>("DMR");
             _createGunButton = rootVisualElement.Q<Button>("CreateButton");
             _deleteComponentsButton = rootVisualElement.Q<Button>("DeleteComponents");
             _bringToPlayerButton = rootVisualElement.Q<Button>("BringToPlayer");
@@ -84,14 +86,10 @@ namespace Ingame.Tools
 
         private void OnCreateButtonClicked()
         {
-            var currentGunType = _rifleRadioButton.value ? FirearmType.Rifle :
-                                   _dmrRadioButton.value ? FirearmType.DMR :
-                                   throw new ArgumentException("No gun type selected");
-
             var selectedGameObjects = Selection.gameObjects;
 
             foreach (var go in selectedGameObjects)
-                AssembleGun(go, currentGunType);
+                AssembleGun(go);
         }
 
         private void OnDeleteComponentsButtonClicked()
@@ -106,7 +104,8 @@ namespace Ingame.Tools
         {
             var playerItemsGo = FindObjectOfType<HudPlayerItemContainerComponentProvider>();
             var selectedGo = Selection.gameObjects[0];
-            
+            var hudLayerMask = LayerMask.NameToLayer("HUD");
+
             if(playerItemsGo == null || selectedGo == null)
                 return;
             
@@ -123,6 +122,7 @@ namespace Ingame.Tools
 
                 selectedGo.transform.localPosition = localPos;
                 selectedGo.transform.localRotation = localRotation;
+                selectedGo.SetLayerToAllChildrenAndSelf(hudLayerMask);
                 
                 UnityEngine.Debug.Log($"[Gun creator] GameObject is placed in player's hands");
                 
@@ -154,12 +154,11 @@ namespace Ingame.Tools
             UnityEngine.Debug.Log($"[Gun creator] HUD item data was backed");
         }
 
-        private void AssembleGun(GameObject go, FirearmType firearmType)
+        private void AssembleGun(GameObject go)
         {
             if(go == null)
                 return;
             
-            //Common components
             foreach (var componentType in _commonComponents)
             {
                 if(go.TryGetComponent(componentType, out Component _))
@@ -168,33 +167,11 @@ namespace Ingame.Tools
                 go.AddComponent(componentType);
             }
             
-            //Rifle components
-            if (firearmType == FirearmType.Rifle)
-            {
-                foreach (var componentType in _rifleComponentsTypes)
-                {
-                    if(go.TryGetComponent(componentType, out Component _))
-                        continue;
+            if(_createBarrelOriginToggle.value)
+                CreateBarrelOrigin(go);
 
-                    go.AddComponent(componentType);
-                }
-                
-                if(_createBarrelOriginToggle.value)
-                    CreateBarrelOrigin(go);
-
-                if (_createSurfaceDetectorToggle.value)
-                    CreateSurfaceDetector(go);
-                
-                UnityEngine.Debug.Log($"[Gun creator] {firearmType} was created");
-                
-                return;
-            }
-
-            //DMR components
-            if (firearmType == FirearmType.DMR)
-            {
-                
-            }
+            if (_createSurfaceDetectorToggle.value)
+                CreateSurfaceDetector(go);
         }
 
         private void CreateBarrelOrigin(GameObject go)

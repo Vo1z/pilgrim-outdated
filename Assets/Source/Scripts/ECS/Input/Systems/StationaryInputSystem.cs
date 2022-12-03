@@ -262,7 +262,7 @@ namespace Ingame.Input
                 if (inputEntity == EcsEntity.Null)
                     inputEntity = _world.NewEntity();
 
-                inputEntity.Get<DropGunInputEvent>();
+                inputEntity.Get<DropWeaponInputEvent>();
             }
 
             if (_isShowAmmountOfAmmoWasPerformedThisFrame)

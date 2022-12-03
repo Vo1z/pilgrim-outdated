@@ -5827,6 +5827,7 @@ GameObject:
   - component: {fileID: 407876454081328233}
   - component: {fileID: 142029435706175215}
   - component: {fileID: 3759798850879999815}
+  - component: {fileID: 1020170032532843574}
   m_Layer: 7
   m_Name: Container - Items
   m_TagString: Untagged
@@ -5921,6 +5922,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6166219638236502493}
+--- !u!114 &1020170032532843574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754135335147430470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91acfb7ad2604511ac8db61100dd580b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2167057581408065958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6230,6 +6243,10 @@ PrefabInstance:
     - target: {fileID: 2528427974724501109, guid: 7081b9ccbe960a34ea62e45b3491a5cb, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908814186763132334, guid: 7081b9ccbe960a34ea62e45b3491a5cb, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7908814186763132334, guid: 7081b9ccbe960a34ea62e45b3491a5cb, type: 3}
       propertyPath: m_LocalPosition.x

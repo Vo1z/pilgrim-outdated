@@ -1,3 +1,4 @@
+using System;
 using Leopotam.Ecs;
 using Support;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace Ingame.Input
 {
     public sealed class StationaryInputSystem : IEcsRunSystem, IEcsInitSystem
     {
+        private const float TAP_INTO_HOLD_TIME_THRESHOLD = 0.5f; 
         private EcsWorld _world;
         private StationaryInput _stationaryInputSystem;
 
@@ -37,6 +39,12 @@ namespace Ingame.Input
         private InputAction _firstSlotInteraction;
         private InputAction _secondSlotInteraction;
         
+        //reload
+        private float _reloadTimer;
+        private bool _shouldCountReloadTime = false;
+        //shuter delay
+        private float _shutterDelayTimer;
+        private bool _shouldCountShutterDelayTime = false;
         public void Init()
         {
             _movementInputX = _stationaryInputSystem.FPS.MovementX;
@@ -73,6 +81,7 @@ namespace Ingame.Input
             _showAmountOfAmmoInput.performed += OnAmountOfAmmoInputPerformed;
         }
 
+      
         private void OnDistortTheShutterPerformed(InputAction.CallbackContext callbackContext)
         {
             if(callbackContext.canceled || callbackContext.duration < .05f)
@@ -120,7 +129,7 @@ namespace Ingame.Input
             bool openInventoryInput = _openInventoryInput.WasPressedThisFrame();
             bool interactWithFirstSlot = _firstSlotInteraction.WasPressedThisFrame();
             bool interactWithSecondSlot = _secondSlotInteraction.WasPressedThisFrame();
-
+            
             var leanDirection = _leanInput.ReadValue<float>() switch
             {
                 < 0 => LeanDirection.Left,
@@ -184,15 +193,18 @@ namespace Ingame.Input
 
                 inputEntity.Get<AimInputEvent>();
             }
+            /*if (reloadInput)
+             {
+                 if (inputEntity == EcsEntity.Null)
+                     inputEntity = _world.NewEntity();
 
-            if (reloadInput)
-            {
-                if (inputEntity == EcsEntity.Null)
-                    inputEntity = _world.NewEntity();
-
-                inputEntity.Get<MagazineSwitchInputEvent>();
-            }
-
+                 inputEntity.Get<MagazineSwitchInputEvent>();
+             }*/
+            
+            //reload
+            WasKeyTapped(_reloadInput, reloadInput,  ref _shouldCountReloadTime, ref _reloadTimer,ref inputEntity, () =>  inputEntity.Get<MagazineSwitchInputEvent>());
+  
+           
             if (_isDistortTheShutterPerformedThisFrame)
             {
                 if (inputEntity == EcsEntity.Null)
@@ -200,15 +212,18 @@ namespace Ingame.Input
 
                 inputEntity.Get<DistortTheShutterInputEvent>();
             }
+            
+            /*if (shutterDelayInput)
+           {
+               if (inputEntity == EcsEntity.Null)
+                   inputEntity = _world.NewEntity();
 
-            if (shutterDelayInput)
-            {
-                if (inputEntity == EcsEntity.Null)
-                    inputEntity = _world.NewEntity();
-
-                inputEntity.Get<ShutterDelayInputEvent>();
-            }
-
+               inputEntity.Get<ShutterDelayInputEvent>();
+           }*/
+            
+            //shutter delay
+            WasKeyTapped(_shutterDelayInput,shutterDelayInput, ref _shouldCountShutterDelayTime,ref _shutterDelayTimer ,ref inputEntity,() =>  inputEntity.Get<ShutterDelayInputEvent>());
+            
             if (interactInput)
             {
                 if (inputEntity == EcsEntity.Null)
@@ -277,6 +292,31 @@ namespace Ingame.Input
             _isLongInteractPerformedThisFrame = false;
             _isDropGunInputWasPerformedThisFrame = false;
             _isShowAmmountOfAmmoWasPerformedThisFrame = false;
+        }
+
+        private void WasKeyTapped(InputAction input,bool wasPressedThisFrame,ref bool shouldStartCounting,ref float timer,ref EcsEntity entity , Action action)
+        {
+            if (wasPressedThisFrame)
+            {
+                shouldStartCounting = true;
+            }
+            if (_shouldCountReloadTime)
+            {
+                timer += Time.deltaTime;
+            }
+
+            if (!input.WasReleasedThisFrame()) return;
+            
+            //tap
+            if (timer <TAP_INTO_HOLD_TIME_THRESHOLD)
+            {
+                if (entity == EcsEntity.Null)
+                    entity = _world.NewEntity();
+                action?.Invoke();
+            }
+
+            shouldStartCounting = false;
+            timer = 0;
         }
     }
 }

@@ -17,6 +17,7 @@ using Ingame.Interaction.Common;
 using Ingame.Interaction.Doors;
 using Ingame.Interaction.DraggableObject;
 using Ingame.Inventory;
+using Ingame.Ladder;
 using Ingame.Movement;
 using Ingame.Player;
 using Ingame.SupportCommunication;
@@ -192,6 +193,7 @@ namespace Ingame
                 .Add(new ReleaseDraggableObjectSystem())
                 .Add(new DragObjectSystem())
                 .Add(new BreakableSystem())
+                .Add(new LadderSystem())
                 //Gun play
                 .Add(new RifleShootSystem())
                 .Add(new CreateRecoilRequestSystem())

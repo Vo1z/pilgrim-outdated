@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Leopotam.Ecs;
 using Support;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace Ingame.Input
 {
     public sealed class StationaryInputSystem : IEcsRunSystem, IEcsInitSystem
     {
-        private const float TAP_INTO_HOLD_TIME_THRESHOLD = 0.5f; 
+        private const float TAP_INTO_HOLD_TIME_THRESHOLD = 0.4f; 
         private EcsWorld _world;
         private StationaryInput _stationaryInputSystem;
 
@@ -39,12 +40,9 @@ namespace Ingame.Input
         private InputAction _firstSlotInteraction;
         private InputAction _secondSlotInteraction;
         
-        //reload
         private float _reloadTimer;
-        private bool _shouldCountReloadTime = false;
-        //shuter delay
         private float _shutterDelayTimer;
-        private bool _shouldCountShutterDelayTime = false;
+ 
         public void Init()
         {
             _movementInputX = _stationaryInputSystem.FPS.MovementX;
@@ -79,6 +77,7 @@ namespace Ingame.Input
             _longInteractInput.performed += OnLongInteractPerformed;
             _dropGunInput.performed += OnDropGunInputPerformed;
             _showAmountOfAmmoInput.performed += OnAmountOfAmmoInputPerformed;
+            
         }
 
       
@@ -193,18 +192,9 @@ namespace Ingame.Input
 
                 inputEntity.Get<AimInputEvent>();
             }
-            /*if (reloadInput)
-             {
-                 if (inputEntity == EcsEntity.Null)
-                     inputEntity = _world.NewEntity();
-
-                 inputEntity.Get<MagazineSwitchInputEvent>();
-             }*/
             
-            //reload
-            WasKeyTapped(_reloadInput, reloadInput,  ref _shouldCountReloadTime, ref _reloadTimer,ref inputEntity, () =>  inputEntity.Get<MagazineSwitchInputEvent>());
-  
-           
+            WasKeyTapped(_reloadInput, reloadInput, ref _reloadTimer,ref inputEntity, () =>  inputEntity.Get<MagazineSwitchInputEvent>());
+            
             if (_isDistortTheShutterPerformedThisFrame)
             {
                 if (inputEntity == EcsEntity.Null)
@@ -213,16 +203,7 @@ namespace Ingame.Input
                 inputEntity.Get<DistortTheShutterInputEvent>();
             }
             
-            /*if (shutterDelayInput)
-           {
-               if (inputEntity == EcsEntity.Null)
-                   inputEntity = _world.NewEntity();
-
-               inputEntity.Get<ShutterDelayInputEvent>();
-           }*/
-            
-            //shutter delay
-            WasKeyTapped(_shutterDelayInput,shutterDelayInput, ref _shouldCountShutterDelayTime,ref _shutterDelayTimer ,ref inputEntity,() =>  inputEntity.Get<ShutterDelayInputEvent>());
+            WasKeyTapped(_shutterDelayInput,shutterDelayInput ,ref _shutterDelayTimer ,ref inputEntity,() =>  inputEntity.Get<ShutterDelayInputEvent>());
             
             if (interactInput)
             {
@@ -293,29 +274,27 @@ namespace Ingame.Input
             _isDropGunInputWasPerformedThisFrame = false;
             _isShowAmmountOfAmmoWasPerformedThisFrame = false;
         }
-
-        private void WasKeyTapped(InputAction input,bool wasPressedThisFrame,ref bool shouldStartCounting,ref float timer,ref EcsEntity entity , Action action)
+        
+        private void WasKeyTapped(InputAction input,bool wasPressedThisFrame,ref float timer,ref EcsEntity entity , Action action)
         {
             if (wasPressedThisFrame)
             {
-                shouldStartCounting = true;
+                timer = 0;
             }
-            if (_shouldCountReloadTime)
+            
+            if (input.IsPressed())
             {
                 timer += Time.deltaTime;
             }
 
             if (!input.WasReleasedThisFrame()) return;
             
-            //tap
-            if (timer <TAP_INTO_HOLD_TIME_THRESHOLD)
+            if (timer <TAP_INTO_HOLD_TIME_THRESHOLD )
             {
                 if (entity == EcsEntity.Null)
                     entity = _world.NewEntity();
                 action?.Invoke();
             }
-
-            shouldStartCounting = false;
             timer = 0;
         }
     }

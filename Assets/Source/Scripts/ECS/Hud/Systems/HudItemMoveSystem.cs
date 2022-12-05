@@ -11,6 +11,7 @@ namespace Ingame.Hud
 {
     public sealed class HudItemMoveSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private readonly EcsFilter<HudItemModel, HudItemInstabilityComponent, TransformModel> _initItemFilter;
         private readonly EcsFilter<HudItemModel, TransformModel, InInventoryTag, HudIsInHandsTag> _itemFilter;
         private readonly EcsFilter<RotateInputRequest> _rotateInputFilter;
         private readonly EcsFilter<PlayerModel> _playerFilter;
@@ -19,14 +20,9 @@ namespace Ingame.Hud
 
         public void Init()
         {
-            foreach (var i in _itemFilter)
+            foreach (var i in _initItemFilter)
             {
-                ref var itemEntity = ref _itemFilter.GetEntity(i);
-
-                if(!itemEntity.Has<HudItemInstabilityComponent>())
-                    return;
-
-                ref var instabilityComponent = ref itemEntity.Get<HudItemInstabilityComponent>();
+                ref var instabilityComponent = ref _initItemFilter.Get2(i);
                 var itemData = _itemFilter.Get1(i).itemData;
 
                 instabilityComponent.currentInstability = itemData.InitialInstability;

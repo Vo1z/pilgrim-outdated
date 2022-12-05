@@ -1,4 +1,5 @@
 using Client;
+using Ingame.Animation;
 using Ingame.Anomaly;
 using Ingame.Behaviour;
 using Ingame.Breakable;
@@ -16,6 +17,7 @@ using Ingame.Interaction.Common;
 using Ingame.Interaction.Doors;
 using Ingame.Interaction.DraggableObject;
 using Ingame.Inventory;
+using Ingame.Ladder;
 using Ingame.Movement;
 using Ingame.Player;
 using Ingame.SupportCommunication;
@@ -108,17 +110,17 @@ namespace Ingame
                 .OneFrame<RotateInputRequest>()
                 .OneFrame<ShootInputEvent>()
                 .OneFrame<AimInputEvent>()
-                .OneFrame<ReloadInputEvent>()
+                .OneFrame<MagazineSwitchInputEvent>()
+                .OneFrame<ShowAmountOfAmmoInputEvent>()
                 .OneFrame<DistortTheShutterInputEvent>()
                 .OneFrame<ShutterDelayInputEvent>()
                 .OneFrame<InteractInputEvent>()
                 .OneFrame<LongInteractionInputEvent>()
-                .OneFrame<DropGunInputEvent>()
+                .OneFrame<DropWeaponInputEvent>()
                 .OneFrame<OpenInventoryInputEvent>()
-                .OneFrame<HudReloadAnimationTriggerEvent>()
-                .OneFrame<HudDistortTheShutterAnimationTriggerEvent>()
                 .OneFrame<InteractWithFirstSlotInputEvent>()
-                .OneFrame<InteractWithSecondSlotInputEvent>();
+                .OneFrame<InteractWithSecondSlotInputEvent>()
+                .OneFrame<HideGunInputEvent>();
         }
 
         private void AddSystems()
@@ -129,9 +131,7 @@ namespace Ingame
                 .Add(new TransformModelInitSystem())
                 .Add(new PlayerInitSystem())
                 .Add(new AppearanceUpdateInitSystem())
-                .Add(new GunInitSystem())
                 .Add(new DeltaMovementInitializeSystem());
-		        //.Add(new CoverInitSystem());
 
             //Update
             _updateSystems
@@ -144,16 +144,19 @@ namespace Ingame
                 .Add(new PlayerInputToCrouchConverterSystem())
                 .Add(new PlayerInputToLeanConverterSystem())
                 .Add(new PlayerSpeedChangerSystem())
+                //Animation 
+                .Add(new HudItemSlotChooseSystem())
+                .Add(new HudInputToStatesConverterSystem())
+                .Add(new ShowHideHudItemSystem())
                 //HUD
                 .Add(new CameraInputToStatesConverterSystem())
                 .Add(new MainCameraShakeEventReceiverSystem())
                 .Add(new CameraShakeSystem())
+                .Add(new HudBobbingSystem())
                 .Add(new HudItemRotatorDueDeltaRotationSystem())
                 .Add(new HudItemRotatorDueVelocitySystem())
-                .Add(new HudItemMoverSystemDueToRotation())
-                .Add(new HudItemMoverDueSurfaceDetectionSystem())
-                .Add(new HudInputToStatesConverterSystem())
-                .Add(new HudItemSlotChooseSystem())
+                .Add(new HudItemMoveSystem())
+                // .Add(new HudItemMoverDueSurfaceDetectionSystem())
                 //AI
                 .Add(new BehaviourSystem())
                 .Add(new EnemyObstacleDetectionSystem())
@@ -178,29 +181,25 @@ namespace Ingame
                 .Add(new ReleaseDraggableObjectSystem())
                 .Add(new DragObjectSystem())
                 .Add(new BreakableSystem())
+                .Add(new LadderSystem())
                 //Gun play
-                .Add(new GunDistortTheShutterInputConverterSystem())
-                .Add(new GunReloadInputConverterSystem())
-                .Add(new GunShootInputConverterSystem())
-                .Add(new GunRecoilSystem())
-                .Add(new GunShootSystem())
-                .Add(new GunDistortTheShutterCallbackReceiverSystem())
-                .Add(new GunReloadCallbackReceiverSystem())
-                .Add(new HudGunAnimationSystem())
+                .Add(new RifleShootSystem())
+                .Add(new CreateRecoilRequestSystem())
+                .Add(new PerformShotSystem())
+                .Add(new HudRecoilSystem())
+                .Add(new HudItemAnimationSystem())
+                .Add(new Ar15ReloadSystem())
+                .Add(new Mp5ReloadSystem())
+                .Add(new M14EbrReloadSystem())
                 //Dialog
                 .Add(new DialogSystem())
                 .Add(new DialogCutDownDialogSystem())
                 //Inventory
                 .Add(new PickUpItemSystem())
-                .Add(new PickUpMagazineSystem())
-                .Add(new DropMagazineSystem())
-                .Add(new DropGunSystem())
-                .Add(new PickUpAmmoSystem())
-                .Add(new PickUpGunSystem())
-                .Add(new InteractWithInventoryMagazineSystem())
-                .Add(new UpdateBackpackMagazinesAppearanceSystem())
+                .Add(new PickUpWeaponSystem())
+                .Add(new DropWeaponSystem())
                 .Add(new UpdateBackpackItemsAppearanceSystem())
-                .Add(new UpdateMagazineFullOfAmmoMarkSystem())
+                .Add(new UpdateAmmoBoxViewSystem())
                 .Add(new InteractWithBackpackItemSystem())
                 //Effects
                 .Add(new HealthDisplaySystem())
@@ -210,8 +209,8 @@ namespace Ingame
                 .Add(new PlayerPositionSetterSystem())
                 //UI
                 .Add(new InteractWithRaycastableUiSystem())
-                .Add(new DisplayAmountOfAmmoInInventorySystem())
                 .Add(new DisplayAimDotOnInteractionSystem())
+                .Add(new DisplayAmountOfAmmoInMagazineSystem())
                 //SupportCommunication
                 .Add(new ProcessMessagesToSupportSystem())
                 //Utils
@@ -227,7 +226,7 @@ namespace Ingame
                  //Utils
                  .Add(new DeltaMovementCalculationSystem())
                  //Hud
-                 .Add(new HeadBobbingSystem())
+                 .Add(new CameraBobbingSystem())
                  //Movement
                 .Add(new FrictionSystem())
                 .Add(new SlidingSystem())

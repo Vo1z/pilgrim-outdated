@@ -215,7 +215,6 @@ MonoBehaviour:
     ShouldSearchForTarget: 0
     HasDetectedNoises: 0
     HasLostTarget: 0
-    NoisePosition: {x: 0, y: 0, z: 0}
     LastRememberedNoises: []
     Cover: {x: 0, y: 0, z: 0}
 --- !u!114 &8942591543491158152
@@ -273,8 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pixelDetectionThreshold: 30
-  camera: {fileID: 0}
-  material: {fileID: 2100000, guid: e214d24bb07014346aa3abeb5f98aa01, type: 2}
+  enemyCamera: {fileID: 0}
   maskForEnvironment:
     serializedVersion: 2
     m_Bits: 533

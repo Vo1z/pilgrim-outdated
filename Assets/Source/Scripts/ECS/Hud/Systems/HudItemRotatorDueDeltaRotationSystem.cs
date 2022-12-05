@@ -9,7 +9,7 @@ namespace Ingame.Hud
 {
     public sealed class HudItemRotatorDueDeltaRotationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemModel, TransformModel, InHandsTag> _inHandItemFilter;
+        private readonly EcsFilter<HudItemModel, TransformModel, InInventoryTag> _inHandItemFilter;
         private readonly EcsFilter<RotateInputRequest> _rotateInputFilter;
         private readonly EcsFilter<PlayerModel> _playerFilter;
 

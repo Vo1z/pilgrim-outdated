@@ -12,19 +12,19 @@ namespace Support
         /// </summary>
         /// <param name="objectContent">Object that will be logged</param>
         /// <param name="logType">Type of log in the console</param>
-        public static void SafeDebug(object objectContent, LogType logType = LogType.Log)
+        public static void SafeDebug(object objectContent, LogType logType = LogType.Log, Object context = null)
         {
 #if UNITY_EDITOR
             switch (logType)
             {
                 case LogType.Log:
-                    Debug.Log(objectContent);
+                    Debug.Log(objectContent, context);
                     break;
                 case LogType.Warning:
-                    Debug.LogWarning(objectContent);
+                    Debug.LogWarning(objectContent, context);
                     break;
                 default:
-                    Debug.LogError(objectContent);
+                    Debug.LogError(objectContent, context);
                     break;
             }
 #endif

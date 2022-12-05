@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Ingame.Data.Gunplay;
-
-namespace Ingame.Inventory
+﻿namespace Ingame.Inventory
 {
     public struct InventoryComponent
     {
@@ -11,9 +8,5 @@ namespace Ingame.Inventory
         public int currentNumberOfMorphine;
         public int currentNumberOfAdrenaline;
         public int currentNumberOfBandages;
-        
-        public int currentNumberOfMagazines;
-
-        public Dictionary<AmmoType, int> ammo;
     }
 }

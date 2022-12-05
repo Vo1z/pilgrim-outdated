@@ -21,6 +21,9 @@ namespace Ingame.Utils
         {
             get
             {
+                if (surfaceDetectionDistance <= 0)
+                    return SurfaceDetectionType.Nothing;
+                
                 var ray = new Ray(transform.position, transform.forward);
                 if (Physics.Raycast(ray, out RaycastHit hit, surfaceDetectionDistance, _layerMask, QueryTriggerInteraction.Ignore))
                 {

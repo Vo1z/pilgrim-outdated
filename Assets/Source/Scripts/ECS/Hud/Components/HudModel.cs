@@ -2,6 +2,7 @@
 {
     public struct HudModel
     {
+        public float currentRecoilX;
         public float hudLocalRotationX;
     }
 }

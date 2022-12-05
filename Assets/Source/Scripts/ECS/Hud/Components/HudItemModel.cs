@@ -1,17 +1,12 @@
-﻿using System;
-using Ingame.Data.Hud;
-using NaughtyAttributes;
+﻿using Ingame.Data.Hud;
 using UnityEngine;
 
 namespace Ingame.Hud
 {
-    [Serializable]
     public struct HudItemModel
     {
-        [Required, Expandable]
-        [AllowNesting]
+        public Vector3 localPositionInHud;
+        public Quaternion localRotationInHud;
         public HudItemData itemData;
-        [AllowNesting]
-        public Animator itemAnimator;
     }
 }

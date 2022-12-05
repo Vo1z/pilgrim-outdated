@@ -134,7 +134,16 @@ namespace Support
                     ""id"": ""f5b50951-d069-47f8-aae9-dc84c6a9caec"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowAmountOfAmmo"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ede40ba-b7f7-4944-9984-2acb40736b3f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -198,6 +207,15 @@ namespace Support
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=0.4)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HideGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""f77b2c21-8efe-498d-bc9a-7b3cd1b992fc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -568,7 +586,7 @@ namespace Support
                 {
                     ""name"": """",
                     ""id"": ""56a5a5b8-8128-4a4e-9068-cd164fa2492b"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""path"": ""<Keyboard>/y"",
                     ""interactions"": ""Hold(duration=0.4)"",
                     ""processors"": """",
                     ""groups"": """",
@@ -700,7 +718,7 @@ namespace Support
                 {
                     ""name"": """",
                     ""id"": ""d304e820-efc5-4ab8-a32e-c4ee1071a948"",
-                    ""path"": ""<Keyboard>/y"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -740,6 +758,39 @@ namespace Support
                     ""action"": ""LongInteract"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a66c7a5-5780-44ae-986f-27628427abe6"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HideGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8443558-4c6e-4cab-8396-3bfc8032eae1"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": ""Hold(duration=0.4)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowAmountOfAmmo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36744ba0-a3fc-440e-8e23-176bebcc5196"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": ""Hold(duration=0.4)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowAmountOfAmmo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -760,6 +811,7 @@ namespace Support
             m_FPS_Aim = m_FPS.FindAction("Aim", throwIfNotFound: true);
             m_FPS_Reload = m_FPS.FindAction("Reload", throwIfNotFound: true);
             m_FPS_DistortTheShutter = m_FPS.FindAction("DistortTheShutter", throwIfNotFound: true);
+            m_FPS_ShowAmountOfAmmo = m_FPS.FindAction("ShowAmountOfAmmo", throwIfNotFound: true);
             m_FPS_ShutterDelay = m_FPS.FindAction("ShutterDelay", throwIfNotFound: true);
             m_FPS_Interact = m_FPS.FindAction("Interact", throwIfNotFound: true);
             m_FPS_LongInteract = m_FPS.FindAction("LongInteract", throwIfNotFound: true);
@@ -767,6 +819,7 @@ namespace Support
             m_FPS_FirstSlotInteraction = m_FPS.FindAction("FirstSlotInteraction", throwIfNotFound: true);
             m_FPS_SecondSlotInteraction = m_FPS.FindAction("SecondSlotInteraction", throwIfNotFound: true);
             m_FPS_DropGun = m_FPS.FindAction("DropGun", throwIfNotFound: true);
+            m_FPS_HideGun = m_FPS.FindAction("HideGun", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -838,6 +891,7 @@ namespace Support
         private readonly InputAction m_FPS_Aim;
         private readonly InputAction m_FPS_Reload;
         private readonly InputAction m_FPS_DistortTheShutter;
+        private readonly InputAction m_FPS_ShowAmountOfAmmo;
         private readonly InputAction m_FPS_ShutterDelay;
         private readonly InputAction m_FPS_Interact;
         private readonly InputAction m_FPS_LongInteract;
@@ -845,6 +899,7 @@ namespace Support
         private readonly InputAction m_FPS_FirstSlotInteraction;
         private readonly InputAction m_FPS_SecondSlotInteraction;
         private readonly InputAction m_FPS_DropGun;
+        private readonly InputAction m_FPS_HideGun;
         public struct FPSActions
         {
             private @StationaryInput m_Wrapper;
@@ -861,6 +916,7 @@ namespace Support
             public InputAction @Aim => m_Wrapper.m_FPS_Aim;
             public InputAction @Reload => m_Wrapper.m_FPS_Reload;
             public InputAction @DistortTheShutter => m_Wrapper.m_FPS_DistortTheShutter;
+            public InputAction @ShowAmountOfAmmo => m_Wrapper.m_FPS_ShowAmountOfAmmo;
             public InputAction @ShutterDelay => m_Wrapper.m_FPS_ShutterDelay;
             public InputAction @Interact => m_Wrapper.m_FPS_Interact;
             public InputAction @LongInteract => m_Wrapper.m_FPS_LongInteract;
@@ -868,6 +924,7 @@ namespace Support
             public InputAction @FirstSlotInteraction => m_Wrapper.m_FPS_FirstSlotInteraction;
             public InputAction @SecondSlotInteraction => m_Wrapper.m_FPS_SecondSlotInteraction;
             public InputAction @DropGun => m_Wrapper.m_FPS_DropGun;
+            public InputAction @HideGun => m_Wrapper.m_FPS_HideGun;
             public InputActionMap Get() { return m_Wrapper.m_FPS; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -913,6 +970,9 @@ namespace Support
                     @DistortTheShutter.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
                     @DistortTheShutter.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
                     @DistortTheShutter.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnDistortTheShutter;
+                    @ShowAmountOfAmmo.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnShowAmountOfAmmo;
+                    @ShowAmountOfAmmo.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnShowAmountOfAmmo;
+                    @ShowAmountOfAmmo.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnShowAmountOfAmmo;
                     @ShutterDelay.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnShutterDelay;
                     @ShutterDelay.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnShutterDelay;
                     @ShutterDelay.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnShutterDelay;
@@ -934,6 +994,9 @@ namespace Support
                     @DropGun.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropGun;
                     @DropGun.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropGun;
                     @DropGun.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnDropGun;
+                    @HideGun.started -= m_Wrapper.m_FPSActionsCallbackInterface.OnHideGun;
+                    @HideGun.performed -= m_Wrapper.m_FPSActionsCallbackInterface.OnHideGun;
+                    @HideGun.canceled -= m_Wrapper.m_FPSActionsCallbackInterface.OnHideGun;
                 }
                 m_Wrapper.m_FPSActionsCallbackInterface = instance;
                 if (instance != null)
@@ -974,6 +1037,9 @@ namespace Support
                     @DistortTheShutter.started += instance.OnDistortTheShutter;
                     @DistortTheShutter.performed += instance.OnDistortTheShutter;
                     @DistortTheShutter.canceled += instance.OnDistortTheShutter;
+                    @ShowAmountOfAmmo.started += instance.OnShowAmountOfAmmo;
+                    @ShowAmountOfAmmo.performed += instance.OnShowAmountOfAmmo;
+                    @ShowAmountOfAmmo.canceled += instance.OnShowAmountOfAmmo;
                     @ShutterDelay.started += instance.OnShutterDelay;
                     @ShutterDelay.performed += instance.OnShutterDelay;
                     @ShutterDelay.canceled += instance.OnShutterDelay;
@@ -995,6 +1061,9 @@ namespace Support
                     @DropGun.started += instance.OnDropGun;
                     @DropGun.performed += instance.OnDropGun;
                     @DropGun.canceled += instance.OnDropGun;
+                    @HideGun.started += instance.OnHideGun;
+                    @HideGun.performed += instance.OnHideGun;
+                    @HideGun.canceled += instance.OnHideGun;
                 }
             }
         }
@@ -1013,6 +1082,7 @@ namespace Support
             void OnAim(InputAction.CallbackContext context);
             void OnReload(InputAction.CallbackContext context);
             void OnDistortTheShutter(InputAction.CallbackContext context);
+            void OnShowAmountOfAmmo(InputAction.CallbackContext context);
             void OnShutterDelay(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
             void OnLongInteract(InputAction.CallbackContext context);
@@ -1020,6 +1090,7 @@ namespace Support
             void OnFirstSlotInteraction(InputAction.CallbackContext context);
             void OnSecondSlotInteraction(InputAction.CallbackContext context);
             void OnDropGun(InputAction.CallbackContext context);
+            void OnHideGun(InputAction.CallbackContext context);
         }
     }
 }

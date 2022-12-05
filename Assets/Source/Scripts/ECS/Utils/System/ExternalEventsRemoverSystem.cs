@@ -1,4 +1,5 @@
-﻿using Ingame.Gunplay;
+﻿using Ingame.Animation;
+using Ingame.Hud;
 using Ingame.Inventory;
 using Ingame.SupportCommunication;
 using LeoEcsPhysics;
@@ -8,12 +9,8 @@ namespace Ingame.Utils
 {
     public sealed class ExternalEventsRemoverSystem : IEcsRunSystem
     {
-        //Gun-play
-        private readonly EcsFilter<ReloadPerformedCallbackEvent> _reloadCallbackEventFilter;
-        private readonly EcsFilter<ShutterDistortionPerformedCallbackEvent> _shutterDistortionCallbackEventFilter;
         //Inventory
         private readonly EcsFilter<UpdateBackpackAppearanceEvent> _updateInventoryEventFilter;
-        private readonly EcsFilter<UpdateMagazineAppearanceEvent> _updateMagazineAppearanceEventFilter;
         //Physics
         private readonly EcsFilter<OnTriggerEnterEvent> _filterEnter;
         private readonly EcsFilter<OnTriggerStayEvent> _onTriggerStayEventFilter;
@@ -24,33 +21,20 @@ namespace Ingame.Utils
         private readonly EcsFilter<LevelEndRequest> _levelEndRequestFilter;
         //Utils
         private readonly EcsFilter<UpdateSettingsRequest> _updateSettingsRequestFilter;
+        //Gunplay
+        private readonly EcsFilter<RecoilRequest> _recoilRequestFilter;
+        //Animation
+        private readonly EcsFilter<UpdateItemVisibilityAnimationCallbackEvent> _updateItemsVisibilityCallbackFilter;
+        private readonly EcsFilter<PerformDistortShutterAnimationCallbackEvent> _performDistortShutterAnimationCallbackFilter;
+        private readonly EcsFilter<PerformMagazineSwitchAnimationCallback> _performMagazineSwitchCallbackFilter;
+        private readonly EcsFilter<PerformShutterDelayAnimationCallbackEvent> _performShutterDelayCallbackFilter;
 
         public void Run()
         {
-            foreach (var i in _reloadCallbackEventFilter)
-            {
-                ref var eventEntity = ref _reloadCallbackEventFilter.GetEntity(i);
-                eventEntity.Del<ReloadPerformedCallbackEvent>();
-            }
-            
-            foreach (var i in _shutterDistortionCallbackEventFilter)
-            {
-                ref var eventEntity = ref _shutterDistortionCallbackEventFilter.GetEntity(i);
-                eventEntity.Del<ShutterDistortionPerformedCallbackEvent>();
-            }
-
             foreach (var i in _updateInventoryEventFilter)
             {
                 ref var eventEntity = ref _updateInventoryEventFilter.GetEntity(i); 
                 eventEntity.Del<UpdateBackpackAppearanceEvent>();
-            }
-
-            foreach (var i in _updateMagazineAppearanceEventFilter)
-            {
-                ref var eventEntity = ref _updateInventoryEventFilter.GetEntity(i); 
-                
-                if(eventEntity.IsAlive())
-                    eventEntity.Del<UpdateMagazineAppearanceEvent>();
             }
 
             foreach (var i in _filterEnter)
@@ -93,6 +77,36 @@ namespace Ingame.Utils
             {
                 ref var eventEntity = ref _updateSettingsRequestFilter.GetEntity(i);
                 eventEntity.Del<UpdateSettingsRequest>();
+            }
+
+            foreach (var i in _recoilRequestFilter)
+            {
+                ref var eventEntity = ref _recoilRequestFilter.GetEntity(i);
+                eventEntity.Del<RecoilRequest>();
+            }
+            
+            foreach (var i in _updateItemsVisibilityCallbackFilter)
+            {
+                ref var eventEntity = ref _updateItemsVisibilityCallbackFilter.GetEntity(i);
+                eventEntity.Del<UpdateItemVisibilityAnimationCallbackEvent>();
+            }
+            
+            foreach (var i in _performDistortShutterAnimationCallbackFilter)
+            {
+                ref var eventEntity = ref _performDistortShutterAnimationCallbackFilter.GetEntity(i);
+                eventEntity.Del<PerformDistortShutterAnimationCallbackEvent>();
+            }
+            
+            foreach (var i in _performMagazineSwitchCallbackFilter)
+            {
+                ref var eventEntity = ref _performMagazineSwitchCallbackFilter.GetEntity(i);
+                eventEntity.Del<PerformMagazineSwitchAnimationCallback>();
+            }
+            
+            foreach (var i in _performShutterDelayCallbackFilter)
+            {
+                ref var eventEntity = ref _performShutterDelayCallbackFilter.GetEntity(i);
+                eventEntity.Del<PerformShutterDelayAnimationCallbackEvent>();
             }
         }
     }

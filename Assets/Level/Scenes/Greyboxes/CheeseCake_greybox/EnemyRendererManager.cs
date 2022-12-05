@@ -1,17 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemyRendererManager : MonoBehaviour
 {
     [SerializeField] private int pixelDetectionThreshold = 10;
-   
     
-    [SerializeField] private Camera camera;
-    [SerializeField] private Material material;
+    [Required, SerializeField] private Camera enemyCamera;
 
     [SerializeField] private LayerMask maskForEnvironment;
     [SerializeField] private LayerMask maskForEnvironmentWithPlayer;
@@ -29,8 +23,8 @@ public class EnemyRendererManager : MonoBehaviour
     private int _width=256, _height=256;
     
     private void Start()
-    {
-        camera.backgroundColor = new Color(0,0,0,0);
+    { 
+        enemyCamera.backgroundColor = new Color(0,0,0,0);
        RenderView();
     }
     
@@ -59,7 +53,7 @@ public class EnemyRendererManager : MonoBehaviour
         var player = GetRenderTexture(maskForPlayer);
         var playerPixels = player.GetPixels();
         var totalNumberOfPlayersPixels = 0;
-        var bgc = camera.backgroundColor;
+        var bgc = enemyCamera.backgroundColor;
         foreach (var c in playerPixels)
         {
             if (c!=bgc)
@@ -71,15 +65,15 @@ public class EnemyRendererManager : MonoBehaviour
 
     private Texture2D GetRenderTexture( LayerMask mask)
     {
-        camera.cullingMask = mask;
-        camera.gameObject.SetActive(true);
-        camera.Render();
-        RenderTexture.active = camera.targetTexture;
+        enemyCamera.cullingMask = mask;
+        enemyCamera.gameObject.SetActive(true);
+        enemyCamera.Render();
+        RenderTexture.active = enemyCamera.targetTexture;
         var texture = new Texture2D(_width, _height, TextureFormat.RGBA32, false);
         texture.ReadPixels(new(0,0,_width,_height),0,0);
         texture.Apply();
         //camera.cullingMask = ;
-        camera.gameObject.SetActive(false);     
+        enemyCamera.gameObject.SetActive(false);     
         return texture;
     }
 }

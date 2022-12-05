@@ -110,7 +110,16 @@
                     "id": "f5b50951-d069-47f8-aae9-dc84c6a9caec",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShowAmountOfAmmo",
+                    "type": "Button",
+                    "id": "8ede40ba-b7f7-4944-9984-2acb40736b3f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -174,6 +183,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Hold(duration=0.4)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HideGun",
+                    "type": "Button",
+                    "id": "f77b2c21-8efe-498d-bc9a-7b3cd1b992fc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -544,7 +562,7 @@
                 {
                     "name": "",
                     "id": "56a5a5b8-8128-4a4e-9068-cd164fa2492b",
-                    "path": "<Keyboard>/t",
+                    "path": "<Keyboard>/y",
                     "interactions": "Hold(duration=0.4)",
                     "processors": "",
                     "groups": "",
@@ -676,7 +694,7 @@
                 {
                     "name": "",
                     "id": "d304e820-efc5-4ab8-a32e-c4ee1071a948",
-                    "path": "<Keyboard>/y",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -714,6 +732,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "LongInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4a66c7a5-5780-44ae-986f-27628427abe6",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HideGun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8443558-4c6e-4cab-8396-3bfc8032eae1",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Hold(duration=0.4)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowAmountOfAmmo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36744ba0-a3fc-440e-8e23-176bebcc5196",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "Hold(duration=0.4)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowAmountOfAmmo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

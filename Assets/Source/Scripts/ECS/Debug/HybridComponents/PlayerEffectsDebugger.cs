@@ -4,7 +4,6 @@ using Ingame.Health;
 using Ingame.Player;
 using Leopotam.Ecs;
 using NaughtyAttributes;
-using UnityEngine;
 using Zenject;
 #endif
 

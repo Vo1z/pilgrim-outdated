@@ -1,6 +1,6 @@
 ﻿namespace Ingame.Utils
 {
-    internal struct TimerComponent
+    public struct TimerComponent
     {
         public float timePassed;
     }

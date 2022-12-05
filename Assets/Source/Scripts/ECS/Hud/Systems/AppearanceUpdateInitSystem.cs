@@ -10,7 +10,6 @@ namespace Ingame.Hud
         public void Init()
         {
             _world.NewEntity().Get<UpdateBackpackAppearanceEvent>();
-            _world.NewEntity().Get<UpdateMagazineAppearanceEvent>();
         }
     }
 }

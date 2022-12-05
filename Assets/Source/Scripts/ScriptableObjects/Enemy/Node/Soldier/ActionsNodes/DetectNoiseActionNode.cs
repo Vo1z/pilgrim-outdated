@@ -25,24 +25,27 @@ namespace Ingame.Enemy
         protected override State ActOnTick()
         {
             ref var enemy = ref Entity.Get<EnemyStateModel>();
-            //noise is not detected yet
-            if (enemy.NoisePosition == null)
+            enemy.LastRememberedNoises ??= new List<Vector3>();
+
+            for (int i = enemy.LastRememberedNoises.Count-1; i >=0 ; i--)
             {
-                (Vector3, float) p;
-                enemy.LastRememberedNoises ??= new List<Vector3>();
-               
-                foreach (var i in enemy.LastRememberedNoises)
+                if (Vector3.Distance(_position.position, enemy.LastRememberedNoises[i]) > noiseDetectionRange)
                 {
-                    var dist = Vector3.Distance(i, _position.position);
-                    if ( dist< noiseDetectionRange)
-                    {
-                        p = (i, dist);
-                    }
+                    enemy.LastRememberedNoises.RemoveAt(i);
+                    continue;
                 }
+
+                if (!enemy.IsTargetDetected)
+                {
+                    enemy.HasDetectedNoises = true;
+                    enemy.NoisePosition = enemy.LastRememberedNoises[i];
+                }
+                enemy.LastRememberedNoises.RemoveAt(i);
             }
            
+           
             //Noise Detection
-            return State.Running;
+            return State.Success;
         }
     }
 }

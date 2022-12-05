@@ -28,7 +28,14 @@ namespace Ingame.Enemy
 
         protected override void ActOnStop()
         {
-            _agent.isStopped = true;
+            if (_agent == null)
+            {
+                Entity.Get<NavMeshAgentModel>().Agent.isStopped = true;
+            }
+            else
+            {
+                _agent.isStopped = true;
+            }
         }
 
         protected override State ActOnTick()
@@ -36,7 +43,10 @@ namespace Ingame.Enemy
             #if UNITY_EDITOR
                 UnityEngine.Debug.DrawLine(_agent.transform.position,_agent.destination,Color.green);
             #endif
-
+            if (_agent != null && _agent.isStopped )
+            {
+                _agent.isStopped = false;
+            }
             if (_typeOfReposition == TypeOfReposition.LookAtTarget)
             {
                 ref var enemyModel = ref Entity.Get<EnemyStateModel>();

@@ -45,10 +45,10 @@ namespace Ingame.Enemy
             
             var deltaAngle = pointDirection switch
             {
-                PointToAngle.Right => Vector3.Angle(dir, enemyModel.Target.right),
-                PointToAngle.Left => Vector3.Angle(dir, -enemyModel.Target.right),
-                PointToAngle.Front => Vector3.Angle(dir, enemyModel.Target.forward),
-                PointToAngle.Back =>Vector3.Angle(dir, -enemyModel.Target.forward),
+                PointToAngle.Right => Vector3.Angle(dir, -enemyModel.Target.right),
+                PointToAngle.Left => Vector3.Angle(dir, enemyModel.Target.right),
+                PointToAngle.Front => Vector3.Angle(dir, -enemyModel.Target.forward),
+                PointToAngle.Back =>Vector3.Angle(dir, enemyModel.Target.forward),
                 _ => throw new ArgumentOutOfRangeException()
             };
 

@@ -139,8 +139,8 @@ namespace Ingame.Enemy
                 //undefined cover
                 if (!hasDeterminedPoints)
                 {
-                    var size = transform.GetComponent<Renderer>().bounds.size;
-                    points.Add(transform.position);
+                    //var size = transform.GetComponent<Renderer>().bounds.size
+                    points.Add(transform.position+(transform.position-target.position).normalized);
                 }
                 //defined cover
                 else

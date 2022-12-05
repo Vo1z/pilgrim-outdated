@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Ingame.Behaviour
 {
-    public class ParallelNode : CompositeNode
+    public sealed class ParallelNode : CompositeNode
     {
         private Dictionary<Node,State> _childrenState = new ();
         protected override void ActOnStart()
@@ -45,6 +45,7 @@ namespace Ingame.Behaviour
                 }
 
                 _childrenState[item.Key] = state;
+
             }
 
             return hasFinished ? State.Success : State.Running;

@@ -8,9 +8,12 @@ namespace Ingame.Enemy
     public struct EnemyStateModel
     {
         //hp
-        [Header("Low Hp")]
+        [Header("Hp")]
         public bool IsDying;
         public bool IsDead;
+        public bool IsTakingDamage;
+        public float LastRememberedHP;
+        public float CurrentRememberedHP;
         
         //attack
         [Header("Ammo")] 
@@ -36,7 +39,7 @@ namespace Ingame.Enemy
         //Covers
         public HashSet<Transform> Covers;
         public HashSet<Transform> UndefinedCovers;
-        
+
         //Transparent Covers
         public HashSet<Transform> TransparentCovers;
         public HashSet<Transform> UndefinedTransparentCovers;

@@ -13,7 +13,7 @@ namespace Ingame.Systems
         //MUST BE only one shared camera!!!
         private readonly EcsFilter<CameraComponent,SharedCameraModel> _cameraFilter;
         
-        private int _width=256, _height=256;
+        private int _width=32, _height=32;
         private int _pixelDetectionThreshold = 10;
         [Range(0,1)]
         private float _percentageDetectionThreshold = 0.15f;

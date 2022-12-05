@@ -1,20 +1,19 @@
 ﻿namespace Ingame.Behaviour
 {
-    public class InteruptSelectorNode : SelectorNode
+    public sealed class InterruptSelectorNode : SelectorNode
     {
-
-        protected State OnUpdate()
+        protected override State ActOnTick()
         {
             var previous = currentIndex;
             base.ActOnStart();
-            var status = base.Tick();
+            var status = base.ActOnTick();
             if (previous == currentIndex) return status;
             
             if (Children[previous].CurrentState == State.Running)
             {
                 Children[previous].Abort();
             }
-
+            
             return status;
         }
     }

@@ -15,7 +15,7 @@ namespace Ingame.Behaviour
            Failure,
            Success,
            Abandon,
-           ForceStop
+           //ForceStop
         }
         
       

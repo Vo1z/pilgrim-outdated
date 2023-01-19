@@ -1,5 +1,7 @@
-﻿using Ingame.Input;
+﻿using Ingame.Data.Hud;
+using Ingame.Input;
 using Ingame.Movement;
+using Ingame.Player;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -7,15 +9,19 @@ namespace Ingame.Hud
 {
     public sealed class HudItemRotatorDueDeltaRotationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemModel, TransformModel, InHandsTag> _inHandItemFilter;
+        private readonly EcsFilter<HudItemModel, TransformModel, InInventoryTag> _inHandItemFilter;
         private readonly EcsFilter<RotateInputRequest> _rotateInputFilter;
+        private readonly EcsFilter<PlayerModel> _playerFilter;
 
-        private const float ANGLE_FOR_ONE_SCREEN_PIXEL = .1f;
+        private const float ANGLE_FOR_ONE_SCREEN_PIXEL = .01f;
         private const float INPUT_ANGLE_VARIETY = 10f;
         
         public void Run()
         {
             var deltaRotation = _rotateInputFilter.IsEmpty()? Vector2.zero : _rotateInputFilter.Get1(0).rotationInput;
+
+            if (!_playerFilter.IsEmpty())
+                deltaRotation *= _playerFilter.Get1(0).playerMovementData.Sensitivity;
             
             foreach (var i in _inHandItemFilter)
             {

@@ -2,6 +2,7 @@
 using Ingame.Input;
 using Ingame.Player;
 using Leopotam.Ecs;
+using Support.Extensions;
 using UnityEngine;
 
 namespace Ingame.Interaction.Common
@@ -21,7 +22,7 @@ namespace Ingame.Interaction.Common
             ref var cameraModel = ref _mainCameraFilter.Get1(0);
             var camera = cameraModel.camera;
 
-            var ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+            var ray = camera.GetCenterScreenRay();
             int layerMask = ~LayerMask.GetMask("PlayerStatic", "Ignore Raycast");
 
             if (Physics.Raycast(ray, out RaycastHit hit, playerModel.playerMovementData.InteractionDistance, layerMask))

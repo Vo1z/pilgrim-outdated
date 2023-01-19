@@ -5,7 +5,7 @@ using Zenject;
 namespace Ingame
 {
     [RequireComponent(typeof(EntityReference))]
-    public class EntityReferenceRequestProvider : MonoProvider<InitializeEntityReferenceRequest>
+    public sealed class EntityReferenceRequestProvider : MonoProvider<InitializeEntityReferenceRequest>
     {
         [Inject]
         private void Construct()

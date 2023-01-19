@@ -2,9 +2,11 @@
 {
     public struct InventoryComponent
     {
-        public float currentWeight;
-
+        public int currentNumberOfEnergyDrinks;
+        public int currentNumberOfCreamTubes;
+        public int currentNumberOfInhalators;
         public int currentNumberOfMorphine;
+        public int currentNumberOfAdrenaline;
         public int currentNumberOfBandages;
     }
 }

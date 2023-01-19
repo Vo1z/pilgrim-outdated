@@ -19,13 +19,13 @@ namespace Ingame.Interaction.Doors
                 
                 transformModel.transform.DOKill();
                 
-                if (doorEntity.Has<OpenedDorTag>())
+                if (doorEntity.Has<OpenedDoorTag>())
                 {
                     transformModel.transform
                         .DOLocalRotate(transformModel.initialLocalRotation.eulerAngles, doorModel.openAnimationDuration)
                         .SetEase(doorModel.animationEase);
                     
-                    doorEntity.Del<OpenedDorTag>();
+                    doorEntity.Del<OpenedDoorTag>();
                 }
                 else
                 {
@@ -33,7 +33,7 @@ namespace Ingame.Interaction.Doors
                         .DOLocalRotate(doorModel.rotationWhenOpened, doorModel.openAnimationDuration)
                         .SetEase(doorModel.animationEase);
 
-                    doorEntity.Get<OpenedDorTag>();
+                    doorEntity.Get<OpenedDoorTag>();
                 }
                 
                 doorEntity.Del<PerformInteractionTag>();

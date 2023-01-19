@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Terrain
+  - CoverPoint
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - PlayerStatic
   - HUD
   - Weapon
-  - 
-  - 
-  - 
-  - 
+  - IgnoreCollisionWithPlayer
+  - Helmet
+  - Actor
+  - TransparentObstacle
   - 
   - 
   - 

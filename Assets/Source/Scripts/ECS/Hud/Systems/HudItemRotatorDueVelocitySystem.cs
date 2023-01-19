@@ -1,4 +1,5 @@
-﻿using Ingame.Movement;
+﻿using Ingame.Data.Hud;
+using Ingame.Movement;
 using Ingame.Player;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace Ingame.Hud
 {
     public sealed class HudItemRotatorDueVelocitySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HudItemModel, TransformModel, InHandsTag> _inHandItemFilter;
+        private readonly EcsFilter<HudItemModel, TransformModel, InInventoryTag> _inHandItemFilter;
         private readonly EcsFilter<PlayerModel, VelocityComponent, CharacterControllerModel> _playerFilter;
         
         private const float ANGLE_FOR_ONE_SCREEN_PIXEL = .1f;

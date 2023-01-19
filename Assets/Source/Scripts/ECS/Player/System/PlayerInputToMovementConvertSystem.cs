@@ -1,4 +1,5 @@
-﻿using Ingame.Input;
+﻿using Ingame.Health;
+using Ingame.Input;
 using Ingame.Movement;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace Ingame.Player
             
             foreach (var i in _playerInputFilter)
             {
+                ref var playerEntity = ref _playerInputFilter.GetEntity(i);
                 ref var playerModel = ref _playerInputFilter.Get1(i);
                 ref var playerVelocityComponent = ref _playerInputFilter.Get2(i);
                 ref var playerCharacterControllerModel = ref _playerInputFilter.Get3(i);
@@ -32,9 +34,14 @@ namespace Ingame.Player
                                         playerTransform.right * inputVector.x;
 
                 var targetVelocity = Vector3.ClampMagnitude(movementDirection, 1) * playerModel.currentSpeed;
+
+                if (playerEntity.Has<EnergyEffectComponent>())
+                {
+                    var speedBoost = playerEntity.Get<EnergyEffectComponent>().movingSpeedScale;
+                    targetVelocity *= speedBoost;
+                }
                 
                 targetVelocity.y = playerVelocity.y;
-
 
                 playerVelocityComponent.velocity = Vector3.Lerp(playerVelocity, targetVelocity, movementPower);
             }

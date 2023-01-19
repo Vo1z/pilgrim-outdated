@@ -5,7 +5,7 @@ namespace Ingame.CameraWork
 {
     public sealed class CameraInputToStatesConverterSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<MainCameraTag> _mainCameraFilter;
+        private readonly EcsFilter<MainVirtualCameraTag> _mainCameraFilter;
         private readonly EcsFilter<AimInputEvent> _aimEventFilter;
 
         public void Run()

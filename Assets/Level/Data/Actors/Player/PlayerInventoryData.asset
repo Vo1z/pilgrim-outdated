@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49addd391fdb49d98803808c524327c6, type: 3}
   m_Name: PlayerInventoryData
   m_EditorClassIdentifier: 
-  maximumWeight: 20
-  maximumNumberOfMorphine: 5
+  maximumNumberOfMorphine: 3
   maximumNumberOfBandages: 5
+  maximumNumberOfInhalators: 3
+  maximumNumberOfEnergyDrinks: 2
+  maximumNumberOfMagazines: 6
+  ammoTypeAmounts:
+  - ammoType: 0
+    maximumAmount: 60
+  - ammoType: 1
+    maximumAmount: 60
+  - ammoType: 2
+    maximumAmount: 60

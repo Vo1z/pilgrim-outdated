@@ -1,10 +1,8 @@
 ﻿using Ingame.Input;
 using Ingame.Inventory;
 using Ingame.Movement;
-using Ingame.Player;
 using Ingame.Utils;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Ingame.Player
 {
@@ -14,10 +12,6 @@ namespace Ingame.Player
 
         public void Init()
         {
-            //todo move to settings
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
             foreach (var i in _playerFilter)
             {
                 ref var playerEntity = ref _playerFilter.GetEntity(i);
@@ -26,10 +20,10 @@ namespace Ingame.Player
                 ref var playerCharacterControllerModel = ref playerEntity.Get<CharacterControllerModel>();
                 ref var playerFrictionComp = ref playerEntity.Get<FrictionComponent>();
                 ref var playerTransformModel = ref playerEntity.Get<TransformModel>();
+                ref var playerInventory = ref playerEntity.Get<InventoryComponent>();
                 playerEntity.Get<TimerComponent>();
                 playerEntity.Get<VelocityComponent>();
-                playerEntity.Get<InventoryComponent>();
-                
+
                 var playerData = playerModel.playerMovementData;
 
                 playerGravityComponent.gravityAcceleration = playerData.GravityAcceleration;

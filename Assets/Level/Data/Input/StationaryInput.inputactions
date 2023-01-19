@@ -110,7 +110,25 @@
                     "id": "f5b50951-d069-47f8-aae9-dc84c6a9caec",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShowAmountOfAmmo",
+                    "type": "Button",
+                    "id": "8ede40ba-b7f7-4944-9984-2acb40736b3f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShutterDelay",
+                    "type": "Button",
+                    "id": "031ad4ac-d432-45b0-ab2c-09a15bc376e4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -120,6 +138,60 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LongInteract",
+                    "type": "Button",
+                    "id": "5e54b899-d8fd-4a3b-97a1-e56683e3537c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.4)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "4998a9d8-5e78-4ad6-8f1a-04ada90b255b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FirstSlotInteraction",
+                    "type": "Button",
+                    "id": "83bfe484-5274-4859-86dc-09a6445f39fd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondSlotInteraction",
+                    "type": "Button",
+                    "id": "17dc1a19-d6b5-4694-bd42-93e706e23b90",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DropGun",
+                    "type": "Button",
+                    "id": "70a5bc23-e79a-4199-9e34-1924684a18df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.4)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HideGun",
+                    "type": "Button",
+                    "id": "f77b2c21-8efe-498d-bc9a-7b3cd1b992fc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -490,8 +562,8 @@
                 {
                     "name": "",
                     "id": "56a5a5b8-8128-4a4e-9068-cd164fa2492b",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
+                    "path": "<Keyboard>/y",
+                    "interactions": "Hold(duration=0.4)",
                     "processors": "",
                     "groups": "",
                     "action": "DistortTheShutter",
@@ -502,7 +574,7 @@
                     "name": "",
                     "id": "8e15eee7-9dd2-43a2-8850-32381174df36",
                     "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.4)",
                     "processors": "",
                     "groups": "",
                     "action": "DistortTheShutter",
@@ -528,6 +600,171 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7621c6d2-e1e9-4870-aca7-45fa9066ee66",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38d544a0-92dc-403c-a575-a285cf2d81ca",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ec33cce8-5c1c-4474-b4e2-a0858a0b9939",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirstSlotInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f1e3751-8b1d-44b1-808a-edd6e6152784",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirstSlotInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c4a8b67-308b-4550-9fc4-8d38d5a640b4",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondSlotInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f475d26-63dc-4482-8ece-3df4301ac13d",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondSlotInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00292408-ce91-4535-b6c1-1665389a239c",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShutterDelay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d980d89c-a2f5-43e7-b9f2-1f12490c223f",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShutterDelay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d304e820-efc5-4ab8-a32e-c4ee1071a948",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DropGun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5685f858-cef8-4ba9-aafa-0c7448095897",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DropGun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0827c61-bf15-48ce-97de-a78c35ab9b50",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LongInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db606165-a0b8-4f87-9d4a-6ce372f866be",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LongInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4a66c7a5-5780-44ae-986f-27628427abe6",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HideGun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8443558-4c6e-4cab-8396-3bfc8032eae1",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Hold(duration=0.4)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowAmountOfAmmo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36744ba0-a3fc-440e-8e23-176bebcc5196",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "Hold(duration=0.4)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowAmountOfAmmo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

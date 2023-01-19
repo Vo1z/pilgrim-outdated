@@ -7,7 +7,7 @@ namespace Ingame.Hud
 {
     public sealed class HudItemMoverDueSurfaceDetectionSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<SurfaceDetectorModel, HudItemModel, TransformModel, InHandsTag> _itemFilter;
+        private readonly EcsFilter<SurfaceDetectorModel, HudItemModel, TransformModel, InInventoryTag> _itemFilter;
 
         public void Run()
         {
@@ -21,6 +21,7 @@ namespace Ingame.Hud
                 var hudItemData = hudItemModel.itemData;
                 var hudItemTransform = transformModel.transform;
                 var initialItemLocalPos = transformModel.initialLocalPos;
+                var currentGunLocalPos = hudItemTransform.localPosition;
                 
                 var gunSurfaceDetectionResult = surfaceDetector.SurfaceDetectionType;
                 
@@ -32,9 +33,11 @@ namespace Ingame.Hud
                     ? hudItemData.MaximumAimClippingOffset
                     : hudItemData.MaximumClippingOffset; 
                 var movementDirectionZ = gunSurfaceDetectionResult == SurfaceDetectionType.Detection ? -maxClippingOffset : 0;
-                var nextGunLocalPos = initialItemLocalPos + Vector3.forward * movementDirectionZ;
+                var nextGunZ = initialItemLocalPos.z + movementDirectionZ;
+                var currentGunZ = currentGunLocalPos.z;
 
-                hudItemTransform.localPosition = Vector3.Lerp(hudItemTransform.localPosition, nextGunLocalPos, clippingSpeed);
+                currentGunZ = Mathf.Lerp(currentGunZ, nextGunZ, clippingSpeed);
+                hudItemTransform.localPosition = new Vector3(currentGunLocalPos.x, currentGunLocalPos.y, currentGunZ);
             }
         }
     }

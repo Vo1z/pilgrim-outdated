@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Ingame.Data.Hud;
 using UnityEngine;
 
 namespace Ingame.Hud
 {
-    [Serializable]
     public struct HudItemModel
     {
+        public Vector3 localPositionInHud;
+        public Quaternion localRotationInHud;
         public HudItemData itemData;
-        public Animator itemAnimator;
     }
 }

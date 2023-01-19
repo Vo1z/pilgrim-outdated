@@ -20,12 +20,14 @@ MonoBehaviour:
   movementFriction: 12
   jumpForce: 6
   pauseBetweenJumps: 0.2
-  enterLeanSpeed: 5
+  enterLeanSpeed: 4
   leanDistanceOffset: 0.4
   leanAngleOffset: 12
-  cameraPositionOffsetDuringTheLean: 0.12
+  cameraPositionOffsetDuringTheRightLean: 0.1
+  cameraPositionOffsetDuringTheLeftLean: 0.1
   gravityAcceleration: 20
   maximumGravitationForce: 40
   slidingForceModifier: 6
-  sensitivity: 10
-  interactionDistance: 2
+  sensitivity: 4
+  interactionDistance: 2.5
+  draggableObjectDistance: 2

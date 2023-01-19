@@ -1,6 +1,6 @@
 ﻿namespace Ingame.Health
 {
-    internal struct DamageComponent
+    public struct DamageComponent
     {
         public float damageToDeal;
     }

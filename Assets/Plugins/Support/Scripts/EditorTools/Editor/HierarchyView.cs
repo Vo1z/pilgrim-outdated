@@ -1,17 +1,14 @@
+using EditorExtensions;
 using UnityEditor;
 using UnityEngine;
 
-namespace EditorExtensions
+namespace Support.EditorExtensions
 {
-    /// <summary>
-    /// Class that responsible for custom view in hierarchy view
-    /// </summary>
 #if UNITY_EDITOR
     [InitializeOnLoad]
-    public class HierarchyView
+    public class HierarchyView : MonoBehaviour
     {
         private const float BACKGROUND_DRAWING_OFFSET = 16f;
-        private const float BACKGROUND_MAXIMUM_X_POS_SCALE = .9f;
 
         static HierarchyView()
         {
@@ -41,17 +38,22 @@ namespace EditorExtensions
             fontSizeInHierarchy = hierarchyHighlighter.FontSize;
 
             hierarchyRect.center += Vector2.right * BACKGROUND_DRAWING_OFFSET;
-            hierarchyRect.xMax *= BACKGROUND_MAXIMUM_X_POS_SCALE;
 
             if (backgroundColor.a > 0f)
                 EditorGUI.DrawRect(hierarchyRect, backgroundColor);
 
             if (fontColor.a > 0f)
+            {
+                var normal = new GUIStyle(EditorStyles.textField).normal;
+                normal.textColor = fontColor;
+
                 EditorGUI.LabelField(hierarchyRect, selectedObject.name, new GUIStyle
                 {
                     fontSize = fontSizeInHierarchy,
-                    fontStyle = fontStyleInHierarchy
+                    fontStyle = fontStyleInHierarchy,
+                    normal = normal
                 });
+            }
         }
     }
 #endif
